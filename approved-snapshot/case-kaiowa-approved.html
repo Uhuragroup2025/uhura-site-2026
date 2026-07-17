@@ -1,0 +1,876 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caso Kaiowa | Uhura Group</title>
+  <meta name="description" content="Caso de estudio Kaiowa: rediseño web para mejorar identidad de marca, usabilidad, exploración e impacto digital." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0614;
+      --ink: #ffffff;
+      --muted: rgba(255,255,255,.70);
+      --soft: rgba(255,255,255,.48);
+      --line: rgba(255,255,255,.10);
+      --purple: #8a4dff;
+      --deep: #501f92;
+      --lav: #c9b7ff;
+      --cyan: #4be5ff;
+      --lime: #d4ff4a;
+      --light: #f2edf8;
+      --dark-text: #17131f;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: var(--bg); }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: Montserrat, sans-serif;
+      background:
+        radial-gradient(ellipse at 78% 10%, rgba(75,229,255,.14), transparent 34%),
+        radial-gradient(ellipse at 12% 20%, rgba(138,77,255,.22), transparent 42%),
+        linear-gradient(180deg, #090512 0%, #120823 48%, #090512 100%);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .38;
+      background-image:
+        linear-gradient(rgba(138,77,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(138,77,255,.045) 1px, transparent 1px);
+      background-size: 78px 78px;
+      mask-image: linear-gradient(180deg, #000 0%, transparent 82%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .25;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='512' height='512' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E");
+    }
+
+    a { color: inherit; }
+    .shell { width: min(1180px, calc(100% - 48px)); margin: 0 auto; position: relative; z-index: 1; }
+
+    .nav-wrap {
+      position: fixed;
+      z-index: 20;
+      top: 22px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      padding: 0 20px;
+      pointer-events: none;
+    }
+
+    .nav {
+      pointer-events: auto;
+      width: min(920px, 100%);
+      height: 68px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: clamp(14px, 2vw, 28px);
+      padding: 0 clamp(18px, 2.8vw, 28px);
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(14,11,24,.82), rgba(10,8,18,.68));
+      backdrop-filter: blur(22px) saturate(1.1);
+      box-shadow: 0 18px 52px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .logo { width: 118px; display: block; filter: drop-shadow(0 0 10px rgba(137,69,240,.26)); }
+    .nav-links { display: flex; justify-content: center; gap: clamp(20px, 3vw, 38px); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.56); }
+    .nav-links a, .cta { text-decoration: none; transition: color .2s ease, border-color .2s ease, background .2s ease, transform .2s ease; }
+    .nav-links a:hover { color: #fff; }
+    .cta { display: inline-flex; align-items: center; gap: 10px; height: 42px; padding: 0 18px; border-radius: 999px; border: 1px solid rgba(225,255,100,.22); background: rgba(255,255,255,.045); font-size: 10.5px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
+
+    section { position: relative; padding: clamp(74px, 10vw, 136px) 0; }
+    h1, h2, h3, p, figure { margin-top: 0; }
+    .eyebrow { display: flex; align-items: center; gap: 12px; margin: 0 0 22px; font-size: 10px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; color: var(--lime); }
+    .eyebrow::before { content: ""; width: 28px; height: 1px; background: linear-gradient(90deg, var(--cyan), transparent); }
+    .italic { font-family: "Playfair Display", serif; font-style: italic; font-weight: 400; color: var(--lav); letter-spacing: -.035em; }
+
+    .hero { min-height: 100vh; display: grid; align-items: center; padding-top: 150px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, .98fr) minmax(360px, .82fr); gap: clamp(36px, 6vw, 84px); align-items: center; }
+    .hero h1 { margin: 0 0 26px; max-width: 780px; font-size: clamp(40px, 5vw, 72px); line-height: 1.02; letter-spacing: -.065em; font-weight: 900; }
+    .hero-copy { max-width: 620px; color: var(--muted); font-size: clamp(16px, 1.45vw, 19px); line-height: 1.85; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px; }
+    .pill { border: 1px solid rgba(201,183,255,.16); border-radius: 999px; padding: 10px 14px; color: rgba(255,255,255,.72); background: rgba(255,255,255,.045); font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+
+    .brand-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(ellipse at 22% 14%, rgba(75,229,255,.16), transparent 34%),
+        radial-gradient(ellipse at 80% 86%, rgba(138,77,255,.18), transparent 46%),
+        rgba(255,255,255,.045);
+      box-shadow: 0 28px 80px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.08);
+      padding: clamp(22px, 4vw, 34px);
+    }
+    .brand-card img.logo-kaiowa { width: min(100%, 310px); height: auto; margin-bottom: 32px; filter: drop-shadow(0 0 24px rgba(79,125,255,.20)); }
+    .brand-card .stat { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .mini-stat { border: 1px solid rgba(255,255,255,.10); border-radius: 12px; padding: 16px; background: rgba(0,0,0,.16); }
+    .mini-stat strong { display: block; font-size: clamp(24px, 3vw, 36px); line-height: 1; color: var(--cyan); letter-spacing: -.04em; }
+    .mini-stat span { display: block; margin-top: 8px; color: var(--soft); font-size: 9px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+
+    .light {
+      color: var(--dark-text);
+      background:
+        radial-gradient(ellipse at 12% 0%, rgba(201,183,255,.42), transparent 40%),
+        radial-gradient(ellipse at 85% 20%, rgba(75,229,255,.16), transparent 44%),
+        linear-gradient(160deg, #f0ebf8 0%, #f7f4fb 54%, #ece6f5 100%);
+    }
+    .light .eyebrow { color: rgba(137,69,240,.62); }
+    .light .eyebrow::before { background: linear-gradient(90deg, var(--purple), transparent); }
+    h2 { margin: 0 0 18px; font-size: clamp(30px, 3.2vw, 46px); line-height: 1.08; letter-spacing: -.045em; font-weight: 900; }
+    .lead { max-width: 680px; color: rgba(23,19,31,.70); font-size: clamp(15px, 1.15vw, 17px); line-height: 1.85; }
+
+    .case-page { padding: clamp(70px, 8vw, 108px) 0; }
+    .case-layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: clamp(34px, 5vw, 72px); align-items: start; }
+    .case-main { min-width: 0; }
+    .case-section { padding: clamp(38px, 5vw, 64px) 0; border-bottom: 1px solid rgba(80,31,146,.10); }
+    .case-section:first-child { padding-top: 0; }
+    .case-section:last-child { border-bottom: 0; padding-bottom: 0; }
+
+    .case-sidebar { position: sticky; top: 118px; display: grid; gap: 14px; }
+    .side-card {
+      border-radius: 16px;
+      border: 1px solid rgba(80,31,146,.14);
+      background: rgba(255,255,255,.68);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.62), 0 22px 60px rgba(80,31,146,.10);
+      padding: 22px;
+    }
+    .side-card h3 { margin: 0 0 10px; color: var(--dark-text); font-size: 20px; line-height: 1.12; letter-spacing: -.04em; }
+    .side-card p { margin: 0 0 16px; color: rgba(23,19,31,.64); font-size: 13px; line-height: 1.65; }
+    .side-button, .site-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+    .side-button {
+      width: 100%;
+      min-height: 46px;
+      color: #17131f;
+      background: linear-gradient(135deg, var(--lime), #efffb2);
+      box-shadow: 0 16px 34px rgba(212,255,74,.24);
+    }
+    .side-button:hover, .site-button:hover { transform: translateY(-2px); }
+    .other-case { display: grid; gap: 8px; margin-top: 14px; }
+    .sector-cloud { display: flex; flex-wrap: wrap; gap: 7px; margin: 14px 0 10px; }
+    .sector-chip { border: 1px solid rgba(80,31,146,.12); border-radius: 999px; padding: 7px 9px; color: rgba(80,31,146,.68); background: rgba(80,31,146,.04); font-size: 8.5px; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
+    .case-link {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      padding: 12px 0;
+      border-top: 1px solid rgba(80,31,146,.10);
+      text-decoration: none;
+      color: var(--dark-text);
+    }
+    .case-link strong { font-size: 13px; letter-spacing: -.01em; }
+    .case-link span { color: rgba(80,31,146,.58); font-size: 9px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+
+    .overview-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 40px; }
+    .overview-item, .card, .metric-card, .stack-item {
+      border-radius: 12px;
+      border: 1px solid rgba(80,31,146,.13);
+      background: rgba(255,255,255,.62);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.55), 0 18px 45px rgba(80,31,146,.08);
+    }
+    .overview-item { padding: 22px; }
+    .overview-item span { display: block; margin-bottom: 10px; color: rgba(80,31,146,.52); font-size: 10px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+    .overview-item strong { display: block; font-size: 15px; line-height: 1.45; }
+
+    .split { display: grid; grid-template-columns: minmax(0, .95fr) minmax(320px, 1.05fr); gap: clamp(28px, 4vw, 54px); align-items: start; }
+    .dark-card { border: 1px solid rgba(80,31,146,.13); border-radius: 16px; padding: clamp(26px, 4vw, 42px); background: rgba(255,255,255,.62); box-shadow: inset 0 1px 0 rgba(255,255,255,.55), 0 18px 45px rgba(80,31,146,.08); }
+    .dark-card p, .dark-copy { color: rgba(23,19,31,.70); line-height: 1.85; }
+    .dark-card h3 { color: var(--dark-text); margin: 8px 0 12px; font-size: 19px; letter-spacing: -.035em; }
+    .card-list { display: grid; gap: 12px; }
+    .card { padding: 24px; }
+    .card span { color: rgba(137,69,240,.58); font-size: 10px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+    .card h3 { margin: 10px 0 10px; font-size: 18px; letter-spacing: -.035em; }
+    .card p { margin: 0; color: rgba(23,19,31,.68); line-height: 1.75; }
+
+    .comparison-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 34px; }
+    .comparison-grid figure { overflow: hidden; border-radius: 16px; border: 1px solid rgba(80,31,146,.12); background: rgba(255,255,255,.68); box-shadow: 0 18px 45px rgba(80,31,146,.10); }
+    .comparison-grid img { width: 100%; aspect-ratio: 16 / 11; object-fit: cover; display: block; }
+    .comparison-grid figcaption { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 16px; color: rgba(23,19,31,.72); font-size: 10px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+    .site-button { margin-top: 24px; min-height: 48px; padding: 0 22px; color: #fff; background: linear-gradient(135deg, var(--deep), var(--purple)); box-shadow: 0 16px 34px rgba(80,31,146,.22); }
+
+    .metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 38px; }
+    .metric-card { padding: clamp(24px, 4vw, 34px); }
+    .metric-card strong { display: block; color: var(--deep); font-size: clamp(34px, 4.8vw, 58px); line-height: .94; letter-spacing: -.06em; }
+    .metric-card span { display: block; margin-top: 12px; color: rgba(23,19,31,.52); font-size: 10px; font-weight: 900; letter-spacing: .18em; text-transform: uppercase; }
+    .metric-card p { color: rgba(23,19,31,.68); line-height: 1.65; margin: 18px 0 0; }
+
+    .stack { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 34px; }
+    .stack-item { padding: 18px; color: var(--dark-text); font-size: 12px; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
+
+    .cta-band { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px; align-items: center; border-radius: 18px; padding: clamp(28px, 5vw, 54px); border: 1px solid rgba(80,31,146,.14); background: radial-gradient(ellipse at 15% 0%, rgba(75,229,255,.14), transparent 38%), linear-gradient(135deg, rgba(255,255,255,.74), rgba(201,183,255,.22)); box-shadow: 0 28px 90px rgba(80,31,146,.12), inset 0 1px 0 rgba(255,255,255,.68); }
+    .cta-band h2 { max-width: 720px; margin-bottom: 0; }
+    .cata-button { display: inline-flex; align-items: center; gap: 12px; padding: 12px 20px 12px 12px; border-radius: 999px; border: 1px solid rgba(212,255,74,.36); background: #17131f; color: #fff; text-decoration: none; font-size: 12px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
+    .cata-button img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(255,255,255,.26); }
+
+    footer { padding: 38px 0; color: rgba(23,19,31,.48); font-size: 12px; border-top: 1px solid rgba(80,31,146,.10); background: #eee8f5; }
+
+    @keyframes expertiseScroll {
+      from { transform: translate3d(0,0,0); }
+      to { transform: translate3d(-50%,0,0); }
+    }
+
+    .expertise-section { position: relative; z-index: 2; padding: clamp(36px, 5vw, 56px) 0; margin-top: 0; background: #f0ebf8; }
+    .expertise-strip { overflow: hidden; border-radius: 999px; border: 1px solid rgba(80,31,146,.16); background: linear-gradient(90deg, rgba(255,255,255,.96), rgba(255,255,255,.98), rgba(248,246,252,.96)), radial-gradient(ellipse at 20% 50%, rgba(212,255,74,.16), transparent 48%), radial-gradient(ellipse at 78% 50%, rgba(75,229,255,.14), transparent 48%); box-shadow: inset 0 1px 0 rgba(255,255,255,.72), 0 18px 48px rgba(80,31,146,.12); -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%); }
+    .expertise-track { display: flex; align-items: center; gap: 26px; width: max-content; padding: 13px 0; animation: expertiseScroll 42s linear infinite; }
+    .expertise-strip:hover .expertise-track { animation-play-state: paused; }
+    .expertise-label { flex: 0 0 auto; padding-left: 28px; font-size: 9px; font-weight: 800; letter-spacing: .22em; line-height: 1; text-transform: uppercase; color: rgba(80,31,146,.72); white-space: nowrap; }
+    .expertise-logo { flex: 0 0 auto; width: 156px; height: 50px; display: flex; align-items: center; justify-content: center; opacity: 1; filter: none; transition: opacity .35s ease, filter .35s ease, transform .35s ease; }
+    .expertise-logo:hover { opacity: 1; filter: none; transform: translateY(-1px); }
+    .expertise-logo img { max-width: 134px; max-height: 36px; object-fit: contain; }
+
+    @media (max-width: 860px) {
+      .nav { grid-template-columns: auto auto; }
+      .nav-links { display: none; }
+      .logo { width: 110px; }
+      .hero { padding-top: 130px; }
+      .hero-grid, .split, .cta-band { grid-template-columns: 1fr; }
+      .brand-card .stat, .overview-grid, .metrics, .stack, .evidence-grid { grid-template-columns: 1fr; }
+      .case-layout, .comparison-grid { grid-template-columns: 1fr; }
+      .case-sidebar { position: relative; top: auto; order: -1; }
+      .hero h1 { font-size: clamp(36px, 10vw, 54px); }
+      section { padding: 72px 0; }
+      .shell { width: min(100% - 32px, 1180px); }
+      .cta-band { align-items: start; }
+      .expertise-section { margin-top: 0; }
+      .expertise-strip { border-radius: 14px; }
+      .expertise-track { gap: 18px; animation-duration: 34s; }
+      .expertise-label { padding-left: 20px; font-size: 8px; }
+      .expertise-logo { width: 132px; }
+      .expertise-logo img { max-width: 113px; max-height: 31px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .expertise-track { animation: none !important; }
+    }
+  </style>
+
+  <style id="kaiowa-editorial-polish">
+    body {
+      background:
+        radial-gradient(ellipse at 78% 10%, rgba(75,229,255,.14), transparent 34%),
+        radial-gradient(ellipse at 12% 20%, rgba(138,77,255,.22), transparent 42%),
+        linear-gradient(180deg, #090512 0%, #120823 38%, #f0ebf8 38.1%, #f7f4fb 100%);
+    }
+
+    .hero { min-height: 88vh; }
+    .case-page.editorial {
+      padding: clamp(72px, 8vw, 112px) 0;
+      color: var(--dark-text);
+      background:
+        radial-gradient(ellipse at 8% 0%, rgba(201,183,255,.34), transparent 36%),
+        radial-gradient(ellipse at 92% 16%, rgba(75,229,255,.14), transparent 40%),
+        linear-gradient(160deg, #f0ebf8 0%, #f7f4fb 54%, #ece6f5 100%);
+    }
+
+    .case-layout.editorial-layout {
+      grid-template-columns: minmax(0, 1fr) minmax(286px, 330px);
+      gap: clamp(46px, 6vw, 88px);
+    }
+
+    .case-main.editorial-main { max-width: 880px; }
+    .editorial-section { padding: clamp(52px, 7vw, 86px) 0; border-bottom: 1px solid rgba(80,31,146,.10); }
+    .editorial-section:first-child { padding-top: 0; }
+    .editorial-section:last-child { border-bottom: 0; padding-bottom: 0; }
+
+    .section-kicker {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 22px;
+      color: rgba(137,69,240,.66);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    .section-kicker::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--purple), transparent);
+    }
+
+    .editorial-title {
+      margin: 0 0 22px;
+      max-width: 760px;
+      color: var(--dark-text);
+      font-size: clamp(34px, 4.2vw, 58px);
+      line-height: 1.03;
+      letter-spacing: -.055em;
+      font-weight: 900;
+    }
+
+    .editorial-copy {
+      max-width: 720px;
+      margin: 0;
+      color: rgba(23,19,31,.72);
+      font-size: clamp(16px, 1.25vw, 19px);
+      line-height: 1.9;
+    }
+
+    .editorial-copy + .editorial-copy { margin-top: 20px; }
+
+    .story-split {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(300px, 1fr);
+      gap: clamp(30px, 5vw, 64px);
+      align-items: start;
+    }
+
+    .finding-list { display: grid; gap: 0; border-top: 1px solid rgba(80,31,146,.13); }
+    .finding-row { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 20px; padding: 22px 0; border-bottom: 1px solid rgba(80,31,146,.13); }
+    .finding-row span { color: rgba(137,69,240,.62); font-size: 11px; font-weight: 900; letter-spacing: .16em; }
+    .finding-row p { margin: 0; color: rgba(23,19,31,.76); font-size: 16px; line-height: 1.7; }
+
+    .insight-band {
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      padding: clamp(34px, 5vw, 58px);
+      border: 1px solid rgba(80,31,146,.12);
+      background:
+        radial-gradient(ellipse at 10% 0%, rgba(75,229,255,.16), transparent 38%),
+        radial-gradient(ellipse at 90% 96%, rgba(137,69,240,.18), transparent 46%),
+        rgba(255,255,255,.58);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.62), 0 24px 72px rgba(80,31,146,.10);
+    }
+
+    .insight-band p {
+      margin: 0;
+      max-width: 760px;
+      color: rgba(23,19,31,.80);
+      font-size: clamp(20px, 2.2vw, 30px);
+      line-height: 1.45;
+      letter-spacing: -.025em;
+      font-weight: 700;
+    }
+
+    .actions-timeline { display: grid; gap: 0; margin-top: 34px; }
+    .action-row { position: relative; display: grid; grid-template-columns: 82px minmax(0, 1fr); gap: 28px; padding: 28px 0; border-top: 1px solid rgba(80,31,146,.12); }
+    .action-row:last-child { border-bottom: 1px solid rgba(80,31,146,.12); }
+    .action-num { color: rgba(137,69,240,.62); font-size: 12px; font-weight: 900; letter-spacing: .18em; }
+    .action-row h3 { margin: 0 0 10px; color: var(--dark-text); font-size: clamp(20px, 2vw, 28px); line-height: 1.16; letter-spacing: -.04em; }
+    .action-row p { max-width: 720px; margin: 0; color: rgba(23,19,31,.68); font-size: 15px; line-height: 1.78; }
+
+    .before-after { margin-top: 36px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .evidence-shot { overflow: hidden; border-radius: 18px; border: 1px solid rgba(80,31,146,.14); background: rgba(255,255,255,.72); box-shadow: 0 22px 60px rgba(80,31,146,.12); }
+    .evidence-shot img { width: 100%; aspect-ratio: 16 / 11; object-fit: cover; display: block; }
+    .evidence-shot figcaption { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; color: rgba(23,19,31,.74); font-size: 10px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+
+    .metric-line { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin-top: 38px; border-top: 1px solid rgba(80,31,146,.13); border-bottom: 1px solid rgba(80,31,146,.13); }
+    .metric-line article { padding: 26px 24px; border-right: 1px solid rgba(80,31,146,.12); }
+    .metric-line article:last-child { border-right: 0; }
+    .metric-line strong { display: block; color: var(--deep); font-size: clamp(34px, 4vw, 54px); line-height: .94; letter-spacing: -.06em; }
+    .metric-line span { display: block; margin-top: 12px; color: rgba(23,19,31,.52); font-size: 10px; font-weight: 900; letter-spacing: .17em; text-transform: uppercase; }
+    .metric-line p { margin: 16px 0 0; color: rgba(23,19,31,.66); font-size: 14px; line-height: 1.6; }
+
+    .case-sidebar.editorial-sidebar { position: sticky; top: 116px; gap: 18px; }
+    .side-card.magnific-panel { border-radius: 26px; padding: 24px; background: rgba(255,255,255,.82); border: 1px solid rgba(80,31,146,.12); box-shadow: 0 26px 80px rgba(80,31,146,.12), inset 0 1px 0 rgba(255,255,255,.80); }
+    .magnific-panel h3 { font-size: 22px; letter-spacing: -.045em; line-height: 1.1; }
+
+    .cata-side-button {
+      width: 100%;
+      min-height: 58px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--lime), #efffb2);
+      color: #17131f;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      box-shadow: 0 18px 38px rgba(212,255,74,.26);
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+
+    .cata-side-button:hover { transform: translateY(-2px); box-shadow: 0 24px 48px rgba(212,255,74,.34); }
+    .cata-side-button img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(23,19,31,.16); }
+
+    .case-filter-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 18px; padding-bottom: 18px; border-bottom: 1px solid rgba(80,31,146,.12); }
+    .case-filter-tag { border: 1px solid rgba(80,31,146,.13); border-radius: 999px; padding: 8px 10px; background: rgba(80,31,146,.04); color: rgba(80,31,146,.70); cursor: pointer; font-size: 8.5px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; transition: background .2s ease, color .2s ease, border-color .2s ease; }
+    .case-filter-tag.is-active { border-color: rgba(80,31,146,.28); background: rgba(80,31,146,.12); color: var(--deep); }
+    .case-list { display: grid; gap: 0; }
+    .case-list.is-filtered .case-link:not(.is-visible) { display: none; }
+    .case-link.is-current strong::after { content: "Actual"; margin-left: 8px; color: rgba(137,69,240,.66); font-size: 8px; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
+
+    .site-button.editorial-site-button { background: linear-gradient(135deg, var(--deep), var(--purple)); }
+    .case-final-cta { display: flex; align-items: center; justify-content: space-between; gap: 22px; margin-top: 34px; padding: clamp(28px, 5vw, 46px); border-radius: 22px; border: 1px solid rgba(80,31,146,.14); background: radial-gradient(ellipse at 12% 0%, rgba(75,229,255,.14), transparent 38%), linear-gradient(135deg, rgba(255,255,255,.76), rgba(201,183,255,.22)); box-shadow: 0 28px 90px rgba(80,31,146,.12), inset 0 1px 0 rgba(255,255,255,.70); }
+    .case-final-cta h2 { margin: 0; max-width: 660px; font-size: clamp(28px, 3.6vw, 48px); }
+
+    @media (max-width: 920px) {
+      .case-layout.editorial-layout, .story-split, .before-after, .metric-line { grid-template-columns: 1fr; }
+      .case-main.editorial-main { max-width: none; }
+      .case-sidebar.editorial-sidebar { position: relative; top: auto; order: -1; }
+      .metric-line article { border-right: 0; border-bottom: 1px solid rgba(80,31,146,.12); }
+      .metric-line article:last-child { border-bottom: 0; }
+      .case-final-cta { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (max-width: 640px) {
+      .action-row, .finding-row { grid-template-columns: 1fr; gap: 10px; }
+    }
+  </style>
+
+  <style id="kaiowa-diagnosis-editorial-fix">
+    .diagnosis-editorial {
+      padding-top: clamp(62px, 7vw, 92px);
+    }
+
+    .diagnosis-intro {
+      max-width: 820px;
+      margin-bottom: clamp(34px, 5vw, 56px);
+    }
+
+    .diagnosis-intro .editorial-title {
+      max-width: 760px;
+      font-size: clamp(34px, 4vw, 52px);
+      line-height: 1.06;
+      letter-spacing: -.052em;
+      margin-bottom: 18px;
+    }
+
+    .diagnosis-intro .editorial-copy {
+      max-width: 680px;
+      font-size: clamp(15px, 1.15vw, 18px);
+      line-height: 1.82;
+    }
+
+    .diagnosis-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0;
+      border-top: 1px solid rgba(80,31,146,.13);
+      border-bottom: 1px solid rgba(80,31,146,.13);
+    }
+
+    .diagnosis-item {
+      position: relative;
+      min-height: 230px;
+      padding: clamp(24px, 3.5vw, 34px);
+      border-right: 1px solid rgba(80,31,146,.12);
+      background:
+        radial-gradient(ellipse at 24% 10%, rgba(201,183,255,.20), transparent 44%),
+        linear-gradient(180deg, rgba(255,255,255,.30), rgba(255,255,255,.08));
+    }
+
+    .diagnosis-item:last-child {
+      border-right: 0;
+    }
+
+    .diagnosis-item span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      margin-bottom: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(137,69,240,.18);
+      color: rgba(137,69,240,.70);
+      background: rgba(137,69,240,.06);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .12em;
+    }
+
+    .diagnosis-item p {
+      max-width: 250px;
+      margin: 0;
+      color: rgba(23,19,31,.76);
+      font-size: clamp(15px, 1.2vw, 18px);
+      line-height: 1.65;
+    }
+
+    @media (max-width: 920px) {
+      .diagnosis-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .diagnosis-item {
+        min-height: auto;
+        border-right: 0;
+        border-bottom: 1px solid rgba(80,31,146,.12);
+      }
+
+      .diagnosis-item:last-child {
+        border-bottom: 0;
+      }
+
+      .diagnosis-item span {
+        margin-bottom: 22px;
+      }
+
+      .diagnosis-item p {
+        max-width: none;
+      }
+    }
+  </style>
+
+  <style id="uhura-title-scale-system">
+    :root {
+      --uhura-title-xl: clamp(34px, 4.1vw, 56px);
+      --uhura-title-lg: clamp(30px, 3.2vw, 44px);
+      --uhura-title-md: clamp(25px, 2.4vw, 34px);
+    }
+
+    h1 {
+      font-size: var(--uhura-title-xl) !important;
+      line-height: 1.06 !important;
+    }
+
+    h2,
+    .editorial-title,
+    .section-head h2,
+    .culture-copy h2,
+    .case-final-cta h2,
+    .cta-band h2 {
+      font-size: var(--uhura-title-lg) !important;
+      line-height: 1.08 !important;
+      letter-spacing: -0.045em !important;
+    }
+
+    h3,
+    .action-row h3,
+    .side-card h3,
+    .magnific-panel h3 {
+      font-size: var(--uhura-title-md) !important;
+      line-height: 1.14 !important;
+      letter-spacing: -0.035em !important;
+    }
+
+    .hero h1,
+    .hero .editorial-title {
+      font-size: var(--uhura-title-xl) !important;
+      line-height: 1.06 !important;
+    }
+
+    @media (max-width: 760px) {
+      :root {
+        --uhura-title-xl: clamp(32px, 8.6vw, 44px);
+        --uhura-title-lg: clamp(27px, 7.2vw, 38px);
+        --uhura-title-md: clamp(21px, 5.8vw, 29px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-wrap">
+    <nav class="nav" aria-label="Navegación principal">
+      <a href="uhura-v13-services-preview%20(1).html" aria-label="Ir al inicio">
+        <img class="logo" src="1x/logo-uhura-blanco.webp" alt="Uhura Group">
+      </a>
+      <div class="nav-links">
+        <a href="case-kaiowa.html">Casos de éxito</a>
+        <a href="#partners">Partners</a>
+        <a href="nosotros.html">Nosotros</a>
+      </div>
+      <a class="cta" href="mailto:catalina@uhuragroup.com">Hablemos <span aria-hidden="true">→</span></a>
+    </nav>
+  </div>
+
+  <main id="case-root"></main>
+  <footer><div class="shell">Uhura Group · Caso de estudio basado en presentación de credenciales 2026.</div></footer>
+
+  <script>
+    const caseData = {
+      client: "Kaiowa",
+      slug: "kaiowa",
+      label: "Caso de estudio",
+      country: "Colombia",
+      project: "Rediseño del sitio web",
+      category: "Producto digital · UX",
+      logo: "1x/logo-kaiowa-.webp",
+      siteUrl: "#",
+      evidence: [
+        { label: "Antes", src: "case-kaiowa-assets/kaiowa-pdf-18.png" },
+        { label: "Después", src: "case-kaiowa-assets/kaiowa-pdf-19.png" }
+      ],
+      context: "Kaiowa necesitaba renovar su sitio web para reflejar mejor su identidad de marca y ofrecer una experiencia de usuario más clara y atractiva.",
+      challenge: "Su sitio anterior era una landing page de aterrizaje que no incentivaba la exploración y tampoco reflejaba su identidad de marca.",
+      diagnosis: [
+        "La experiencia digital no estaba ayudando a las personas a explorar el contenido.",
+        "La estructura visual no comunicaba con suficiente claridad la esencia de la marca.",
+        "La jerarquía de información necesitaba diferenciar mejor las soluciones para mejorar la experiencia de usuario."
+      ],
+      actions: [
+        {
+          title: "UX Research",
+          body: "Analizamos el comportamiento esperado del usuario, los puntos de fricción y las oportunidades de claridad para estructurar una experiencia más útil y orientada a conversión."
+        },
+        {
+          title: "UX Writing y storytelling narrativo",
+          body: "Replanteamos la narrativa del sitio para explicar mejor la propuesta de valor, ordenar la información y facilitar la toma de decisión del usuario."
+        },
+        {
+          title: "Prototipo fintech con principios de usabilidad",
+          body: "Diseñamos un prototipo visual alineado al sector fintech, con jerarquías claras, recorridos simples y una experiencia confiable desde el primer contacto."
+        },
+        {
+          title: "Implementación pensada en performance",
+          body: "Construimos la experiencia priorizando velocidad, estabilidad, responsive y buenas prácticas para asegurar una navegación fluida."
+        }
+      ],
+      metrics: [
+        {
+          value: "6:03",
+          label: "Tiempo promedio en sitio",
+          body: "Los usuarios permanecen en promedio 6 min 3 seg, explorando y conociendo más sobre la marca."
+        },
+        {
+          value: "3.62",
+          label: "Páginas por sesión",
+          body: "El promedio de páginas por sesión indica mayor interés en el contenido."
+        },
+        {
+          value: "10.100",
+          label: "Visitas mensuales",
+          body: "Kaiowa consolidó una presencia digital más fuerte con 10.100 visitas mensuales."
+        }
+      ],
+      impact: "Con este rediseño, no solo modernizamos el sitio web, sino que logramos que cada visita se convirtiera en una experiencia más atractiva, envolvente y alineada con la identidad de la marca.",
+      learnings: [
+        "Placeholder editable: aprendizaje estratégico no especificado explícitamente en el PDF.",
+        "Placeholder editable: hipótesis de optimización posterior no especificada explícitamente en el PDF."
+      ],
+      services: [
+        "Desarrollo sitio web",
+        "Diseño de Experiencia UX",
+        "Optimización sitio web",
+        "Producto digital"
+      ],
+      sectors: ["Construcción", "Salud", "Retail", "Fintech", "Consumo masivo", "Moda"],
+      otherCases: [
+        { client: "Cristar", sector: "Retail" },
+        { client: "BOSI", sector: "Moda" },
+        { client: "Constructora Meléndez", sector: "Construcción" },
+        { client: "Yamaha", sector: "Retail" },
+        { client: "Kaiowa", sector: "Fintech" },
+        { client: "Danone", sector: "Consumo masivo" }
+      ],
+      cta: {
+        title: "¿Quieres transformar tu negocio en un caso de éxito?",
+        button: "Habla con Cata",
+        href: "mailto:catalina@uhuragroup.com",
+        avatar: "11zon_compressed/Catalina Tejada - Directora Comercial.jpeg"
+      }
+    };
+
+    const html = String.raw;
+    const root = document.getElementById("case-root");
+
+    function pill(text) {
+      return `<span class="pill">${text}</span>`;
+    }
+
+function renderCase(data) {
+  root.innerHTML = html`
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <p class="eyebrow">${data.label}</p>
+          <h1>${data.client}: una experiencia digital más <span class="italic">clara, atractiva y explorable.</span></h1>
+          <p class="hero-copy">${data.context}</p>
+          <div class="hero-meta">
+            ${pill(data.country)}
+            ${pill(data.project)}
+            ${pill(data.category)}
+          </div>
+        </div>
+        <aside class="brand-card" aria-label="Resumen visual del caso">
+          <img class="logo-kaiowa" src="${data.logo}" alt="${data.client}">
+          <div class="stat">
+            ${data.metrics.map(metric => `
+              <div class="mini-stat">
+                <strong>${metric.value}</strong>
+                <span>${metric.label}</span>
+              </div>
+            `).join("")}
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="case-page editorial">
+      <div class="shell case-layout editorial-layout">
+        <article class="case-main editorial-main">
+          <section class="editorial-section">
+            <p class="section-kicker">El reto</p>
+            <h2 class="editorial-title">El sitio existía, pero no estaba contando toda la historia.</h2>
+            <p class="editorial-copy">${data.context}</p>
+            <p class="editorial-copy">${data.challenge}</p>
+          </section>
+
+          <section class="editorial-section diagnosis-editorial">
+            <div class="diagnosis-intro">
+              <p class="section-kicker">El diagnóstico</p>
+              <h2 class="editorial-title">Antes de rediseñar, había que entender dónde se perdía la experiencia.</h2>
+              <p class="editorial-copy">El diagnóstico se concentró en usabilidad, navegación, identidad visual y jerarquía de información. Primero ordenamos el problema; después diseñamos la solución.</p>
+            </div>
+            <div class="diagnosis-grid">
+              ${data.diagnosis.map((item, index) => `
+                <article class="diagnosis-item">
+                  <span>0${index + 1}</span>
+                  <p>${item}</p>
+                </article>
+              `).join("")}
+            </div>
+          </section>
+
+          <section class="editorial-section">
+            <p class="section-kicker">Lo que descubrimos</p>
+            <div class="insight-band">
+              <p>Kaiowa no necesitaba solo una nueva interfaz. Necesitaba una experiencia capaz de ordenar la propuesta de valor, invitar a explorar y hacer que la marca se sintiera confiable desde el primer contacto.</p>
+            </div>
+          </section>
+
+          <section class="editorial-section">
+            <p class="section-kicker">Lo que hicimos</p>
+            <h2 class="editorial-title">Convertimos el diagnóstico en decisiones de producto, contenido y performance.</h2>
+            <div class="actions-timeline">
+              ${data.actions.map((item, index) => `
+                <article class="action-row">
+                  <span class="action-num">0${index + 1}</span>
+                  <div>
+                    <h3>${item.title}</h3>
+                    <p>${item.body}</p>
+                  </div>
+                </article>
+              `).join("")}
+            </div>
+          </section>
+
+          <section class="editorial-section">
+            <p class="section-kicker">Antes vs después</p>
+            <h2 class="editorial-title">Resultados respaldados por comportamiento real.</h2>
+            <p class="editorial-copy">El rediseño se evidencia en una experiencia más clara, más explorable y mejor alineada con el comportamiento del usuario.</p>
+            <div class="before-after">
+              ${data.evidence.map((item) => `
+                <figure class="evidence-shot">
+                  <img src="${item.src}" alt="${item.label} del rediseño de ${data.client}">
+                  <figcaption><span>${item.label}</span><span>${data.client}</span></figcaption>
+                </figure>
+              `).join("")}
+            </div>
+            <a class="site-button editorial-site-button" href="${data.siteUrl}" target="_blank" rel="noreferrer">Ver sitio web <span aria-hidden="true">→</span></a>
+          </section>
+
+          <section class="editorial-section">
+            <p class="section-kicker">Los resultados</p>
+            <h2 class="editorial-title">La mejora se reflejó en profundidad, permanencia y volumen de visitas.</h2>
+            <div class="metric-line">
+              ${data.metrics.map(metric => `
+                <article>
+                  <strong>${metric.value}</strong>
+                  <span>${metric.label}</span>
+                  <p>${metric.body}</p>
+                </article>
+              `).join("")}
+            </div>
+          </section>
+
+          <section class="editorial-section">
+            <p class="section-kicker">Impacto</p>
+            <h2 class="editorial-title">Más que una mejora visual: una experiencia alineada con la identidad de la marca.</h2>
+            <p class="editorial-copy">${data.impact}</p>
+            <div class="case-final-cta">
+              <h2>${data.cta.title}</h2>
+              <a class="cata-button" href="${data.cta.href}">
+                <img src="${data.cta.avatar}" alt="Catalina Tejada">
+                ${data.cta.button} <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </section>
+        </article>
+
+        <aside class="case-sidebar editorial-sidebar" aria-label="Casos y contacto">
+          <div class="side-card magnific-panel">
+            <h3>Te ayudamos a crecer tu negocio</h3>
+            <p>Identificamos dónde se frena tu sistema digital y priorizamos acciones con impacto medible.</p>
+            <a class="cata-side-button" href="mailto:catalina@uhuragroup.com">
+              <img src="${data.cta.avatar}" alt="Catalina Tejada">
+              Habla con Cata
+            </a>
+          </div>
+          <div class="side-card magnific-panel">
+            <h3>Más casos de estudio</h3>
+            <div class="case-filter-tags" aria-label="Filtrar casos por sector">
+              <button class="case-filter-tag is-active" type="button" data-sector="Todos">Todos</button>
+              ${data.sectors.map((sector) => `<button class="case-filter-tag" type="button" data-sector="${sector}">${sector}</button>`).join("")}
+            </div>
+            <div class="case-list" data-case-list>
+              ${data.otherCases.map((item) => `
+                <a class="case-link is-visible ${item.client === data.client ? "is-current" : ""}" href="${item.client === "Kaiowa" ? "case-kaiowa.html" : "#"}" data-sector="${item.sector}">
+                  <strong>${item.client}</strong>
+                  <span>${item.sector}</span>
+                </a>
+              `).join("")}
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  `;
+
+  setupCaseFilters();
+}
+
+    function setupCaseFilters() {
+  const buttons = root.querySelectorAll(".case-filter-tag");
+  const list = root.querySelector("[data-case-list]");
+  const links = root.querySelectorAll(".case-link");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const sector = button.dataset.sector;
+      buttons.forEach((item) => item.classList.toggle("is-active", item === button));
+      list.classList.toggle("is-filtered", sector !== "Todos");
+      links.forEach((link) => {
+        const visible = sector === "Todos" || link.dataset.sector === sector;
+        link.classList.toggle("is-visible", visible);
+      });
+    });
+  });
+}
+
+    renderCase(caseData);
+  </script>
+</body>
+</html>

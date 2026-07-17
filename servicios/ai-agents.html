@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Agents | Uhura Group</title>
+  <meta name="description" content="AI Agents para automatizar operación, contenido, ventas y atención con procesos claros, datos conectados y criterio humano.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="../assets/logos/logo-uhura-blanco.png">
+  <meta name="theme-color" content="#090513">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../src/styles/uhura-system.css">
+  <style>
+    body.service-ai-agents {
+      background: #080511;
+    }
+
+    .agents-dark {
+      position: relative;
+      isolation: isolate;
+      overflow: clip;
+      background:
+        radial-gradient(ellipse at 78% 10%, rgba(75,229,255,.20), transparent 36%),
+        radial-gradient(ellipse at 16% 24%, rgba(138,77,255,.26), transparent 46%),
+        radial-gradient(ellipse at 70% 78%, rgba(212,255,74,.08), transparent 34%),
+        linear-gradient(145deg, #120821 0%, #070512 54%, #07121c 100%);
+    }
+
+    .agents-dark::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle, rgba(201,183,255,.11) 1px, transparent 1.4px);
+      background-size: 34px 34px;
+      opacity: .18;
+      pointer-events: none;
+    }
+
+    .agents-dark > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .agent-orchestra {
+      position: relative;
+      min-height: clamp(460px, 42vw, 620px);
+      overflow: hidden;
+    }
+
+    .agent-orchestra::before {
+      content: "";
+      position: absolute;
+      inset: -18%;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 50% 46%, rgba(75,229,255,.20), transparent 34%),
+        radial-gradient(circle at 70% 28%, rgba(138,77,255,.25), transparent 40%),
+        radial-gradient(circle at 30% 76%, rgba(212,255,74,.09), transparent 28%);
+      filter: blur(30px);
+      pointer-events: none;
+    }
+
+    .agent-map {
+      position: relative;
+      z-index: 1;
+      min-height: clamp(420px, 38vw, 560px);
+      display: grid;
+      place-items: center;
+    }
+
+    .agent-core {
+      position: relative;
+      z-index: 2;
+      width: min(230px, 48%);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,183,255,.14);
+      background:
+        radial-gradient(circle at 34% 22%, rgba(255,255,255,.14), transparent 24%),
+        radial-gradient(circle at 62% 70%, rgba(75,229,255,.16), transparent 34%),
+        rgba(9,7,19,.58);
+      box-shadow: 0 34px 110px rgba(75,229,255,.14), inset 0 1px 0 rgba(255,255,255,.13);
+      backdrop-filter: blur(18px);
+    }
+
+    .agent-core strong {
+      font-size: var(--type-h4-size);
+      line-height: var(--type-h4-line);
+      letter-spacing: -.025em;
+    }
+
+    .agent-node {
+      position: absolute;
+      z-index: 3;
+      width: min(178px, 38%);
+      padding: 15px 16px;
+      border: 1px solid rgba(201,183,255,.13);
+      border-radius: var(--component-card-radius);
+      background: rgba(9,7,19,.64);
+      box-shadow: 0 18px 54px rgba(0,0,0,.20);
+      backdrop-filter: blur(16px);
+    }
+
+    .agent-node b {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--uhura-lime);
+      font-size: var(--type-label-size);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .agent-node span {
+      color: rgba(255,255,255,.72);
+      font-size: var(--type-small-size);
+      line-height: 1.55;
+    }
+
+    .node-1 { left: 7%; top: 14%; }
+    .node-2 { right: 3%; top: 18%; }
+    .node-3 { right: 8%; bottom: 12%; }
+    .node-4 { left: 6%; bottom: 14%; }
+
+    .agent-link {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: var(--line-width);
+      height: 1px;
+      transform-origin: left center;
+      transform: rotate(var(--line-angle));
+      background: linear-gradient(90deg, rgba(75,229,255,.48), rgba(201,183,255,.22), transparent);
+      opacity: .66;
+    }
+
+    .link-1 { --line-width: 220px; --line-angle: -145deg; }
+    .link-2 { --line-width: 235px; --line-angle: -36deg; }
+    .link-3 { --line-width: 230px; --line-angle: 36deg; }
+    .link-4 { --line-width: 220px; --line-angle: 145deg; }
+
+    .agents-light {
+      color: var(--uhura-ink);
+      background:
+        radial-gradient(ellipse at 20% 16%, rgba(201,183,255,.36), transparent 42%),
+        radial-gradient(ellipse at 88% 6%, rgba(75,229,255,.14), transparent 38%),
+        linear-gradient(135deg, var(--uhura-light) 0%, #f8f6fb 62%, var(--uhura-light-2) 100%);
+    }
+
+    .agent-method {
+      display: grid;
+      grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+      gap: clamp(36px, 7vw, 92px);
+      align-items: start;
+    }
+
+    .agent-steps {
+      display: grid;
+      gap: 14px;
+    }
+
+    .agent-step,
+    .service-card {
+      padding: var(--component-card-padding);
+    }
+
+    .agent-step h3,
+    .service-card h3 {
+      margin: 0 0 14px;
+    }
+
+    .agent-step p,
+    .service-card p {
+      margin: 0;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .service-next {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: clamp(28px, 6vw, 76px);
+      align-items: center;
+      overflow: hidden;
+    }
+
+    @media (max-width: 980px) {
+      .agent-method,
+      .service-next {
+        grid-template-columns: 1fr;
+      }
+
+      .service-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .agent-orchestra {
+        min-height: 540px;
+      }
+
+      .agent-node {
+        width: min(160px, 44%);
+        padding: 13px 14px;
+      }
+
+      .node-1 { left: 0; top: 8%; }
+      .node-2 { right: 0; top: 25%; }
+      .node-3 { right: 0; bottom: 4%; }
+      .node-4 { left: 0; bottom: 18%; }
+
+      .agent-link {
+        opacity: .34;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="page-dark service-ai-agents">
+  <div data-uhura-nav></div>
+
+  <main>
+    <div class="agents-dark">
+      <section class="hero-base">
+        <div class="hero-base__shell">
+          <div class="hero-base__grid">
+            <div class="hero-base__copy">
+              <div class="hero-base__story">
+                <p class="eyebrow">AI Agents</p>
+                <h1 class="hero-base__title">Automatización útil, conectada y con <span class="italic">criterio humano.</span></h1>
+                <p class="hero-base__body">Diseñamos agentes de IA para tareas reales de negocio: responder, clasificar, investigar, crear, vender, medir y operar. No se trata de sumar bots; se trata de rediseñar flujos para que el equipo gane velocidad y foco.</p>
+              </div>
+            </div>
+
+            <div class="hero-base__media">
+              <div class="panel-dark agent-orchestra" aria-label="Orquestación de AI Agents Uhura">
+                <div class="agent-map">
+                  <span class="agent-link link-1" aria-hidden="true"></span>
+                  <span class="agent-link link-2" aria-hidden="true"></span>
+                  <span class="agent-link link-3" aria-hidden="true"></span>
+                  <span class="agent-link link-4" aria-hidden="true"></span>
+                  <div class="agent-core">
+                    <strong>Agents<br><span class="italic">orquestados.</span></strong>
+                  </div>
+                  <div class="agent-node node-1"><b>Ventas</b><span>Calificación, seguimiento y respuestas comerciales consistentes.</span></div>
+                  <div class="agent-node node-2"><b>Contenido</b><span>Briefs, variantes, investigación y producción asistida.</span></div>
+                  <div class="agent-node node-3"><b>Operación</b><span>Procesos repetibles, clasificación y handoffs entre equipos.</span></div>
+                  <div class="agent-node node-4"><b>Data</b><span>Lectura de señales, reportes y alertas accionables.</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-roomy">
+        <div class="container-wide agent-method">
+          <div>
+            <p class="eyebrow">Método</p>
+            <h2 class="section-title">La IA funciona cuando el proceso está <span class="italic">bien diseñado.</span></h2>
+            <p class="copy">Antes de automatizar, entendemos la tarea, las fuentes de información, los criterios de decisión, los riesgos y el punto exacto donde una persona debe intervenir.</p>
+          </div>
+          <div class="agent-steps">
+            <article class="card-dark agent-step">
+              <p class="card-kicker">01</p>
+              <h3>Mapeamos el flujo.</h3>
+              <p class="copy">Identificamos tareas repetibles, entradas, salidas, excepciones y responsables.</p>
+            </article>
+            <article class="card-dark agent-step">
+              <p class="card-kicker">02</p>
+              <h3>Diseñamos el agente.</h3>
+              <p class="copy">Definimos prompts, herramientas, fuentes, límites y forma de evaluación.</p>
+            </article>
+            <article class="card-dark agent-step">
+              <p class="card-kicker">03</p>
+              <h3>Integramos y mejoramos.</h3>
+              <p class="copy">Conectamos canales, medimos desempeño y ajustamos con criterio operativo.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="agents-light page-light">
+      <section class="section">
+        <div class="container-wide">
+          <div class="section-header split">
+            <div>
+              <p class="eyebrow">Qué automatizamos</p>
+              <h2 class="editorial-title">Agentes para tareas que hoy consumen <span class="italic">tiempo clave.</span></h2>
+            </div>
+            <p class="body-large">Construimos agentes que viven dentro de procesos comerciales, creativos, operativos y analíticos, siempre con medición y control humano.</p>
+          </div>
+
+          <div class="service-grid">
+            <article class="card-light service-card">
+              <p class="card-index">Comercial</p>
+              <h3>Prospección y atención.</h3>
+              <p class="copy">Respuestas, calificación, seguimiento, CRM y priorización de oportunidades.</p>
+            </article>
+            <article class="card-light service-card">
+              <p class="card-index">Marketing</p>
+              <h3>Contenido y research.</h3>
+              <p class="copy">Investigación, briefs, variantes, repurposing y apoyo a producción creativa.</p>
+            </article>
+            <article class="card-light service-card">
+              <p class="card-index">Operación</p>
+              <h3>Procesos y reporting.</h3>
+              <p class="copy">Clasificación, alertas, reportes, QA y tareas internas de alto volumen.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <div data-success-cases data-copy="La automatización crea más valor cuando se conecta con producto digital, growth y operación."></div>
+    </div>
+
+    <section class="section-roomy">
+      <div class="container-wide">
+        <div class="panel-dark panel-roomy service-next">
+          <div>
+            <p class="eyebrow">El siguiente paso</p>
+            <h2 class="section-title">Encontremos dónde la IA puede liberar <span class="italic">tiempo real.</span></h2>
+            <p class="copy">Podemos mapear tus procesos y diseñar un primer agente útil, medible y conectado con tu operación.</p>
+          </div>
+          <a class="button-cata" href="mailto:catalina@uhuragroup.com">
+            <img src="../assets/team/Catalina Tejada - Directora Comercial.jpeg" alt="Catalina Tejada">
+            Habla con Cata →
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="uhura-footer-root" data-uhura-footer></div>
+
+  <script src="../src/components/uhura-components.js" data-root=".."></script>
+  <script src="../src/extracted/global-nav-sync.js"></script>
+  <script src="../src/extracted/footer-sync.js"></script>
+</body>
+</html>

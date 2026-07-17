@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ambient Field Workbench | Uhura</title>
+  <link rel="stylesheet" href="../src/styles/uhura-system.css">
+  <style>
+    body {
+      background: var(--uhura-dark);
+    }
+
+    .workbench-note {
+      position: relative;
+      z-index: 2;
+      padding: 34px var(--layout-gutter);
+      color: rgba(255,255,255,.72);
+      background: rgba(9,5,19,.92);
+      border-bottom: 1px solid rgba(201,183,255,.14);
+    }
+
+    .workbench-note h1 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1;
+      letter-spacing: -.055em;
+    }
+
+    .workbench-note p {
+      max-width: 860px;
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    .workbench-stack {
+      display: grid;
+      gap: 0;
+    }
+
+    .demo-section {
+      min-height: 82vh;
+      display: grid;
+      align-items: center;
+      padding: var(--section-space-roomy) 0;
+    }
+
+    .demo-copy {
+      max-width: 680px;
+    }
+
+    .demo-copy .body-large {
+      max-width: 620px;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, .72fr);
+      gap: clamp(34px, 6vw, 78px);
+      align-items: center;
+    }
+
+    .demo-panel {
+      min-height: 320px;
+      border-radius: 28px;
+      border: 1px solid rgba(201,183,255,.15);
+      background: rgba(255,255,255,.055);
+      box-shadow: 0 28px 90px rgba(0,0,0,.22);
+      backdrop-filter: blur(18px);
+    }
+
+    .ambient-field--light .demo-panel {
+      border-color: rgba(80,31,146,.12);
+      background: rgba(255,255,255,.60);
+      box-shadow: 0 28px 70px rgba(80,31,146,.10);
+    }
+
+    .demo-long-copy {
+      display: grid;
+      gap: 22px;
+      max-width: 760px;
+    }
+
+    @media (max-width: 860px) {
+      .demo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .demo-section {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="workbench-note">
+    <h1>Ambient Field Workbench</h1>
+    <p>Revisar pointer reactivo en desktop, mobile simplificado y reduced motion. El fondo debe sentirse profundo y editorial, sin competir con texto ni parecer neon. En mobile y reduced motion no debe haber tracking ni parallax.</p>
+  </header>
+
+  <main class="workbench-stack">
+    <section class="ambient-field ambient-field--dark demo-section" data-ambient-field>
+      <div class="ambient-field__mesh" aria-hidden="true"></div>
+      <div class="ambient-field__bloom" aria-hidden="true"></div>
+      <div class="ambient-field__cursor" aria-hidden="true"></div>
+      <div class="ambient-field__noise" aria-hidden="true"></div>
+      <div class="ambient-field__content">
+        <div class="container-wide demo-grid">
+          <div class="demo-copy">
+            <p class="eyebrow">Dark variant</p>
+            <h2 class="section-title">Purple como atmosfera, cyan como profundidad.</h2>
+            <p class="body-large">La capa se mueve con inercia sutil y nunca debe sentirse como un cursor literal. Lime aparece apenas como energia de acento.</p>
+          </div>
+          <div class="demo-panel" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ambient-field ambient-field--light page-light demo-section" data-ambient-field>
+      <div class="ambient-field__mesh" aria-hidden="true"></div>
+      <div class="ambient-field__bloom" aria-hidden="true"></div>
+      <div class="ambient-field__cursor" aria-hidden="true"></div>
+      <div class="ambient-field__noise" aria-hidden="true"></div>
+      <div class="ambient-field__content">
+        <div class="container-wide demo-grid">
+          <div class="demo-copy">
+            <p class="eyebrow">Light variant</p>
+            <h2 class="section-title">Una version clara sin perder energia Uhura.</h2>
+            <p class="body-large">El light field debe sentirse limpio, con lavanda y cyan suave, manteniendo contraste para lectura larga.</p>
+          </div>
+          <div class="demo-panel" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ambient-field ambient-field--dark" data-ambient-field>
+      <div class="ambient-field__mesh" aria-hidden="true"></div>
+      <div class="ambient-field__bloom" aria-hidden="true"></div>
+      <div class="ambient-field__cursor" aria-hidden="true"></div>
+      <div class="ambient-field__noise" aria-hidden="true"></div>
+      <div class="ambient-field__content">
+        <section class="hero-base">
+          <div class="hero-base__shell">
+            <div class="hero-base__grid">
+              <div class="hero-base__copy">
+                <div class="hero-base__story">
+                  <p class="eyebrow">Hero Base</p>
+                  <h1 class="hero-base__title">Ambient Field envuelve, Hero Base gobierna el layout.</h1>
+                  <p class="hero-base__body">Esta prueba confirma que el contenido conserva ritmo, gutter y jerarquia mientras la atmosfera queda detras.</p>
+                </div>
+              </div>
+              <div class="hero-base__media">
+                <div class="demo-panel" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="ambient-field ambient-field--dark demo-section" data-ambient-field>
+      <div class="ambient-field__mesh" aria-hidden="true"></div>
+      <div class="ambient-field__bloom" aria-hidden="true"></div>
+      <div class="ambient-field__cursor" aria-hidden="true"></div>
+      <div class="ambient-field__noise" aria-hidden="true"></div>
+      <div class="ambient-field__content">
+        <div class="container-wide">
+          <div class="section-header split">
+            <div>
+              <p class="eyebrow">Narrative block</p>
+              <h2 class="section-title">El fondo acompana una narrativa sin dominarla.</h2>
+            </div>
+            <p class="copy">Esta instancia valida una composicion de lectura: el campo debe quedar presente pero bajo, sin tapar body copy ni robar foco al contenido.</p>
+          </div>
+          <div class="progressive-narrative" data-progressive-narrative>
+            <div class="progressive-narrative__list">
+              <article class="progressive-narrative__item" data-progressive-item>
+                <div class="progressive-narrative__meta">
+                  <span class="progressive-narrative__number">01</span>
+                  <p class="progressive-narrative__category">Senal</p>
+                </div>
+                <div class="progressive-narrative__content">
+                  <h3 class="progressive-narrative__title">La atmosfera no reemplaza la estructura.</h3>
+                  <p class="progressive-narrative__description">Progressive Narrative mantiene lectura natural mientras Ambient Field gobierna la profundidad visual.</p>
+                </div>
+              </article>
+              <article class="progressive-narrative__item" data-progressive-item>
+                <div class="progressive-narrative__meta">
+                  <span class="progressive-narrative__number">02</span>
+                  <p class="progressive-narrative__category">Sistema</p>
+                </div>
+                <div class="progressive-narrative__content">
+                  <h3 class="progressive-narrative__title">Las capas deben permanecer detras del contenido.</h3>
+                  <p class="progressive-narrative__description">El z-index del contenido siempre supera mesh, bloom, cursor y noise.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ambient-field ambient-field--light page-light demo-section" data-ambient-field>
+      <div class="ambient-field__mesh" aria-hidden="true"></div>
+      <div class="ambient-field__bloom" aria-hidden="true"></div>
+      <div class="ambient-field__cursor" aria-hidden="true"></div>
+      <div class="ambient-field__noise" aria-hidden="true"></div>
+      <div class="ambient-field__content">
+        <div class="container-narrow demo-long-copy">
+          <p class="eyebrow">Long content contrast</p>
+          <h2 class="section-title">Prueba de lectura prolongada sobre Ambient Field light.</h2>
+          <p class="copy">Este bloque existe para validar contraste en contenido largo. El campo ambiental debe sentirse como una base viva y sobria, no como una superficie saturada.</p>
+          <p class="copy">El noise debe ser casi imperceptible. El bloom no debe ensuciar el cuerpo del texto. El pointer-reactive glow debe detenerse en mobile, reduced motion o cuando la instancia sale del viewport.</p>
+          <p class="copy">Si el texto parece flotar sobre un fondo demasiado activo, la intensidad debe bajar antes de consumir el sistema en paginas vivas.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="../src/components/uhura-components.js" data-root=".."></script>
+</body>
+</html>

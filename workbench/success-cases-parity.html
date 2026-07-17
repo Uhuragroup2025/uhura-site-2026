@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Uhura - Success Cases Parity</title>
+  <link rel="stylesheet" href="../src/styles/uhura-system.css">
+  <style>
+    body {
+      margin: 0;
+      color: #17131f;
+      background: linear-gradient(135deg, #f2ecff 0%, #fbf8ff 52%, #f0f4ff 100%);
+      font-family: var(--font-sans);
+    }
+    .parity-note {
+      padding-top: 48px;
+      padding-bottom: 28px;
+    }
+    .parity-note h1 {
+      margin: 0 0 12px;
+      font-size: clamp(32px, 4vw, 56px);
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+    .parity-note p {
+      max-width: 720px;
+      margin: 0 0 20px;
+      color: rgba(23,19,31,.58);
+      line-height: 1.75;
+    }
+    .parity-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .parity-links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 42px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(80,31,146,.16);
+      color: #17131f;
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,.72);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="container-wide parity-note">
+      <h1>Prueba de paridad: <span class="italic">Success Cases</span></h1>
+      <p>La Home aprobada sigue intacta. Este archivo renderiza únicamente el componente global espejo para compararlo contra la sección real de Home sin tocar el bundle heredado.</p>
+      <div class="parity-links">
+        <a href="../index.html#trabajo">Abrir Home original</a>
+        <a href="../servicios/producto-digital.html">Abrir Producto Digital</a>
+      </div>
+    </section>
+    <div data-success-cases></div>
+  </main>
+  <script src="../src/components/uhura-components.js" data-root=".."></script>
+</body>
+</html>

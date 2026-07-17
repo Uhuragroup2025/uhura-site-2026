@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creatividad | Uhura Group</title>
+  <meta name="description" content="Creatividad estratégica para construir ideas, campañas, contenido y sistemas visuales que conectan marca, cultura, datos y crecimiento.">
+  <link rel="canonical" href="https://www.uhuragroup.com/servicios/creatividad.html">
+  <meta property="og:title" content="Creatividad | Uhura Group">
+  <meta property="og:description" content="Creatividad estratégica para construir ideas, campañas, contenido y sistemas visuales que conectan marca, cultura, datos y crecimiento.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.uhuragroup.com/servicios/creatividad.html">
+  <meta property="og:image" content="https://www.uhuragroup.com/assets/logos/logo-uhura-blanco.png">
+  <link rel="icon" type="image/png" href="../assets/logos/logo-uhura-blanco.png">
+  <meta name="theme-color" content="#090513">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../src/styles/uhura-system.css">
+  <style>
+    body.service-creativity {
+      background: #080511;
+    }
+
+    .creativity-dark {
+      position: relative;
+      isolation: isolate;
+      overflow: clip;
+      background:
+        radial-gradient(ellipse at 72% 12%, rgba(212,255,74,.10), transparent 30%),
+        radial-gradient(ellipse at 18% 22%, rgba(138,77,255,.30), transparent 46%),
+        radial-gradient(ellipse at 82% 68%, rgba(75,229,255,.13), transparent 40%),
+        linear-gradient(145deg, #160923 0%, #080512 48%, #10091c 100%);
+    }
+
+    .creativity-dark::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(201,183,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,183,255,.03) 1px, transparent 1px);
+      background-size: 86px 86px;
+      opacity: .36;
+      pointer-events: none;
+    }
+
+    .creativity-dark > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-base__copy {
+      position: relative;
+      z-index: 3;
+    }
+
+    .hero-base__media {
+      min-height: clamp(480px, 40vw, 620px);
+    }
+
+    .creative-video {
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      right: clamp(-86px, -5vw, -28px);
+      width: min(64vw, 880px);
+      height: min(78vh, 720px);
+      padding: 0;
+      overflow: visible;
+      pointer-events: none;
+      transform: translateY(-50%);
+    }
+
+    .creative-video::before {
+      content: "";
+      position: absolute;
+      inset: -20%;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse at 28% 24%, rgba(212,255,74,.10), transparent 30%),
+        radial-gradient(ellipse at 66% 34%, rgba(75,229,255,.24), transparent 42%),
+        radial-gradient(ellipse at 48% 70%, rgba(138,77,255,.34), transparent 54%);
+      filter: blur(46px);
+      opacity: .94;
+      pointer-events: none;
+    }
+
+    .creative-video::after {
+      content: "";
+      position: absolute;
+      inset: -2%;
+      z-index: 2;
+      background:
+        linear-gradient(90deg, #080512 0%, rgba(8,5,18,.94) 7%, rgba(8,5,18,0) 22%, rgba(8,5,18,0) 76%, rgba(8,5,18,.82) 92%, #07040d 100%),
+        linear-gradient(180deg, #080512 0%, rgba(8,5,18,.88) 8%, rgba(8,5,18,0) 24%, rgba(8,5,18,0) 76%, rgba(8,5,18,.88) 92%, #07040d 100%);
+      opacity: .92;
+      pointer-events: none;
+    }
+
+    @supports ((mask-image: radial-gradient(#000, transparent)) or (-webkit-mask-image: radial-gradient(#000, transparent))) {
+      .creative-video {
+        -webkit-mask-image: radial-gradient(ellipse 46% 50% at 52% 50%, #000 0 46%, rgba(0,0,0,.70) 58%, rgba(0,0,0,.24) 70%, transparent 84%);
+        mask-image: radial-gradient(ellipse 46% 50% at 52% 50%, #000 0 46%, rgba(0,0,0,.70) 58%, rgba(0,0,0,.24) 70%, transparent 84%);
+      }
+    }
+
+    .creative-video video {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      opacity: .98;
+      filter: brightness(1.08) saturate(1.08) contrast(1.02);
+      mix-blend-mode: lighten;
+    }
+
+    .creativity-progressive {
+      isolation: isolate;
+    }
+
+    .creativity-tension {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      border-top: 1px solid rgba(201,183,255,.10);
+    }
+
+    .creativity-tension::before {
+      content: "";
+      position: absolute;
+      inset: 12% -10% auto auto;
+      width: min(720px, 56vw);
+      height: min(520px, 42vw);
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 34% 30%, rgba(75,229,255,.16), transparent 32%),
+        radial-gradient(circle at 66% 58%, rgba(138,77,255,.22), transparent 42%),
+        radial-gradient(circle at 46% 74%, rgba(212,255,74,.08), transparent 34%);
+      filter: blur(44px);
+      opacity: .86;
+      pointer-events: none;
+    }
+
+    .tension-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+      gap: clamp(34px, 7vw, 92px);
+      align-items: center;
+    }
+
+    .tension-points {
+      display: grid;
+      gap: 14px;
+      margin: clamp(24px, 3vw, 38px) 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tension-points li {
+      display: grid;
+      grid-template-columns: 22px minmax(0, 1fr);
+      gap: 12px;
+      color: rgba(255,255,255,.70);
+      font-size: clamp(.98rem, 1.05vw, 1.1rem);
+      line-height: 1.7;
+    }
+
+    .tension-points li::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      margin-top: .7em;
+      border-radius: 999px;
+      background: var(--uhura-lime);
+      box-shadow: 0 0 14px rgba(212,255,74,.38);
+    }
+
+    .creative-loop {
+      position: relative;
+      min-height: clamp(390px, 38vw, 520px);
+      display: grid;
+      place-items: center;
+    }
+
+    .creative-loop::before {
+      content: "";
+      position: absolute;
+      width: 58%;
+      aspect-ratio: 1;
+      border-radius: 999px;
+      border: 1px dashed rgba(201,183,255,.18);
+      opacity: .72;
+    }
+
+    .loop-node {
+      position: absolute;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 132px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(201,183,255,.16);
+      color: rgba(255,255,255,.88);
+      background: rgba(9,7,19,.76);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .loop-node--insight { top: 5%; left: 50%; transform: translateX(-50%); }
+    .loop-node--idea { right: 4%; top: 34%; }
+    .loop-node--execution { right: 17%; bottom: 10%; }
+    .loop-node--response { left: 17%; bottom: 10%; }
+    .loop-node--learning { left: 4%; top: 34%; }
+
+    .loop-core {
+      width: min(220px, 44%);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      border-radius: 50%;
+      border: 1px solid rgba(201,183,255,.14);
+      background:
+        radial-gradient(circle at 34% 26%, rgba(255,255,255,.12), transparent 26%),
+        rgba(8,6,18,.78);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 22px 70px rgba(0,0,0,.20);
+    }
+
+    .loop-core strong {
+      display: block;
+      color: #fff;
+      font-size: clamp(24px, 3vw, 38px);
+      line-height: .95;
+      letter-spacing: -.045em;
+    }
+
+    .loop-line {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: var(--loop-width);
+      height: 1px;
+      transform-origin: left center;
+      transform: rotate(var(--loop-angle));
+      background: linear-gradient(90deg, rgba(75,229,255,.45), rgba(212,255,74,.22), transparent);
+      opacity: .62;
+    }
+
+    .loop-line--1 { --loop-width: 160px; --loop-angle: -90deg; }
+    .loop-line--2 { --loop-width: 185px; --loop-angle: -20deg; }
+    .loop-line--3 { --loop-width: 170px; --loop-angle: 48deg; }
+    .loop-line--4 { --loop-width: 170px; --loop-angle: 132deg; }
+    .loop-line--5 { --loop-width: 185px; --loop-angle: 200deg; }
+
+    @media (max-width: 980px) {
+      .tension-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .creative-video {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: 100%;
+        height: auto;
+        min-height: 500px;
+        margin-inline: 0;
+        transform: none;
+      }
+
+      .creative-video video {
+        position: relative;
+        height: auto;
+        min-height: 500px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .creative-video {
+        min-height: 390px;
+        width: 100%;
+      }
+
+      .creative-video video {
+        min-height: 390px;
+      }
+
+      @supports ((mask-image: radial-gradient(#000, transparent)) or (-webkit-mask-image: radial-gradient(#000, transparent))) {
+        .creative-video {
+          -webkit-mask-image: radial-gradient(ellipse 58% 54% at 50% 50%, #000 0 52%, rgba(0,0,0,.64) 68%, transparent 88%);
+          mask-image: radial-gradient(ellipse 58% 54% at 50% 50%, #000 0 52%, rgba(0,0,0,.64) 68%, transparent 88%);
+        }
+      }
+
+      .creative-loop {
+        min-height: 620px;
+      }
+
+      .creative-loop::before {
+        width: 78%;
+      }
+
+      .loop-node {
+        min-width: 118px;
+        min-height: 44px;
+        font-size: 10px;
+      }
+
+      .loop-node--idea { right: 0; }
+      .loop-node--learning { left: 0; }
+      .loop-node--execution { right: 6%; }
+      .loop-node--response { left: 6%; }
+    }
+
+  </style>
+</head>
+<body class="page-dark service-creativity">
+  <div data-uhura-nav></div>
+
+  <main>
+    <div class="creativity-dark">
+      <section class="hero-base">
+        <div class="hero-base__shell">
+          <div class="hero-base__grid">
+            <div class="hero-base__copy">
+              <div class="hero-base__story">
+                <p class="eyebrow">Creatividad</p>
+                <h1 class="hero-base__title">Construimos ideas que <span class="italic">impulsan marcas.</span> Historias que <span class="italic">mueven personas.</span></h1>
+                <p class="hero-base__body">Creamos conceptos, campañas, contenido y sistemas narrativos para que una marca se vuelva más clara, más deseable y más fácil de elegir. La creatividad nace de estrategia, cultura, datos y negocio.</p>
+              </div>
+            </div>
+
+            <div class="hero-base__media">
+              <div class="creative-video" aria-label="Campañas creativas Uhura">
+                <video src="../assets/media/creatividad-uhura-campanas.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Piezas de campañas creativas Uhura"></video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-roomy progressive-narrative progressive-narrative--viewport-focus creativity-progressive" data-progressive-narrative data-progressive-mode="viewport-focus" aria-label="Sistema creativo Uhura">
+        <div class="container-wide">
+          <div class="progressive-narrative__list">
+            <article class="progressive-narrative__item" data-progressive-item>
+              <div class="progressive-narrative__meta">
+                <span class="progressive-narrative__number">01</span>
+                <p class="progressive-narrative__category">Concepto creativo</p>
+              </div>
+              <div class="progressive-narrative__content">
+                <h2 class="progressive-narrative__title">Construimos la idea que ordena la <span class="italic">comunicación.</span></h2>
+                <p class="progressive-narrative__description">Ideas centrales, campañas, claims y territorios de comunicación que conectan una oportunidad real con una expresión memorable.</p>
+                <div class="progressive-narrative__capabilities" aria-label="Capacidades de concepto creativo">
+                  <span>Creative Strategy</span>
+                  <span>Big Idea</span>
+                  <span>Campaign Systems</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="progressive-narrative__item" data-progressive-item>
+              <div class="progressive-narrative__meta">
+                <span class="progressive-narrative__number">02</span>
+                <p class="progressive-narrative__category">Identidad y dirección visual</p>
+              </div>
+              <div class="progressive-narrative__content">
+                <h2 class="progressive-narrative__title">Damos forma a un universo visual <span class="italic">reconocible.</span></h2>
+                <p class="progressive-narrative__description">Key visuals, sistemas gráficos, art direction y universos de marca para que cada punto de contacto se sienta propio.</p>
+                <div class="progressive-narrative__capabilities" aria-label="Capacidades de identidad y direccion visual">
+                  <span>Art Direction</span>
+                  <span>Brand Experience</span>
+                  <span>Motion</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="progressive-narrative__item" data-progressive-item>
+              <div class="progressive-narrative__meta">
+                <span class="progressive-narrative__number">03</span>
+                <p class="progressive-narrative__category">Contenido</p>
+              </div>
+              <div class="progressive-narrative__content">
+                <h2 class="progressive-narrative__title">Convertimos la idea en piezas que sostienen <span class="italic">atención.</span></h2>
+                <p class="progressive-narrative__description">Posts, carruseles, fotografía, motion, video y contenido editorial diseñados para explicar, atraer y activar conversación.</p>
+                <div class="progressive-narrative__capabilities" aria-label="Capacidades de contenido">
+                  <span>Social Content</span>
+                  <span>Video</span>
+                  <span>Motion</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="progressive-narrative__item" data-progressive-item>
+              <div class="progressive-narrative__meta">
+                <span class="progressive-narrative__number">04</span>
+                <p class="progressive-narrative__category">Campañas</p>
+              </div>
+              <div class="progressive-narrative__content">
+                <h2 class="progressive-narrative__title">Llevamos la creatividad a sistemas de campaña <span class="italic">operables.</span></h2>
+                <p class="progressive-narrative__description">Lanzamientos, always-on, temporadas, activaciones y comunicación integrada con una lógica clara para canal, formato y audiencia.</p>
+                <div class="progressive-narrative__capabilities" aria-label="Capacidades de campanas">
+                  <span>Campaign Systems</span>
+                  <span>Creative Strategy</span>
+                  <span>Brand Experience</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-roomy creativity-tension">
+        <div class="container-wide tension-grid">
+          <div>
+            <p class="eyebrow">Creatividad + datos</p>
+            <h2 class="section-title">La creatividad no compite con los datos. <span class="italic">Los usa para ser más relevante.</span></h2>
+            <ul class="tension-points">
+              <li>La estrategia define qué mover.</li>
+              <li>La creatividad define cómo hacerlo memorable.</li>
+              <li>Growth identifica qué funciona.</li>
+              <li>Los aprendizajes alimentan la siguiente idea.</li>
+            </ul>
+          </div>
+
+          <div class="creative-loop" aria-label="Ciclo creativo conectado con datos">
+            <span class="loop-line loop-line--1" aria-hidden="true"></span>
+            <span class="loop-line loop-line--2" aria-hidden="true"></span>
+            <span class="loop-line loop-line--3" aria-hidden="true"></span>
+            <span class="loop-line loop-line--4" aria-hidden="true"></span>
+            <span class="loop-line loop-line--5" aria-hidden="true"></span>
+            <span class="loop-node loop-node--insight">Insight</span>
+            <span class="loop-node loop-node--idea">Idea</span>
+            <span class="loop-node loop-node--execution">Ejecución</span>
+            <span class="loop-node loop-node--response">Respuesta</span>
+            <span class="loop-node loop-node--learning">Aprendizaje</span>
+            <div class="loop-core">
+              <strong>Idea<br><span class="italic">que aprende.</span></strong>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="creativity-cases page-light">
+      <div data-success-cases data-copy="Creatividad conectada con performance, producto digital y datos para que las ideas también se puedan medir."></div>
+    </div>
+  </main>
+
+  <div id="uhura-footer-root" data-uhura-footer></div>
+
+  <script src="../src/components/uhura-components.js" data-root=".."></script>
+  <script src="../src/extracted/global-nav-sync.js"></script>
+  <script src="../src/extracted/footer-sync.js"></script>
+</body>
+</html>

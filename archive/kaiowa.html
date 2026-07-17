@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kaiowa — Caso de estudio Uhura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../src/styles/uhura-system.css">
+  <style>
+    .case-hero { min-height: 78vh; padding: 150px 0 86px; }
+    .case-logo-main { width: min(280px, 72vw); margin-bottom: 32px; }
+    .case-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: clamp(38px, 6vw, 82px);
+      align-items: start;
+    }
+    .case-sidebar { position: sticky; top: 128px; display: grid; gap: 18px; }
+    .side-card { padding: 24px; border-radius: 24px; border: 1px solid rgba(80,31,146,.14); background: rgba(255,255,255,.70); box-shadow: 0 28px 70px rgba(80,31,146,.12); }
+    .cata-row { display: flex; align-items: center; gap: 12px; }
+    .cata-row img { width: 54px; height: 54px; border-radius: 999px; object-fit: cover; }
+    .tag-filter { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
+    .tag-filter button { border: 1px solid rgba(80,31,146,.16); color: var(--uhura-purple); background: rgba(138,77,255,.07); border-radius: 999px; padding: 8px 12px; font-weight: 900; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+    .tag-filter button.is-active { background: var(--uhura-purple); color: #fff; }
+    .case-list a { display: flex; justify-content: space-between; padding: 13px 0; border-top: 1px solid rgba(80,31,146,.12); color: var(--uhura-ink); text-decoration: none; font-weight: 900; }
+    .case-list span { color: var(--uhura-violet); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+    .story-block { padding: clamp(44px, 7vw, 84px) 0; border-bottom: 1px solid rgba(80,31,146,.10); }
+    .story-split { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(32px, 6vw, 76px); align-items: start; }
+    .diagnosis-list { display: grid; gap: 0; border-top: 1px solid rgba(80,31,146,.12); }
+    .diagnosis-item { display: grid; grid-template-columns: 80px 1fr; gap: 24px; padding: 30px 0; border-bottom: 1px solid rgba(80,31,146,.12); }
+    .diagnosis-item b { color: var(--uhura-violet); font-size: 14px; }
+    .actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 36px; }
+    .before-after { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-top: 36px; }
+    .shot { padding: 14px; }
+    .shot img { border-radius: 16px; border: 1px solid rgba(80,31,146,.12); }
+    .shot h3 { margin: 0 0 12px; }
+    .impact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 36px; }
+    @media (max-width: 940px) {
+      .case-layout, .story-split { grid-template-columns: 1fr; }
+      .case-sidebar { position: static; }
+      .actions, .before-after, .impact-grid { grid-template-columns: 1fr; }
+      .case-hero { padding-top: 124px; }
+    }
+  </style>
+</head>
+<body>
+  <div data-uhura-nav></div>
+  <main>
+    <section class="case-hero page-dark">
+      <div class="shell">
+        <img class="case-logo-main" src="../assets/logos/logo-kaiowa-.webp" alt="Kaiowa">
+        <p class="eyebrow">Caso de éxito · Fintech</p>
+        <h1 class="display-title">Rediseñar la experiencia para contar mejor una marca fintech.</h1>
+        <p class="copy">Kaiowa necesitaba renovar su sitio web para reflejar mejor su identidad de marca y ofrecer una experiencia de usuario más clara y atractiva.</p>
+      </div>
+    </section>
+
+    <section class="section page-light">
+      <div class="shell case-layout">
+        <article>
+          <section class="story-block">
+            <p class="eyebrow">El reto</p>
+            <div class="story-split">
+              <h2 class="editorial-title">El sitio existía, pero no estaba contando toda la historia.</h2>
+              <p class="copy">La experiencia anterior no incentivaba la exploración y tampoco reflejaba con suficiente claridad la identidad de la marca. Antes de pensar en diseño visual, había que entender dónde se perdía la experiencia.</p>
+            </div>
+          </section>
+
+          <section class="story-block">
+            <p class="eyebrow">El diagnóstico</p>
+            <div class="story-split">
+              <div>
+                <h2 class="editorial-title">Antes de rediseñar, había que entender dónde se perdía la experiencia.</h2>
+                <p class="copy">El diagnóstico se concentró en usabilidad, navegación, identidad visual y jerarquía de información.</p>
+              </div>
+              <div class="diagnosis-list">
+                <div class="diagnosis-item"><b>01</b><p class="copy">La experiencia digital no estaba ayudando a las personas a explorar el contenido.</p></div>
+                <div class="diagnosis-item"><b>02</b><p class="copy">La estructura visual no comunicaba con suficiente claridad la esencia de la marca.</p></div>
+                <div class="diagnosis-item"><b>03</b><p class="copy">La jerarquía de información necesitaba diferenciar mejor las soluciones.</p></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="story-block">
+            <p class="eyebrow">Lo que hicimos</p>
+            <h2 class="editorial-title">Convertimos el diagnóstico en decisiones de producto, contenido y performance.</h2>
+            <div class="actions">
+              <div class="card" style="padding:26px"><h3>UX Research</h3><p class="copy">Analizamos comportamiento esperado, puntos de fricción y oportunidades de claridad.</p></div>
+              <div class="card" style="padding:26px"><h3>UX Writing y storytelling</h3><p class="copy">Replanteamos la narrativa para ordenar la información y facilitar la decisión.</p></div>
+              <div class="card" style="padding:26px"><h3>Prototipo fintech</h3><p class="copy">Diseñamos una experiencia confiable, clara y alineada al sector fintech.</p></div>
+              <div class="card" style="padding:26px"><h3>Performance</h3><p class="copy">Construimos priorizando velocidad, estabilidad, responsive y buenas prácticas.</p></div>
+            </div>
+          </section>
+
+          <section class="story-block">
+            <p class="eyebrow">Antes vs Después</p>
+            <h2 class="editorial-title">Resultados respaldados por comportamiento real.</h2>
+            <div class="before-after">
+              <div class="shot card"><h3>Antes</h3><img src="../assets/cases/kaiowa-pdf-18.png" alt="Kaiowa antes"></div>
+              <div class="shot card"><h3>Después</h3><img src="../assets/cases/kaiowa-pdf-20.png" alt="Kaiowa después"></div>
+            </div>
+            <p style="margin-top:28px"><a class="button-primary" href="https://kaiowa.com" target="_blank" rel="noreferrer">Ver sitio web →</a></p>
+          </section>
+
+          <section class="story-block">
+            <p class="eyebrow">Impacto</p>
+            <h2 class="editorial-title">Más que una mejora visual: una experiencia alineada con la identidad de la marca.</h2>
+            <div class="impact-grid">
+              <div class="metric"><strong>UX</strong><span>Claridad de navegación</span></div>
+              <div class="metric"><strong>Marca</strong><span>Identidad mejor comunicada</span></div>
+              <div class="metric"><strong>Web</strong><span>Experiencia más fluida</span></div>
+            </div>
+          </section>
+        </article>
+
+        <aside class="case-sidebar">
+          <div class="side-card">
+            <div class="cata-row">
+              <img src="../assets/team/Catalina Tejada - Directora Comercial.jpeg" alt="Catalina Tejada">
+              <h3>Te ayudamos a crecer tu negocio</h3>
+            </div>
+            <p class="copy">Identificamos dónde se frena tu sistema digital y priorizamos acciones con impacto medible.</p>
+            <p><a class="button-primary" href="mailto:catalina@uhuragroup.com">Habla con Cata →</a></p>
+          </div>
+          <div class="side-card">
+            <h3>Más casos de estudio</h3>
+            <div class="tag-filter">
+              <button class="is-active" data-sector="all">Todos</button>
+              <button data-sector="retail">Retail</button>
+              <button data-sector="moda">Moda</button>
+              <button data-sector="fintech">Fintech</button>
+              <button data-sector="construccion">Construcción</button>
+              <button data-sector="consumo">Consumo masivo</button>
+            </div>
+            <div class="case-list">
+              <a href="#" data-case-sector="retail">Cristar <span>Retail</span></a>
+              <a href="#" data-case-sector="moda">BOSI <span>Moda</span></a>
+              <a href="#" data-case-sector="construccion">Meléndez <span>Construcción</span></a>
+              <a href="#" data-case-sector="retail">Yamaha <span>Retail</span></a>
+              <a href="./kaiowa.html" data-case-sector="fintech">Kaiowa <span>Fintech</span></a>
+              <a href="#" data-case-sector="consumo">Danone <span>Consumo</span></a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+  <div data-uhura-footer></div>
+  <script src="../src/components/uhura-components.js" data-root=".."></script>
+  <script>
+    document.querySelectorAll("[data-sector]").forEach((button) => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll("[data-sector]").forEach((item) => item.classList.remove("is-active"));
+        button.classList.add("is-active");
+        const sector = button.dataset.sector;
+        document.querySelectorAll("[data-case-sector]").forEach((item) => {
+          item.style.display = sector === "all" || item.dataset.caseSector === sector ? "flex" : "none";
+        });
+      });
+    });
+  </script>
+</body>
+</html>

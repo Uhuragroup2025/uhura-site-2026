@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nosotros — Uhura Group</title>
+  <meta name="description" content="Conoce al equipo de Uhura: estrategia, creatividad, tecnología y Growth trabajando como una extensión de tu negocio." />
+  <link rel="canonical" href="https://www.uhuragroup.com/nosotros.html">
+  <meta property="og:title" content="Nosotros — Uhura Group">
+  <meta property="og:description" content="Conoce al equipo de Uhura: estrategia, creatividad, tecnología y Growth trabajando como una extensión de tu negocio.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.uhuragroup.com/nosotros.html">
+  <meta property="og:image" content="https://www.uhuragroup.com/assets/logos/logo-uhura-blanco.png">
+  <link rel="icon" type="image/png" href="./assets/logos/logo-uhura-blanco.png">
+  <meta name="theme-color" content="#090513">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/styles/uhura-system.css">
+  <style>
+    .team-wall {
+      max-height: 560px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      padding: 18px;
+      border-radius: 34px;
+      border: 1px solid rgba(201,183,255,.18);
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 36px 100px rgba(0,0,0,.35);
+      overflow: hidden;
+    }
+    .team-col { display: grid; gap: 14px; animation: teamDown 34s linear infinite; }
+    .team-col:nth-child(2) { animation-name: teamUp; animation-duration: 38s; }
+    .team-wall:hover .team-col { animation-play-state: paused; }
+    .team-photo { aspect-ratio: 4 / 5; object-fit: cover; border-radius: 22px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+    @keyframes teamDown { from { transform: translateY(-42%); } to { transform: translateY(0); } }
+    @keyframes teamUp { from { transform: translateY(0); } to { transform: translateY(-42%); } }
+    .about-culture {
+      padding: clamp(72px, 9vw, 128px) 0;
+      position: relative;
+    }
+    .about-team-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .95fr) minmax(280px, .75fr);
+      gap: clamp(32px, 5vw, 72px);
+      align-items: center;
+    }
+    .about-team-copy {
+      margin-top: 22px;
+      max-width: 680px;
+    }
+    .about-team-visual {
+      position: relative;
+      min-height: 420px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      isolation: isolate;
+    }
+    .about-team-visual::before {
+      content: "";
+      position: absolute;
+      inset: 12% 2% 4%;
+      border-radius: 42px;
+      background:
+        radial-gradient(circle at 54% 16%, rgba(75,229,255,.20), transparent 32%),
+        radial-gradient(circle at 50% 64%, rgba(138,77,255,.18), transparent 48%);
+      filter: blur(26px);
+      opacity: .9;
+      z-index: -1;
+    }
+    .about-team-visual img {
+      width: min(100%, 520px);
+      max-height: 560px;
+      object-fit: contain;
+      filter: drop-shadow(0 34px 80px rgba(0,0,0,.24));
+    }
+    .about-culture-card .copy {
+      color: rgba(255,255,255,.74);
+    }
+    @media (max-width: 860px) {
+      .team-wall { max-height: 460px; gap: 10px; padding: 12px; }
+      .team-photo { border-radius: 16px; }
+      .team-col { animation: none; }
+      .about-team-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .about-team-visual {
+        min-height: 0;
+        align-items: center;
+      }
+      .about-team-visual img {
+        max-height: 420px;
+      }
+      .about-culture {
+        padding: 70px 0;
+      }
+    }
+  </style>
+</head>
+<body class="page-dark">
+  <div data-uhura-nav></div>
+  <main>
+    <section class="hero-base">
+      <div class="hero-base__shell">
+        <div class="hero-base__grid">
+          <div class="hero-base__copy">
+            <div class="hero-base__story">
+              <p class="eyebrow">Nosotros · Growth Team</p>
+              <h1 class="hero-base__title">Somos el <span class="italic">equipo</span> que se sienta en la mesa donde se decide el <span class="italic">crecimiento.</span></h1>
+              <p class="hero-base__body">En Uhura nos integramos como una extensión de tu equipo para entender el negocio, somos tus aliados expertos en Growth y Performance digital. Te ayudamos a crecer con estrategias basadas en datos, creatividad y optimización constante.</p>
+              <p class="hero-base__actions cta-row"><a class="button-primary" href="#como-trabajamos">Cómo trabajamos →</a></p>
+            </div>
+          </div>
+          <div class="team-wall hero-base__media" aria-label="Equipo Uhura">
+            <div class="team-col">
+              <img class="team-photo" src="./assets/team/Ana Maria Giraldo - CEO.jpg" alt="Ana María Giraldo">
+              <img class="team-photo" src="./assets/team/Esmeralda Duque - Content Strategist.jpg" alt="Esmeralda Duque">
+              <img class="team-photo" src="./assets/team/Ana Maria Giraldo - CEO.jpg" alt="">
+              <img class="team-photo" src="./assets/team/Esmeralda Duque - Content Strategist.jpg" alt="">
+            </div>
+            <div class="team-col">
+              <img class="team-photo" src="./assets/team/Laura Goméz - Developer and Designer.jpg" alt="Laura Gómez">
+              <img class="team-photo" src="./assets/team/Paola Monsalve -  Product Lead.jpg" alt="Paola Monsalve">
+              <img class="team-photo" src="./assets/team/Laura Goméz - Developer and Designer.jpg" alt="">
+              <img class="team-photo" src="./assets/team/Paola Monsalve -  Product Lead.jpg" alt="">
+            </div>
+            <div class="team-col">
+              <img class="team-photo" src="./assets/team/Catalina Tejada - Directora Comercial.jpeg" alt="Catalina Tejada">
+              <img class="team-photo" src="./assets/team/Luisa-urazan- Executive Relationship.jpg" alt="Luisa Urazán">
+              <img class="team-photo" src="./assets/team/Catalina Tejada - Directora Comercial.jpeg" alt="">
+              <img class="team-photo" src="./assets/team/Luisa-urazan- Executive Relationship.jpg" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="shell cta-row" style="margin-top:48px"><div data-expertise-strip></div></div>
+
+    <section class="narrative-section">
+      <div class="shell about-team-grid">
+        <div>
+          <p class="narrative-kicker">Más que cliente</p>
+          <h2 class="narrative-title">Un team <span class="italic">ganador</span> para marcas que quieren moverse <span class="italic">mejor.</span></h2>
+          <p class="copy about-team-copy">Nos gusta entrar al fondo: entender qué vende, qué frena, qué oportunidad está oculta y qué decisión puede cambiar el ritmo del negocio. Somos un equipo joven de mentes brillantes entrelazadas por la pasión, el servicio y la creatividad.</p>
+          <p class="cta-row"><a class="button-primary" href="#como-trabajamos">Cómo trabajamos →</a></p>
+        </div>
+        <div class="about-team-visual" aria-hidden="true">
+          <img src="./assets/illustrations/uhura-web-people.png" alt="">
+        </div>
+      </div>
+    </section>
+
+    <section class="about-culture">
+      <div class="shell">
+        <div class="about-culture-card panel-dark panel-roomy split-panel">
+          <div>
+            <p class="eyebrow">Cultura Uhura</p>
+            <h2 class="section-title">Cercanos en la relación. <span class="italic">Exigentes con el resultado.</span></h2>
+          </div>
+          <p class="copy">Creemos que los mejores resultados nacen de conversaciones honestas. Preguntamos, retamos, proponemos y acompañamos. Porque el mejor crecimiento ocurre cuando detrás hay un equipo que piensa contigo.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="como-trabajamos" class="section">
+      <div class="shell">
+        <p class="eyebrow">Cómo entramos al juego</p>
+        <h2 class="section-title">No llegamos a ejecutar. <span class="italic">Llegamos a pensar contigo.</span></h2>
+        <div class="process-grid">
+          <article class="process-card"><b>01</b><h3>Entendemos el negocio</h3><p class="copy">Antes de proponer, leemos la operación, las metas, los datos y las restricciones reales.</p></article>
+          <article class="process-card"><b>02</b><h3>Priorizamos impacto</h3><p class="copy">Ordenamos oportunidades para invertir primero donde hay más probabilidad de crecimiento.</p></article>
+          <article class="process-card"><b>03</b><h3>Construimos sistema</h3><p class="copy">Diseñamos, ejecutamos, medimos y mejoramos con criterio estratégico y velocidad operativa.</p></article>
+        </div>
+        <p class="cta-row roomy"><a class="button-primary" href="mailto:catalina@uhuragroup.com">¡Hablemos! →</a></p>
+      </div>
+    </section>
+  </main>
+  <div id="uhura-footer-root" data-uhura-footer></div>
+  <script src="./src/components/uhura-components.js" data-root="."></script>
+  <script src="./src/extracted/global-nav-sync.js"></script>
+  <script src="./src/extracted/footer-sync.js"></script>
+</body>
+</html>

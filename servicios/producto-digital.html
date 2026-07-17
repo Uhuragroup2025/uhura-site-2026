@@ -1,0 +1,1447 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Products | Uhura Group</title>
+  <meta name="description" content="Creamos tiendas, sitios y plataformas que convierten: productos digitales completos para operar, medir y mejorar el crecimiento.">
+  <link rel="canonical" href="https://www.uhuragroup.com/servicios/producto-digital.html">
+  <meta property="og:title" content="Digital Products | Uhura Group">
+  <meta property="og:description" content="Creamos tiendas, sitios y plataformas que convierten: productos digitales completos para operar, medir y mejorar el crecimiento.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.uhuragroup.com/servicios/producto-digital.html">
+  <meta property="og:image" content="https://www.uhuragroup.com/assets/logos/logo-uhura-blanco.png">
+  <link rel="icon" type="image/png" href="../assets/logos/logo-uhura-blanco.png">
+  <meta name="theme-color" content="#090513">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../src/styles/uhura-system.css">
+  <style>
+    body.service-digital-products {
+      background: #080511;
+    }
+
+    .uhura-product-bg {
+      background:
+        radial-gradient(ellipse at 78% 8%, rgba(75,229,255,.18), transparent 36%),
+        radial-gradient(ellipse at 18% 18%, rgba(138,77,255,.30), transparent 44%),
+        radial-gradient(ellipse at 58% 62%, rgba(80,31,146,.18), transparent 48%),
+        linear-gradient(145deg, #160923 0%, #080512 42%, #0a1020 72%, #05040c 100%);
+    }
+
+    .product-command-experience {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .product-command-experience::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(201,183,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,183,255,.032) 1px, transparent 1px);
+      background-size: 82px 82px;
+      opacity: .48;
+    }
+
+    .product-command-experience > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-hero {
+      isolation: isolate;
+    }
+
+    .service-hero::before,
+    .service-hero::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(34px);
+    }
+
+    .service-hero::before {
+      right: -12vw;
+      top: 8vh;
+      width: min(720px, 58vw);
+      height: min(620px, 52vw);
+      border-radius: 38% 62% 46% 54% / 42% 38% 62% 58%;
+      background:
+        radial-gradient(circle at 30% 34%, rgba(75,229,255,.36), transparent 34%),
+        radial-gradient(circle at 72% 38%, rgba(79,125,255,.42), transparent 38%),
+        radial-gradient(circle at 38% 72%, rgba(138,77,255,.34), transparent 42%),
+        radial-gradient(circle at 78% 76%, rgba(212,255,74,.12), transparent 32%);
+      opacity: .82;
+      animation: serviceAurora 32s ease-in-out infinite alternate;
+    }
+
+    .service-hero::after {
+      content: none;
+    }
+
+    @keyframes serviceAurora {
+      0% { transform: translate3d(0,0,0) scale(1) rotate(0deg); }
+      100% { transform: translate3d(-3vw,2vh,0) scale(1.06) rotate(8deg); }
+    }
+
+    .service-hero-visual {
+      position: relative;
+      min-height: 520px;
+      padding: clamp(18px, 3vw, 30px);
+      overflow: hidden;
+    }
+
+    .service-hero-visual::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(75,229,255,.20), transparent 28%),
+        radial-gradient(circle at 72% 22%, rgba(138,77,255,.24), transparent 30%),
+        radial-gradient(circle at 52% 72%, rgba(212,255,74,.10), transparent 30%);
+      filter: blur(22px);
+      opacity: .85;
+    }
+
+    .command-console {
+      position: relative;
+      z-index: 1;
+      min-height: 420px;
+      border-radius: 28px;
+      border: 1px solid rgba(201,183,255,.075);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.04), rgba(255,255,255,.012)),
+        radial-gradient(circle at 52% 48%, rgba(75,229,255,.09), transparent 28%),
+        radial-gradient(circle at 74% 24%, rgba(138,77,255,.10), transparent 36%),
+        radial-gradient(circle at 18% 76%, rgba(80,31,146,.18), transparent 42%),
+        #090713;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.055), 0 24px 70px rgba(0,0,0,.20);
+    }
+
+    .command-console::before,
+    .command-console::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .command-console::before {
+      inset: 10%;
+      border: 1px solid rgba(75,229,255,.075);
+      box-shadow: 0 0 64px rgba(75,229,255,.035);
+      animation: consoleOrbit 48s linear infinite;
+    }
+
+    .command-console::after {
+      inset: 20%;
+      border: 1px solid rgba(201,183,255,.065);
+      background: conic-gradient(from 90deg, transparent 0 72%, rgba(75,229,255,.095), transparent 86% 100%);
+      mask: radial-gradient(circle, transparent 59%, #000 60% 61%, transparent 62%);
+      animation: consoleOrbit 34s linear infinite reverse;
+    }
+
+    @keyframes consoleOrbit {
+      to { transform: rotate(360deg); }
+    }
+
+    .console-grid {
+      position: absolute;
+      inset: 0;
+      opacity: .42;
+      background-image:
+        linear-gradient(rgba(201,183,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,183,255,.04) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mask-image: radial-gradient(circle at 50% 50%, #000 0 42%, transparent 76%);
+      pointer-events: none;
+    }
+
+    .console-scanner {
+      position: absolute;
+      inset: 14%;
+      border-radius: 50%;
+      background: conic-gradient(from 12deg, transparent 0 76%, rgba(75,229,255,.11), rgba(212,255,74,.045), transparent 88% 100%);
+      filter: blur(.2px);
+      opacity: .74;
+      animation: consoleScan 18s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes consoleScan {
+      to { transform: rotate(360deg); }
+    }
+
+    .console-particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: rgba(75,229,255,.78);
+      box-shadow: 0 0 18px rgba(75,229,255,.50);
+      opacity: .58;
+      animation: particleDrift 14s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .particle-1 { left: 28%; top: 22%; animation-delay: -2s; }
+    .particle-2 { left: 76%; top: 38%; animation-delay: -7s; background: rgba(201,183,255,.76); }
+    .particle-3 { left: 40%; top: 78%; animation-delay: -10s; background: rgba(212,255,74,.56); }
+    .particle-4 { left: 17%; top: 57%; animation-delay: -4s; }
+
+    @keyframes particleDrift {
+      0%, 100% { transform: translate3d(0,0,0); opacity: .36; }
+      50% { transform: translate3d(18px,-12px,0); opacity: .82; }
+    }
+
+    .console-axis {
+      position: absolute;
+      inset: 50% auto auto 50%;
+      width: 66%;
+      height: 1px;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(90deg, transparent, rgba(75,229,255,.20), rgba(201,183,255,.13), transparent);
+      opacity: .45;
+    }
+
+    .console-axis.vertical {
+      width: 1px;
+      height: 66%;
+      background: linear-gradient(180deg, transparent, rgba(138,77,255,.22), rgba(75,229,255,.18), transparent);
+    }
+
+    .signal-line {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 3;
+      width: var(--line-width, 190px);
+      height: 1px;
+      transform-origin: left center;
+      transform: rotate(var(--line-angle, 0deg));
+      background: linear-gradient(90deg, rgba(75,229,255,.72), rgba(201,183,255,.26), transparent);
+      opacity: 0;
+      filter: drop-shadow(0 0 12px rgba(75,229,255,.28));
+      transition: opacity 220ms ease;
+      pointer-events: none;
+    }
+
+    .signal-line::after {
+      content: "";
+      position: absolute;
+      right: 28%;
+      top: -2px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--uhura-lime);
+      box-shadow: 0 0 14px rgba(212,255,74,.42);
+      animation: signalTravel 1.8s ease-in-out infinite;
+    }
+
+    @keyframes signalTravel {
+      0% { transform: translateX(-64px); opacity: 0; }
+      22%, 76% { opacity: 1; }
+      100% { transform: translateX(40px); opacity: 0; }
+    }
+
+    .console-core {
+      position: relative;
+      z-index: 6;
+      width: min(238px, 44%);
+      min-height: 174px;
+      border-radius: 34px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 38px 30px;
+      background:
+        radial-gradient(circle at 28% 18%, rgba(75,229,255,.16), transparent 38%),
+        radial-gradient(circle at 78% 78%, rgba(138,77,255,.20), transparent 42%),
+        linear-gradient(145deg, rgba(255,255,255,.075), rgba(80,31,146,.16) 48%, rgba(8,6,18,.66));
+      border: 1px solid rgba(201,183,255,.10);
+      box-shadow: 0 20px 74px rgba(75,229,255,.075), inset 0 1px 0 rgba(255,255,255,.14);
+      backdrop-filter: blur(18px);
+      animation: serviceCoreFloat 12s ease-in-out infinite;
+      transition: transform 320ms ease, box-shadow 320ms ease, border-color 320ms ease;
+    }
+
+    @keyframes serviceCoreFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .console-core span {
+      color: var(--uhura-lime);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .console-core strong {
+      display: grid;
+      gap: 4px;
+      font-size: clamp(24px, 2.2vw, 34px);
+      line-height: 1.02;
+      letter-spacing: -.045em;
+    }
+
+    .console-core em {
+      display: block;
+      color: var(--uhura-lavender);
+      font-size: 1.08em;
+      font-weight: 400;
+    }
+
+    .orbit-node {
+      appearance: none;
+      font-family: inherit;
+      cursor: pointer;
+      position: absolute;
+      z-index: 5;
+      border: 1px solid rgba(201,183,255,.12);
+      background: rgba(11,8,20,.58);
+      box-shadow: 0 14px 38px rgba(0,0,0,.18);
+      backdrop-filter: blur(12px);
+      color: rgba(255,255,255,.66);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .13em;
+      line-height: 1;
+      text-align: center;
+      text-transform: uppercase;
+      transform: translate(-50%, -50%);
+      transition: transform 260ms ease, color 260ms ease, border-color 260ms ease, background 260ms ease, box-shadow 260ms ease, opacity 260ms ease;
+    }
+
+    .module-pill {
+      min-width: 108px;
+      padding: 9px 13px;
+      border-radius: 999px;
+    }
+
+    .module-card {
+      min-width: 126px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      text-align: left;
+      letter-spacing: .11em;
+    }
+
+    .module-dot {
+      min-width: auto;
+      width: 15px;
+      height: 15px;
+      padding: 0;
+      border-radius: 50%;
+      font-size: 0;
+      background: var(--node-color, var(--uhura-cyan));
+      box-shadow: 0 0 22px var(--node-glow, rgba(75,229,255,.42));
+    }
+
+    .module-dot::after {
+      content: attr(aria-label);
+      position: absolute;
+      left: 50%;
+      top: 22px;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,.52);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      white-space: nowrap;
+    }
+
+    .module-signal {
+      min-width: 112px;
+      padding: 9px 0 9px 20px;
+      border-radius: 0;
+      border-color: transparent;
+      border-left: 1px solid var(--node-color, var(--uhura-cyan));
+      background: transparent;
+      box-shadow: none;
+      text-align: left;
+    }
+
+    .orbit-node:focus-visible {
+      outline: 2px solid rgba(75,229,255,.68);
+      outline-offset: 4px;
+    }
+
+    .orbit-node::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--node-color, var(--uhura-cyan));
+      box-shadow: 0 0 18px var(--node-glow, rgba(75,229,255,.55));
+      transform: translate(-50%, -50%) translateY(-24px);
+      opacity: .68;
+      transition: transform 260ms ease, opacity 260ms ease;
+    }
+
+    .module-dot::before {
+      display: none;
+    }
+
+    .module-signal::before {
+      left: 0;
+      transform: translate(-50%, -50%);
+    }
+
+    .orbit-node:hover {
+      color: #fff;
+      border-color: var(--node-border, rgba(75,229,255,.44));
+      background: rgba(20,14,34,.86);
+      box-shadow: 0 18px 54px var(--node-shadow, rgba(75,229,255,.20));
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+
+    .orbit-node.secondary {
+      opacity: .72;
+      color: rgba(255,255,255,.52);
+      border-color: rgba(201,183,255,.08);
+    }
+
+    .orbit-node.primary {
+      color: rgba(255,255,255,.78);
+      border-color: rgba(75,229,255,.16);
+    }
+
+    .command-console:has(.orbit-node:hover) .orbit-node:not(:hover),
+    .command-console:has(.orbit-node:focus-visible) .orbit-node:not(:focus-visible) {
+      opacity: .34;
+    }
+
+    .command-console:has(.orbit-node:hover) .console-core,
+    .command-console:has(.orbit-node:focus-visible) .console-core {
+      transform: translateY(-4px) scale(1.018);
+      border-color: rgba(75,229,255,.24);
+      box-shadow: 0 28px 106px rgba(75,229,255,.16), inset 0 1px 0 rgba(255,255,255,.22);
+    }
+
+    .orbit-node:hover::before {
+      opacity: 1;
+      transform: translate(-50%, -50%) translateY(-29px) scale(1.18);
+    }
+
+    .orbit-1 { left: 48%; top: 10%; --node-color: #F7F4FF; --node-glow: rgba(255,255,255,.48); }
+    .orbit-2 { left: 73%; top: 18%; --node-color: #F7F4FF; --node-glow: rgba(255,255,255,.46); }
+    .orbit-3 { left: 86%; top: 42%; --node-color: #F7F4FF; --node-glow: rgba(255,255,255,.44); --node-border: rgba(255,255,255,.24); --node-shadow: rgba(255,255,255,.10); }
+    .orbit-4 { left: 77%; top: 68%; --node-color: #F7F4FF; --node-glow: rgba(255,255,255,.42); }
+    .orbit-5 { left: 59%; top: 84%; --node-color: #F7F4FF; --node-glow: rgba(255,255,255,.40); }
+    .orbit-6 { left: 35%; top: 82%; --node-color: #F7F4FF; --node-glow: rgba(255,255,255,.42); }
+    .orbit-7 { left: 16%; top: 61%; --node-color: #F7F4FF; --node-glow: rgba(255,255,255,.40); --node-border: rgba(255,255,255,.20); --node-shadow: rgba(255,255,255,.08); }
+    .orbit-8 { left: 23%; top: 23%; --node-color: #F7F4FF; --node-glow: rgba(255,255,255,.44); }
+
+    .line-1 { --line-angle: -90deg; --line-width: 156px; }
+    .line-2 { --line-angle: -43deg; --line-width: 178px; }
+    .line-3 { --line-angle: -15deg; --line-width: 218px; }
+    .line-4 { --line-angle: 18deg; --line-width: 212px; }
+    .line-5 { --line-angle: 54deg; --line-width: 176px; }
+    .line-6 { --line-angle: 126deg; --line-width: 176px; }
+    .line-7 { --line-angle: 162deg; --line-width: 214px; }
+    .line-8 { --line-angle: 223deg; --line-width: 178px; }
+
+    .command-console:has(.orbit-1:hover) .line-1,
+    .command-console:has(.orbit-1:focus-visible) .line-1,
+    .command-console:has(.orbit-2:hover) .line-2,
+    .command-console:has(.orbit-2:focus-visible) .line-2,
+    .command-console:has(.orbit-3:hover) .line-3,
+    .command-console:has(.orbit-3:focus-visible) .line-3,
+    .command-console:has(.orbit-4:hover) .line-4,
+    .command-console:has(.orbit-4:focus-visible) .line-4,
+    .command-console:has(.orbit-5:hover) .line-5,
+    .command-console:has(.orbit-5:focus-visible) .line-5,
+    .command-console:has(.orbit-6:hover) .line-6,
+    .command-console:has(.orbit-6:focus-visible) .line-6,
+    .command-console:has(.orbit-7:hover) .line-7,
+    .command-console:has(.orbit-7:focus-visible) .line-7,
+    .command-console:has(.orbit-8:hover) .line-8,
+    .command-console:has(.orbit-8:focus-visible) .line-8 {
+      opacity: .92;
+    }
+
+    .console-insight {
+      position: absolute;
+      left: 50%;
+      top: calc(50% + 142px);
+      z-index: 7;
+      width: min(320px, 74%);
+      min-height: 54px;
+      display: grid;
+      align-content: center;
+      padding: 13px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(201,183,255,.12);
+      background: rgba(9,7,19,.72);
+      box-shadow: 0 18px 44px rgba(0,0,0,.22);
+      backdrop-filter: blur(16px);
+      color: rgba(255,255,255,.72);
+      font-size: 12px;
+      line-height: 1.45;
+      text-align: center;
+      transform: translateX(-50%) translateY(8px);
+      opacity: 0;
+      transition: opacity 220ms ease, transform 220ms ease;
+      pointer-events: none;
+    }
+
+    .console-insight b {
+      color: var(--uhura-lime);
+      font-size: 9px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .command-console:has(.orbit-node:hover) .console-insight,
+    .command-console:has(.orbit-node:focus-visible) .console-insight {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .console-copy {
+      display: none;
+    }
+
+    .command-console:has(.orbit-1:hover) .copy-1,
+    .command-console:has(.orbit-1:focus-visible) .copy-1,
+    .command-console:has(.orbit-2:hover) .copy-2,
+    .command-console:has(.orbit-2:focus-visible) .copy-2,
+    .command-console:has(.orbit-3:hover) .copy-3,
+    .command-console:has(.orbit-3:focus-visible) .copy-3,
+    .command-console:has(.orbit-4:hover) .copy-4,
+    .command-console:has(.orbit-4:focus-visible) .copy-4,
+    .command-console:has(.orbit-5:hover) .copy-5,
+    .command-console:has(.orbit-5:focus-visible) .copy-5,
+    .command-console:has(.orbit-6:hover) .copy-6,
+    .command-console:has(.orbit-6:focus-visible) .copy-6,
+    .command-console:has(.orbit-7:hover) .copy-7,
+    .command-console:has(.orbit-7:focus-visible) .copy-7,
+    .command-console:has(.orbit-8:hover) .copy-8,
+    .command-console:has(.orbit-8:focus-visible) .copy-8 {
+      display: block;
+    }
+
+    .console-caption {
+      position: absolute;
+      left: 50%;
+      bottom: 18px;
+      z-index: 4;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,.42);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      display: none;
+    }
+
+    .service-hero-visual {
+      min-height: clamp(430px, 42vw, 620px);
+      padding: 0;
+      overflow: visible;
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+    }
+
+    .service-hero-visual::before {
+      inset: -22%;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 52% 48%, rgba(75,229,255,.20), transparent 34%),
+        radial-gradient(circle at 66% 34%, rgba(138,77,255,.26), transparent 42%),
+        radial-gradient(circle at 32% 70%, rgba(80,31,146,.24), transparent 44%),
+        radial-gradient(circle at 30% 28%, rgba(212,255,74,.07), transparent 24%);
+      filter: blur(34px);
+      opacity: .9;
+    }
+
+    .command-console {
+      --orb-tilt-x: 0deg;
+      --orb-tilt-y: 0deg;
+      min-height: clamp(430px, 42vw, 620px);
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      box-shadow: none;
+      overflow: visible;
+      transform: perspective(900px) rotateX(var(--orb-tilt-x)) rotateY(var(--orb-tilt-y));
+      transition: transform 700ms cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .command-console::before,
+    .command-console::after {
+      left: 50%;
+      top: 50%;
+      inset: auto;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+    }
+
+    .command-console::before {
+      width: min(460px, 78%);
+      aspect-ratio: 1;
+      border: 1px solid rgba(75,229,255,.13);
+      background:
+        radial-gradient(circle at 50% 50%, transparent 58%, rgba(75,229,255,.045) 59% 61%, transparent 63%),
+        conic-gradient(from 120deg, transparent 0 18%, rgba(75,229,255,.22), transparent 34% 68%, rgba(201,183,255,.16), transparent 84% 100%);
+      mask: radial-gradient(circle, transparent 51%, #000 52% 53.5%, transparent 55%);
+      filter: drop-shadow(0 0 42px rgba(75,229,255,.14));
+      animation: consoleOrbit 42s linear infinite;
+    }
+
+    .command-console::after {
+      width: min(560px, 94%);
+      aspect-ratio: 1;
+      border: 1px solid rgba(201,183,255,.09);
+      background: conic-gradient(from 40deg, transparent 0 64%, rgba(212,255,74,.10), transparent 76% 100%);
+      mask: radial-gradient(circle, transparent 61%, #000 62% 63%, transparent 64%);
+      filter: drop-shadow(0 0 34px rgba(138,77,255,.14));
+      animation: consoleOrbit 58s linear infinite reverse;
+    }
+
+    .particle-orb-canvas {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 2;
+      width: min(560px, 96%);
+      aspect-ratio: 1;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      filter: drop-shadow(0 0 28px rgba(255,255,255,.12));
+    }
+
+    .console-grid {
+      inset: 8%;
+      border-radius: 50%;
+      opacity: .22;
+      background-image:
+        radial-gradient(circle, rgba(201,183,255,.22) 1px, transparent 1.5px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(circle at 50% 50%, #000 0 54%, transparent 78%);
+    }
+
+    .console-scanner {
+      inset: 18%;
+      opacity: .42;
+      background: conic-gradient(from 12deg, transparent 0 78%, rgba(75,229,255,.12), rgba(212,255,74,.035), transparent 89% 100%);
+    }
+
+    .console-axis {
+      width: min(500px, 82%);
+      opacity: .18;
+    }
+
+    .console-axis.vertical {
+      height: min(500px, 82%);
+    }
+
+    .signal-line {
+      width: var(--line-width, 170px);
+      opacity: 0;
+      background: linear-gradient(90deg, rgba(75,229,255,.45), rgba(201,183,255,.20), transparent);
+      filter: drop-shadow(0 0 10px rgba(75,229,255,.18));
+    }
+
+    .console-core {
+      width: min(220px, 40%);
+      min-height: auto;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      padding: 34px 24px;
+      background:
+        radial-gradient(circle at 32% 24%, rgba(255,255,255,.16), transparent 24%),
+        radial-gradient(circle at 56% 48%, rgba(75,229,255,.16), transparent 44%),
+        radial-gradient(circle at 78% 78%, rgba(138,77,255,.24), transparent 48%),
+        rgba(10,7,22,.42);
+      border: 1px solid rgba(201,183,255,.12);
+      box-shadow: 0 28px 110px rgba(75,229,255,.12), inset 0 1px 0 rgba(255,255,255,.16), inset 0 -28px 58px rgba(80,31,146,.22);
+      backdrop-filter: blur(18px);
+    }
+
+    .console-core strong {
+      font-size: clamp(22px, 2vw, 30px);
+    }
+
+    .orbit-node,
+    .module-pill,
+    .module-card,
+    .module-dot,
+    .module-signal {
+      min-width: auto;
+      width: auto;
+      height: auto;
+      padding: 9px 13px;
+      border-radius: 999px;
+      border: 1px solid rgba(201,183,255,.13);
+      border-left: 1px solid rgba(201,183,255,.13);
+      background: rgba(9,7,19,.42);
+      box-shadow: 0 12px 32px rgba(0,0,0,.16), inset 0 1px 0 rgba(255,255,255,.05);
+      backdrop-filter: blur(13px);
+      color: rgba(255,255,255,.64);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-align: center;
+    }
+
+    .orbit-node::before,
+    .module-dot::before,
+    .module-dot::after,
+    .module-signal::before {
+      display: none;
+    }
+
+    .orbit-node.primary,
+    .orbit-node.secondary {
+      opacity: 1;
+      color: rgba(255,255,255,.82);
+      border-color: rgba(75,229,255,.18);
+      background: rgba(13,10,25,.58);
+    }
+
+    .orbit-node:hover,
+    .orbit-node:focus-visible {
+      color: #fff;
+      border-color: var(--node-border, rgba(75,229,255,.44));
+      background: rgba(18,13,34,.78);
+      box-shadow: 0 18px 52px var(--node-shadow, rgba(75,229,255,.16)), inset 0 1px 0 rgba(255,255,255,.08);
+      transform: translate(-50%, -50%) scale(1.06);
+    }
+
+    .command-console:has(.orbit-node:hover) .console-core,
+    .command-console:has(.orbit-node:focus-visible) .console-core {
+      transform: translateY(-4px) scale(1.015);
+      border-color: rgba(75,229,255,.20);
+      box-shadow: 0 32px 120px rgba(75,229,255,.16), inset 0 1px 0 rgba(255,255,255,.20), inset 0 -28px 58px rgba(80,31,146,.25);
+    }
+
+    .orbit-1 { left: 48%; top: 10%; }
+    .orbit-2 { left: 73%; top: 18%; }
+    .orbit-3 { left: 86%; top: 42%; }
+    .orbit-4 { left: 77%; top: 68%; }
+    .orbit-5 { left: 59%; top: 84%; }
+    .orbit-6 { left: 35%; top: 82%; }
+    .orbit-7 { left: 16%; top: 61%; }
+    .orbit-8 { left: 23%; top: 23%; }
+
+    .console-insight {
+      top: calc(50% + 152px);
+      width: min(350px, 78%);
+      background: rgba(9,7,19,.56);
+      border-color: rgba(201,183,255,.11);
+      box-shadow: 0 18px 48px rgba(0,0,0,.18);
+    }
+
+    .product-light-zone {
+      background:
+        radial-gradient(ellipse at 18% 16%, rgba(201,183,255,.38), transparent 42%),
+        radial-gradient(ellipse at 88% 4%, rgba(75,229,255,.13), transparent 40%),
+        linear-gradient(135deg, var(--uhura-light) 0%, #f8f6fb 62%, var(--uhura-light-2) 100%);
+    }
+
+    .product-light-zone {
+      position: relative;
+      isolation: isolate;
+      overflow: clip;
+    }
+
+    .product-light-zone .service-platforms {
+      background: transparent;
+    }
+
+    .principles-grid,
+    .capability-grid,
+    .process-grid-service {
+      display: grid;
+      gap: 18px;
+    }
+
+    .principles-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .capability-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .service-capability {
+      min-height: 100%;
+    }
+
+    .service-capability h3,
+    .service-principle h3,
+    .process-step h3 {
+      margin: 0 0 16px;
+    }
+
+    .service-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: rgba(255,255,255,.68);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .service-list li {
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+    }
+
+    .service-list li::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      flex: 0 0 auto;
+      margin-top: .65em;
+      background: var(--uhura-lime);
+      box-shadow: 0 0 12px rgba(212,255,74,.32);
+    }
+
+    .service-capabilities {
+      background:
+        radial-gradient(ellipse at 72% 20%, rgba(75,229,255,.10), transparent 36%),
+        radial-gradient(ellipse at 18% 38%, rgba(138,77,255,.22), transparent 48%),
+        linear-gradient(180deg, #0b0616 0%, #090513 100%);
+    }
+
+    .product-progressive-story {
+      isolation: isolate;
+    }
+
+    .product-progressive-story > .container-wide {
+      position: relative;
+      z-index: 1;
+    }
+
+    .product-progressive-story::after {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      right: -16vw;
+      top: 4vh;
+      width: min(720px, 56vw);
+      height: min(620px, 52vw);
+      border-radius: 38% 62% 46% 54% / 42% 38% 62% 58%;
+      background:
+        radial-gradient(circle at 28% 32%, rgba(75,229,255,.28), transparent 34%),
+        radial-gradient(circle at 70% 34%, rgba(138,77,255,.34), transparent 40%),
+        radial-gradient(circle at 42% 74%, rgba(80,31,146,.28), transparent 44%),
+        radial-gradient(circle at 78% 78%, rgba(212,255,74,.06), transparent 30%);
+      filter: blur(42px);
+      opacity: .80;
+      pointer-events: none;
+      animation: serviceAurora 36s ease-in-out infinite alternate;
+    }
+
+    .framework-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 44px;
+    }
+
+    .framework-step {
+      position: relative;
+      min-height: 280px;
+      padding: 28px;
+      overflow: hidden;
+      transition: transform 260ms ease, border-color 260ms ease;
+    }
+
+    .framework-step::before {
+      content: attr(data-step);
+      display: inline-flex;
+      margin-bottom: 72px;
+      color: var(--uhura-violet);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .16em;
+    }
+
+    .framework-step::after {
+      content: "";
+      position: absolute;
+      left: 28px;
+      top: 72px;
+      width: 1px;
+      height: 70px;
+      background: linear-gradient(var(--uhura-cyan), var(--uhura-violet));
+      opacity: .46;
+    }
+
+    .framework-step:hover {
+      transform: translateY(-6px);
+      border-color: rgba(138,77,255,.20);
+    }
+
+    .service-principle .copy,
+    .process-step .copy {
+      margin-top: 0;
+    }
+
+    .process-grid-service {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .process-step {
+      position: relative;
+      padding-top: 24px;
+    }
+
+    .process-step::before {
+      content: attr(data-step);
+      display: inline-flex;
+      margin-bottom: 18px;
+      color: var(--uhura-violet);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .16em;
+    }
+
+    .service-cta-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: clamp(28px, 6vw, 76px);
+      align-items: center;
+      padding: clamp(34px, 5vw, 56px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-cta-panel::before {
+      content: "";
+      position: absolute;
+      right: -10%;
+      top: -40%;
+      width: 420px;
+      height: 420px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(75,229,255,.16), rgba(138,77,255,.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .service-cta-panel > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 980px) {
+      .service-cta-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .service-hero-visual {
+        min-height: 430px;
+      }
+
+      .principles-grid,
+      .capability-grid,
+      .process-grid-service,
+      .framework-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+    }
+
+    @media (max-width: 640px) {
+      .service-hero-visual {
+        min-height: 380px;
+        padding: 18px;
+      }
+
+      .command-console {
+        min-height: 430px;
+      }
+
+      .orbit-node {
+        min-width: 92px;
+        padding: 9px 10px;
+        font-size: 9px;
+        letter-spacing: .09em;
+      }
+
+      .module-card,
+      .module-pill,
+      .module-signal {
+        min-width: 88px;
+      }
+
+      .module-card {
+        padding: 10px 11px;
+        border-radius: 14px;
+      }
+
+      .module-dot {
+        width: 12px;
+        height: 12px;
+        min-width: auto;
+        padding: 0;
+      }
+
+      .module-dot::after {
+        top: 18px;
+        font-size: 8px;
+      }
+
+      .orbit-node::before {
+        transform: translate(-50%, -50%) translateY(-20px);
+      }
+
+      .console-core {
+        width: min(190px, 54%);
+        border-radius: 28px;
+        padding: 22px;
+      }
+
+      .console-caption {
+        bottom: 16px;
+        font-size: 8px;
+        letter-spacing: .12em;
+      }
+
+      .orbit-1 { left: 50%; top: 10%; }
+      .orbit-2 { left: 78%; top: 21%; }
+      .orbit-3 { left: 88%; top: 42%; }
+      .orbit-4 { left: 83%; top: 64%; }
+      .orbit-5 { left: 66%; top: 82%; }
+      .orbit-6 { left: 50%; top: 89%; }
+      .orbit-7 { left: 32%; top: 82%; }
+      .orbit-8 { left: 17%; top: 64%; }
+
+      .console-axis {
+        width: 76%;
+      }
+
+      .console-axis.vertical {
+        height: 76%;
+      }
+
+      .console-insight {
+        top: calc(50% + 116px);
+        width: min(286px, 80%);
+        min-height: 48px;
+        padding: 11px 14px;
+        font-size: 11px;
+      }
+
+      .signal-line {
+        width: calc(var(--line-width, 170px) * .78);
+      }
+
+      .console-caption {
+        display: none;
+      }
+
+      .principles-grid,
+      .capability-grid,
+      .process-grid-service,
+      .framework-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .service-hero::before,
+      .command-console::before,
+      .command-console::after,
+      .console-scanner,
+      .console-particle,
+      .signal-line::after,
+      .console-core {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body class="page-dark service-digital-products">
+  <div data-uhura-nav></div>
+
+  <main>
+    <div class="product-command-experience uhura-product-bg">
+    <section class="hero-base service-hero">
+      <div class="hero-base__shell">
+        <div class="hero-base__grid">
+          <div class="hero-base__copy">
+            <div class="hero-base__story">
+              <p class="eyebrow">Productos digitales</p>
+              <h1 class="hero-base__title">Un buen <span class="italic">producto</span> no nace del código. Nace de entender el <span class="italic">ecosistema de tu negocio</span>.</h1>
+              <p class="hero-base__body">Diseñamos y construimos productos digitales completos: ecommerce, sitios web, interfaces, contenido para vender, integraciones y sistemas de medición. No entregamos piezas sueltas; construimos experiencias digitales que el negocio puede operar, medir y mejorar.</p>
+            </div>
+          </div>
+
+          <div class="hero-base__media">
+            <div class="panel-dark service-hero-visual">
+              <div class="command-console" aria-label="Orb de producto digital Uhura">
+              <canvas class="particle-orb-canvas" data-particle-orb aria-hidden="true"></canvas>
+              <div class="console-grid" aria-hidden="true"></div>
+              <div class="console-scanner" aria-hidden="true"></div>
+              <span class="console-particle particle-1" aria-hidden="true"></span>
+              <span class="console-particle particle-2" aria-hidden="true"></span>
+              <span class="console-particle particle-3" aria-hidden="true"></span>
+              <span class="console-particle particle-4" aria-hidden="true"></span>
+              <div class="console-axis" aria-hidden="true"></div>
+              <div class="console-axis vertical" aria-hidden="true"></div>
+              <span class="signal-line line-1" aria-hidden="true"></span>
+              <span class="signal-line line-2" aria-hidden="true"></span>
+              <span class="signal-line line-3" aria-hidden="true"></span>
+              <span class="signal-line line-4" aria-hidden="true"></span>
+              <span class="signal-line line-5" aria-hidden="true"></span>
+              <span class="signal-line line-6" aria-hidden="true"></span>
+              <span class="signal-line line-7" aria-hidden="true"></span>
+              <span class="signal-line line-8" aria-hidden="true"></span>
+              <div class="console-core">
+                <strong><span>Sistema digital vivo</span>Producto digital<br><em class="italic">orquestado.</em></strong>
+              </div>
+              <button class="orbit-node module-dot orbit-1 primary" type="button" aria-label="UX">UX</button>
+              <button class="orbit-node module-pill orbit-2 primary" type="button">CRM</button>
+              <button class="orbit-node module-card orbit-3 primary" type="button">Ecommerce</button>
+              <button class="orbit-node module-signal orbit-4 primary" type="button">Data</button>
+              <button class="orbit-node module-dot orbit-5 secondary" type="button" aria-label="IA">IA</button>
+              <button class="orbit-node module-card orbit-6 secondary" type="button">Performance</button>
+              <button class="orbit-node module-signal orbit-7 secondary" type="button">SEO</button>
+              <button class="orbit-node module-signal orbit-8 secondary" type="button">VENTAS</button>
+              <div class="console-insight" aria-hidden="true">
+                <span class="console-copy copy-1"><b>UX</b>Diseñamos recorridos sin fricción.</span>
+                <span class="console-copy copy-2"><b>CRM</b>Sistemas comerciales conectados al producto.</span>
+                <span class="console-copy copy-3"><b>Ecommerce</b>Experiencias pensadas para vender.</span>
+                <span class="console-copy copy-4"><b>Data</b>Decisiones basadas en señales reales.</span>
+                <span class="console-copy copy-5"><b>IA</b>Automatización y copilots para operar mejor.</span>
+                <span class="console-copy copy-6"><b>Performance</b>Velocidad, estabilidad y conversión.</span>
+                <span class="console-copy copy-7"><b>SEO</b>Visibilidad orgánica desde la arquitectura.</span>
+                <span class="console-copy copy-8"><b>VENTAS</b>Flujos diseñados para convertir mejor.</span>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-roomy progressive-narrative progressive-narrative--viewport-focus product-progressive-story" data-progressive-narrative data-progressive-mode="viewport-focus" aria-label="Capas de un producto digital">
+      <div class="container-wide">
+        <div class="progressive-narrative__list">
+          <article class="progressive-narrative__item" data-progressive-item>
+            <div class="progressive-narrative__meta">
+              <span class="progressive-narrative__number">01</span>
+              <p class="progressive-narrative__category">Descubrimiento</p>
+            </div>
+            <div class="progressive-narrative__content">
+              <h2 class="progressive-narrative__title">Entendemos qué debe <span class="italic">resolver.</span></h2>
+              <p class="progressive-narrative__description">Antes de diseñar, entendemos el negocio, el usuario, la operación y los puntos donde hoy se pierde oportunidad.</p>
+              <div class="progressive-narrative__capabilities" aria-label="Capacidades de descubrimiento">
+                <span>UX Research</span>
+                <span>Benchmark</span>
+                <span>Arquitectura</span>
+                <span>Discovery Workshops</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="progressive-narrative__item" data-progressive-item>
+            <div class="progressive-narrative__meta">
+              <span class="progressive-narrative__number">02</span>
+              <p class="progressive-narrative__category">Arquitectura</p>
+            </div>
+            <div class="progressive-narrative__content">
+              <h2 class="progressive-narrative__title">Diseñamos la <span class="italic">experiencia.</span></h2>
+              <p class="progressive-narrative__description">Convertimos claridad estratégica en arquitectura, navegación, flujos y mensajes que ayudan al usuario a avanzar.</p>
+              <div class="progressive-narrative__capabilities" aria-label="Capacidades de experiencia">
+                <span>UX/UI</span>
+                <span>Design Systems</span>
+                <span>Prototipos</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="progressive-narrative__item" data-progressive-item>
+            <div class="progressive-narrative__meta">
+              <span class="progressive-narrative__number">03</span>
+              <p class="progressive-narrative__category">Implementación</p>
+            </div>
+            <div class="progressive-narrative__content">
+              <h2 class="progressive-narrative__title">Construimos el <span class="italic">producto.</span></h2>
+              <p class="progressive-narrative__description">Creamos experiencias digitales operables: sitios, ecommerce, plataformas y productos que el negocio puede administrar y escalar.</p>
+              <div class="progressive-narrative__capabilities" aria-label="Capacidades de construccion">
+                <span>Ecommerce</span>
+                <span>Sitios Web</span>
+                <span>SaaS</span>
+                <span>Plataformas B2B</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="progressive-narrative__item" data-progressive-item>
+            <div class="progressive-narrative__meta">
+              <span class="progressive-narrative__number">04</span>
+              <p class="progressive-narrative__category">Activación</p>
+            </div>
+            <div class="progressive-narrative__content">
+              <h2 class="progressive-narrative__title">Activamos la <span class="italic">conversión.</span></h2>
+              <p class="progressive-narrative__description">Diseñamos puntos de decisión, páginas y activos comerciales para que cada visita entienda mejor la oferta y avance con menos fricción.</p>
+              <div class="progressive-narrative__capabilities" aria-label="Capacidades de conversion">
+                <span>Digital Shelf</span>
+                <span>Landing pages para campañas</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="progressive-narrative__item" data-progressive-item>
+            <div class="progressive-narrative__meta">
+              <span class="progressive-narrative__number">05</span>
+              <p class="progressive-narrative__category">Optimización</p>
+            </div>
+            <div class="progressive-narrative__content">
+              <h2 class="progressive-narrative__title">Evolucionamos con <span class="italic">datos.</span></h2>
+              <p class="progressive-narrative__description">Configuramos eventos, métricas y señales que permiten entender qué funciona, qué frena y dónde optimizar.</p>
+              <div class="progressive-narrative__capabilities" aria-label="Capacidades de evolucion">
+                <span>Analytics</span>
+                <span>Dashboards</span>
+                <span>A/B Testing</span>
+                <span>Velocidad y Performance</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <div class="product-light-zone page-light">
+    <section id="partners" class="section-tight service-platforms page-light">
+      <div class="container-wide">
+        <div class="section-header center">
+          <p class="eyebrow">Stack experto</p>
+          <h2 class="editorial-title">Construimos productos <span class="italic">escalables.</span></h2>
+        </div>
+        <div data-expertise-strip></div>
+      </div>
+    </section>
+
+    <div data-success-cases></div>
+    </div>
+
+    <section class="section-roomy">
+      <div class="container-wide">
+        <div class="panel-dark service-cta-panel">
+          <div>
+            <p class="eyebrow">El siguiente paso</p>
+            <h2 class="section-title">No necesitas más tráfico. <span class="italic">Necesitas un sistema que convierta.</span></h2>
+            <p class="copy">Construimos estrategia, pauta, producto digital y automatización para que cada visita tenga una razón clara para convertirse en crecimiento.</p>
+          </div>
+          <a class="button-cata" href="mailto:catalina@uhuragroup.com">
+            <img src="../assets/team/Catalina Tejada - Directora Comercial.jpeg" alt="Catalina Tejada">
+            Habla con Cata →
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="uhura-footer-root" data-uhura-footer></div>
+
+  <script>
+    (() => {
+      const canvases = document.querySelectorAll('[data-particle-orb]');
+      if (!canvases.length) return;
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const particleTones = [
+        '255,255,255',
+        '247,244,255',
+        '232,226,255',
+        '214,226,255'
+      ];
+
+      canvases.forEach((canvas) => {
+        const host = canvas.closest('.command-console');
+        const ctx = canvas.getContext('2d');
+        if (!host || !ctx) return;
+
+        const pointer = { x: 0, y: 0, active: false };
+        let points = [];
+        let frame = 0;
+        let width = 1;
+        let height = 1;
+        let centerX = 0;
+        let centerY = 0;
+        let baseRadius = 0;
+        let isVisible = true;
+        let frameTick = 0;
+
+        const buildPoints = () => {
+          points = [];
+          const count = width < 420 ? 180 : 420;
+          for (let i = 0; i < count; i += 1) {
+            const angle = (Math.PI * 2 * i) / count;
+            const wave = Math.sin(i * 1.7) * 0.035 + Math.cos(i * 0.43) * 0.025;
+            const band = (i % 41) / 41;
+            const shell = Math.sin(band * Math.PI);
+            const radius = baseRadius * (0.52 + shell * 0.34 + wave + (i % 17) * 0.0028);
+            const tone = particleTones[i % particleTones.length];
+            const x = centerX + Math.cos(angle) * radius;
+            const y = centerY + Math.sin(angle) * radius;
+            points.push({
+              angle,
+              radius,
+              x,
+              y,
+              size: 0.42 + (i % 9) * 0.11,
+              speed: 0.018 + (i % 13) * 0.0018,
+              drift: 2.6 + (i % 17) * 0.22,
+              alpha: 0.11 + shell * 0.22 + (i % 7) * 0.012,
+              tone
+            });
+          }
+        };
+
+        const resize = () => {
+          const rect = canvas.getBoundingClientRect();
+          const dpr = Math.min(1.2, window.devicePixelRatio || 1);
+          width = Math.max(1, rect.width);
+          height = Math.max(1, rect.height);
+          centerX = width / 2;
+          centerY = height / 2;
+          baseRadius = Math.min(width, height) * 0.42;
+          canvas.width = Math.round(width * dpr);
+          canvas.height = Math.round(height * dpr);
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          buildPoints();
+        };
+
+        const drawConnections = () => {
+          ctx.save();
+          ctx.globalCompositeOperation = 'lighter';
+          for (let i = 0; i < points.length; i += 34) {
+            const a = points[i];
+            const b = points[(i + 46) % points.length];
+            const distance = Math.hypot(a.x - b.x, a.y - b.y);
+            if (distance > 78) continue;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = `rgba(255,255,255,${0.016 * (1 - distance / 78)})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+          ctx.restore();
+        };
+
+        const draw = () => {
+          if (!isVisible) {
+            frame = window.requestAnimationFrame(draw);
+            return;
+          }
+
+          ctx.clearRect(0, 0, width, height);
+          const time = performance.now() * 0.001;
+          frameTick += 1;
+
+          const halo = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, baseRadius * 1.18);
+          halo.addColorStop(0, 'rgba(255,255,255,0.018)');
+          halo.addColorStop(0.42, 'rgba(201,183,255,0.035)');
+          halo.addColorStop(0.70, 'rgba(75,229,255,0.026)');
+          halo.addColorStop(1, 'rgba(255,255,255,0)');
+          ctx.fillStyle = halo;
+          ctx.beginPath();
+          ctx.arc(centerX, centerY, baseRadius * 1.18, 0, Math.PI * 2);
+          ctx.fill();
+
+          points.forEach((point, index) => {
+            const orbit = point.angle + time * point.speed;
+            const organicRadius = point.radius + Math.sin(time * 0.58 + index * 0.13) * point.drift;
+            let targetX = centerX + Math.cos(orbit) * organicRadius;
+            let targetY = centerY + Math.sin(orbit) * organicRadius * 0.92;
+
+            if (pointer.active && !reduceMotion) {
+              const dx = targetX - pointer.x;
+              const dy = targetY - pointer.y;
+              const distance = Math.max(1, Math.hypot(dx, dy));
+              if (distance < 142) {
+                const force = ((142 - distance) / 142) ** 2 * 46;
+                targetX += (dx / distance) * force;
+                targetY += (dy / distance) * force;
+              }
+            }
+
+            const ease = reduceMotion ? 1 : 0.075;
+            point.x += (targetX - point.x) * ease;
+            point.y += (targetY - point.y) * ease;
+
+            ctx.beginPath();
+            ctx.fillStyle = `rgba(${point.tone},${point.alpha})`;
+            ctx.shadowBlur = 0;
+            ctx.arc(point.x, point.y, point.size, 0, Math.PI * 2);
+            ctx.fill();
+          });
+
+          ctx.shadowBlur = 0;
+          if (frameTick % 2 === 0) drawConnections();
+
+          if (!reduceMotion) frame = window.requestAnimationFrame(draw);
+        };
+
+        const onMove = (event) => {
+          const rect = canvas.getBoundingClientRect();
+          pointer.x = event.clientX - rect.left;
+          pointer.y = event.clientY - rect.top;
+          pointer.active = true;
+          const tiltY = ((pointer.x / rect.width) - 0.5) * 5;
+          const tiltX = -((pointer.y / rect.height) - 0.5) * 5;
+          host.style.setProperty('--orb-tilt-y', `${tiltY.toFixed(2)}deg`);
+          host.style.setProperty('--orb-tilt-x', `${tiltX.toFixed(2)}deg`);
+        };
+
+        const onLeave = () => {
+          pointer.active = false;
+          host.style.setProperty('--orb-tilt-y', '0deg');
+          host.style.setProperty('--orb-tilt-x', '0deg');
+        };
+
+        resize();
+        draw();
+
+        const observer = new ResizeObserver(resize);
+        observer.observe(canvas);
+        const visibilityObserver = new IntersectionObserver(([entry]) => {
+          isVisible = entry.isIntersecting;
+        }, { threshold: 0.05 });
+        visibilityObserver.observe(host);
+        host.addEventListener('pointermove', onMove);
+        host.addEventListener('pointerleave', onLeave);
+        window.addEventListener('pagehide', () => window.cancelAnimationFrame(frame), { once: true });
+      });
+    })();
+
+  </script>
+  <script src="../src/components/uhura-components.js" data-root=".."></script>
+  <script src="../src/extracted/global-nav-sync.js"></script>
+  <script src="../src/extracted/footer-sync.js"></script>
+</body>
+</html>

@@ -1,0 +1,1256 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nosotros | Uhura Group</title>
+  <meta name="description" content="Uhura Group es un equipo de crecimiento digital que integra estrategia, creatividad, producto, performance, data e inteligencia artificial para construir sistemas que convierten." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0614;
+      --bg-2: #12081f;
+      --text: #ffffff;
+      --muted: rgba(255,255,255,.72);
+      --soft: rgba(255,255,255,.52);
+      --line: rgba(255,255,255,.10);
+      --purple: #8a4dff;
+      --deep: #501f92;
+      --lav: #c9b7ff;
+      --cyan: #4be5ff;
+      --lime: #d4ff4a;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: var(--bg); }
+    body {
+      margin: 0;
+      font-family: Montserrat, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 72% 8%, rgba(75,229,255,.14), transparent 32%),
+        radial-gradient(ellipse at 14% 20%, rgba(138,77,255,.20), transparent 42%),
+        linear-gradient(180deg, #090512 0%, #11071e 44%, #0a0612 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .42;
+      background-image:
+        linear-gradient(rgba(138,77,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(138,77,255,.045) 1px, transparent 1px);
+      background-size: 78px 78px;
+      mask-image: linear-gradient(180deg, #000 0%, transparent 82%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .32;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='512' height='512' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+    }
+
+    a { color: inherit; }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .nav-wrap {
+      position: fixed;
+      top: 22px;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      display: flex;
+      justify-content: center;
+      padding: 0 20px;
+      pointer-events: none;
+    }
+
+    .nav {
+      width: min(980px, 100%);
+      pointer-events: auto;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 24px;
+      padding: 14px 18px 14px 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.13);
+      background: rgba(9,5,18,.68);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 18px 42px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.05);
+    }
+
+    .logo {
+      display: block;
+      width: 128px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: clamp(18px, 3vw, 42px);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.56);
+    }
+
+    .nav-links a,
+    .cta {
+      text-decoration: none;
+      transition: color .2s ease, border-color .2s ease, background .2s ease, transform .2s ease;
+    }
+
+    .nav-links a:hover { color: #fff; }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 999px;
+      padding: 15px 26px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      border: 1px solid rgba(212,255,74,.26);
+      background: rgba(212,255,74,.06);
+      color: #fff;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+      white-space: nowrap;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+      border-color: rgba(212,255,74,.48);
+      background: rgba(212,255,74,.11);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      align-items: center;
+      padding: 150px 0 82px;
+      overflow: hidden;
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, .98fr) minmax(360px, .82fr);
+      gap: clamp(34px, 6vw, 82px);
+      align-items: center;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .orb {
+      position: absolute;
+      right: -9vw;
+      top: 84px;
+      width: min(720px, 58vw);
+      height: min(620px, 54vw);
+      border-radius: 42% 58% 49% 51% / 48% 42% 58% 52%;
+      filter: blur(26px);
+      opacity: .78;
+      background:
+        radial-gradient(ellipse at 44% 46%, rgba(75,229,255,.48), transparent 24%),
+        radial-gradient(ellipse at 58% 36%, rgba(201,183,255,.40), transparent 34%),
+        radial-gradient(ellipse at 31% 70%, rgba(138,77,255,.44), transparent 42%),
+        radial-gradient(ellipse at 78% 72%, rgba(212,255,74,.14), transparent 28%),
+        radial-gradient(ellipse at 50% 50%, rgba(80,31,146,.62), transparent 62%);
+      mix-blend-mode: screen;
+      animation: breathe 26s ease-in-out infinite alternate;
+    }
+
+    @keyframes breathe {
+      from { transform: translate3d(0,0,0) rotate(-3deg) scale(1); }
+      to { transform: translate3d(-34px,26px,0) rotate(5deg) scale(1.06); }
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin: 0 0 28px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(212,255,74,.68);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--cyan), transparent);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 900px;
+      margin-bottom: 30px;
+      font-size: clamp(38px, 4.6vw, 64px);
+      line-height: 1.04;
+      letter-spacing: -.065em;
+      font-weight: 900;
+    }
+
+    .italic {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--lav);
+      letter-spacing: -.035em;
+    }
+
+    .gradient-word {
+      display: inline-block;
+      background: linear-gradient(125deg, #8a4dff 0%, #4f7dff 46%, #4be5ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-copy {
+      max-width: 610px;
+      color: var(--muted);
+      font-size: clamp(16px, 1.55vw, 20px);
+      line-height: 1.85;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 36px;
+    }
+
+    .team-phones {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      align-items: center;
+      max-width: 480px;
+      height: min(560px, 62vh);
+      margin-left: auto;
+      padding: 10px;
+      border-radius: 34px;
+      border: 1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(ellipse at 20% 10%, rgba(75,229,255,.14), transparent 36%),
+        radial-gradient(ellipse at 88% 88%, rgba(138,77,255,.16), transparent 42%),
+        rgba(255,255,255,.035);
+      box-shadow: 0 26px 80px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.05);
+      overflow: hidden;
+    }
+
+    .team-phones::before {
+      content: "TEAM";
+      position: absolute;
+      right: 18px;
+      top: -12px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(212,255,74,.18);
+      background: rgba(11,6,20,.76);
+      color: var(--lime);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .22em;
+    }
+
+    .team-column {
+      height: 100%;
+      overflow: hidden;
+      border-radius: 26px;
+      mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+    }
+
+    .team-track {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      will-change: transform;
+      animation: teamMarqueeUp 34s linear infinite;
+    }
+
+    .team-column.is-down .team-track {
+      animation-name: teamMarqueeDown;
+      animation-duration: 38s;
+      transform: translateY(-50%);
+    }
+
+    .team-column.is-mid .team-track {
+      animation-duration: 32s;
+    }
+
+    .team-phones:hover .team-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes teamMarqueeUp {
+      from { transform: translateY(0); }
+      to { transform: translateY(-50%); }
+    }
+
+    @keyframes teamMarqueeDown {
+      from { transform: translateY(-50%); }
+      to { transform: translateY(0); }
+    }
+
+    .phone-card {
+      position: relative;
+      margin: 0;
+      aspect-ratio: 9 / 14;
+      border-radius: 24px;
+      overflow: hidden;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow: 0 18px 38px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.10);
+    }
+
+    .phone-card img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center top;
+      filter: saturate(.95) contrast(1.03);
+    }
+
+    .phone-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.12), transparent 24%),
+        radial-gradient(ellipse at 50% 100%, rgba(11,6,20,.30), transparent 54%);
+      mix-blend-mode: screen;
+      opacity: .42;
+    }
+
+    .button-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 17px 28px;
+      border-radius: 999px;
+      color: #150b24;
+      background: linear-gradient(135deg, var(--lav), var(--purple));
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      box-shadow: 0 16px 36px rgba(138,77,255,.36);
+    }
+
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 25px;
+      border-radius: 999px;
+      color: rgba(255,255,255,.86);
+      border: 1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.045);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    section {
+      position: relative;
+      padding: clamp(74px, 10vw, 142px) 0;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 48px;
+    }
+
+    .section-head.center {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .section-head.center .eyebrow { justify-content: center; }
+
+    h2 {
+      font-size: clamp(34px, 4.2vw, 58px);
+      line-height: 1.04;
+      letter-spacing: -.055em;
+      font-weight: 900;
+      margin-bottom: 22px;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: clamp(15px, 1.4vw, 18px);
+      line-height: 1.85;
+      max-width: 720px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+      gap: clamp(38px, 7vw, 90px);
+      align-items: center;
+    }
+
+    .statement {
+      border-radius: 14px;
+      padding: clamp(28px, 4vw, 48px);
+      border: 1px solid rgba(201,183,255,.14);
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(75,229,255,.12), transparent 38%),
+        linear-gradient(135deg, rgba(255,255,255,.055), rgba(138,77,255,.07));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 20px 60px rgba(0,0,0,.22);
+    }
+
+    .statement p {
+      color: rgba(255,255,255,.82);
+      font-size: clamp(20px, 2.4vw, 34px);
+      line-height: 1.32;
+      letter-spacing: -.035em;
+      font-weight: 800;
+      margin-bottom: 26px;
+    }
+
+    .statement span {
+      color: var(--soft);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      min-height: 250px;
+      padding: 25px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.09);
+      background: rgba(255,255,255,.04);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+      transition: transform .24s ease, border-color .24s ease, background .24s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(75,229,255,.26);
+      background: rgba(75,229,255,.055);
+    }
+
+    .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      margin-bottom: 36px;
+      border-radius: 8px;
+      border: 1px solid rgba(212,255,74,.24);
+      color: var(--lime);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .card h3 {
+      font-size: 20px;
+      line-height: 1.14;
+      letter-spacing: -.035em;
+      margin-bottom: 14px;
+    }
+
+    .card p {
+      color: rgba(255,255,255,.68);
+      font-size: 13px;
+      line-height: 1.75;
+      margin-bottom: 0;
+    }
+
+    .capabilities {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .cap {
+      position: relative;
+      padding: 24px;
+      min-height: 180px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.025));
+      overflow: hidden;
+    }
+
+    .cap::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), var(--purple), transparent);
+      opacity: .42;
+    }
+
+    .cap h3 {
+      margin-bottom: 12px;
+      font-size: 20px;
+      letter-spacing: -.025em;
+    }
+
+    .cap p {
+      margin: 0;
+      color: rgba(255,255,255,.66);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .culture {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .culture-copy {
+      border-radius: 12px;
+      padding: clamp(30px, 5vw, 58px);
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.09);
+    }
+
+    .culture-copy p {
+      color: rgba(255,255,255,.72);
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .principles {
+      display: grid;
+      gap: 12px;
+    }
+
+    .principle {
+      padding: 20px 22px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.09);
+      background: rgba(255,255,255,.035);
+    }
+
+    .principle strong {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 15px;
+    }
+
+    .principle span {
+      color: rgba(255,255,255,.62);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .cta-band {
+      padding: clamp(38px, 5vw, 58px);
+      border-radius: 16px;
+      background:
+        radial-gradient(ellipse at 88% 20%, rgba(212,255,74,.14), transparent 36%),
+        radial-gradient(ellipse at 18% 88%, rgba(75,229,255,.14), transparent 42%),
+        linear-gradient(135deg, rgba(138,77,255,.18), rgba(80,31,146,.26));
+      border: 1px solid rgba(201,183,255,.18);
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .cta-band h2 {
+      font-size: clamp(30px, 3.6vw, 48px);
+      margin: 0;
+    }
+
+    .cta-band p {
+      color: rgba(255,255,255,.68);
+      max-width: 520px;
+      line-height: 1.8;
+      margin: 14px 0 0;
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 48px 0 54px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      color: rgba(255,255,255,.42);
+      font-size: 12px;
+    }
+
+    footer .shell {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 860px) {
+      .nav { grid-template-columns: auto auto; }
+      .nav-links { display: none; }
+      .logo { width: 116px; }
+      .hero { padding-top: 130px; }
+      .hero-layout { grid-template-columns: 1fr; }
+      .orb { width: 95vw; height: 74vw; right: -42vw; top: 100px; opacity: .58; }
+      .team-phones {
+        max-width: none;
+        height: min(420px, 58vh);
+        margin: 12px 0 0;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        overflow: hidden;
+        gap: 10px;
+        padding: 12px;
+      }
+      .team-column {
+        height: 100%;
+        overflow: hidden;
+        mask-image: none;
+      }
+      .team-track {
+        animation: none !important;
+        transform: none !important;
+        flex-direction: column;
+      }
+      .phone-card {
+        flex: none;
+        min-width: 0;
+      }
+      .phone-card--clone { display: none; }
+      .two-col, .culture { grid-template-columns: 1fr; }
+      .grid, .capabilities { grid-template-columns: 1fr; }
+      .card { min-height: auto; }
+      .cta-band { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (max-width: 520px) {
+      .shell { width: min(100% - 32px, 1180px); }
+      .nav { padding: 12px 14px 12px 18px; }
+      .cta { padding: 13px 17px; font-size: 10px; letter-spacing: .11em; }
+      h1 { font-size: clamp(34px, 10vw, 52px); }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .button-primary, .button-secondary { justify-content: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .team-track {
+        animation: none !important;
+        transform: none !important;
+      }
+    }
+
+    @keyframes expertiseScroll {
+      from { transform: translate3d(0,0,0); }
+      to { transform: translate3d(-50%,0,0); }
+    }
+
+    .expertise-section {
+      padding: 0 0 clamp(48px, 7vw, 76px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .expertise-strip {
+      overflow: hidden;
+      border-radius: 999px;
+      border: 1px solid rgba(80,31,146,.16);
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.96), rgba(255,255,255,.98), rgba(248,246,252,.96)),
+        radial-gradient(ellipse at 20% 50%, rgba(212,255,74,.16), transparent 48%),
+        radial-gradient(ellipse at 78% 50%, rgba(75,229,255,.14), transparent 48%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.72), 0 18px 48px rgba(80,31,146,.12);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
+    }
+
+    .expertise-track {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      width: max-content;
+      padding: 13px 0;
+      animation: expertiseScroll 42s linear infinite;
+    }
+
+    .expertise-strip:hover .expertise-track { animation-play-state: paused; }
+
+    .expertise-label {
+      flex: 0 0 auto;
+      padding-left: 28px;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .22em;
+      line-height: 1;
+      text-transform: uppercase;
+      color: rgba(80,31,146,.72);
+      white-space: nowrap;
+    }
+
+    .expertise-logo {
+      flex: 0 0 auto;
+      width: 156px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      filter: none;
+      transition: opacity .35s ease, filter .35s ease, transform .35s ease;
+    }
+
+    .expertise-logo:hover {
+      opacity: 1;
+      filter: none;
+      transform: translateY(-1px);
+    }
+
+    .expertise-logo img {
+      max-width: 134px;
+      max-height: 36px;
+      object-fit: contain;
+    }
+    .hero-expertise { margin-top: clamp(26px, 4vw, 46px); }
+    .hero .expertise-strip { margin-top: 0; }
+    .section-button { margin-top: 24px; }
+    .section-cta { display: flex; justify-content: center; margin-top: 34px; }
+
+    @media (max-width: 760px) {
+      .expertise-strip { border-radius: 14px; }
+      .expertise-track { gap: 18px; animation-duration: 34s; }
+      .expertise-label { padding-left: 20px; font-size: 8px; }
+      .expertise-logo { width: 132px; }
+      .expertise-logo img { max-width: 113px; max-height: 31px; }
+    }
+  </style>
+
+  <style id="uhura-about-global-polish">
+    .nav-wrap {
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      justify-content: center !important;
+    }
+
+    .nav {
+      width: min(980px, calc(100vw - 48px)) !important;
+      margin-inline: auto !important;
+    }
+
+    .hero .shell.hero-layout {
+      width: min(1500px, calc(100% - 80px)) !important;
+      max-width: none !important;
+      margin-inline: auto !important;
+    }
+
+    @media (min-width: 1080px) {
+      .hero-content {
+        justify-self: start;
+        max-width: 720px;
+      }
+
+      .team-phones {
+        justify-self: end;
+        margin-left: 0;
+      }
+    }
+
+    .footer-style-button {
+      border: 0 !important;
+      background: linear-gradient(135deg, #c1a1ff 0%, #8945f0 100%) !important;
+      color: #1a1032 !important;
+      box-shadow: 0 8px 24px rgba(137,69,240,.35) !important;
+    }
+
+    .footer-style-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(137,69,240,.45) !important;
+    }
+
+    .uhura-site-footer {
+      position: relative;
+      z-index: 2;
+      padding-top: 48px;
+      background:
+        radial-gradient(ellipse at 18% 0%, rgba(80,31,146,.18), transparent 42%),
+        radial-gradient(ellipse at 88% 16%, rgba(75,229,255,.08), transparent 38%),
+        #0b0714;
+      color: #fff;
+    }
+
+    .uhura-footer-line {
+      width: min(1180px, calc(100% - 48px));
+      height: 1px;
+      margin: 0 auto;
+      background: linear-gradient(90deg, transparent 0%, rgba(137,69,240,.35) 50%, transparent 100%);
+    }
+
+    .uhura-footer-grid {
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 64px 0 0;
+      display: grid;
+      grid-template-columns: minmax(240px, 1.35fr) repeat(3, minmax(150px, .8fr));
+      gap: clamp(28px, 5vw, 56px);
+    }
+
+    .uhura-footer-brand {
+      font-weight: 900;
+      font-size: 26px;
+      letter-spacing: -.02em;
+      margin-bottom: 18px;
+    }
+
+    .uhura-footer-brand span:first-child {
+      background: linear-gradient(135deg, #fff 0%, #c1a1ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .uhura-footer-brand span:nth-child(2) { color: #e1ff64; }
+    .uhura-footer-brand em {
+      margin-left: 6px;
+      font-family: "Playfair Display", serif;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: .1em;
+      color: rgba(255,255,255,.32);
+    }
+
+    .uhura-footer-copy {
+      max-width: 290px;
+      margin: 0 0 24px;
+      font-size: 13px;
+      line-height: 1.75;
+      color: rgba(255,255,255,.56);
+    }
+
+    .uhura-footer-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .uhura-footer-badges span {
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(137,69,240,.25);
+      background: rgba(137,69,240,.08);
+      color: rgba(193,161,255,.86);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .uhura-footer-col h3 {
+      margin: 0 0 22px;
+      color: rgba(225,255,100,.72);
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .uhura-footer-col a {
+      display: block;
+      margin-bottom: 12px;
+      color: rgba(255,255,255,.46);
+      font-size: 12.5px;
+      line-height: 1.5;
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+
+    .uhura-footer-col a:hover { color: #fff; }
+
+    .uhura-footer-cta {
+      position: relative;
+      width: min(1180px, calc(100% - 48px));
+      margin: 64px auto 0;
+      padding: clamp(30px, 4vw, 42px) clamp(24px, 4vw, 44px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 1px solid rgba(137,69,240,.22);
+      background: linear-gradient(135deg, rgba(137,69,240,.16) 0%, rgba(80,31,146,.22) 50%, rgba(37,200,217,.10) 100%);
+    }
+
+    .uhura-footer-cta h2 {
+      margin: 0 0 6px;
+      color: #fff;
+      font-size: clamp(22px, 2.4vw, 30px);
+      line-height: 1.25;
+      letter-spacing: -.02em;
+    }
+
+    .uhura-footer-cta h2 span {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-weight: 400;
+      color: #c1a1ff;
+    }
+
+    .uhura-footer-cta p {
+      margin: 0;
+      color: rgba(255,255,255,.58);
+      font-size: 13px;
+    }
+
+    .uhura-footer-call {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      padding: 14px 30px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #c1a1ff 0%, #8945f0 100%);
+      color: #1a1032;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      box-shadow: 0 8px 24px rgba(137,69,240,.35);
+    }
+
+    .uhura-footer-bottom {
+      width: min(1180px, calc(100% - 48px));
+      margin: 56px auto 0;
+      padding: 40px 0 48px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      color: rgba(255,255,255,.24);
+      font-size: 11px;
+    }
+
+    @media (max-width: 880px) {
+      .hero .shell.hero-layout {
+        width: min(100% - 32px, 1180px) !important;
+      }
+
+      .uhura-footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .uhura-footer-cta {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+
+  <style id="uhura-title-scale-system">
+    :root {
+      --uhura-title-xl: clamp(34px, 4.1vw, 56px);
+      --uhura-title-lg: clamp(30px, 3.2vw, 44px);
+      --uhura-title-md: clamp(25px, 2.4vw, 34px);
+    }
+
+    h1 {
+      font-size: var(--uhura-title-xl) !important;
+      line-height: 1.06 !important;
+    }
+
+    h2,
+    .editorial-title,
+    .section-head h2,
+    .culture-copy h2,
+    .case-final-cta h2,
+    .cta-band h2 {
+      font-size: var(--uhura-title-lg) !important;
+      line-height: 1.08 !important;
+      letter-spacing: -0.045em !important;
+    }
+
+    h3,
+    .action-row h3,
+    .side-card h3,
+    .magnific-panel h3 {
+      font-size: var(--uhura-title-md) !important;
+      line-height: 1.14 !important;
+      letter-spacing: -0.035em !important;
+    }
+
+    .hero h1,
+    .hero .editorial-title {
+      font-size: var(--uhura-title-xl) !important;
+      line-height: 1.06 !important;
+    }
+
+    @media (max-width: 760px) {
+      :root {
+        --uhura-title-xl: clamp(32px, 8.6vw, 44px);
+        --uhura-title-lg: clamp(27px, 7.2vw, 38px);
+        --uhura-title-md: clamp(21px, 5.8vw, 29px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-wrap">
+    <nav class="nav" aria-label="Navegación principal">
+      <a href="uhura-v13-services-preview%20(1).html" aria-label="Ir al inicio">
+        <img class="logo" src="file:///Users/monsalveuhura/Downloads/1x/logo-uhura-blanco.webp" alt="Uhura Group">
+      </a>
+      <div class="nav-links">
+        <a href="case-kaiowa.html">Casos de éxito</a>
+        <a href="#partners">Partners</a>
+        <a href="nosotros.html">Nosotros</a>
+      </div>
+      <a class="cta" href="mailto:catalina@uhuragroup.com">Hablemos <span aria-hidden="true">→</span></a>
+    </nav>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="orb" aria-hidden="true"></div>
+      <div class="shell hero-layout">
+        <div class="hero-content">
+          <p class="eyebrow">Nosotros · Growth Team</p>
+          <h1>Somos el equipo que se sienta en la mesa donde se decide el <span class="italic">crecimiento.</span></h1>
+          <p class="hero-copy">
+            En Uhura no trabajamos como un proveedor que recibe tareas. Nos integramos como una extensión de tu equipo para entender el negocio, encontrar los cuellos de botella y construir sistemas digitales que convierten.
+          </p>
+        </div>
+        <div class="team-phones" aria-label="Equipo Uhura">
+          <div class="team-column is-down">
+            <div class="team-track">
+              <figure class="phone-card"><img src="11zon_compressed/Ana Maria Giraldo - CEO.jpg" alt="Ana Maria Giraldo, CEO"></figure>
+              <figure class="phone-card"><img src="11zon_compressed/Esmeralda Duque - Content Strategist.jpg" alt="Esmeralda Duque, Content Strategist"></figure>
+              <figure class="phone-card"><img src="11zon_compressed/Nayeliz Bruna - SEO content digital.jpg" alt="Nayeliz Bruna, SEO Content Digital"></figure>
+              <figure class="phone-card phone-card--clone" aria-hidden="true"><img src="11zon_compressed/Ana Maria Giraldo - CEO.jpg" alt=""></figure>
+              <figure class="phone-card phone-card--clone" aria-hidden="true"><img src="11zon_compressed/Esmeralda Duque - Content Strategist.jpg" alt=""></figure>
+              <figure class="phone-card phone-card--clone" aria-hidden="true"><img src="11zon_compressed/Nayeliz Bruna - SEO content digital.jpg" alt=""></figure>
+            </div>
+          </div>
+          <div class="team-column is-mid">
+            <div class="team-track">
+              <figure class="phone-card"><img src="11zon_compressed/Carolina Acevedo - Executive Relationship.jpg" alt="Carolina Acevedo, Executive Relationship"></figure>
+              <figure class="phone-card"><img src="11zon_compressed/Laura Goméz - Developer and Designer.jpg" alt="Laura Gomez, Developer and Designer"></figure>
+              <figure class="phone-card"><img src="11zon_compressed/Paola Monsalve -  Product Lead.jpg" alt="Paola Monsalve, Product Lead"></figure>
+              <figure class="phone-card phone-card--clone" aria-hidden="true"><img src="11zon_compressed/Carolina Acevedo - Executive Relationship.jpg" alt=""></figure>
+              <figure class="phone-card phone-card--clone" aria-hidden="true"><img src="11zon_compressed/Laura Goméz - Developer and Designer.jpg" alt=""></figure>
+              <figure class="phone-card phone-card--clone" aria-hidden="true"><img src="11zon_compressed/Paola Monsalve -  Product Lead.jpg" alt=""></figure>
+            </div>
+          </div>
+          <div class="team-column is-down">
+            <div class="team-track">
+              <figure class="phone-card"><img src="11zon_compressed/Catalina Tejada - Directora Comercial.jpeg" alt="Catalina Tejada, Directora Comercial"></figure>
+              <figure class="phone-card"><img src="11zon_compressed/Luisa-urazan- Executive Relationship.jpg" alt="Luisa Urazan, Executive Relationship"></figure>
+              <figure class="phone-card"><img src="11zon_compressed/Sara Rivera -  Comunity Manager.jpg" alt="Sara Rivera, Community Manager"></figure>
+              <figure class="phone-card phone-card--clone" aria-hidden="true"><img src="11zon_compressed/Catalina Tejada - Directora Comercial.jpeg" alt=""></figure>
+              <figure class="phone-card phone-card--clone" aria-hidden="true"><img src="11zon_compressed/Luisa-urazan- Executive Relationship.jpg" alt=""></figure>
+              <figure class="phone-card phone-card--clone" aria-hidden="true"><img src="11zon_compressed/Sara Rivera -  Comunity Manager.jpg" alt=""></figure>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shell hero-expertise" aria-label="Plataformas y herramientas en las que somos expertos">
+        <div class="expertise-strip">
+
+          <div class="expertise-track">
+            <div class="expertise-logo"><img src="1x/1x/logo wordpress.webp" alt="WordPress"></div>
+            <div class="expertise-logo"><img src="1x/1x/logo shopify.webp" alt="Shopify"></div>
+            <div class="expertise-logo"><img src="1x/1x/logo google partner.webp" alt="Google Partner"></div>
+            <div class="expertise-logo"><img src="1x/1x/logo vtex.webp" alt="VTEX"></div>
+            <div class="expertise-logo"><img src="1x/1x/logo google analytics.webp" alt="Google Analytics"></div>
+            <div class="expertise-logo"><img src="1x/1x/Mesa de trabajo 18.webp" alt="Clarity"></div>
+            <div class="expertise-logo"><img src="1x/1x/logo wordpress.webp" alt="WordPress"></div>
+            <div class="expertise-logo"><img src="1x/1x/logo shopify.webp" alt="Shopify"></div>
+            <div class="expertise-logo"><img src="1x/1x/logo google partner.webp" alt="Google Partner"></div>
+            <div class="expertise-logo"><img src="1x/1x/logo vtex.webp" alt="VTEX"></div>
+            <div class="expertise-logo"><img src="1x/1x/logo google analytics.webp" alt="Google Analytics"></div>
+            <div class="expertise-logo"><img src="1x/1x/Mesa de trabajo 18.webp" alt="Clarity"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="equipo">
+      <div class="shell two-col">
+        <div class="section-head">
+          <p class="eyebrow">Más que cliente</p>
+          <h2>Un <span class="italic">team ganador</span> para marcas que quieren moverse mejor.</h2>
+          <p class="lead">
+            La estrategia digital no se resuelve con piezas aisladas. Se resuelve cuando creatividad, producto, pauta, data e inteligencia artificial trabajan como un solo sistema.
+          </p>
+          <a class="button-primary section-button" href="#metodo">Cómo trabajamos <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="statement">
+          <p>Nos gusta entrar al fondo: entender qué vende, qué frena, qué oportunidad está oculta y qué decisión puede cambiar el ritmo del negocio.</p>
+          <span>De brief a equipo. De campaña a sistema.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="metodo">
+      <div class="shell">
+        <div class="section-head center">
+          <p class="eyebrow">Cómo entramos al juego</p>
+          <h2>No llegamos a ejecutar. Llegamos a <span class="gradient-word">pensar contigo.</span></h2>
+          <p class="lead">
+            Nuestro rol es hacer que el crecimiento deje de depender de impulsos sueltos y empiece a funcionar como una operación clara, medible y mejorable.
+          </p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <span class="num">01</span>
+            <h3>Entendemos el negocio</h3>
+            <p>Escuchamos al equipo, revisamos objetivos, canales, fricciones y contexto real antes de proponer cualquier solución.</p>
+          </article>
+          <article class="card">
+            <span class="num">02</span>
+            <h3>Encontramos la fuga</h3>
+            <p>Miramos dónde se pierde crecimiento: pauta, sitio, contenido, datos, operación o experiencia de conversión.</p>
+          </article>
+          <article class="card">
+            <span class="num">03</span>
+            <h3>Construimos el sistema</h3>
+            <p>Diseñamos piezas conectadas: estrategia, producto digital, performance, automatización y medición.</p>
+          </article>
+          <article class="card">
+            <span class="num">04</span>
+            <h3>Optimizamos en equipo</h3>
+            <p>No soltamos la entrega. Leemos datos, iteramos decisiones y mejoramos el sistema con foco en resultados.</p>
+          </article>
+        </div>
+        <div class="section-cta">
+          <a class="button-primary footer-style-button" href="mailto:catalina@uhuragroup.com">¡Hablemos! <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell culture">
+        <div class="culture-copy">
+          <p class="eyebrow">Cultura Uhura</p>
+          <h2>Cercanos en la relación. Exigentes con el resultado.</h2>
+          <p>
+            Nos importa que el proceso se sienta claro y humano. Preguntamos, retamos, proponemos y acompañamos. Porque una marca crece mejor cuando siente que del otro lado no hay una agencia esperando aprobación, sino un equipo pensando con ella.
+          </p>
+        </div>
+        <div class="principles">
+          <div class="principle">
+            <strong>Claridad antes que ruido</strong>
+            <span>Menos presentaciones decorativas. Más decisiones entendibles y accionables.</span>
+          </div>
+          <div class="principle">
+            <strong>Velocidad con criterio</strong>
+            <span>Avanzamos rápido, pero con estrategia, data y estándares de ejecución.</span>
+          </div>
+          <div class="principle">
+            <strong>Propiedad compartida</strong>
+            <span>Si el resultado importa para tu equipo, también importa para el nuestro.</span>
+          </div>
+          <div class="principle">
+            <strong>Mirar más allá del pedido</strong>
+            <span>No solo hacemos lo solicitado: buscamos lo que realmente puede desbloquear crecimiento.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="uhura-site-footer">
+    <div class="uhura-footer-line" aria-hidden="true"></div>
+    <div class="uhura-footer-grid">
+      <div>
+        <div class="uhura-footer-brand"><span>UHURA</span><span>.</span><em>group</em></div>
+        <p class="uhura-footer-copy">Performance y crecimiento digital. Estrategia, growth, websites, ecommerce e inteligencia artificial para marcas que no se conforman con lo promedio.</p>
+        <div class="uhura-footer-badges">
+          <span>Colombia</span>
+          <span>México</span>
+          <span>USA</span>
+        </div>
+      </div>
+      <div class="uhura-footer-col">
+        <h3>Servicios</h3>
+        <a href="uhura-v13-services-preview%20(1).html#servicios">Creative Strategy</a>
+        <a href="uhura-v13-services-preview%20(1).html#servicios">Digital Products</a>
+        <a href="uhura-v13-services-preview%20(1).html#servicios">Revenue Growth</a>
+        <a href="uhura-v13-services-preview%20(1).html#servicios">IA + Data</a>
+      </div>
+      <div class="uhura-footer-col">
+        <h3>Empresa</h3>
+        <a href="case-kaiowa.html">Casos de éxito</a>
+        <a href="uhura-v13-services-preview%20(1).html#partners">Partners</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="uhura-v13-services-preview%20(1).html#metodologia">Metodología</a>
+      </div>
+      <div class="uhura-footer-col">
+        <h3>Contacto</h3>
+        <a href="mailto:catalina@uhuragroup.com">catalina@uhuragroup.com</a>
+        <a href="https://www.uhuragroup.com">www.uhuragroup.com</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+    <div class="uhura-footer-cta">
+      <div>
+        <h2>No necesitas más tráfico. <span>Necesitas conversión.</span></h2>
+        <p>Diseñemos un sistema que convierta mejor cada visita.</p>
+      </div>
+      <a class="uhura-footer-call" href="mailto:catalina@uhuragroup.com">Agenda una llamada →</a>
+    </div>
+    <div class="uhura-footer-bottom">
+      <span>© 2026 Uhura Group. Todos los derechos reservados.</span>
+      <span>Colombia · México · Estados Unidos</span>
+    </div>
+  </footer>
+</body>
+</html>

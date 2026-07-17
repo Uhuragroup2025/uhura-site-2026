@@ -1,0 +1,62 @@
+/*
+  Extracted from approved home.
+  Shared partner/logo marquee styles.
+*/
+
+@keyframes uhuraLogoScroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.uhura-logo-marquee {
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 9%, #000 91%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 9%, #000 91%, transparent 100%);
+}
+
+.uhura-logo-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation-name: uhuraLogoScroll;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.uhura-logo-marquee:hover .uhura-logo-track {
+  animation-play-state: paused;
+}
+
+.uhura-logo-item {
+  width: clamp(158px, 14.4vw, 221px);
+  height: 82px;
+  margin: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border-radius: 8px;
+  transition: background-color .35s ease, transform .35s ease;
+}
+
+.uhura-logo-img {
+  max-width: 100%;
+  max-height: 62px;
+  object-fit: contain;
+  filter: none;
+  opacity: 1;
+  transition: filter .45s ease, opacity .45s ease, transform .45s ease;
+}
+
+.uhura-logo-item:hover .uhura-logo-img {
+  filter: none;
+  opacity: 1;
+  transform: scale(1.04);
+}

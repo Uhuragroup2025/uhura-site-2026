@@ -1,0 +1,25 @@
+:root {
+  --uhura-shell-wide: var(--layout-wide, 1280px);
+}
+
+@media (min-width: 1500px) {
+  :root {
+    --layout-wide: 1320px;
+  }
+}
+
+main [style*="max-width:1200"],
+main [style*="max-width: 1200"],
+footer [style*="max-width:1200"],
+footer [style*="max-width: 1200"] {
+  max-width: var(--uhura-shell-wide) !important;
+}
+
+@media (max-width: 860px) {
+  main [style*="max-width:1200"],
+  main [style*="max-width: 1200"],
+  footer [style*="max-width:1200"],
+  footer [style*="max-width: 1200"] {
+    max-width: 100% !important;
+  }
+}

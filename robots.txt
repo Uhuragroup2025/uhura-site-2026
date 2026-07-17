@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /archive/
+Disallow: /approved-snapshot/
+Disallow: /visual-mirror/
+Disallow: /workbench/
+Disallow: /servicios/ai-agents.html
+
+Sitemap: https://www.uhuragroup.com/sitemap.xml

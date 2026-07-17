@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ambient Field Expressive Workbench | Uhura</title>
+  <link rel="stylesheet" href="../src/styles/uhura-system.css">
+  <style>
+    body {
+      background: #05030a;
+    }
+
+    .expressive-field {
+      min-height: 100vh;
+    }
+
+    .expressive-field > .ambient-field__canvas,
+    .expressive-field > .ambient-field__noise {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .expressive-panel {
+      min-height: 100vh;
+      display: grid;
+      align-items: center;
+      padding: clamp(110px, 14vw, 190px) 0;
+    }
+
+    .expressive-panel--background {
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    .expressive-panel--intro {
+      align-items: end;
+    }
+
+    .expressive-kicker {
+      margin: 0 0 18px;
+      color: rgba(255,255,255,.56);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .expressive-title {
+      max-width: 980px;
+      margin: 0;
+      color: #fff;
+      font-size: clamp(52px, 8vw, 132px);
+      line-height: .86;
+      letter-spacing: -.07em;
+      text-transform: uppercase;
+    }
+
+    .expressive-copy {
+      max-width: 620px;
+      margin: 28px 0 0;
+      color: rgba(255,255,255,.72);
+      font-size: clamp(16px, 1.4vw, 21px);
+      line-height: 1.72;
+    }
+
+    .fps-pill {
+      width: max-content;
+      margin-top: 32px;
+      padding: 10px 14px;
+      border: 1px solid rgba(201,183,255,.18);
+      border-radius: 999px;
+      color: rgba(255,255,255,.76);
+      background: rgba(5,3,12,.42);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      backdrop-filter: blur(12px);
+    }
+
+    .expressive-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .expressive-card,
+    .subtle-sample {
+      min-height: 420px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      border: 1px solid rgba(201,183,255,.16);
+      background: rgba(255,255,255,.055);
+      box-shadow: 0 28px 90px rgba(0,0,0,.24);
+    }
+
+    .subtle-sample {
+      background:
+        radial-gradient(ellipse at 18% 18%, rgba(138,77,255,.34), transparent 44%),
+        radial-gradient(ellipse at 82% 14%, rgba(75,229,255,.16), transparent 36%),
+        radial-gradient(ellipse at 58% 82%, rgba(80,31,146,.28), transparent 46%),
+        linear-gradient(135deg, var(--uhura-panel), var(--uhura-dark));
+    }
+
+    .old-expressive-sample {
+      background:
+        radial-gradient(ellipse at 80% 14%, rgba(138,77,255,.34), transparent 38%),
+        radial-gradient(ellipse at 16% 80%, rgba(75,229,255,.18), transparent 42%),
+        radial-gradient(ellipse at 64% 54%, rgba(184,40,214,.20), transparent 46%),
+        linear-gradient(135deg, #080312 0%, #10051d 38%, #031119 100%);
+    }
+
+    .expressive-card {
+      display: grid;
+      align-content: end;
+      padding: clamp(24px, 4vw, 42px);
+      backdrop-filter: blur(8px);
+    }
+
+    .expressive-card h3,
+    .subtle-sample h3 {
+      margin: 0;
+      color: #fff;
+      font-size: clamp(25px, 3vw, 42px);
+      line-height: 1;
+      letter-spacing: -.055em;
+    }
+
+    .subtle-sample h3 {
+      position: absolute;
+      left: clamp(24px, 4vw, 42px);
+      bottom: clamp(24px, 4vw, 42px);
+    }
+
+    .growth-sim {
+      position: relative;
+      min-height: min(720px, 76vw);
+      display: grid;
+      place-items: center;
+      border-radius: 36px;
+      border: 1px solid rgba(201,183,255,.14);
+      background: rgba(5,3,12,.38);
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .growth-sim::before,
+    .growth-sim::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .growth-sim::before {
+      width: min(560px, 76%);
+      aspect-ratio: 1;
+      border: 1px solid rgba(75,229,255,.16);
+      box-shadow: inset 0 0 90px rgba(75,229,255,.05);
+    }
+
+    .growth-sim::after {
+      width: min(330px, 46%);
+      aspect-ratio: 1;
+      border: 1px dashed rgba(201,183,255,.18);
+    }
+
+    .growth-sim__core,
+    .growth-sim__node {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      border: 1px solid rgba(201,183,255,.16);
+      background: rgba(9,7,19,.58);
+      box-shadow: 0 28px 110px rgba(75,229,255,.10), inset 0 1px 0 rgba(255,255,255,.12);
+      backdrop-filter: blur(16px);
+    }
+
+    .growth-sim__core {
+      left: 50%;
+      top: 50%;
+      width: min(220px, 28%);
+      aspect-ratio: 1;
+      border-radius: 999px;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      font-size: clamp(19px, 2vw, 28px);
+      font-weight: 800;
+      letter-spacing: -.04em;
+      line-height: 1.05;
+    }
+
+    .growth-sim__node {
+      min-width: 128px;
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: 999px;
+      color: rgba(255,255,255,.90);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      transform: translate(-50%, -50%);
+    }
+
+    .node-a { left: 50%; top: 13%; }
+    .node-b { left: 21%; top: 34%; }
+    .node-c { left: 79%; top: 34%; }
+    .node-d { left: 25%; top: 70%; }
+    .node-e { left: 75%; top: 70%; }
+    .node-f { left: 50%; top: 86%; }
+
+    .review-list {
+      display: grid;
+      gap: 18px;
+      max-width: 880px;
+      margin: 34px 0 0;
+    }
+
+    .review-list p {
+      margin: 0;
+      padding: 18px 0;
+      border-top: 1px solid rgba(255,255,255,.16);
+      color: rgba(255,255,255,.72);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .state-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 42px;
+    }
+
+    .state-card {
+      min-height: 280px;
+      display: grid;
+      align-content: end;
+      padding: 28px;
+      border-radius: 24px;
+      border: 1px solid rgba(201,183,255,.16);
+      background:
+        radial-gradient(ellipse at 18% 22%, rgba(138,77,255,.28), transparent 48%),
+        radial-gradient(ellipse at 82% 20%, rgba(75,229,255,.14), transparent 38%),
+        linear-gradient(135deg, rgba(255,255,255,.07), rgba(255,255,255,.025));
+      box-shadow: 0 28px 90px rgba(0,0,0,.22);
+      backdrop-filter: blur(10px);
+    }
+
+    .state-card h3 {
+      margin: 0 0 10px;
+      color: #fff;
+      font-size: clamp(24px, 3vw, 38px);
+      line-height: 1;
+      letter-spacing: -.055em;
+    }
+
+    .state-card p {
+      margin: 0;
+      color: rgba(255,255,255,.68);
+      line-height: 1.65;
+    }
+
+    @media (max-width: 860px) {
+      .expressive-grid,
+      .state-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .expressive-title {
+        font-size: clamp(42px, 15vw, 74px);
+      }
+
+      .growth-sim {
+        min-height: 620px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="ambient-field ambient-field--dark ambient-field--expressive expressive-field" data-ambient-field data-ambient-variant="expressive">
+    <canvas class="ambient-field__canvas" aria-hidden="true"></canvas>
+    <div class="ambient-field__noise" aria-hidden="true"></div>
+    <div class="ambient-field__content">
+      <main>
+        <section class="expressive-panel expressive-panel--background" aria-label="Composicion full viewport sin contenido"></section>
+
+        <section class="expressive-panel expressive-panel--intro">
+          <div class="container-wide">
+            <p class="expressive-kicker">01 / Organic chromatic field</p>
+            <h1 class="expressive-title">Light as living matter.</h1>
+            <p class="expressive-copy">Esta version reemplaza shapes translucidas por un campo de metaballs con gradiente interno, deformacion procedural, zonas negras de descanso y respuesta del puntero sobre la materia visual.</p>
+            <div class="fps-pill">FPS <span data-ambient-fps-readout>--</span></div>
+          </div>
+        </section>
+
+        <section class="expressive-panel">
+          <div class="container-wide">
+            <p class="expressive-kicker">02 / Editorial title</p>
+            <h1 class="expressive-title">Growth field with depth.</h1>
+            <p class="expressive-copy">El titulo debe seguir siendo protagonista. La deformacion acompana el campo, no compite con la lectura.</p>
+          </div>
+        </section>
+
+        <section class="expressive-panel">
+          <div class="container-wide">
+            <p class="expressive-kicker">03 / Current workbench vs new field</p>
+            <div class="expressive-grid">
+              <div class="subtle-sample old-expressive-sample">
+                <h3>Anterior: capas planas y blur.</h3>
+              </div>
+              <div class="expressive-card">
+                <h3>Nuevo: campo organico deformable.</h3>
+                <p class="expressive-copy">La comparacion debe hacer evidente mas contraste, profundidad, tension cromatica y menos lectura de vector translucido.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="expressive-panel">
+          <div class="container-wide">
+            <p class="expressive-kicker">04 / Growth circular visual simulation</p>
+            <div class="growth-sim" aria-label="Simulacion visual circular de Growth">
+              <div class="growth-sim__core">Hipotesis<br><span class="italic">viva.</span></div>
+              <div class="growth-sim__node node-a">Estrategia</div>
+              <div class="growth-sim__node node-b">Creatividad</div>
+              <div class="growth-sim__node node-c">Media</div>
+              <div class="growth-sim__node node-d">Producto</div>
+              <div class="growth-sim__node node-e">Datos</div>
+              <div class="growth-sim__node node-f">Aprendizaje</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="expressive-panel">
+          <div class="container-wide">
+            <p class="expressive-kicker">05 / Reduced motion and mobile fallback</p>
+            <h2 class="section-title">La composicion debe quedarse viva, aunque no se deforme.</h2>
+            <div class="review-list">
+              <p>Reduced motion: conservar composicion cromatica estatica, sin deformacion ni interaccion.</p>
+              <p>Mobile o pointer coarse: fallback estatico; sin tracking del cursor ni parallax.</p>
+              <p>Performance: una sola instancia Expressive activa por pagina; rAF se pausa fuera del viewport.</p>
+              <p>Validacion visual: el campo debe tener profundidad, zonas oscuras de descanso y nada de neon agresivo ni estetica gamer.</p>
+            </div>
+            <div class="state-grid">
+              <article class="state-card">
+                <h3>Reduced motion</h3>
+                <p>Composicion cromatica fija: canvas dibuja un frame estable y no responde al cursor.</p>
+              </article>
+              <article class="state-card">
+                <h3>Mobile fallback</h3>
+                <p>Campo simplificado y estatico: conserva profundidad, evita tracking y reduce coste visual.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </section>
+
+  <script src="../src/components/uhura-components.js" data-root=".."></script>
+  <script>
+    (() => {
+      const root = document.querySelector("[data-ambient-variant='expressive']");
+      const readout = document.querySelector("[data-ambient-fps-readout]");
+      if (!root || !readout) return;
+
+      window.setInterval(() => {
+        readout.textContent = root.dataset.ambientFps || "static";
+      }, 500);
+    })();
+  </script>
+</body>
+</html>

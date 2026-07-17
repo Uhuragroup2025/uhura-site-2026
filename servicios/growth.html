@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Growth | Uhura Group</title>
+  <meta name="description" content="Growth, pauta, conversión y medición para construir sistemas de adquisición que aprenden y mejoran con datos.">
+  <link rel="canonical" href="https://www.uhuragroup.com/servicios/growth.html">
+  <meta property="og:title" content="Growth | Uhura Group">
+  <meta property="og:description" content="Growth, pauta, conversión y medición para construir sistemas de adquisición que aprenden y mejoran con datos.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.uhuragroup.com/servicios/growth.html">
+  <meta property="og:image" content="https://www.uhuragroup.com/assets/cases/roas-uhura.webp">
+  <link rel="icon" type="image/png" href="../assets/logos/logo-uhura-blanco.png">
+  <meta name="theme-color" content="#090513">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../src/styles/uhura-system.css">
+  <style>
+    body.service-growth {
+      background: #080511;
+    }
+
+    .growth-dark {
+      position: relative;
+      isolation: isolate;
+      overflow: clip;
+      background:
+        radial-gradient(ellipse at 76% 10%, rgba(75,229,255,.17), transparent 36%),
+        radial-gradient(ellipse at 18% 24%, rgba(138,77,255,.27), transparent 46%),
+        radial-gradient(ellipse at 60% 76%, rgba(212,255,74,.08), transparent 34%),
+        linear-gradient(145deg, #130821 0%, #070512 52%, #07101a 100%);
+    }
+
+    .growth-dark::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,183,255,.034) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,183,255,.03) 1px, transparent 1px);
+      background-size: 78px 78px;
+      opacity: .38;
+      pointer-events: none;
+    }
+
+    .growth-dark > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .growth-light {
+      color: var(--uhura-ink);
+      background:
+        radial-gradient(ellipse at 20% 16%, rgba(201,183,255,.36), transparent 42%),
+        radial-gradient(ellipse at 88% 6%, rgba(75,229,255,.14), transparent 38%),
+        linear-gradient(135deg, var(--uhura-light) 0%, #f8f6fb 62%, var(--uhura-light-2) 100%);
+    }
+
+    .growth-system-story {
+      position: relative;
+      min-height: var(--growth-story-height, 460vh);
+      padding-block: 0;
+    }
+
+    .growth-system-sticky {
+      position: sticky;
+      top: 0;
+      min-height: 100vh;
+      min-height: max(100svh, var(--growth-sticky-min, 100svh));
+      display: grid;
+      align-items: center;
+      padding-block: clamp(96px, 12vh, 144px);
+      overflow: hidden;
+    }
+
+    .growth-system-sticky::before {
+      content: "";
+      position: absolute;
+      inset: 8% -18% auto auto;
+      width: min(660px, 52vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 34% 32%, rgba(75,229,255,.20), transparent 32%),
+        radial-gradient(circle at 68% 66%, rgba(138,77,255,.28), transparent 44%),
+        radial-gradient(circle at 50% 50%, rgba(212,255,74,.06), transparent 34%);
+      filter: blur(38px);
+      opacity: .86;
+      pointer-events: none;
+    }
+
+    .growth-system-layout {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(300px, 1fr) minmax(0, 1fr);
+      gap: clamp(34px, 6vw, 78px);
+      align-items: center;
+    }
+
+    .growth-system-copy {
+      max-width: 530px;
+    }
+
+    .growth-system-copy .copy {
+      max-width: 500px;
+    }
+
+    .growth-map {
+      --map-progress: 0;
+      position: relative;
+      min-height: clamp(510px, 49vw, 650px);
+      display: grid;
+      place-items: center;
+      isolation: isolate;
+    }
+
+    .growth-map::before,
+    .growth-map::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(calc(.9 + (var(--map-progress) * .025)));
+      pointer-events: none;
+    }
+
+    .growth-map::before {
+      width: min(540px, 80%);
+      aspect-ratio: 1;
+      border: 1px solid rgba(201,183,255,.10);
+      background:
+        radial-gradient(circle, transparent 58%, rgba(75,229,255,.045) 59% 60%, transparent 61%);
+      box-shadow:
+        inset 0 0 80px rgba(75,229,255,.025),
+        0 0 calc(var(--map-progress) * 9px) rgba(75,229,255,.055);
+    }
+
+    .growth-map::after {
+      width: min(374px, 56%);
+      aspect-ratio: 1;
+      border: 1px dashed rgba(201,183,255,.13);
+      opacity: calc(.28 + (var(--map-progress) * .08));
+    }
+
+    .growth-map-core {
+      position: absolute;
+      z-index: 5;
+      left: 50%;
+      top: 50%;
+      width: min(210px, 34%);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 24px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,183,255,.14);
+      background:
+        radial-gradient(circle at 34% 24%, rgba(255,255,255,.15), transparent 28%),
+        radial-gradient(circle at 70% 76%, rgba(75,229,255,.12), transparent 36%),
+        rgba(9,7,19,.58);
+      box-shadow: 0 28px 110px rgba(75,229,255,.10), inset 0 1px 0 rgba(255,255,255,.13);
+      backdrop-filter: blur(18px);
+      transform: translate(-50%, -50%) scale(.88);
+      clip-path: circle(0 at 50% 50%);
+      transition: clip-path 520ms cubic-bezier(.22, 1, .36, 1), transform 520ms cubic-bezier(.22, 1, .36, 1), border-color 280ms ease;
+    }
+
+    .growth-map.is-stage-2 .growth-map-core,
+    .growth-map.is-stage-3 .growth-map-core,
+    .growth-map.is-stage-4 .growth-map-core {
+      clip-path: circle(75% at 50% 50%);
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .growth-map-core strong {
+      display: block;
+      color: #fff;
+      font-size: clamp(21px, 2.1vw, 30px);
+      line-height: 1.06;
+      letter-spacing: -.04em;
+    }
+
+    .growth-map-core span {
+      display: block;
+      margin-top: 10px;
+      color: rgba(255,255,255,.58);
+      font-size: var(--type-small-size);
+      line-height: 1.55;
+    }
+
+    .growth-node {
+      position: absolute;
+      z-index: 4;
+      display: grid;
+      justify-items: center;
+      gap: 12px;
+      color: rgba(255,255,255,.88);
+      text-align: center;
+      transform: translate(-50%, -50%) scale(.72);
+      transform-origin: center;
+      clip-path: inset(50% 50% 50% 50% round 999px);
+      transition: clip-path 520ms cubic-bezier(.22, 1, .36, 1), transform 520ms cubic-bezier(.22, 1, .36, 1), color 260ms ease;
+    }
+
+    .growth-node.is-revealed {
+      clip-path: inset(-14px -18px -16px -18px round 999px);
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .growth-node.is-hot {
+      color: #fff;
+    }
+
+    .growth-node b {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: clamp(110px, 10.5vw, 148px);
+      min-height: 42px;
+      padding: 0 16px;
+      border: 1px solid rgba(201,183,255,.14);
+      border-radius: 999px;
+      background: rgba(9,7,19,.56);
+      box-shadow: 0 18px 48px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.06);
+      backdrop-filter: blur(14px);
+      font-size: var(--type-label-size);
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      transition: border-color 280ms ease, box-shadow 280ms ease, background 280ms ease;
+    }
+
+    .growth-node.is-hot b {
+      border-color: rgba(75,229,255,.34);
+      background: rgba(16,12,30,.74);
+      box-shadow: 0 22px 68px rgba(75,229,255,.16), inset 0 1px 0 rgba(255,255,255,.11);
+    }
+
+    .growth-node small {
+      max-width: 158px;
+      color: rgba(255,255,255,.48);
+      font-size: 10px;
+      line-height: 1.55;
+      transform: translateY(8px);
+      clip-path: inset(0 0 100% 0);
+      transition: clip-path 420ms cubic-bezier(.22, 1, .36, 1), transform 420ms cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .growth-node.is-hot small {
+      clip-path: inset(0 0 0 0);
+      transform: translateY(0);
+    }
+
+    .node-strategy { left: 50%; top: 10%; }
+    .node-creative { left: 22%; top: 31%; }
+    .node-media { left: 78%; top: 31%; }
+    .node-product { left: 24%; top: 66%; }
+    .node-data { left: 76%; top: 66%; }
+    .node-learning { left: 50%; top: 82%; }
+
+    .growth-link {
+      position: absolute;
+      z-index: 2;
+      left: 50%;
+      top: 50%;
+      width: var(--line-width);
+      height: 1px;
+      transform-origin: left center;
+      transform: rotate(var(--line-angle)) scaleX(0);
+      background: linear-gradient(90deg, rgba(75,229,255,.78), rgba(201,183,255,.25), transparent);
+      filter: drop-shadow(0 0 12px rgba(75,229,255,.20));
+      transition: transform 680ms cubic-bezier(.22, 1, .36, 1), background 280ms ease, filter 280ms ease;
+    }
+
+    .growth-link.is-lit {
+      transform: rotate(var(--line-angle)) scaleX(1);
+    }
+
+    .growth-link.is-complete {
+      background: linear-gradient(90deg, rgba(212,255,74,.78), rgba(75,229,255,.36), rgba(138,77,255,.18), transparent);
+      filter: drop-shadow(0 0 18px rgba(212,255,74,.18));
+    }
+
+    .link-strategy-creative { --line-width: 228px; --line-angle: 154deg; left: 50%; top: 16%; }
+    .link-strategy-media { --line-width: 228px; --line-angle: 26deg; left: 50%; top: 16%; }
+    .link-creative-core { --line-width: 194px; --line-angle: 18deg; left: 29%; top: 36%; }
+    .link-media-core { --line-width: 194px; --line-angle: 162deg; left: 71%; top: 36%; }
+    .link-core-product { --line-width: 228px; --line-angle: 148deg; }
+    .link-core-data { --line-width: 228px; --line-angle: 32deg; }
+    .link-product-learning { --line-width: 202px; --line-angle: 35deg; left: 31%; top: 68%; }
+    .link-data-learning { --line-width: 202px; --line-angle: 145deg; left: 69%; top: 68%; }
+
+    .growth-particle {
+      position: absolute;
+      z-index: 3;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--particle-color, var(--uhura-cyan));
+      box-shadow: 0 0 18px var(--particle-glow, rgba(75,229,255,.52));
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 420ms cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .growth-particle.is-revealed {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .particle-1 { left: 34%; top: 22%; }
+    .particle-2 { left: 67%; top: 22%; --particle-color: var(--uhura-lavender); --particle-glow: rgba(201,183,255,.50); }
+    .particle-3 { left: 39%; top: 76%; --particle-color: var(--uhura-lime); --particle-glow: rgba(212,255,74,.48); }
+    .particle-4 { left: 61%; top: 77%; }
+    .particle-5 { left: 50%; top: 20%; --particle-color: var(--uhura-lime); --particle-glow: rgba(212,255,74,.50); }
+    .particle-6 { left: 50%; top: 82%; --particle-color: var(--uhura-lavender); --particle-glow: rgba(201,183,255,.42); }
+
+    .growth-metric {
+      position: absolute;
+      z-index: 6;
+      min-width: 118px;
+      color: var(--uhura-cyan);
+      transform: translateY(14px);
+      clip-path: inset(0 100% 0 0);
+      transition: clip-path 520ms cubic-bezier(.22, 1, .36, 1), transform 520ms cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .growth-metric.is-revealed {
+      clip-path: inset(0 0 0 0);
+      transform: translateY(0);
+    }
+
+    .growth-metric b {
+      display: block;
+      font-size: clamp(24px, 2.4vw, 34px);
+      line-height: 1;
+      letter-spacing: -.035em;
+    }
+
+    .growth-metric span {
+      display: block;
+      margin-top: 6px;
+      color: rgba(201,183,255,.70);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .metric-cpa { left: 4%; top: 14%; color: var(--uhura-violet); }
+    .metric-traffic { right: 1%; top: 14%; }
+    .metric-conversion { left: 50%; bottom: 1%; color: var(--uhura-lime); transform: translate(-50%, 14px); text-align: center; }
+    .metric-conversion.is-revealed { transform: translate(-50%, 0); }
+
+    .growth-scroll-cue {
+      position: absolute;
+      right: 0;
+      bottom: clamp(12px, 4vh, 36px);
+      display: grid;
+      gap: 8px;
+      color: rgba(255,255,255,.42);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .growth-scroll-cue span {
+      width: 104px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(75,229,255,.54), rgba(212,255,74,.34), transparent);
+      transform-origin: left;
+      transform: scaleX(calc(.16 + (var(--map-progress) * .21)));
+    }
+
+    .service-next {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: clamp(28px, 6vw, 76px);
+      align-items: center;
+      overflow: hidden;
+    }
+
+    @media (max-width: 760px) {
+      .growth-system-story {
+        min-height: auto;
+      }
+
+      .growth-system-sticky {
+        position: relative;
+        min-height: auto;
+        padding-block: var(--section-space-roomy);
+      }
+
+      .growth-system-layout,
+      .service-next {
+        grid-template-columns: 1fr;
+      }
+
+      .growth-map {
+        min-height: 680px;
+      }
+
+    }
+
+    @media (max-width: 640px) {
+      .growth-map {
+        min-height: 620px;
+      }
+
+      .growth-node b {
+        min-width: 112px;
+        min-height: 40px;
+        padding-inline: 14px;
+        font-size: 9px;
+        letter-spacing: .12em;
+      }
+
+      .growth-node small {
+        display: none;
+      }
+
+      .node-strategy { top: 8%; }
+      .node-creative { left: 18%; top: 30%; }
+      .node-media { left: 82%; top: 30%; }
+      .node-product { left: 19%; top: 68%; }
+      .node-data { left: 81%; top: 68%; }
+      .node-learning { top: 92%; }
+
+      .metric-cpa,
+      .metric-traffic {
+        top: 18%;
+      }
+
+      .metric-cpa { left: 0; }
+      .metric-traffic { right: 0; }
+      .growth-metric {
+        min-width: 92px;
+      }
+
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .growth-map-core,
+      .growth-node,
+      .growth-node small,
+      .growth-link,
+      .growth-particle,
+      .growth-metric {
+        transition: none;
+      }
+
+    }
+  </style>
+</head>
+<body class="page-dark service-growth">
+  <div data-uhura-nav></div>
+
+  <main>
+    <div class="growth-dark">
+      <section class="growth-system-story" data-growth-system>
+        <div class="growth-system-sticky">
+          <div class="container-wide growth-system-layout">
+            <div class="growth-system-copy">
+              <p class="eyebrow">Sistema</p>
+              <h1 class="section-title">El crecimiento ocurre cuando los datos empiezan a <span class="italic">decidir.</span></h1>
+              <p class="copy">Cada interacción genera una señal. Cuando estrategia, media, producto y medición trabajan como un mismo sistema, cada aprendizaje alimenta la siguiente hipótesis.</p>
+            </div>
+
+            <div class="growth-map" data-growth-map aria-label="Sistema progresivo de Growth Uhura">
+              <span class="growth-link link-strategy-creative" data-link-stage="1" aria-hidden="true"></span>
+              <span class="growth-link link-strategy-media" data-link-stage="1" aria-hidden="true"></span>
+              <span class="growth-link link-creative-core" data-link-stage="2" aria-hidden="true"></span>
+              <span class="growth-link link-media-core" data-link-stage="2" aria-hidden="true"></span>
+              <span class="growth-link link-core-product" data-link-stage="2" aria-hidden="true"></span>
+              <span class="growth-link link-core-data" data-link-stage="3" aria-hidden="true"></span>
+              <span class="growth-link link-product-learning" data-link-stage="3" aria-hidden="true"></span>
+              <span class="growth-link link-data-learning" data-link-stage="3" aria-hidden="true"></span>
+
+              <span class="growth-particle particle-1" data-particle-stage="1" aria-hidden="true"></span>
+              <span class="growth-particle particle-2" data-particle-stage="1" aria-hidden="true"></span>
+              <span class="growth-particle particle-3" data-particle-stage="2" aria-hidden="true"></span>
+              <span class="growth-particle particle-4" data-particle-stage="3" aria-hidden="true"></span>
+              <span class="growth-particle particle-5" data-particle-stage="4" aria-hidden="true"></span>
+              <span class="growth-particle particle-6" data-particle-stage="4" aria-hidden="true"></span>
+
+              <div class="growth-metric metric-cpa" data-metric-stage="2">
+                <b>-18%</b>
+                <span>CPA</span>
+              </div>
+              <div class="growth-metric metric-traffic" data-metric-stage="3">
+                <b>+28%</b>
+                <span>Tráfico calificado</span>
+              </div>
+              <div class="growth-metric metric-conversion" data-metric-stage="4">
+                <b>+42%</b>
+                <span>Tasa de conversión</span>
+              </div>
+
+              <div class="growth-map-core" data-core-stage="2">
+                <strong>Hipótesis<br><span class="italic">viva.</span></strong>
+                <span>Cada señal decide la siguiente acción.</span>
+              </div>
+
+              <div class="growth-node node-strategy" data-node-stage="0">
+                <b>Estrategia</b>
+                <small>Define la intención del sistema.</small>
+              </div>
+              <div class="growth-node node-creative" data-node-stage="1">
+                <b>Creatividad</b>
+                <small>Convierte la promesa en deseo.</small>
+              </div>
+              <div class="growth-node node-media" data-node-stage="1">
+                <b>Media</b>
+                <small>Activa audiencias con intención.</small>
+              </div>
+              <div class="growth-node node-product" data-node-stage="2">
+                <b>Producto</b>
+                <small>Experiencia y conversión sin fricción.</small>
+              </div>
+              <div class="growth-node node-data" data-node-stage="3">
+                <b>Datos</b>
+                <small>Lectura para decidir mejor.</small>
+              </div>
+              <div class="growth-node node-learning" data-node-stage="3">
+                <b>Aprendizaje</b>
+                <small>Lo que funciona vuelve al sistema.</small>
+              </div>
+
+              <div class="growth-scroll-cue" aria-hidden="true">
+                <span></span>
+                Scroll
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-roomy progressive-narrative progressive-narrative--viewport-focus" data-progressive-narrative data-progressive-mode="viewport-focus" aria-label="Una operación conectada de crecimiento">
+        <div class="container-wide">
+          <div class="progressive-narrative__list">
+            <article class="progressive-narrative__item" data-progressive-item>
+              <div class="progressive-narrative__meta">
+                <span class="progressive-narrative__number">01</span>
+                <p class="progressive-narrative__category">Estrategia</p>
+              </div>
+              <div class="progressive-narrative__content">
+                <h2 class="progressive-narrative__title">Entendemos qué debe <span class="italic">mover</span> el crecimiento.</h2>
+                <p class="progressive-narrative__description">Conectamos objetivos de negocio, audiencias, canales y datos para definir dónde existe una oportunidad real de crecimiento.</p>
+                <div class="progressive-narrative__capabilities" aria-label="Capacidades de estrategia">
+                  <span>Growth Strategy</span>
+                  <span>Audiencias</span>
+                  <span>Funnel</span>
+                  <span>Benchmark</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="progressive-narrative__item" data-progressive-item>
+              <div class="progressive-narrative__meta">
+                <span class="progressive-narrative__number">02</span>
+                <p class="progressive-narrative__category">Adquisición</p>
+              </div>
+              <div class="progressive-narrative__content">
+                <h2 class="progressive-narrative__title">Atraemos a las audiencias <span class="italic">correctas.</span></h2>
+                <p class="progressive-narrative__description">Activamos medios, contenidos y canales con una lógica común para generar demanda de mejor calidad.</p>
+                <div class="progressive-narrative__capabilities" aria-label="Capacidades de adquisición">
+                  <span>Paid Media</span>
+                  <span>SEO</span>
+                  <span>Content Distribution</span>
+                  <span>Audience Strategy</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="progressive-narrative__item" data-progressive-item>
+              <div class="progressive-narrative__meta">
+                <span class="progressive-narrative__number">03</span>
+                <p class="progressive-narrative__category">Conversión</p>
+              </div>
+              <div class="progressive-narrative__content">
+                <h2 class="progressive-narrative__title">Reducimos la <span class="italic">fricción</span> para convertir más.</h2>
+                <p class="progressive-narrative__description">Optimizamos páginas, ecommerce y recorridos para que cada visita tenga más posibilidades de avanzar.</p>
+                <div class="progressive-narrative__capabilities" aria-label="Capacidades de conversión">
+                  <span>CRO</span>
+                  <span>Landing Pages</span>
+                  <span>Ecommerce</span>
+                  <span>A/B Testing</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="progressive-narrative__item" data-progressive-item>
+              <div class="progressive-narrative__meta">
+                <span class="progressive-narrative__number">04</span>
+                <p class="progressive-narrative__category">Retención</p>
+              </div>
+              <div class="progressive-narrative__content">
+                <h2 class="progressive-narrative__title">Convertimos la relación en crecimiento <span class="italic">recurrente.</span></h2>
+                <p class="progressive-narrative__description">Conectamos CRM, automatización y lifecycle para aumentar recurrencia, valor y fidelización.</p>
+                <div class="progressive-narrative__capabilities" aria-label="Capacidades de retención">
+                  <span>CRM</span>
+                  <span>Automatización</span>
+                  <span>Remarketing</span>
+                  <span>Lifecycle</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="progressive-narrative__item" data-progressive-item>
+              <div class="progressive-narrative__meta">
+                <span class="progressive-narrative__number">05</span>
+                <p class="progressive-narrative__category">Aprendizaje</p>
+              </div>
+              <div class="progressive-narrative__content">
+                <h2 class="progressive-narrative__title">Medimos para decidir qué <span class="italic">escalar.</span></h2>
+                <p class="progressive-narrative__description">Analizamos comportamiento, atribución y resultados para convertir datos en decisiones de crecimiento.</p>
+                <div class="progressive-narrative__capabilities" aria-label="Capacidades de aprendizaje">
+                  <span>Analytics</span>
+                  <span>Dashboards</span>
+                  <span>Attribution</span>
+                  <span>Experimentation</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="growth-light page-light">
+      <div data-success-cases data-copy="Casos donde pauta, producto digital y medición se conectan para convertir mejor cada visita."></div>
+    </div>
+
+    <section class="section-roomy">
+      <div class="container-wide">
+        <div class="panel-dark panel-roomy service-next">
+          <div>
+            <p class="eyebrow">El siguiente paso</p>
+            <h2 class="section-title">Convirtamos inversión en un sistema de <span class="italic">crecimiento medible.</span></h2>
+            <p class="copy">Podemos revisar tus canales, tus puntos de conversión y tus datos para encontrar dónde se está perdiendo oportunidad.</p>
+          </div>
+          <a class="button-cata" href="mailto:catalina@uhuragroup.com">
+            <img src="../assets/team/Catalina Tejada - Directora Comercial.jpeg" alt="Catalina Tejada">
+            Habla con Cata →
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="uhura-footer-root" data-uhura-footer></div>
+
+  <script>
+    (() => {
+      const story = document.querySelector("[data-growth-system]");
+      const map = document.querySelector("[data-growth-map]");
+      if (!story || !map) return;
+
+      const sticky = story.querySelector(".growth-system-sticky");
+      const layout = story.querySelector(".growth-system-layout");
+      const nav = document.querySelector("[data-uhura-nav]");
+      const nodes = Array.from(map.querySelectorAll("[data-node-stage]"));
+      const links = Array.from(map.querySelectorAll("[data-link-stage]"));
+      const particles = Array.from(map.querySelectorAll("[data-particle-stage]"));
+      const metrics = Array.from(map.querySelectorAll("[data-metric-stage]"));
+      const stageSources = Array.from(map.querySelectorAll("[data-node-stage], [data-link-stage], [data-particle-stage], [data-metric-stage], [data-core-stage]"));
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      let frame = 0;
+      let lastStickyMin = "";
+      let lastStoryHeight = "";
+
+      const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+      const updateStickyCoverage = () => {
+        if (!sticky || !layout) return;
+
+        const stickyStyles = window.getComputedStyle(sticky);
+        const isStickyMode = stickyStyles.position === "sticky";
+        const paddingTop = parseFloat(stickyStyles.paddingTop) || 0;
+        const paddingBottom = parseFloat(stickyStyles.paddingBottom) || 0;
+        const layoutHeight = layout.getBoundingClientRect().height;
+        const stickyHeight = Math.ceil(layoutHeight + paddingTop + paddingBottom);
+        const nextStickyMin = `${stickyHeight}px`;
+
+        if (lastStickyMin !== nextStickyMin) {
+          sticky.style.setProperty("--growth-sticky-min", nextStickyMin);
+          lastStickyMin = nextStickyMin;
+        }
+
+        if (!isStickyMode) {
+          if (lastStoryHeight) {
+            story.style.removeProperty("--growth-story-height");
+            lastStoryHeight = "";
+          }
+          return;
+        }
+
+        const stages = new Set(stageSources.map((element) => Number(element.dataset.nodeStage ?? element.dataset.linkStage ?? element.dataset.particleStage ?? element.dataset.metricStage ?? element.dataset.coreStage)).filter(Number.isFinite));
+        const stageCount = Math.max(1, stages.size);
+        const transitionCount = Math.max(1, stageCount - 1);
+        const scrollPerTransition = window.innerHeight * .9; // 0.9 viewport keeps each transition deliberate without stretching the sticky sequence.
+        const storyHeight = Math.ceil(stickyHeight + (transitionCount * scrollPerTransition));
+        const nextStoryHeight = `${storyHeight}px`;
+
+        if (lastStoryHeight !== nextStoryHeight) {
+          story.style.setProperty("--growth-story-height", nextStoryHeight);
+          lastStoryHeight = nextStoryHeight;
+        }
+      };
+
+      const setStage = (stage, progress) => {
+        map.style.setProperty("--map-progress", progress.toFixed(3));
+        map.classList.toggle("is-stage-2", stage >= 2);
+        map.classList.toggle("is-stage-3", stage >= 3);
+        map.classList.toggle("is-stage-4", stage >= 4);
+
+        nodes.forEach((node) => {
+          const nodeStage = Number(node.dataset.nodeStage);
+          node.classList.toggle("is-revealed", nodeStage <= stage);
+          node.classList.toggle("is-hot", nodeStage === stage || stage >= 4);
+        });
+
+        links.forEach((link) => {
+          const linkStage = Number(link.dataset.linkStage);
+          link.classList.toggle("is-lit", linkStage <= stage);
+          link.classList.toggle("is-complete", stage >= 4);
+        });
+
+        particles.forEach((particle) => {
+          particle.classList.toggle("is-revealed", Number(particle.dataset.particleStage) <= stage);
+        });
+
+        metrics.forEach((metric) => {
+          metric.classList.toggle("is-revealed", Number(metric.dataset.metricStage) <= stage);
+        });
+      };
+
+      const update = () => {
+        frame = 0;
+        updateStickyCoverage();
+
+        const isStickyMode = sticky && window.getComputedStyle(sticky).position === "sticky";
+
+        if (reduceMotion || !isStickyMode) {
+          setStage(4, 4);
+          return;
+        }
+
+        const rect = story.getBoundingClientRect();
+        const travel = Math.max(1, story.getBoundingClientRect().height - window.innerHeight);
+        const progress = clamp(-rect.top / travel, 0, 1);
+        const stage = progress < .18 ? 0 : progress < .38 ? 1 : progress < .62 ? 2 : progress < .84 ? 3 : 4;
+        setStage(stage, progress * 4);
+      };
+
+      const requestUpdate = () => {
+        if (frame) return;
+        frame = window.requestAnimationFrame(update);
+      };
+
+      update();
+      window.addEventListener("scroll", requestUpdate, { passive: true });
+      window.addEventListener("resize", requestUpdate, { passive: true });
+
+      if ("ResizeObserver" in window) {
+        const resizeObserver = new ResizeObserver(requestUpdate);
+        [story, sticky, layout, nav].filter(Boolean).forEach((element) => resizeObserver.observe(element));
+      }
+    })();
+
+  </script>
+  <script src="../src/components/uhura-components.js" data-root=".."></script>
+  <script src="../src/extracted/global-nav-sync.js"></script>
+  <script src="../src/extracted/footer-sync.js"></script>
+</body>
+</html>

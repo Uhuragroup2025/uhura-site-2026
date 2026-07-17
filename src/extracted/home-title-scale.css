@@ -1,0 +1,71 @@
+/*
+  Extracted from approved-snapshot/home-approved.html.
+  Candidate shared typography layer. Do not attach to production pages until
+  visual comparison confirms no change.
+*/
+
+:root {
+  --uhura-title-xl: var(--type-h1-size, clamp(34px, 4.1vw, 56px));
+  --uhura-title-lg: var(--type-h2-size, clamp(30px, 3.2vw, 44px));
+  --uhura-title-md: var(--type-h3-size, clamp(25px, 2.4vw, 34px));
+}
+
+h1 {
+  font-size: var(--uhura-title-xl) !important;
+  line-height: 1.06 !important;
+  font-weight: var(--type-heading-weight, 600) !important;
+}
+
+h2,
+.editorial-title,
+.section-head h2,
+.culture-copy h2,
+.case-final-cta h2,
+.cta-band h2 {
+  font-size: var(--uhura-title-lg) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.045em !important;
+  font-weight: var(--type-heading-weight, 600) !important;
+}
+
+h3,
+.action-row h3,
+.side-card h3,
+.magnific-panel h3 {
+  font-size: var(--uhura-title-md) !important;
+  line-height: 1.14 !important;
+  letter-spacing: -0.035em !important;
+  font-weight: var(--type-heading-weight, 600) !important;
+}
+
+.hero h1,
+.hero .editorial-title {
+  font-size: var(--uhura-title-xl) !important;
+  line-height: 1.06 !important;
+}
+
+main h1[style],
+main h2[style] {
+  font-size: var(--uhura-title-lg, clamp(30px, 3.2vw, 44px)) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.045em !important;
+}
+
+main section:first-of-type h1[style],
+main section:first-of-type h2[style] {
+  font-size: var(--uhura-title-xl, clamp(34px, 4.1vw, 56px)) !important;
+  line-height: 1.06 !important;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --uhura-title-xl: clamp(32px, 8.6vw, 44px);
+    --uhura-title-lg: clamp(27px, 7.2vw, 38px);
+    --uhura-title-md: clamp(21px, 5.8vw, 29px);
+  }
+
+  main h1[style],
+  main h2[style] {
+    font-size: var(--uhura-title-lg, clamp(27px, 7.2vw, 38px)) !important;
+  }
+}
