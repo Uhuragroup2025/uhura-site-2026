@@ -197,8 +197,14 @@ successMounts.forEach((mount) => {
     }, 120);
   };
 
-  const startAutoplay = () => {
+  const stopAutoplay = () => {
     window.clearInterval(autoplay);
+    autoplay = undefined;
+  };
+
+  const startAutoplay = () => {
+    stopAutoplay();
+    if (document.hidden) return;
     autoplay = window.setInterval(() => {
       if (isPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       const max = Math.max(0, groupsFor(visibleCount()).length - 1);
@@ -214,6 +220,13 @@ successMounts.forEach((mount) => {
   });
   mount.addEventListener("mouseenter", () => { isPaused = true; });
   mount.addEventListener("mouseleave", () => { isPaused = false; });
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stopAutoplay();
+    } else {
+      startAutoplay();
+    }
+  });
   viewport?.addEventListener("pointerdown", (event) => { dragStart = event.clientX; });
   viewport?.addEventListener("pointerup", (event) => {
     const delta = event.clientX - dragStart;
