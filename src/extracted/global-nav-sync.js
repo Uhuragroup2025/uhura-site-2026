@@ -166,6 +166,7 @@
   const getActiveKeys = () => {
     const path = window.location.pathname;
     if (path.includes("/servicios/producto-digital")) return new Set(["soluciones", "producto-digital"]);
+    if (path.includes("/servicios/creatividad")) return new Set(["soluciones", "creatividad"]);
     if (path.includes("/servicios/growth")) return new Set(["soluciones", "growth"]);
     if (path.includes("/servicios/")) return new Set(["soluciones"]);
     if (path.includes("/casos/kaiowa")) return new Set(["casos", "kaiowa"]);

@@ -2088,7 +2088,19 @@ h4,
     padding: 0 10px 0 18px !important;
   }
   .uhura-premium-nav {
-    grid-template-columns: auto minmax(0, 1fr) auto !important;
+    grid-template-columns: auto minmax(0, 1fr) 42px !important;
+  }
+  .uhura-premium-nav > .uhura-nav-cta {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+  }
+  .uhura-premium-nav > .uhura-menu-toggle {
+    display: inline-flex !important;
+    grid-column: 3;
+    grid-row: 1;
+    position: relative;
+    z-index: 3;
   }
   .uhura-nav > a:first-child { min-width: 98px !important; }
   .uhura-logo { width: 98px !important; }
