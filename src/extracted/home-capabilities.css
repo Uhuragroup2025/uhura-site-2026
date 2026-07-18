@@ -1,0 +1,18 @@
+[data-home-capability-number="true"] {
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  [data-home-capability-row="true"] {
+    gap: 12px !important;
+  }
+
+  [data-home-capability-label="true"] {
+    width: min(42vw, 148px) !important;
+    min-width: 0 !important;
+    margin-right: 12px !important;
+    text-align: left !important;
+    white-space: normal !important;
+    overflow-wrap: break-word;
+  }
+}

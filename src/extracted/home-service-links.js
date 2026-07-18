@@ -1,10 +1,22 @@
 (() => {
   const serviceRoutes = [
     {
+      id: "creative-strategy",
+      href: "servicios/creatividad.html",
+      ariaLabel: "Abrir solucion Creative Strategy",
+      signatures: [
+        /Creative\s*Strategy/i,
+        /Brand\s*(?:\u00b7|\u2022)\s*Identity\s*(?:\u00b7|\u2022)\s*Campaigns?/i
+      ]
+    },
+    {
       id: "digital-products",
       href: "servicios/producto-digital.html",
       ariaLabel: "Abrir servicio Digital Products",
-      signatures: [/Digital\s*Products/i]
+      signatures: [
+        /Digital\s*Products/i,
+        /Web\s*(?:\u00b7|\u2022)\s*Ecommerce\s*(?:\u00b7|\u2022)\s*UX/i
+      ]
     },
     {
       id: "revenue-growth",
@@ -72,9 +84,35 @@
     return Boolean(control && control !== card);
   };
 
+  const markNumber = (element) => {
+    if (!element || !/^0[1-4]$/.test((element.textContent || "").trim())) return;
+    element.dataset.homeCapabilityNumber = "true";
+    element.setAttribute("aria-hidden", "true");
+  };
+
+  const annotateCapabilityRows = () => {
+    const rows = Array.from(document.querySelectorAll("[data-preview-src][data-preview-label]"));
+    rows.forEach((row) => {
+      const children = Array.from(row.children);
+      const label = children.find(
+        (child) => (child.textContent || "").trim() === row.dataset.previewLabel
+      );
+
+      row.dataset.homeCapabilityRow = "true";
+      markNumber(children[0]);
+      if (label) label.dataset.homeCapabilityLabel = "true";
+    });
+    return rows.length > 0;
+  };
+
+  const annotateCardNumber = (card) => {
+    Array.from(card.children).forEach(markNumber);
+  };
+
   const enhanceCard = (service) => {
     const card = findServiceCard(service);
     if (!card) return false;
+    annotateCardNumber(card);
     if (card.dataset.uhuraServiceLink === service.id) return true;
 
     card.dataset.uhuraServiceLink = service.id;
@@ -99,7 +137,11 @@
     return true;
   };
 
-  const refresh = () => serviceRoutes.map(enhanceCard).every(Boolean);
+  const refresh = () => {
+    const rowsReady = annotateCapabilityRows();
+    const cardsReady = serviceRoutes.map(enhanceCard).every(Boolean);
+    return rowsReady && cardsReady;
+  };
 
   const boot = () => {
     let tries = 0;

@@ -99,7 +99,8 @@ Archivos compartidos actuales:
 - `src/extracted/partners-marquee.css`: cintillo de partners/logos.
 - `src/extracted/wide-grid.css`: ancho de grilla alineado al header.
 - `src/extracted/theme-exit-governor.js`: control de transiciones dark/light por salida de seccion.
-- `src/extracted/home-service-links.js`: adaptador declarativo multicard que enlaza `Digital Products` y `Revenue Growth` desde Home hacia sus rutas reales sin tocar el bundle principal.
+- `src/extracted/home-service-links.js`: adaptador declarativo multicard que enlaza `Creative Strategy`, `Digital Products` y `Revenue Growth` desde Home hacia sus rutas reales sin tocar el bundle principal.
+- `assets/services/previews/`: previews estables del bloque de capacidades de Home. Los archivos externos deben copiarse aqui con nombres versionables antes de enlazarlos.
 - `src/styles/uhura-system.css`: tokens y sistema visual base para nuevas paginas limpias.
 - `src/components/uhura-components.js`: componentes compartidos en progreso.
 
