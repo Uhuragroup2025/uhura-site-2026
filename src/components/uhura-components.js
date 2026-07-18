@@ -499,13 +499,31 @@ successMounts.forEach((mount) => {
 
   const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   const coarsePointerQuery = window.matchMedia("(pointer: coarse)");
-  const canTrackPointer = () => !reduceMotionQuery.matches && !coarsePointerQuery.matches;
+  const canTrackPointer = () => (
+    !document.hidden &&
+    !reduceMotionQuery.matches &&
+    !coarsePointerQuery.matches
+  );
   const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+  const getExpressiveProfile = () => {
+    const memory = Number(navigator.deviceMemory || 8);
+    const cores = Number(navigator.hardwareConcurrency || 8);
+
+    if (memory <= 4 || cores <= 4) {
+      return { name: "low", fieldWidth: 180, dprCap: 1, maxFps: 30, staticOnly: true };
+    }
+    if (memory < 8 || cores < 8) {
+      return { name: "medium", fieldWidth: 240, dprCap: 1.25, maxFps: 30, staticOnly: false };
+    }
+    return { name: "high", fieldWidth: 250, dprCap: 1.25, maxFps: 60, staticOnly: false };
+  };
+  const expressiveProfile = getExpressiveProfile();
+  const canAnimateExpressive = () => canTrackPointer() && !expressiveProfile.staticOnly;
   const expressiveGovernor = {
     emaAlpha: 0.14,
     downshiftFrames: { 60: 8, 45: 6 },
     downshiftThreshold: { 60: 16, 45: 22 },
-    upshiftThreshold: { 45: 12, 30: 16 },
+    upshiftThreshold: { 45: 12, 30: 20 },
     healthyWindow: 1500,
     changeCooldown: 900
   };
@@ -524,7 +542,7 @@ successMounts.forEach((mount) => {
     expressiveFrame: 0,
     expressiveLastTime: 0,
     expressiveFps: 0,
-    expressiveTargetFps: 60,
+    expressiveTargetFps: expressiveProfile.maxFps,
     expressiveRenderEma: 0,
     expressiveIntervalEma: 1000 / 60,
     expressiveSlowFrames: 0,
@@ -540,7 +558,8 @@ successMounts.forEach((mount) => {
     observer: null,
     resizeObserver: null,
     rootSizes: new WeakMap(),
-    listening: false
+    listening: false,
+    pageVisible: !document.hidden
   };
   if (typeof controller.hasPointer !== "boolean") {
     controller.hasPointer = false;
@@ -552,7 +571,7 @@ successMounts.forEach((mount) => {
     controller.rootSizes = new WeakMap();
   }
   if (!controller.expressiveTargetFps) {
-    controller.expressiveTargetFps = 60;
+    controller.expressiveTargetFps = expressiveProfile.maxFps;
     controller.expressiveRenderEma = 0;
     controller.expressiveIntervalEma = 1000 / 60;
     controller.expressiveSlowFrames = 0;
@@ -564,6 +583,8 @@ successMounts.forEach((mount) => {
     controller.expressiveForceRender = true;
     controller.expressiveLastPointerAt = -Infinity;
   }
+  controller.expressiveTargetFps = Math.min(controller.expressiveTargetFps, expressiveProfile.maxFps);
+  controller.pageVisible = !document.hidden;
 
   const applyStatic = (root) => {
     root.style.setProperty("--ambient-x", "50%");
@@ -595,16 +616,22 @@ successMounts.forEach((mount) => {
       return;
     }
 
-    controller.current.x += (controller.pointer.x - controller.current.x) * 0.14;
-    controller.current.y += (controller.pointer.y - controller.current.y) * 0.14;
+    controller.current.x += (controller.pointer.x - controller.current.x) * 0.22;
+    controller.current.y += (controller.pointer.y - controller.current.y) * 0.22;
     controller.velocity.amount *= 0.88;
-    controller.visible.forEach(updateRoot);
+    controller.visible.forEach((root) => {
+      if (!root.classList.contains("ambient-field--expressive") && root.dataset.ambientVariant !== "expressive") {
+        updateRoot(root);
+      }
+    });
 
     if (
       Math.abs(controller.pointer.x - controller.current.x) > 0.1 ||
       Math.abs(controller.pointer.y - controller.current.y) > 0.1
     ) {
       controller.frame = window.requestAnimationFrame(tick);
+    } else {
+      controller.velocity.amount = 0;
     }
   };
 
@@ -614,6 +641,7 @@ successMounts.forEach((mount) => {
   };
 
   const onPointerMove = (event) => {
+    if (!canTrackPointer()) return;
     const now = performance.now();
     const startsPointerBurst = now - controller.expressiveLastPointerAt > 80;
     const deltaX = event.clientX - controller.pointer.x;
@@ -642,9 +670,10 @@ successMounts.forEach((mount) => {
     controller.roots.forEach(applyStatic);
     controller.expressive.forEach((renderer) => {
       renderer.resizePending = true;
-      renderer.drawStatic();
+      renderer.staticDrawn = false;
+      if (!document.hidden && controller.visible.has(renderer.root)) renderer.drawStatic();
       renderer.root.dataset.ambientFps = "0";
-      renderer.root.dataset.ambientState = "static";
+      renderer.root.dataset.ambientState = document.hidden ? "paused" : "static";
     });
   };
 
@@ -693,9 +722,14 @@ successMounts.forEach((mount) => {
       fieldHeight: 0,
       dpr: 1,
       imageData: null,
+      xCoords: null,
+      yCoords: null,
+      grainMap: null,
       time: 0,
       pointerInfluence: 0,
       resizePending: true,
+      staticDrawn: false,
+      qualityScale: 1,
       blobs: [
         { x: .76, y: .17, r: .62, color: colors.purple, mass: 1.18, speed: .050, warp: .12, phase: .4 },
         { x: .34, y: .33, r: .72, color: colors.purple, mass: 1.38, speed: .043, warp: .16, phase: 2.1 },
@@ -706,11 +740,14 @@ successMounts.forEach((mount) => {
       ],
       resize(width, height) {
         const rect = width && height ? { width, height } : root.getBoundingClientRect();
-        const nextDpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        const nextDpr = Math.min(window.devicePixelRatio || 1, expressiveProfile.dprCap);
         const nextWidth = Math.max(1, Math.round(rect.width));
         const nextHeight = Math.max(1, Math.round(rect.height));
-        const targetFieldWidth = Math.max(150, Math.min(330, Math.round(nextWidth / 4)));
-        const targetFieldHeight = Math.max(120, Math.round(targetFieldWidth * (nextHeight / Math.max(1, nextWidth))));
+        const staticFieldWidth = coarsePointerQuery.matches || reduceMotionQuery.matches
+          ? Math.min(180, expressiveProfile.fieldWidth)
+          : expressiveProfile.fieldWidth;
+        const targetFieldWidth = Math.max(150, Math.min(260, Math.round(staticFieldWidth * this.qualityScale)));
+        const targetFieldHeight = Math.max(120, Math.min(260, Math.round(targetFieldWidth * (nextHeight / Math.max(1, nextWidth)))));
 
         if (
           nextWidth === this.width &&
@@ -736,7 +773,29 @@ successMounts.forEach((mount) => {
         offscreen.width = targetFieldWidth;
         offscreen.height = targetFieldHeight;
         this.imageData = offscreenContext.createImageData(targetFieldWidth, targetFieldHeight);
+        this.xCoords = new Float32Array(targetFieldWidth);
+        this.yCoords = new Float32Array(targetFieldHeight);
+        this.grainMap = new Float32Array(targetFieldWidth * targetFieldHeight);
+        for (let x = 0; x < targetFieldWidth; x += 1) {
+          this.xCoords[x] = x / Math.max(1, targetFieldWidth - 1);
+        }
+        for (let y = 0; y < targetFieldHeight; y += 1) {
+          this.yCoords[y] = y / Math.max(1, targetFieldHeight - 1);
+          for (let x = 0; x < targetFieldWidth; x += 1) {
+            this.grainMap[y * targetFieldWidth + x] = (this.hash(x + 9.1, y - 3.4) - .5) * 3.2;
+          }
+        }
+        this.staticDrawn = false;
         this.resizePending = false;
+        const currentQuality = expressiveProfile.staticOnly
+          ? "low"
+          : expressiveProfile.name === "medium" || controller.expressiveTargetFps <= 30
+            ? "medium"
+            : "high";
+        root.dataset.ambientQuality = currentQuality;
+        root.dataset.ambientCapability = expressiveProfile.name;
+        root.dataset.ambientDpr = nextDpr.toFixed(2);
+        root.dataset.ambientResolution = `${targetFieldWidth}x${targetFieldHeight}`;
         return true;
       },
       noise(x, y, t) {
@@ -749,30 +808,6 @@ successMounts.forEach((mount) => {
       hash(x, y) {
         const value = Math.sin(x * 127.1 + y * 311.7) * 43758.5453123;
         return value - Math.floor(value);
-      },
-      valueNoise(x, y) {
-        const xi = Math.floor(x);
-        const yi = Math.floor(y);
-        const xf = x - xi;
-        const yf = y - yi;
-        const u = xf * xf * (3 - 2 * xf);
-        const v = yf * yf * (3 - 2 * yf);
-        const a = this.hash(xi, yi);
-        const b = this.hash(xi + 1, yi);
-        const c = this.hash(xi, yi + 1);
-        const d = this.hash(xi + 1, yi + 1);
-        return a + (b - a) * u + (c - a) * v + (a - b - c + d) * u * v;
-      },
-      fbm(x, y, t) {
-        let value = 0;
-        let amplitude = .55;
-        let frequency = 1;
-        for (let octave = 0; octave < 3; octave += 1) {
-          value += this.valueNoise(x * frequency + t * .035, y * frequency - t * .028) * amplitude;
-          frequency *= 2.07;
-          amplitude *= .52;
-        }
-        return value;
       },
       blobState(blob, index, staticMode) {
         const t = staticMode ? 0 : this.time;
@@ -788,7 +823,9 @@ successMounts.forEach((mount) => {
           y: blob.y + Math.cos(t * blob.speed * .86 + blob.phase) * blob.warp * .28 + py * .10 * -polarity,
           r: blob.r * (1 + Math.sin(t * blob.speed * 1.8 + blob.phase) * .035 + pointerPull * .026),
           color: blob.color,
-          mass: blob.mass
+          mass: blob.mass,
+          stretchX: 1 + Math.sin(t * .18 + index) * .28,
+          stretchY: 1 + Math.cos(t * .16 + index) * .22
         };
       },
       renderField(staticMode = false) {
@@ -798,30 +835,38 @@ successMounts.forEach((mount) => {
         const width = this.fieldWidth;
         const height = this.fieldHeight;
         const data = this.imageData.data;
+        const xCoords = this.xCoords;
+        const yCoords = this.yCoords;
+        const grainMap = this.grainMap;
         const t = staticMode ? 0 : this.time;
         const states = this.blobs.map((blob, index) => this.blobState(blob, index, staticMode));
         const pointerX = controller.current.x / Math.max(1, window.innerWidth);
         const pointerY = controller.current.y / Math.max(1, window.innerHeight);
         const speedLift = controller.hasPointer ? controller.velocity.amount : 0;
         let offset = 0;
+        let pixelIndex = 0;
 
         for (let y = 0; y < height; y += 1) {
-          const ny = y / Math.max(1, height - 1);
+          const ny = yCoords[y];
           for (let x = 0; x < width; x += 1) {
-            const nx = x / Math.max(1, width - 1);
+            const nx = xCoords[x];
             const pointerDx = nx - pointerX;
             const pointerDy = ny - pointerY;
-            const pointerDistance = Math.hypot(pointerDx, pointerDy);
-            const pointerLens = controller.hasPointer ? this.pointerInfluence * Math.exp(-pointerDistance * (2.9 - speedLift * .75)) : 0;
-            const pointerCore = controller.hasPointer ? this.pointerInfluence * Math.exp(-pointerDistance * (6.4 - speedLift * 1.4)) : 0;
-            const pointerRing = controller.hasPointer
-              ? this.pointerInfluence * smoothstep(.12, .30, pointerDistance) * (1 - smoothstep(.40, .70, pointerDistance)) * (1 + speedLift * .45)
-              : 0;
-            const warpA = (this.fbm(nx * 1.9 + 7.4, ny * 1.6 - 2.2, t) - .5) * .045;
-            const warpB = (this.fbm(nx * 2.2 - 1.3, ny * 2.0 + 4.8, t + 18) - .5) * .038;
-            const fold = (this.fbm(nx * 4.2 + warpB * 6, ny * 4.0 + warpA * 6, t + 31) - .5) * .018;
+            let pointerLens = 0;
+            let pointerCore = 0;
+            let pointerRing = 0;
+            if (controller.hasPointer) {
+              const pointerDistance = Math.hypot(pointerDx, pointerDy);
+              pointerLens = this.pointerInfluence * Math.exp(-pointerDistance * (2.9 - speedLift * .75));
+              pointerCore = this.pointerInfluence * Math.exp(-pointerDistance * (6.4 - speedLift * 1.4));
+              pointerRing = this.pointerInfluence * smoothstep(.12, .30, pointerDistance) * (1 - smoothstep(.40, .70, pointerDistance)) * (1 + speedLift * .45);
+            }
+            const warpA = this.noise(nx * 1.9 + 7.4, ny * 1.6 - 2.2, t) * .0225;
+            const warpB = this.noise(nx * 2.2 - 1.3, ny * 2.0 + 4.8, t + 18) * .019;
+            const fold = Math.sin((nx * 4.2 + warpB * 6) + (ny * 4.0 + warpA * 6) + (t + 31) * .22) * .009;
             const ux = nx + warpA + fold + pointerDx * pointerLens * (.072 + speedLift * .040);
             const uy = ny + warpB - fold * .68 + pointerDy * pointerLens * (.064 + speedLift * .034);
+            const localNoise = clamp(.5 + this.noise(ux * 5.0 + 4.3, uy * 5.0 - 2.7, t + 13) * .32, 0, 1);
             const pointerCompression = pointerRing * .30 - pointerCore * (1.22 + speedLift * .38);
             let field = 0;
             let edge = 0;
@@ -831,14 +876,12 @@ successMounts.forEach((mount) => {
             let blue = 0;
 
             states.forEach((blob, index) => {
-              const stretchX = 1 + Math.sin(t * .18 + index) * .28;
-              const stretchY = 1 + Math.cos(t * .16 + index) * .22;
-              const dx = (ux - blob.x) / stretchX;
-              const dy = (uy - blob.y) / stretchY;
+              const dx = (ux - blob.x) / blob.stretchX;
+              const dy = (uy - blob.y) / blob.stretchY;
               const distanceSquared = dx * dx + dy * dy + 0.0009;
               const contribution = (blob.r * blob.r * blob.mass) / distanceSquared;
-              const localWarp = this.fbm(ux * 5.2 + index * 9, uy * 5.2 - index * 5, t + index * 2);
-              const warpedContribution = contribution * (.88 + localWarp * .28);
+              const localVariation = (localNoise - .5) * (index % 2 === 0 ? .05 : -.05);
+              const warpedContribution = contribution * (.88 + localNoise * .22 + localVariation);
               field += warpedContribution;
               edge += Math.exp(-distanceSquared / Math.max(.0001, blob.r * blob.r * .42));
               red += blob.color[0] * warpedContribution;
@@ -854,7 +897,7 @@ successMounts.forEach((mount) => {
             const restHead = Math.exp(-Math.pow((nx - .38) / .25, 2) - Math.pow((ny - .18) / .22, 2));
             const restBottom = Math.exp(-Math.pow((nx - .62) / .70, 2) - Math.pow((ny - 1.04) / .30, 2));
             const rest = clamp(restColumn * .74 + restHead * .42 + restBottom * .45 + pointerLens * (.48 + speedLift * .16) + pointerCore * (.70 + speedLift * .24), 0, .98);
-            const grain = (this.fbm(nx * 70.0 + 9.1, ny * 70.0 - 3.4, t * .14) - .5) * 3.2;
+            const grain = grainMap[pixelIndex];
             const baseBlue = mix(colors.dark, colors.blue, smoothstep(0, 1, 1 - ny) * .16 + smoothstep(0, 1, nx) * .07);
             const base = mix(baseBlue, colors.panel, smoothstep(.12, .80, ny) * .12);
             const weighted = colorWeight > 0 ? [red / colorWeight, green / colorWeight, blue / colorWeight] : colors.dark;
@@ -871,6 +914,7 @@ successMounts.forEach((mount) => {
             data[offset + 2] = clamp(color[2] * shade + grain, 0, 255);
             data[offset + 3] = 255;
             offset += 4;
+            pixelIndex += 1;
           }
         }
 
@@ -891,19 +935,21 @@ successMounts.forEach((mount) => {
         context.restore();
       },
       drawStatic() {
+        if (this.staticDrawn && !this.resizePending) return;
         this.pointerInfluence = 0;
         this.renderField(true);
+        this.staticDrawn = true;
       },
       update(delta) {
+        this.staticDrawn = false;
         this.time += delta * .00035;
         const influenceTarget = canTrackPointer() && controller.hasPointer ? 1 : 0;
-        const influenceBlend = 1 - Math.pow(1 - .055, delta / 16.7);
+        const influenceBlend = 1 - Math.pow(1 - .11, delta / 16.7);
         this.pointerInfluence += (influenceTarget - this.pointerInfluence) * influenceBlend;
         this.renderField(false);
       }
     };
 
-    renderer.drawStatic();
     return renderer;
   };
 
@@ -913,19 +959,32 @@ successMounts.forEach((mount) => {
   );
 
   const setExpressiveTargetFps = (renderer, targetFps, time) => {
+    targetFps = Math.min(targetFps, expressiveProfile.maxFps);
     if (controller.expressiveTargetFps === targetFps) return;
     controller.expressiveTargetFps = targetFps;
     controller.expressiveSlowFrames = 0;
     controller.expressiveHealthySince = 0;
     controller.expressiveLevelChangedAt = time;
     controller.expressiveFrameBudget = 0;
+    const nextQualityScale = expressiveProfile.name === "high"
+      ? (targetFps >= 60 ? 1 : .96)
+      : 1;
+    if (renderer.qualityScale !== nextQualityScale) {
+      renderer.qualityScale = nextQualityScale;
+      renderer.resizePending = true;
+    }
+    renderer.root.dataset.ambientQuality = expressiveProfile.staticOnly
+      ? "low"
+      : expressiveProfile.name === "medium" || targetFps <= 30
+        ? "medium"
+        : "high";
     renderer.root.dataset.ambientFpsTarget = String(targetFps);
   };
 
-  const resetExpressiveGovernor = (renderer, time) => {
-    controller.expressiveTargetFps = 60;
+  const resumeExpressiveGovernor = (renderer, time) => {
+    controller.expressiveTargetFps = Math.min(controller.expressiveTargetFps, expressiveProfile.maxFps);
     controller.expressiveRenderEma = 0;
-    controller.expressiveIntervalEma = 1000 / 60;
+    controller.expressiveIntervalEma = 1000 / controller.expressiveTargetFps;
     controller.expressiveSlowFrames = 0;
     controller.expressiveHealthySince = 0;
     controller.expressiveLevelChangedAt = time - expressiveGovernor.changeCooldown;
@@ -933,7 +992,7 @@ successMounts.forEach((mount) => {
     controller.expressiveFrameBudget = 0;
     controller.expressivePhysicsDelta = 0;
     controller.expressiveForceRender = true;
-    renderer.root.dataset.ambientFpsTarget = "60";
+    renderer.root.dataset.ambientFpsTarget = String(controller.expressiveTargetFps);
     renderer.root.dataset.ambientRenderMs = "0.00";
   };
 
@@ -974,7 +1033,8 @@ successMounts.forEach((mount) => {
       canChange &&
       time - controller.expressiveHealthySince >= expressiveGovernor.healthyWindow
     ) {
-      setExpressiveTargetFps(renderer, target === 30 ? 45 : 60, time);
+      const nextTarget = target === 30 ? 45 : 60;
+      if (nextTarget <= expressiveProfile.maxFps) setExpressiveTargetFps(renderer, nextTarget, time);
     }
   };
 
@@ -998,8 +1058,10 @@ successMounts.forEach((mount) => {
     const renderer = controller.activeExpressive;
     if (!renderer || !controller.visible.has(renderer.root)) return;
 
-    if (reduceMotionQuery.matches || coarsePointerQuery.matches) {
+    if (!canAnimateExpressive()) {
       renderer.drawStatic();
+      renderer.root.dataset.ambientFps = "0";
+      renderer.root.dataset.ambientState = document.hidden ? "paused" : "static";
       return;
     }
 
@@ -1059,7 +1121,12 @@ successMounts.forEach((mount) => {
   const requestExpressiveTick = (forceFrame = false) => {
     const renderer = controller.activeExpressive;
     if (!renderer || !controller.visible.has(renderer.root)) return;
-    if (reduceMotionQuery.matches || coarsePointerQuery.matches) {
+    if (!canAnimateExpressive()) {
+      if (document.hidden) {
+        renderer.root.dataset.ambientFps = "0";
+        renderer.root.dataset.ambientState = "paused";
+        return;
+      }
       renderer.drawStatic();
       renderer.root.dataset.ambientFps = "0";
       renderer.root.dataset.ambientState = "static";
@@ -1067,7 +1134,7 @@ successMounts.forEach((mount) => {
     }
     if (forceFrame) controller.expressiveForceRender = true;
     if (controller.expressiveFrame) return;
-    resetExpressiveGovernor(renderer, performance.now());
+    resumeExpressiveGovernor(renderer, performance.now());
     controller.expressiveLastTime = 0;
     renderer.root.dataset.ambientState = "active";
     controller.expressiveFrame = window.requestAnimationFrame(expressiveTick);
@@ -1157,6 +1224,27 @@ successMounts.forEach((mount) => {
     window.addEventListener("pointermove", onPointerMove, { passive: true });
     reduceMotionQuery.addEventListener("change", resetAll);
     coarsePointerQuery.addEventListener("change", resetAll);
+    document.addEventListener("visibilitychange", () => {
+      controller.pageVisible = !document.hidden;
+      if (document.hidden) {
+        if (controller.frame) {
+          window.cancelAnimationFrame(controller.frame);
+          controller.frame = 0;
+        }
+        if (controller.expressiveFrame) {
+          window.cancelAnimationFrame(controller.expressiveFrame);
+          controller.expressiveFrame = 0;
+        }
+        controller.expressive.forEach((renderer) => {
+          renderer.root.dataset.ambientFps = "0";
+          renderer.root.dataset.ambientState = "paused";
+        });
+        return;
+      }
+
+      requestTick();
+      requestExpressiveTick(true);
+    });
     if (!controller.resizeObserver) {
       window.addEventListener("resize", resetAll, { passive: true });
       window.addEventListener("resize", requestExpressiveTick, { passive: true });
