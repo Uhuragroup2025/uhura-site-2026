@@ -145,6 +145,7 @@ successMounts.forEach((mount) => {
     </a>`;
 
   const track = mount.querySelector(".success-cases-track");
+  const component = mount.querySelector(".success-cases");
   const viewport = mount.querySelector(".success-cases-viewport");
   const prev = mount.querySelector(".success-case-prev");
   const next = mount.querySelector(".success-case-next");
@@ -156,9 +157,9 @@ successMounts.forEach((mount) => {
   let dragStart = 0;
 
   const visibleCount = () => {
-    if (window.matchMedia("(max-width: 640px)").matches) return 1;
-    if (window.matchMedia("(max-width: 900px)").matches) return 2;
-    return 3;
+    const computed = component ? window.getComputedStyle(component) : null;
+    const count = Number.parseInt(computed?.getPropertyValue("--success-cases-visible"), 10);
+    return Number.isFinite(count) && count > 0 ? count : 3;
   };
 
   const groupsFor = (count) => {
@@ -175,7 +176,6 @@ successMounts.forEach((mount) => {
     const max = Math.max(0, groups.length - 1);
     page = Math.min(page, max);
     if (track) {
-      track.style.gridTemplateColumns = `repeat(${count}, minmax(0, 1fr))`;
       track.innerHTML = groups[page].map(cardMarkup).join("");
     }
     if (dotsWrap && dotsCount !== groups.length) {

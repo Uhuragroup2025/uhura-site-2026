@@ -8,7 +8,7 @@ Este documento define los componentes reutilizables del sitio. La regla es simpl
 - Menu global: `src/extracted/global-nav-sync.js`
 - Footer global: `src/extracted/footer-sync.js`
 - Cintillo de partners y mounts simples: `src/components/uhura-components.js`
-- Paginas vivas: `index.html`, `nosotros.html`, `casos/kaiowa.html`, `servicios/producto-digital.html`, `servicios/growth.html`
+- Paginas vivas: `index.html`, `nosotros.html`, `casos/kaiowa.html`, `servicios/producto-digital.html`, `servicios/growth.html`, `servicios/creatividad.html`
 
 Nota: la home conserva un bundle heredado. No editar ese bloque grande salvo que sea necesario. Los componentes nuevos deben agregarse como sistema compartido o adaptadores externos.
 
@@ -305,7 +305,7 @@ Gobernanza de Expressive:
 - En `prefers-reduced-motion` debe conservar la composicion cromatica sin deformacion ni interaccion.
 - No tunear localmente colores, intensidad, respuesta al puntero, noise, deformacion ni performance. Cualquier ajuste de Expressive debe hacerse en el sistema y documentarse aqui.
 - Si el piloto no alcanza el nivel visual o de performance necesario, el siguiente salto arquitectonico es WebGL shader ligero; no mas tuning local de Canvas por pagina.
-- Primer consumidor candidato: Home, unicamente en el HERO. No consumir todavia en paginas vivas hasta aprobar la migracion especifica.
+- Piloto activo: Home, unicamente en el HERO. Sigue siendo una integracion controlada y no una promocion general de Expressive a otras paginas vivas.
 
 DOM minimo aprobado:
 
@@ -429,7 +429,7 @@ Patterns gobiernan estructuras de pagina completas. Un pattern define layout, ri
 
 Fuente visual aprobada: Hero de Home. La Home conserva su composicion heredada y no se migra en esta fase.
 
-Consumidores migrados: Producto Digital, Nosotros y Kaiowa.
+Consumidores migrados: Producto Digital, Nosotros, Kaiowa y Creatividad.
 
 Clases:
 
@@ -464,7 +464,7 @@ Reglas:
 - Hero Base define layout, padding, margenes, ancho y ritmo.
 - `.hero-base__story` gobierna el punto de entrada editorial. La media acompana y no debe definir donde empieza la historia.
 - La columna `.hero-base__copy` puede ser mas alta que el bloque textual para crear una zona editorial estable. Esa zona es global del Hero Base, no un offset local por pagina.
-- Cada pagina define solo el contenido visual dentro de los slots: Home conserva su composicion heredada, Producto Digital su orb/media, Kaiowa su logo/media/copy del caso y Nosotros su media de equipo.
+- Cada pagina define solo el contenido visual dentro de los slots: Home conserva su composicion heredada, Producto Digital su orb/media, Kaiowa su logo/media/copy del caso, Nosotros su media de equipo y Creatividad su sistema visual circular.
 - Elementos de apoyo como cintillos, logos o mounts compartidos deben quedar fuera de `.hero-base__story` cuando no sean parte de la narrativa principal. Si aumentan el peso vertical del hero, deben vivir despues de `.hero-base` para no alterar el punto de entrada editorial.
 - No migrar la Home al Hero Base hasta que se apruebe una fase especifica para tocar el bundle heredado.
 - Si una pagina no tiene media, puede usar `.hero-base` y `.hero-base__shell` sin `.hero-base__grid`; no hace falta crear una variante.
@@ -549,7 +549,8 @@ Estado actual:
 - La Home conserva su seccion aprobada dentro del bundle heredado y no se migra todavia.
 - El componente global es un espejo visual de la Home para nuevas paginas, creado a partir de la auditoria de su DOM, CSS, proporciones, metricas, carrusel, navegacion y responsive.
 - El componente no define background propio ni clase `page-light`; hereda el fondo del bloque padre donde se monta. Esto evita que contamine `product-light-zone`, futuras paginas o cualquier wrapper light/dark.
-- Producto Digital ya consume este mount global.
+- Producto Digital, Growth y Creatividad consumen este mount global.
+- CSS gobierna la cantidad visible mediante `--success-cases-visible`: tres cards en desktop, dos en tablet/intermedio y una en mobile. El controlador JS lee el valor computado y no replica breakpoints.
 - Casos del carrusel global: Cristar, Yamaha, Lili Pink, BOSI, Kaiowa y Melendez, respetando el orden y datos extraidos del array real de la Home aprobada.
 - Archivo de prueba visual: `workbench/success-cases-parity.html`.
 
@@ -567,9 +568,7 @@ Pinned Narrative es el patron oficial para narrativas por pasos donde el scroll 
 
 Categoria conceptual: Sticky Story.
 
-Consumidores migrados:
-
-- Producto Digital (`servicios/producto-digital.html`).
+Consumidores vivos: ninguno. Pinned Narrative permanece formalizado y disponible, pero Producto Digital ya no lo consume.
 
 Responsabilidad:
 
@@ -583,7 +582,6 @@ Responsabilidad que no le pertenece:
 - No define background de pagina.
 - No define ambiente dark/light, gradientes, glows o atmosfera.
 - No depende de Producto Digital, copy, categorias ni cantidad fija de pasos.
-- Producto Digital conserva localmente solo su ambiente visual especifico alrededor del componente.
 
 API HTML minima:
 
@@ -654,7 +652,9 @@ Progressive Narrative es el patron oficial para secuencias narrativas de lectura
 
 Consumidores migrados:
 
+- Producto Digital: narrativa de capas del producto.
 - Growth: segundo bloque narrativo de etapas, despues de la experiencia circular.
+- Creatividad: sistema creativo por etapas.
 
 Responsabilidad:
 
@@ -804,8 +804,10 @@ Dropdowns globales actuales:
 Soluciones actuales:
 
 - Activo y renderizado: Producto Digital (`servicios/producto-digital.html`).
+- Activo y renderizado: Creatividad (`servicios/creatividad.html`).
 - Activo y renderizado: Growth Paid Media (`servicios/growth.html`).
-- Planned y no renderizados todavia: Creatividad y AI Agents.
+- Planned y no renderizado todavia: AI Agents.
+- Creatividad tambien esta incluida como pagina activa en `sitemap.xml`.
 
 Reglas:
 
