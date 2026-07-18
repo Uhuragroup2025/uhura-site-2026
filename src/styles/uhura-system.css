@@ -2087,6 +2087,9 @@ h4,
     height: 68px !important;
     padding: 0 10px 0 18px !important;
   }
+  .uhura-premium-nav {
+    grid-template-columns: auto minmax(0, 1fr) auto !important;
+  }
   .uhura-nav > a:first-child { min-width: 98px !important; }
   .uhura-logo { width: 98px !important; }
   .uhura-menu-toggle {
@@ -2135,7 +2138,8 @@ h4,
     transform: translateY(-5px);
     transition: opacity var(--nav-open-time) var(--nav-ease-out), transform var(--nav-open-time) var(--nav-ease-out), visibility 0s linear var(--nav-open-time);
   }
-  .uhura-nav.is-open .uhura-nav-links {
+  .uhura-nav.is-open .uhura-nav-links,
+  .uhura-premium-nav.is-open .uhura-nav-links {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;

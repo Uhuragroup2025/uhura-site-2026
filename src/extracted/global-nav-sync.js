@@ -211,6 +211,33 @@
     return true;
   };
 
+  const ensureMobileToggle = (scope = document) => {
+    const nav = scope.matches?.(".uhura-nav, .uhura-premium-nav")
+      ? scope
+      : scope.querySelector(".uhura-nav, .uhura-premium-nav");
+    const links = nav?.querySelector(".uhura-nav-links");
+    if (!nav || !links) return false;
+
+    if (!links.id) links.id = "uhura-global-nav-links";
+
+    const toggles = Array.from(nav.querySelectorAll(".uhura-menu-toggle"));
+    toggles.slice(1).forEach((toggle) => toggle.remove());
+
+    let toggle = toggles[0];
+    if (!toggle) {
+      toggle = document.createElement("button");
+      toggle.className = "uhura-menu-toggle";
+      toggle.type = "button";
+      toggle.innerHTML = '<span aria-hidden="true"></span>';
+      nav.appendChild(toggle);
+    }
+
+    toggle.setAttribute("aria-label", nav.classList.contains("is-open") ? "Cerrar menú" : "Abrir menú");
+    toggle.setAttribute("aria-expanded", String(nav.classList.contains("is-open")));
+    toggle.setAttribute("aria-controls", links.id);
+    return true;
+  };
+
   const sync = () => {
     const existingWraps = Array.from(document.querySelectorAll(".uhura-nav-wrap"));
     if (existingWraps.length) {
@@ -225,6 +252,7 @@
           wrap.remove();
         }
       });
+      ensureMobileToggle(document);
       normalizeVisuals();
       return true;
     }
@@ -236,6 +264,7 @@
     const nav = document.querySelector(".uhura-nav-links");
     if (!nav) return false;
     if (refreshNavLinks(document)) {
+      ensureMobileToggle(document);
       normalizeVisuals();
       return true;
     }
@@ -311,6 +340,9 @@
       toggle.setAttribute("aria-expanded", String(Boolean(isOpen)));
       toggle.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
       if (!isOpen) closeAllDropdowns();
+      if (isOpen && event.detail === 0) {
+        navBox?.querySelector(".uhura-nav-links a, .uhura-nav-links button")?.focus();
+      }
       return;
     }
 
@@ -319,6 +351,7 @@
     const targetHref = link.dataset.href || link.getAttribute("href");
     if (!targetHref || targetHref.startsWith("mailto:")) return;
     closeAllDropdowns();
+    closeMobileMenu();
     event.preventDefault();
     window.location.href = targetHref;
   };
@@ -338,6 +371,7 @@
   };
 
   const routeFocusIn = (event) => {
+    if (isMobile()) return;
     const item = event.target.closest("[data-uhura-dropdown]");
     if (item) openDropdown(item);
   };
@@ -362,7 +396,11 @@
 
     if (item && event.key === "Escape") {
       event.preventDefault();
-      closeDropdown(item, true);
+      if (isMobile()) {
+        closeMobileMenu(true);
+      } else {
+        closeDropdown(item, true);
+      }
       return;
     }
 
