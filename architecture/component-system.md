@@ -68,7 +68,8 @@ Rangos oficiales:
 - Los roles tipograficos usan interpolacion continua y nunca aumentan al entrar en un rango menor.
 - Los breakpoints cambian layout o modo de interaccion, no crean una segunda escala tipografica local.
 - `--type-h1-size`, `--type-h2-size`, `--type-h3-size`, `--type-h4-size` y los aliases `--type-*-size` anteriores permanecen como puente para Home y consumidores pendientes; no son la API para componentes nuevos.
-- Home, `home-title-scale.css`, navegacion, footer, metricas, visuales circulares, Kaiowa local y excepciones de Growth quedan pendientes para Fase 3 despues de staging.
+- Foundations y la migracion prioritaria de Hero Base y Progressive Narrative quedan aprobadas y cerradas antes de staging.
+- Home heredado, `home-title-scale.css`, navegacion, footer, metricas, visuales circulares, H3/H4 legacy, Kaiowa local y excepciones de Growth quedan pendientes para Fase 3 despues de staging.
 
 Asignacion oficial: Display Title usa `--type-display`; Hero Base y Progressive Narrative usan `--type-page`; Section, Editorial y Narrative Title usan `--type-section`; Subsection y Card Title usan sus tokens homonimos. Progressive Narrative no define un clamp responsive propio.
 
