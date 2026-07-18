@@ -343,7 +343,7 @@
 
             <div class="hero-base__media">
               <div class="creative-video" aria-label="Campañas creativas Uhura">
-                <video src="../assets/media/creatividad-uhura-campanas.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Piezas de campañas creativas Uhura"></video>
+                <video src="../assets/media/creatividad-uhura-campanas.mp4" muted loop playsinline preload="metadata" data-reduced-motion-video aria-label="Piezas de campañas creativas Uhura"></video>
               </div>
             </div>
           </div>
@@ -459,6 +459,30 @@
 
   <div id="uhura-footer-root" data-uhura-footer></div>
 
+  <script>
+    (() => {
+      const video = document.querySelector("[data-reduced-motion-video]");
+      if (!video) return;
+
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const syncPlayback = () => {
+        if (reducedMotion.matches) {
+          video.pause();
+          return;
+        }
+
+        const playback = video.play();
+        if (playback) playback.catch(() => {});
+      };
+
+      syncPlayback();
+      if (reducedMotion.addEventListener) {
+        reducedMotion.addEventListener("change", syncPlayback);
+      } else {
+        reducedMotion.addListener(syncPlayback);
+      }
+    })();
+  </script>
   <script src="../src/components/uhura-components.js" data-root=".."></script>
   <script src="../src/extracted/global-nav-sync.js"></script>
   <script src="../src/extracted/footer-sync.js"></script>
