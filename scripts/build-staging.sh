@@ -4,6 +4,21 @@ set -euo pipefail
 project="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 output="$project/dist"
 
+required_assets=(
+  "assets/services/previews/creatividad-uhura.png"
+  "assets/services/previews/growth-uhura.jpg"
+  "assets/services/previews/producto-digital-uhura.png"
+  "assets/illustrations/uhura-web-people.png"
+  "assets/media/creatividad-uhura-campanas.mp4"
+)
+
+for asset in "${required_assets[@]}"; do
+  if test ! -f "$project/$asset"; then
+    echo "Missing required release asset: $asset" >&2
+    exit 2
+  fi
+done
+
 rm -rf "$output"
 mkdir -p "$output/client/__content/casos" "$output/client/__content/servicios" "$output/server"
 
@@ -22,6 +37,7 @@ cp "$project/_headers" "$output/client/_headers"
 cp -R "$project/assets" "$output/client/assets"
 cp -R "$project/src" "$output/client/src"
 cp "$project/scripts/static-worker.js" "$output/server/index.js"
+find "$output" -name .DS_Store -type f -delete
 
 while IFS= read -r ignored; do
   ignored="${ignored%/}"
