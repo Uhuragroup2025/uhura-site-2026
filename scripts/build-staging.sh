@@ -10,6 +10,7 @@ required_assets=(
   "assets/services/previews/producto-digital-uhura.png"
   "assets/illustrations/uhura-web-people.png"
   "assets/media/creatividad-uhura-campanas.mp4"
+  "assets/media/manifiesto-uhura-web.mp4"
 )
 
 for asset in "${required_assets[@]}"; do
