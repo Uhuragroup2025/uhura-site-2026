@@ -21,36 +21,41 @@ for asset in "${required_assets[@]}"; do
 done
 
 rm -rf "$output"
-mkdir -p "$output/client/__content/casos" "$output/client/__content/servicios" "$output/server"
+mkdir -p "$output/casos" "$output/servicios"
 
-# Documents live behind non-public asset names so every page request reaches
-# the Worker first and receives the staging X-Robots-Tag header.
-cp "$project/index.html" "$output/client/__content/index.page"
-cp "$project/nosotros.html" "$output/client/__content/nosotros.page"
-cp "$project/casos/kaiowa.html" "$output/client/__content/casos/kaiowa.page"
-cp "$project/servicios/producto-digital.html" "$output/client/__content/servicios/producto-digital.page"
-cp "$project/servicios/growth.html" "$output/client/__content/servicios/growth.page"
-cp "$project/servicios/creatividad.html" "$output/client/__content/servicios/creatividad.page"
-cp "$project/servicios/ai-agents.html" "$output/client/__content/servicios/ai-agents.page"
-cp "$project/robots.txt" "$output/client/__content/robots.data"
-cp "$project/sitemap.xml" "$output/client/__content/sitemap.data"
-cp "$project/_headers" "$output/client/_headers"
-cp -R "$project/assets" "$output/client/assets"
-cp -R "$project/src" "$output/client/src"
-cp "$project/scripts/static-worker.js" "$output/server/index.js"
+# Cloudflare Pages publishes this directory directly, so documents retain
+# their public names and paths at the root of the artifact.
+cp "$project/index.html" "$output/index.html"
+cp "$project/nosotros.html" "$output/nosotros.html"
+cp "$project/casos/kaiowa.html" "$output/casos/kaiowa.html"
+cp "$project/servicios/producto-digital.html" "$output/servicios/producto-digital.html"
+cp "$project/servicios/growth.html" "$output/servicios/growth.html"
+cp "$project/servicios/creatividad.html" "$output/servicios/creatividad.html"
+cp "$project/servicios/ai-agents.html" "$output/servicios/ai-agents.html"
+cp "$project/robots.txt" "$output/robots.txt"
+cp "$project/sitemap.xml" "$output/sitemap.xml"
+cp "$project/_headers" "$output/_headers"
+cp -R "$project/assets" "$output/assets"
+cp -R "$project/src" "$output/src"
 find "$output" -name .DS_Store -type f -delete
 
 while IFS= read -r ignored; do
   ignored="${ignored%/}"
   test -z "$ignored" && continue
-  if test -e "$output/client/$ignored"; then
+  if test -e "$output/$ignored"; then
     echo "Excluded path was copied: $ignored" >&2
     exit 2
   fi
 done < "$project/.assetsignore"
 
-test -f "$output/client/_headers"
-grep -q "X-Robots-Tag: noindex, nofollow" "$output/client/_headers"
-test -f "$output/server/index.js"
+test -f "$output/index.html"
+cmp -s "$project/index.html" "$output/index.html"
+test -f "$output/nosotros.html"
+test -f "$output/casos/kaiowa.html"
+test -f "$output/servicios/producto-digital.html"
+test -f "$output/servicios/growth.html"
+test -f "$output/servicios/creatividad.html"
+test -f "$output/_headers"
+grep -q "X-Robots-Tag: noindex, nofollow" "$output/_headers"
 
 printf '%s\n' "$output"
