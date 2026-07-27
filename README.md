@@ -41,9 +41,10 @@ La reconstrucción limpia inicial que no debía reemplazar visualmente la home q
 - `index.html`
 - `nosotros.html`
 - `casos/kaiowa.html`
-- `servicios/producto-digital.html`
-- `servicios/growth.html`
-- `servicios/creatividad.html`
+- `servicios/websites-ecommerce/index.html`
+- `servicios/brand-content/index.html`
+- `servicios/seo-growth/index.html`
+- `servicios/digital-shelf/index.html`
 
 `servicios/ai-agents.html` permanece como página planificada, fuera de la
 navegación y del sitemap, con `noindex, nofollow` temporal.
@@ -73,7 +74,8 @@ También existe una carpeta de espejo visual sin reinterpretaciones:
 ## Sistema compartido
 
 - `src/styles/uhura-system.css`: tokens, layout, botones, títulos, badges y responsive.
-- `src/extracted/global-nav-sync.js`: única fuente de verdad de la navegación global.
+- `src/config/services.js`: catálogo neutral de servicios y rutas.
+- `src/extracted/global-nav-sync.js`: fuente de verdad de estructura y comportamiento de la navegación global.
 - `src/extracted/footer-sync.js`: única fuente de verdad del footer global.
 - `src/components/uhura-components.js`: componentes de contenido compartido; no es owner de navegación ni footer.
 - `assets/`: logos, fotos del equipo y assets de casos.

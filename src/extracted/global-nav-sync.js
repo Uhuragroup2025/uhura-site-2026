@@ -6,13 +6,11 @@
   const CLOSE_DELAY = 180;
 
   if (window.__uhuraGlobalNavInitialized) return;
+  if (!window.__uhuraServices) return;
   window.__uhuraGlobalNavInitialized = true;
 
-  const getRootPrefix = () => {
-    const path = window.location.pathname;
-    if (path.includes("/workbench/") || path.includes("/casos/") || path.includes("/servicios/")) return "..";
-    return ".";
-  };
+  const serviceCatalog = window.__uhuraServices;
+  const getRootPrefix = serviceCatalog.getRootPrefix;
 
   const getNavModel = () => [
     {
@@ -23,36 +21,7 @@
         eyebrow: "Capacidades conectadas",
         tagline: "De la idea al crecimiento.",
       },
-      items: [
-        {
-          label: "Producto Digital",
-          description: "Websites y ecommerce que convierten.",
-          path: "/servicios/producto-digital.html",
-          key: "producto-digital",
-          status: "active",
-        },
-        {
-          label: "Creatividad",
-          description: "Ideas y contenido con intención comercial.",
-          path: "/servicios/creatividad.html",
-          key: "creatividad",
-          status: "active",
-        },
-        {
-          label: "Growth Paid Media",
-          description: "Adquisición, performance y medición.",
-          path: "/servicios/growth.html",
-          key: "growth",
-          status: "active",
-        },
-        {
-          label: "AI Agents",
-          description: "Automatización con data y criterio.",
-          path: "/servicios/ai-agents.html",
-          key: "ai-agents",
-          status: "planned",
-        },
-      ],
+      items: serviceCatalog.items,
     },
     {
       label: "Casos de éxito",
@@ -85,7 +54,7 @@
       })
       .filter(Boolean);
 
-  const withRoot = (path) => getRootPrefix() + path;
+  const withRoot = (path) => serviceCatalog.resolvePath(path);
 
   const renderDropdownChild = (child, index) => {
     const href = withRoot(child.path);
@@ -125,12 +94,11 @@
   const renderNavLinks = () => getRenderableNavItems().map(renderNavItem).join("");
 
   const getExpectedLinks = () => {
-    const root = getRootPrefix();
     return getRenderableNavItems().flatMap((item) => {
       if (item.type === "dropdown") {
-        return item.items.map((child) => ({ key: child.key, href: root + child.path }));
+        return item.items.map((child) => ({ key: child.key, href: withRoot(child.path) }));
       }
-      return [{ key: item.key, href: root + item.path }];
+      return [{ key: item.key, href: withRoot(item.path) }];
     });
   };
 
@@ -165,9 +133,8 @@
 
   const getActiveKeys = () => {
     const path = window.location.pathname;
-    if (path.includes("/servicios/producto-digital")) return new Set(["soluciones", "producto-digital"]);
-    if (path.includes("/servicios/creatividad")) return new Set(["soluciones", "creatividad"]);
-    if (path.includes("/servicios/growth")) return new Set(["soluciones", "growth"]);
+    const activeService = serviceCatalog.matchPath(path);
+    if (activeService) return new Set(["soluciones", activeService.key]);
     if (path.includes("/servicios/")) return new Set(["soluciones"]);
     if (path.includes("/casos/kaiowa")) return new Set(["casos", "kaiowa"]);
     if (path.includes("/casos/")) return new Set(["casos"]);

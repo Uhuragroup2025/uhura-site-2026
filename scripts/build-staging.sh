@@ -21,16 +21,22 @@ for asset in "${required_assets[@]}"; do
 done
 
 rm -rf "$output"
-mkdir -p "$output/casos" "$output/servicios"
+mkdir -p \
+  "$output/casos" \
+  "$output/servicios/websites-ecommerce" \
+  "$output/servicios/brand-content" \
+  "$output/servicios/seo-growth" \
+  "$output/servicios/digital-shelf"
 
 # Cloudflare Pages publishes this directory directly, so documents retain
 # their public names and paths at the root of the artifact.
 cp "$project/index.html" "$output/index.html"
 cp "$project/nosotros.html" "$output/nosotros.html"
 cp "$project/casos/kaiowa.html" "$output/casos/kaiowa.html"
-cp "$project/servicios/producto-digital.html" "$output/servicios/producto-digital.html"
-cp "$project/servicios/growth.html" "$output/servicios/growth.html"
-cp "$project/servicios/creatividad.html" "$output/servicios/creatividad.html"
+cp "$project/servicios/websites-ecommerce/index.html" "$output/servicios/websites-ecommerce/index.html"
+cp "$project/servicios/brand-content/index.html" "$output/servicios/brand-content/index.html"
+cp "$project/servicios/seo-growth/index.html" "$output/servicios/seo-growth/index.html"
+cp "$project/servicios/digital-shelf/index.html" "$output/servicios/digital-shelf/index.html"
 cp "$project/servicios/ai-agents.html" "$output/servicios/ai-agents.html"
 cp "$project/robots.txt" "$output/robots.txt"
 cp "$project/sitemap.xml" "$output/sitemap.xml"
@@ -52,9 +58,10 @@ test -f "$output/index.html"
 cmp -s "$project/index.html" "$output/index.html"
 test -f "$output/nosotros.html"
 test -f "$output/casos/kaiowa.html"
-test -f "$output/servicios/producto-digital.html"
-test -f "$output/servicios/growth.html"
-test -f "$output/servicios/creatividad.html"
+test -f "$output/servicios/websites-ecommerce/index.html"
+test -f "$output/servicios/brand-content/index.html"
+test -f "$output/servicios/seo-growth/index.html"
+test -f "$output/servicios/digital-shelf/index.html"
 test -f "$output/_headers"
 grep -q "X-Robots-Tag: noindex, nofollow" "$output/_headers"
 

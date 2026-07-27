@@ -1,33 +1,38 @@
 (() => {
+  if (!window.__uhuraServices) return;
+
+  const catalog = window.__uhuraServices;
   const serviceRoutes = [
     {
-      id: "creative-strategy",
-      href: "servicios/creatividad.html",
-      ariaLabel: "Abrir solucion Creative Strategy",
+      key: "brand-content",
       signatures: [
-        /Creative\s*Strategy/i,
+        /(?:Creative\s*Strategy|Brand\s*&\s*Content)/i,
         /Brand\s*(?:\u00b7|\u2022)\s*Identity\s*(?:\u00b7|\u2022)\s*Campaigns?/i
       ]
     },
     {
-      id: "digital-products",
-      href: "servicios/producto-digital.html",
-      ariaLabel: "Abrir servicio Digital Products",
+      key: "websites-ecommerce",
       signatures: [
-        /Digital\s*Products/i,
+        /(?:Digital\s*Products|Websites?\s*&\s*Ecommerce)/i,
         /Web\s*(?:\u00b7|\u2022)\s*Ecommerce\s*(?:\u00b7|\u2022)\s*UX/i
       ]
     },
     {
-      id: "revenue-growth",
-      href: "servicios/growth.html",
-      ariaLabel: "Abrir solucion Growth Paid Media",
+      key: "seo-growth",
       signatures: [
-        /Revenue\s*Growth/i,
+        /(?:Revenue\s*Growth|SEO\s*&\s*Growth)/i,
         /Paid\s*Media\s*(?:\u00b7|\u2022)\s*Analytics\s*(?:\u00b7|\u2022)\s*CRO/i
       ]
     }
-  ];
+  ].map((route) => {
+    const service = catalog.getByKey(route.key);
+    return {
+      ...route,
+      id: route.key,
+      href: service ? catalog.resolvePath(service.path) : null,
+      ariaLabel: service ? `Abrir solución ${service.label}` : "",
+    };
+  }).filter((route) => route.href);
 
   const existing = window.__uhuraHomeServiceLinks;
   if (existing) {

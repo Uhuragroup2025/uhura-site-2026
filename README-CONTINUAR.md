@@ -15,11 +15,12 @@ Estas son las paginas que deben editarse cuando el cambio ya esta aprobado para 
 - Home: `index.html`
 - Nosotros: `nosotros.html`
 - Caso Kaiowa: `casos/kaiowa.html`
-- Servicio Digital Products: `servicios/producto-digital.html`
-- Servicio Growth: `servicios/growth.html` (ruta operativa y navegable; continua en evolucion visual y de contenido, no es una pagina final ni congelada)
-- Servicio Creatividad: `servicios/creatividad.html`
+- Servicio Websites & Ecommerce: `servicios/websites-ecommerce/index.html`
+- Servicio SEO & Growth: `servicios/seo-growth/index.html` (ruta operativa y navegable; continua en evolucion visual y de contenido, no es una pagina final ni congelada)
+- Servicio Brand & Content: `servicios/brand-content/index.html`
+- Servicio Digital Shelf: `servicios/digital-shelf/index.html`
 
-Estas seis paginas son la fuente operativa del sitio. `servicios/ai-agents.html`
+Estas siete paginas son la fuente operativa del sitio. `servicios/ai-agents.html`
 permanece en estado `planned`, fuera de navegacion y sitemap, con
 `noindex, nofollow` temporal. Si una nueva pagina entra en produccion, debe
 agregarse a esta lista antes de seguir iterando.
@@ -93,6 +94,7 @@ La intencion es que el sitio tenga patrones globales, no ajustes repetidos pagin
 
 Archivos compartidos actuales:
 
+- `src/config/services.js`: catalogo neutral de servicios, estados y rutas consumido por menu, footer y Home.
 - `src/extracted/global-nav-sync.js`: sincronizacion del menu global.
 - `src/extracted/footer-sync.js`: footer global de la home.
 - `src/extracted/home-title-scale.css`: escala tipografica para titulos principales y secundarios.
@@ -143,13 +145,14 @@ Regla de uso:
 - Si una seccion necesita un ancho nuevo, primero evaluar si debe ser `narrow`, `default`, `wide` o `full bleed`.
 - Hero Base v1 esta activo. Los heroes principales nuevos deben usar la familia `.hero-base*`.
 - La Home sigue siendo la referencia visual aprobada del hero, pero no esta migrada a Hero Base v1.
-- Consumidores migrados: Producto Digital, Nosotros y Kaiowa.
+- Consumidores migrados: Websites & Ecommerce, Brand & Content, Nosotros y Kaiowa.
 - Nuevas paginas no deben crear heroes locales. Deben consumir Hero Base v1 y dejar lo visual propio como contenido del slot correspondiente.
 - Si realmente hace falta una nueva variante, crearla como token global antes de aplicarla en una pagina.
 
 Regla importante:
 
-- El menu se modifica en `src/extracted/global-nav-sync.js`.
+- El catalogo neutral de servicios se modifica en `src/config/services.js`.
+- El menu consume ese catalogo desde `src/extracted/global-nav-sync.js`.
 - El footer se modifica en `src/extracted/footer-sync.js`.
 - `index.html`, `nosotros.html` y `casos/kaiowa.html` deben cargar esos mismos archivos.
 - No ajustar menu o footer manualmente dentro de una pagina individual salvo que sea una prueba temporal en `workbench/`.
@@ -232,28 +235,28 @@ Pendiente conocido:
   - `IA, datos y un equipo`
   - `con experiencia`
 - Mantener `sin limites` y `experiencia` con la italic editorial actual.
-- La card `Digital Products` debe abrir `servicios/producto-digital.html` y la card `Revenue Growth` debe abrir `servicios/growth.html`. Ambos enlaces viven en el adaptador declarativo `src/extracted/home-service-links.js` para evitar editar manualmente el bundle heredado de la home.
+- Las cards `Brand & Content`, `Websites & Ecommerce` y `SEO & Growth` consumen las rutas de `src/config/services.js` mediante `src/extracted/home-service-links.js`.
 
-### Growth
+### SEO & Growth
 
-Archivo vivo tecnico: `servicios/growth.html`
+Archivo vivo tecnico: `servicios/seo-growth/index.html`
 
 Estado:
 
 - La ruta esta operativa y puede recibir navegacion interna desde Home.
 - La pagina continua en evolucion visual y de contenido; declararla viva no significa que este finalizada, aprobada por completo o congelada.
-- Growth se renderiza como `Growth Paid Media` dentro del dropdown global `Soluciones`; la ruta tecnica se mantiene bajo `servicios/growth.html`.
+- La pagina se renderiza como `SEO & Growth` dentro del dropdown global `Soluciones`.
 
-### Digital Products
+### Websites & Ecommerce
 
-Archivo vivo: `servicios/producto-digital.html`
+Archivo vivo: `servicios/websites-ecommerce/index.html`
 
 Estado:
 
-- Pagina de servicio creada para explicar Producto Digital como sistema de crecimiento, no como desarrollo web tradicional.
+- Pagina de servicio creada para explicar Websites & Ecommerce como sistema de crecimiento, no como desarrollo web tradicional.
 - Cubre sitios web, ecommerce, productos digitales, UX/UI, contenido para vender e implementacion.
 - Usa Layout System, Component System, menu global, footer global y cintillo `[data-expertise-strip]`.
-- El footer global y el menu global se cargan con prefijo de ruta `../` mediante los scripts compartidos.
+- El footer global y el menu global resuelven la profundidad `../../` mediante `src/config/services.js`.
 - Hero actualizado con el mensaje `Creamos tiendas, sitios y plataformas que convierten.`. Por decision visual, este hero no lleva CTAs por ahora.
 - Hero visual como `Particle orb / sistema digital vivo`: nodos primarios y secundarios, microcopy por hover, lineas orbitales, particulas sutiles y soporte para `prefers-reduced-motion`.
 - Hero y capas viven dentro de un mismo wrapper oscuro `product-command-experience` con el background Uhura compartido para evitar cortes visuales entre secciones.
@@ -271,12 +274,12 @@ Estado:
 
 Regla:
 
-- Las paginas bajo `servicios/` deben cargar assets compartidos con prefijo `../`.
+- Las paginas con estructura `servicios/<slug>/index.html` deben cargar assets compartidos con prefijo `../../`.
 - No crear estilos sueltos si el componente ya existe en `uhura-system.css`.
 - Success Cases no se recrea visualmente. Se extrae como componente espejo desde la Home aprobada y luego se consume en nuevas paginas.
 - Si se modifica fondo, spacing, shadow, card, badge o navegacion de Success Cases, hacerlo en el componente global o en el wrapper padre segun responsabilidad: el componente controla cards/interaccion; el wrapper controla background.
 - Si se crea otra pagina de servicio, usar esta como plantilla base estructural, no duplicar variantes visuales del menu, footer, botones o cards.
-- Si se ajusta la consola del hero o la narrativa morphing, trabajar sobre `servicios/producto-digital.html`; no crear variantes paralelas salvo prueba temporal en `workbench/`.
+- Si se ajusta la consola del hero o la narrativa morphing, trabajar sobre `servicios/websites-ecommerce/index.html`; no crear variantes paralelas salvo prueba temporal en `workbench/`.
 
 ### Nosotros
 
@@ -320,7 +323,10 @@ for (const path of [
   'uhura-site-2026/index.html',
   'uhura-site-2026/nosotros.html',
   'uhura-site-2026/casos/kaiowa.html',
-  'uhura-site-2026/servicios/producto-digital.html'
+  'uhura-site-2026/servicios/websites-ecommerce/index.html',
+  'uhura-site-2026/servicios/brand-content/index.html',
+  'uhura-site-2026/servicios/seo-growth/index.html',
+  'uhura-site-2026/servicios/digital-shelf/index.html'
 ]) {
   if (!fs.existsSync(path)) continue;
   const html=fs.readFileSync(path,'utf8');
@@ -340,7 +346,10 @@ Abrir directo:
 - `index.html`
 - `nosotros.html`
 - `casos/kaiowa.html`
-- `servicios/producto-digital.html`
+- `servicios/websites-ecommerce/index.html`
+- `servicios/brand-content/index.html`
+- `servicios/seo-growth/index.html`
+- `servicios/digital-shelf/index.html`
 
 O levantar servidor local desde esta carpeta:
 
@@ -367,7 +376,7 @@ Antes de editar:
 
 La meta no es tener mas archivos. La meta es tener una version viva, limpia y consistente.
 
-## Ultimo ajuste Producto Digital
+## Ultimo ajuste Websites & Ecommerce
 
 - Hero visual mantiene el orb/halo de particulas como pieza principal.
 - Se eliminaron del hero los chips `Analytics` y `Marketplace`.

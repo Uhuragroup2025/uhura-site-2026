@@ -5,10 +5,11 @@ Este documento define los componentes reutilizables del sitio. La regla es simpl
 ## Fuentes de verdad
 
 - Tokens, layout, tipografia y componentes CSS: `src/styles/uhura-system.css`
+- Catalogo neutral de servicios y resolucion de rutas: `src/config/services.js`
 - Menu global: `src/extracted/global-nav-sync.js`
 - Footer global: `src/extracted/footer-sync.js`
 - Cintillo de partners y mounts simples: `src/components/uhura-components.js`
-- Paginas vivas: `index.html`, `nosotros.html`, `casos/kaiowa.html`, `servicios/producto-digital.html`, `servicios/growth.html`, `servicios/creatividad.html`
+- Paginas vivas: `index.html`, `nosotros.html`, `casos/kaiowa.html`, `servicios/websites-ecommerce/index.html`, `servicios/brand-content/index.html`, `servicios/seo-growth/index.html`, `servicios/digital-shelf/index.html`
 
 Nota: la home conserva un bundle heredado. No editar ese bloque grande salvo que sea necesario. Los componentes nuevos deben agregarse como sistema compartido o adaptadores externos.
 
@@ -225,7 +226,7 @@ Composition gobierna como se ordenan las piezas en pantalla: respiracion, balanc
 | Whitespace | Dar aire y foco a secciones, cards y narrativas. | El espacio debe reforzar jerarquia y lectura. | No llenar vacios con decoracion si el contenido ya respira. |
 | Visual Rhythm | Repeticion controlada de titulos, copy, cards y metricas. | Alternar densidad y descanso entre secciones. | No apilar bloques con la misma intensidad visual. |
 | Layering | Fondos, glows, cards, media y texto en profundidad. | Cada capa debe tener una funcion: atmosfera, foco o informacion. | No sumar capas que no cambian lectura ni jerarquia. |
-| Editorial Density | Cantidad de informacion por pantalla. | Kaiowa puede ser mas editorial; Producto Digital puede ser mas experiencial. | No convertir todas las paginas en dashboards ni todas en manifiestos. |
+| Editorial Density | Cantidad de informacion por pantalla. | Kaiowa puede ser mas editorial; Websites & Ecommerce puede ser mas experiencial. | No convertir todas las paginas en dashboards ni todas en manifiestos. |
 | Sticky Narrative | Bloques donde el scroll revela o fija una idea. | Usar cuando el contenido evoluciona por pasos. | No usar sticky si solo hay una lista simple. |
 | Content Width | Ancho de lectura y composicion. | Copy largo cerca de 65-75ch; titulos y visuales pueden ocupar mas columnas. | No dejar parrafos largos a ancho completo. |
 | Asymmetric Layouts | Composiciones con peso visual desigual. | Usar para tension editorial, hero visuals o casos. | La asimetria debe seguir alineaciones claras. |
@@ -479,7 +480,7 @@ Patterns gobiernan estructuras de pagina completas. Un pattern define layout, ri
 
 Fuente visual aprobada: Hero de Home. La Home conserva su composicion heredada y no se migra en esta fase.
 
-Consumidores migrados: Producto Digital, Nosotros, Kaiowa y Creatividad.
+Consumidores migrados: Websites & Ecommerce, Brand & Content, Nosotros y Kaiowa.
 
 Clases:
 
@@ -514,7 +515,7 @@ Reglas:
 - Hero Base define layout, padding, margenes, ancho y ritmo.
 - `.hero-base__story` gobierna el punto de entrada editorial. La media acompana y no debe definir donde empieza la historia.
 - La columna `.hero-base__copy` puede ser mas alta que el bloque textual para crear una zona editorial estable. Esa zona es global del Hero Base, no un offset local por pagina.
-- Cada pagina define solo el contenido visual dentro de los slots: Home conserva su composicion heredada, Producto Digital su orb/media, Kaiowa su logo/media/copy del caso, Nosotros su media de equipo y Creatividad su sistema visual circular.
+- Cada pagina define solo el contenido visual dentro de los slots: Home conserva su composicion heredada, Websites & Ecommerce su orb/media, Kaiowa su logo/media/copy del caso, Nosotros su media de equipo y Brand & Content su sistema visual circular.
 - Elementos de apoyo como cintillos, logos o mounts compartidos deben quedar fuera de `.hero-base__story` cuando no sean parte de la narrativa principal. Si aumentan el peso vertical del hero, deben vivir despues de `.hero-base` para no alterar el punto de entrada editorial.
 - No migrar la Home al Hero Base hasta que se apruebe una fase especifica para tocar el bundle heredado.
 - Si una pagina no tiene media, puede usar `.hero-base` y `.hero-base__shell` sin `.hero-base__grid`; no hace falta crear una variante.
@@ -588,7 +589,7 @@ Responsabilidad:
 - Las cards no requieren JavaScript. Una card navegable debe ser un `<a>` real; no convertir un `div` completo en control.
 - Estados oficiales: hover/focus mediante `.uhura-card--interactive`; seleccion mediante `.is-selected` o `aria-current="true"`. `.uhura-card--interactive` solo se agrega cuando existe un enlace o una accion real, comparte respuesta entre mouse y `focus-visible`, no se activa en dispositivos sin hover y elimina desplazamientos con `prefers-reduced-motion`. No simular disabled solo con apariencia.
 - Content, Metric y Evidence son variantes oficiales. Process Card, Sidebar y Success Cases conservan responsabilidad propia.
-- Growth metrics dentro del sistema circular y los orbit modules de Producto Digital son visuales internos, no Card Base.
+- Las metricas del sistema circular de SEO & Growth y los orbit modules de Websites & Ecommerce son visuales internos, no Card Base.
 - Estado: implementado globalmente y visible en `workbench/design-system.html`; sin consumidores vivos migrados todavia.
 - Primer consumidor piloto aprobado: Kaiowa. Cristar validara reutilizacion despues de la migracion atomica.
 
@@ -738,7 +739,7 @@ Estado actual:
 - La Home conserva su seccion aprobada dentro del bundle heredado y no se migra todavia.
 - El componente global es un espejo visual de la Home para nuevas paginas, creado a partir de la auditoria de su DOM, CSS, proporciones, metricas, carrusel, navegacion y responsive.
 - El componente no define background propio ni clase `page-light`; hereda el fondo del bloque padre donde se monta. Esto evita que contamine `product-light-zone`, futuras paginas o cualquier wrapper light/dark.
-- Producto Digital, Growth y Creatividad consumen este mount global.
+- Websites & Ecommerce, SEO & Growth y Brand & Content consumen este mount global.
 - CSS gobierna la cantidad visible mediante `--success-cases-visible`: tres cards en desktop, dos en tablet/intermedio y una en mobile. El controlador JS lee el valor computado y no replica breakpoints.
 - Casos del carrusel global: Cristar, Yamaha, Lili Pink, BOSI, Kaiowa y Melendez, respetando el orden y datos extraidos del array real de la Home aprobada.
 - Archivo de prueba visual: `workbench/success-cases-parity.html`.
@@ -757,7 +758,7 @@ Pinned Narrative es el patron oficial para narrativas por pasos donde el scroll 
 
 Categoria conceptual: Sticky Story.
 
-Consumidores vivos: ninguno. Pinned Narrative permanece formalizado y disponible, pero Producto Digital ya no lo consume.
+Consumidores vivos: ninguno. Pinned Narrative permanece formalizado y disponible, pero Websites & Ecommerce ya no lo consume.
 
 Responsabilidad:
 
@@ -770,7 +771,7 @@ Responsabilidad que no le pertenece:
 
 - No define background de pagina.
 - No define ambiente dark/light, gradientes, glows o atmosfera.
-- No depende de Producto Digital, copy, categorias ni cantidad fija de pasos.
+- No depende de Websites & Ecommerce, copy, categorias ni cantidad fija de pasos.
 
 API HTML minima:
 
@@ -841,9 +842,9 @@ Progressive Narrative es el patron oficial para secuencias narrativas de lectura
 
 Consumidores migrados:
 
-- Producto Digital: narrativa de capas del producto.
-- Growth: segundo bloque narrativo de etapas, despues de la experiencia circular.
-- Creatividad: sistema creativo por etapas.
+- Websites & Ecommerce: narrativa de capas del producto.
+- SEO & Growth: segundo bloque narrativo de etapas, despues de la experiencia circular.
+- Brand & Content: sistema creativo por etapas.
 
 Responsabilidad:
 
@@ -981,9 +982,9 @@ Mount:
 <div data-uhura-nav></div>
 ```
 
-El contenido se sincroniza desde `src/extracted/global-nav-sync.js`. No editar navegaciones manualmente dentro de cada pagina.
+El contenido se sincroniza desde `src/extracted/global-nav-sync.js`. Los datos de servicios provienen de `src/config/services.js`. No editar navegaciones manualmente dentro de cada pagina.
 
-El menu global usa un modelo declarativo central dentro de `src/extracted/global-nav-sync.js`. Los items principales pueden ser links simples o dropdowns globales.
+El menu global consume el catalogo declarativo neutral de `src/config/services.js`. Los items principales pueden ser links simples o dropdowns globales.
 
 Dropdowns globales actuales:
 
@@ -992,11 +993,12 @@ Dropdowns globales actuales:
 
 Soluciones actuales:
 
-- Activo y renderizado: Producto Digital (`servicios/producto-digital.html`).
-- Activo y renderizado: Creatividad (`servicios/creatividad.html`).
-- Activo y renderizado: Growth Paid Media (`servicios/growth.html`).
+- Activo y renderizado: Websites & Ecommerce (`/servicios/websites-ecommerce/`).
+- Activo y renderizado: Brand & Content (`/servicios/brand-content/`).
+- Activo y renderizado: SEO & Growth (`/servicios/seo-growth/`).
+- Activo y renderizado: Digital Shelf (`/servicios/digital-shelf/`).
 - Planned y no renderizado todavia: AI Agents.
-- Creatividad tambien esta incluida como pagina activa en `sitemap.xml`.
+- Las cuatro soluciones activas estan incluidas en `sitemap.xml`.
 
 Reglas:
 
@@ -1005,6 +1007,7 @@ Reglas:
 - No buscar links por texto. La navegacion debe resolverse desde `href` o `data-href` reales.
 - Si una nueva familia del menu necesita dropdown, debe agregarse al modelo central y reutilizar el mismo render de dropdowns.
 - En rutas bajo `/servicios/`, el item principal `Soluciones` debe quedar activo. La logica usa la key interna `soluciones` y las rutas reales; no depende del label visible.
+- En HTTP el catalogo entrega URLs publicas con `/` final; bajo `file://` agrega `index.html` solo para conservar la previsualizacion local.
 - En rutas bajo `/casos/`, el item principal `Casos de exito` debe quedar activo.
 
 ### Footer global

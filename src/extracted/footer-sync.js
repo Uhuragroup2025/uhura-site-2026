@@ -7,21 +7,18 @@
 */
 
 (() => {
-  const getRootPrefix = () => {
-    const path = window.location.pathname;
-    if (path.includes("/workbench/") || path.includes("/casos/") || path.includes("/servicios/")) return "..";
-    return ".";
-  };
+  if (!window.__uhuraServices) return;
+
+  const serviceCatalog = window.__uhuraServices;
+  const getRootPrefix = serviceCatalog.getRootPrefix;
 
   const footerGroups = [
     {
       title: "Soluciones",
-      links: [
-        { label: "Creatividad", href: "servicios/creatividad.html" },
-        { label: "Producto digital", href: "servicios/producto-digital.html" },
-        { label: "Growth Paid Media", href: "servicios/growth.html" },
-        { label: "AI Agents", href: null },
-      ],
+      links: serviceCatalog.items.map((service) => ({
+        label: service.label,
+        href: service.status === "active" ? service.path : null,
+      })),
     },
     {
       title: "Empresa",
@@ -45,12 +42,10 @@
 
   const localizeHref = (href) => {
     const root = getRootPrefix();
+    if (href.startsWith("/")) return serviceCatalog.resolvePath(href);
     if (href.startsWith("#")) return root + "/index.html" + href;
     if (href === "nosotros.html") return root + "/nosotros.html";
     if (href === "casos/kaiowa.html") return root + "/casos/kaiowa.html";
-    if (href === "servicios/producto-digital.html") return root + "/servicios/producto-digital.html";
-    if (href === "servicios/growth.html") return root + "/servicios/growth.html";
-    if (href === "servicios/creatividad.html") return root + "/servicios/creatividad.html";
     return href;
   };
 
