@@ -1,0 +1,1470 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Shelf | Uhura Group</title>
+  <meta name="description" content="Optimizamos PDPs y monitoreamos el anaquel digital para que tus productos se vean, se expliquen, se encuentren y compitan mejor.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../src/styles/uhura-system.css">
+  <style>
+    body.service-digital-shelf {
+      background: #080511;
+    }
+
+    .shelf-dark {
+      position: relative;
+      isolation: isolate;
+      overflow: clip;
+      background:
+        radial-gradient(ellipse at 76% 12%, rgba(75,229,255,.18), transparent 36%),
+        radial-gradient(ellipse at 16% 24%, rgba(138,77,255,.28), transparent 46%),
+        radial-gradient(ellipse at 72% 78%, rgba(212,255,74,.08), transparent 34%),
+        linear-gradient(145deg, #140922 0%, #080512 50%, #07131c 100%);
+    }
+
+    .shelf-dark::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(201,183,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,183,255,.03) 1px, transparent 1px);
+      background-size: 86px 86px;
+      opacity: .34;
+      pointer-events: none;
+    }
+
+    .shelf-dark > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .shelf-light-zone {
+      position: relative;
+      isolation: isolate;
+      overflow: clip;
+      margin-top: -1px;
+      background:
+        radial-gradient(ellipse at 18% 14%, rgba(201,183,255,.38), transparent 42%),
+        radial-gradient(ellipse at 88% 8%, rgba(75,229,255,.14), transparent 40%),
+        linear-gradient(135deg, var(--uhura-light) 0%, #f8f6fb 62%, var(--uhura-light-2) 100%);
+    }
+
+    .shelf-light-zone::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(80,31,146,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(80,31,146,.035) 1px, transparent 1px);
+      background-size: 92px 92px;
+      opacity: .42;
+      pointer-events: none;
+    }
+
+    .shelf-light-zone > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-digital-shelf .section-roomy {
+      padding-block: var(--section-space);
+    }
+
+    .shelf-hero {
+      isolation: isolate;
+    }
+
+    .shelf-hero::before {
+      content: "";
+      position: absolute;
+      right: -12vw;
+      top: 10vh;
+      width: min(760px, 58vw);
+      height: min(640px, 52vw);
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 34% 30%, rgba(75,229,255,.24), transparent 34%),
+        radial-gradient(circle at 68% 44%, rgba(138,77,255,.26), transparent 42%),
+        radial-gradient(circle at 46% 74%, rgba(212,255,74,.08), transparent 34%);
+      filter: blur(44px);
+      pointer-events: none;
+      opacity: .92;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: var(--stack-body-actions);
+    }
+
+    .shelf-product-system {
+      position: relative;
+      min-height: 560px;
+      display: grid;
+      place-items: center;
+    }
+
+    .shelf-product-orbit {
+      position: absolute;
+      width: 78%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 1px solid rgba(201,183,255,.11);
+      background:
+        radial-gradient(circle at 50% 50%, rgba(75,229,255,.07), transparent 42%),
+        conic-gradient(from 20deg, transparent 0 8%, rgba(75,229,255,.16), transparent 18% 46%, rgba(212,255,74,.18), transparent 56% 100%);
+      opacity: .84;
+      mask: radial-gradient(circle, transparent 46%, #000 47% 48%, transparent 49% 100%);
+      animation: shelfOrbit 32s linear infinite;
+    }
+
+    .shelf-product {
+      position: relative;
+      z-index: 2;
+      width: min(520px, 82%);
+      margin: 0;
+      overflow: visible;
+    }
+
+    .shelf-product::before {
+      content: "";
+      position: absolute;
+      inset: 12%;
+      z-index: -1;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 50% 48%, rgba(75,229,255,.18), transparent 42%),
+        radial-gradient(circle at 58% 54%, rgba(212,255,74,.10), transparent 48%);
+      filter: blur(22px);
+      opacity: .95;
+    }
+
+    .shelf-product img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      filter: drop-shadow(0 34px 74px rgba(0,0,0,.34));
+    }
+
+    .shelf-layer {
+      position: absolute;
+      z-index: 3;
+      min-width: 142px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(201,183,255,.16);
+      color: rgba(255,255,255,.86);
+      background: rgba(9,7,19,.72);
+      backdrop-filter: blur(14px);
+      font-weight: 800;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .layer-benefits { left: 4%; top: 18%; }
+    .layer-ingredients { right: 2%; top: 24%; }
+    .layer-keywords { left: 7%; bottom: 24%; }
+    .layer-stock { right: 8%; bottom: 18%; }
+    .layer-price { top: 4%; left: 50%; transform: translateX(-50%); }
+
+    @keyframes shelfOrbit {
+      to { rotate: 360deg; }
+    }
+
+    [data-shelf-reveal] {
+      opacity: 0;
+      transform: translateY(28px);
+      filter: blur(7px);
+      transition:
+        opacity 760ms cubic-bezier(.22, 1, .36, 1),
+        transform 760ms cubic-bezier(.22, 1, .36, 1),
+        filter 760ms cubic-bezier(.22, 1, .36, 1);
+      transition-delay: var(--shelf-delay, 0ms);
+    }
+
+    [data-shelf-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    .shelf-hero[data-shelf-reveal] {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+
+    .shelf-product {
+      opacity: .84;
+      transform: translateY(14px) scale(.965);
+      transition:
+        opacity 900ms cubic-bezier(.22, 1, .36, 1),
+        transform 900ms cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .shelf-hero.is-visible .shelf-product {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      animation: shelfProductFloat 7s ease-in-out 1s infinite;
+    }
+
+    .shelf-layer:not(.layer-price) {
+      opacity: 0;
+      transform: translateY(18px) scale(.92);
+      transition:
+        opacity 720ms cubic-bezier(.22, 1, .36, 1),
+        transform 720ms cubic-bezier(.22, 1, .36, 1),
+        border-color 720ms cubic-bezier(.22, 1, .36, 1);
+      transition-delay: var(--layer-delay, 0ms);
+    }
+
+    .layer-price {
+      opacity: 0;
+      transform: translateX(-50%) translateY(18px) scale(.92);
+      transition:
+        opacity 720ms cubic-bezier(.22, 1, .36, 1),
+        transform 720ms cubic-bezier(.22, 1, .36, 1),
+        border-color 720ms cubic-bezier(.22, 1, .36, 1);
+      transition-delay: var(--layer-delay, 0ms);
+    }
+
+    .shelf-hero.is-visible .shelf-layer:not(.layer-price) {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      border-color: rgba(75,229,255,.24);
+    }
+
+    .shelf-hero.is-visible .layer-price {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0) scale(1);
+      border-color: rgba(212,255,74,.26);
+    }
+
+    .layer-price { --layer-delay: 90ms; }
+    .layer-benefits { --layer-delay: 210ms; }
+    .layer-ingredients { --layer-delay: 330ms; }
+    .layer-keywords { --layer-delay: 450ms; }
+    .layer-stock { --layer-delay: 570ms; }
+
+    .shelf-service-grid.is-visible .comparison-card,
+    .before-after.is-visible .transform-card,
+    .monitor-grid.is-visible .monitor-card,
+    .shelf-stats.is-visible .shelf-stat,
+    .shelf-stats.is-counted .shelf-stat {
+      animation: shelfItemRise 760ms cubic-bezier(.22, 1, .36, 1) both;
+      animation-delay: calc(var(--shelf-index, 0) * 80ms);
+    }
+
+    .comparison-card:nth-child(1),
+    .transform-card:nth-child(1),
+    .monitor-card:nth-child(1),
+    .shelf-stat:nth-child(1) { --shelf-index: 0; }
+    .comparison-card:nth-child(3),
+    .transform-card:nth-child(2),
+    .monitor-card:nth-child(2),
+    .shelf-stat:nth-child(2) { --shelf-index: 1; }
+    .transform-card:nth-child(3),
+    .monitor-card:nth-child(3),
+    .shelf-stat:nth-child(3) { --shelf-index: 2; }
+    .monitor-card:nth-child(4) { --shelf-index: 3; }
+    .monitor-card:nth-child(5) { --shelf-index: 4; }
+
+    .before-after.is-visible .mini-before {
+      animation: shelfBeforeShift 900ms cubic-bezier(.22, 1, .36, 1) both;
+      animation-delay: calc(var(--shelf-index, 0) * 90ms + 120ms);
+    }
+
+    .before-after.is-visible .mini-after {
+      animation: shelfAfterShift 900ms cubic-bezier(.22, 1, .36, 1) both;
+      animation-delay: calc(var(--shelf-index, 0) * 90ms + 220ms);
+    }
+
+    @keyframes shelfProductFloat {
+      0%, 100% { translate: 0 0; }
+      50% { translate: 0 -10px; }
+    }
+
+    @keyframes shelfItemRise {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+        filter: blur(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes shelfBeforeShift {
+      from { transform: translateX(16px); }
+      to { transform: translateX(0); }
+    }
+
+    @keyframes shelfAfterShift {
+      from { transform: translateX(-16px) scale(.96); }
+      to { transform: translateX(0) scale(1); }
+    }
+
+    .tension-layout,
+    .software-layout,
+    .decision-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+      gap: var(--space-10);
+      align-items: center;
+    }
+
+    .software-layout {
+      align-items: start;
+    }
+
+    .shelf-service-grid {
+      margin-top: var(--space-8);
+      position: relative;
+    }
+
+    .comparison-card,
+    .dark-panel,
+    .monitor-card {
+      border: 1px solid rgba(201,183,255,.12);
+      background: rgba(255,255,255,.035);
+      border-radius: 8px;
+    }
+
+    .comparison-card {
+      padding: var(--space-6);
+      min-height: 100%;
+    }
+
+    .comparison-card--media {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .comparison-card__body {
+      padding: var(--space-6);
+    }
+
+    .comparison-card__media {
+      position: relative;
+      aspect-ratio: 1.05 / .78;
+      margin: 0;
+      overflow: hidden;
+      border-radius: 0;
+      background: rgba(255,255,255,.06);
+      border: 0;
+    }
+
+    .comparison-card__media img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .comparison-card--digital .comparison-card__media {
+      background: rgba(255,255,255,.94);
+    }
+
+    .comparison-card--digital .comparison-card__media img {
+      object-fit: contain;
+    }
+
+    .comparison-card--service {
+      display: grid;
+      align-content: start;
+    }
+
+    .comparison-card--physical {
+      background: rgba(255,255,255,.028);
+    }
+
+    .comparison-card--digital,
+    .comparison-card--output {
+      border-color: rgba(75,229,255,.18);
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(75,229,255,.08), transparent 52%),
+        rgba(255,255,255,.035);
+    }
+
+    .comparison-card--output {
+      border-style: dashed;
+      background:
+        linear-gradient(180deg, rgba(75,229,255,.07), transparent 64%),
+        rgba(255,255,255,.026);
+    }
+
+    .comparison-card--output .comparison-card__kicker {
+      color: var(--uhura-cyan);
+    }
+
+    .comparison-card__kicker {
+      display: inline-flex;
+      margin-bottom: 12px;
+      color: var(--uhura-lime);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .comparison-card h3,
+    .dark-panel h3,
+    .monitor-card h3 {
+      margin: 0 0 16px;
+    }
+
+    .comparison-card ul,
+    .monitor-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: rgba(255,255,255,.68);
+    }
+
+    .comparison-card li,
+    .monitor-list li {
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+    }
+
+    .comparison-card li::before,
+    .monitor-list li::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      flex: 0 0 auto;
+      margin-top: .65em;
+      border-radius: 999px;
+      background: var(--uhura-lime);
+      box-shadow: 0 0 12px rgba(212,255,74,.30);
+    }
+
+    .dark-panel {
+      padding: var(--space-7);
+      min-height: 100%;
+    }
+
+    .before-after {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .transform-card {
+      position: relative;
+      min-height: 0;
+      padding: var(--space-5);
+      border-radius: 8px;
+      border: 1px solid rgba(201,183,255,.12);
+      background:
+        radial-gradient(ellipse at 52% 28%, rgba(75,229,255,.10), transparent 44%),
+        rgba(255,255,255,.03);
+      overflow: hidden;
+    }
+
+    .transform-stage {
+      --compare-position: 50%;
+      position: relative;
+      aspect-ratio: 1;
+      margin-bottom: 24px;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid rgba(201,183,255,.12);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.98), rgba(244,242,250,.96)),
+        rgba(255,255,255,.96);
+      box-shadow: 0 24px 66px rgba(0,0,0,.26);
+    }
+
+    .mini-shot {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      margin: 0;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    .mini-shot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .mini-shot--cover img {
+      object-fit: cover;
+      padding: 0;
+    }
+
+    .mini-shot span {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      z-index: 2;
+      min-height: 22px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 8px;
+      border-radius: 999px;
+      background: rgba(9,7,19,.72);
+      color: rgba(255,255,255,.74);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .mini-before {
+      opacity: .68;
+      filter: saturate(.78);
+    }
+
+    .mini-after {
+      z-index: 2;
+      opacity: 1;
+      filter: none;
+      clip-path: inset(0 0 0 var(--compare-position));
+    }
+
+    .mini-after span {
+      background: rgba(9,7,19,.78);
+      color: var(--uhura-lime);
+    }
+
+    .compare-divider {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: var(--compare-position);
+      z-index: 4;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, rgba(255,255,255,.82), transparent);
+      box-shadow: 0 0 24px rgba(75,229,255,.28);
+      pointer-events: none;
+    }
+
+    .compare-divider::before {
+      content: "↔";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      border: 1px solid rgba(201,183,255,.22);
+      background: rgba(9,7,19,.84);
+      color: #fff;
+      font-weight: 800;
+      transform: translate(-50%, -50%);
+      backdrop-filter: blur(12px);
+    }
+
+    .compare-range {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: ew-resize;
+    }
+
+    .transform-stage:has(.compare-range:focus-visible) .compare-divider::before {
+      border-color: rgba(212,255,74,.62);
+      box-shadow: 0 0 0 4px rgba(212,255,74,.12);
+    }
+
+    .pdp-anatomy {
+      position: relative;
+      width: 100%;
+      max-width: none;
+      min-height: 0;
+      margin-inline: 0;
+      display: grid;
+      grid-template-columns: 1fr .96fr;
+      gap: var(--space-7);
+      padding: var(--space-5);
+      border: 1px solid rgba(201,183,255,.18);
+      border-radius: 8px;
+      background: rgba(255,255,255,.045);
+      box-shadow: 0 24px 70px rgba(6,4,14,.18);
+    }
+
+    .pdp-gallery,
+    .pdp-info {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .pdp-info {
+      align-self: start;
+    }
+
+    .pdp-hero-image {
+      overflow: hidden;
+      aspect-ratio: 1.58 / 1;
+      min-height: 0;
+      border-radius: 8px;
+      background:
+        radial-gradient(ellipse at 50% 26%, rgba(212,255,74,.26), transparent 38%),
+        rgba(255,255,255,.08);
+    }
+
+    .pdp-hero-image img,
+    .pdp-thumb img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .pdp-hero-image img {
+      object-position: center;
+    }
+
+    .pdp-thumb-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .pdp-thumb {
+      border-radius: 8px;
+      background: rgba(255,255,255,.08);
+    }
+
+    .pdp-thumb {
+      aspect-ratio: 1.36 / 1;
+      overflow: hidden;
+    }
+
+    .pdp-title {
+      margin: 0;
+      color: #fff;
+    }
+
+    .pdp-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pdp-meta span {
+      min-height: 28px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(201,183,255,.14);
+      color: rgba(255,255,255,.72);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .pdp-copy {
+      margin: 0;
+      color: rgba(255,255,255,.68);
+    }
+
+    .pdp-price {
+      display: inline-block;
+      margin: 4px 0 0;
+      color: var(--uhura-lime);
+      font-weight: 800;
+      transform: scale(.86);
+      transform-origin: left center;
+    }
+
+    .pdp-rating {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,.72);
+      font-weight: 700;
+    }
+
+    .pdp-stars {
+      color: var(--uhura-lime);
+    }
+
+    .pdp-stock {
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-self: start;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(212,255,74,.26);
+      color: rgba(255,255,255,.78);
+      background: rgba(212,255,74,.08);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .pdp-bullets {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: rgba(255,255,255,.70);
+    }
+
+    .pdp-bullets li {
+      display: flex;
+      gap: 10px;
+    }
+
+    .pdp-bullets li::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      flex: 0 0 auto;
+      margin-top: .6em;
+      border-radius: 999px;
+      background: var(--uhura-cyan);
+    }
+
+    .pdp-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      justify-self: start;
+      min-height: 44px;
+      padding-inline: var(--space-5);
+      color: #080511;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .software-dashboard {
+      position: relative;
+      width: min(100%, 550px);
+      justify-self: end;
+      align-self: start;
+      display: grid;
+      place-items: center;
+      margin: 0;
+      isolation: isolate;
+    }
+
+    .software-dashboard::before {
+      content: "";
+      position: absolute;
+      inset: 8% 4% 0;
+      z-index: -1;
+      border-radius: 999px;
+      background:
+        radial-gradient(ellipse at 70% 24%, rgba(138,77,255,.20), transparent 46%),
+        radial-gradient(ellipse at 26% 58%, rgba(75,229,255,.14), transparent 42%);
+      filter: blur(30px);
+      opacity: .72;
+    }
+
+    .software-dashboard img {
+      width: 100%;
+      max-height: 350px;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 24px 54px rgba(80,31,146,.16));
+    }
+
+    .software-section {
+      padding-bottom: var(--space-4);
+    }
+
+    .stats-section {
+      padding-top: var(--space-2);
+      padding-bottom: 0;
+    }
+
+    .monitor-section {
+      padding-top: var(--space-5);
+    }
+
+    .shelf-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0;
+      align-items: start;
+      text-align: center;
+    }
+
+    .shelf-stat {
+      min-height: 0;
+      padding: var(--space-3) var(--space-6);
+      display: grid;
+      align-content: center;
+      gap: var(--space-2);
+    }
+
+    .shelf-stat + .shelf-stat {
+      border-left: 1px solid var(--component-border-light);
+    }
+
+    .shelf-stat strong {
+      color: var(--uhura-purple);
+      font-variant-numeric: tabular-nums;
+      text-shadow: 0 14px 38px rgba(137,69,240,.16);
+      transition: color 420ms ease, text-shadow 420ms ease;
+    }
+
+    .shelf-stats.is-counted .shelf-stat strong {
+      color: var(--uhura-violet);
+      text-shadow: 0 14px 42px rgba(138,77,255,.20);
+    }
+
+    .shelf-stat p {
+      margin: 0;
+      color: rgba(23,19,31,.64);
+    }
+
+    .monitor-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .monitor-card {
+      padding: 20px;
+      min-height: 100%;
+    }
+
+    .shelf-light-zone .monitor-card {
+      border-color: var(--component-border-light);
+      background: rgba(255,255,255,.70);
+      box-shadow: var(--component-shadow-light);
+    }
+
+    .shelf-light-zone .monitor-card h3 {
+      color: var(--uhura-ink);
+    }
+
+    .shelf-light-zone .monitor-list {
+      color: rgba(23,19,31,.64);
+    }
+
+    .shelf-logo-rail {
+      padding-block: var(--space-3);
+      overflow: hidden;
+    }
+
+    .shelf-logo-rail--hero {
+      margin-top: calc(var(--space-8) * -1);
+      padding-top: 0;
+      padding-bottom: var(--space-5);
+    }
+
+    .shelf-logo-rail--brands {
+      padding-top: 0;
+      padding-bottom: var(--space-5);
+      margin-top: calc(var(--space-3) * -1);
+    }
+
+    .final-cta {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .final-cta::before {
+      content: "";
+      position: absolute;
+      inset: -30% -20%;
+      background:
+        radial-gradient(ellipse at 72% 20%, rgba(75,229,255,.18), transparent 36%),
+        radial-gradient(ellipse at 32% 70%, rgba(138,77,255,.24), transparent 48%);
+      filter: blur(38px);
+      pointer-events: none;
+    }
+
+    .final-cta > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 1100px) {
+      .monitor-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .shelf-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .before-after {
+        grid-template-columns: repeat(3, minmax(220px, 1fr));
+        gap: var(--space-4);
+      }
+
+      .transform-card {
+        padding: var(--space-4);
+      }
+
+      .transform-stage {
+        margin-bottom: var(--space-3);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .tension-layout,
+      .software-layout,
+      .decision-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pdp-anatomy {
+        grid-template-columns: 1fr;
+      }
+
+      .software-dashboard {
+        justify-self: center;
+      }
+
+    }
+
+    @media (max-width: 640px) {
+      .hero-actions {
+        gap: var(--space-3);
+        margin-top: var(--space-5);
+        grid-template-columns: 1fr;
+      }
+
+      .software-dashboard {
+        width: min(100%, 420px);
+      }
+
+      .software-dashboard img {
+        max-height: 300px;
+      }
+
+      .hero-actions a {
+        width: 100%;
+      }
+
+      .shelf-product-system {
+        min-height: 390px;
+      }
+
+      .shelf-product {
+        width: min(320px, 80%);
+      }
+
+      .shelf-layer {
+        min-width: 118px;
+        padding-inline: 10px;
+      }
+
+      .layer-benefits { left: 0; top: 18%; }
+      .layer-ingredients { right: 0; top: 25%; }
+      .layer-keywords { left: 0; bottom: 22%; }
+      .layer-stock { right: 0; bottom: 16%; }
+
+      .monitor-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .before-after {
+        grid-template-columns: 1fr;
+      }
+
+      .transform-stage {
+        aspect-ratio: 1.18 / 1;
+      }
+
+      .shelf-stat + .shelf-stat {
+        border-left: 0;
+        border-top: 1px solid var(--component-border-light);
+      }
+
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+      }
+
+      .shelf-product-orbit,
+      .shelf-hero.is-visible .shelf-product,
+      .shelf-service-grid.is-visible .comparison-card,
+      .before-after.is-visible .transform-card,
+      .monitor-grid.is-visible .monitor-card,
+      .shelf-stats.is-visible .shelf-stat,
+      .before-after.is-visible .mini-before,
+      .before-after.is-visible .mini-after {
+        animation: none;
+      }
+
+      [data-shelf-reveal],
+      .shelf-product,
+      .shelf-layer {
+        opacity: 1;
+        filter: none;
+        transition: none;
+      }
+
+      [data-shelf-reveal],
+      .shelf-product,
+      .shelf-layer:not(.layer-price) {
+        transform: none;
+      }
+
+      .layer-price {
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+</head>
+<body class="page-dark service-digital-shelf">
+  <div data-uhura-nav></div>
+
+  <main>
+    <div class="shelf-dark">
+      <section class="hero-base shelf-hero" data-shelf-reveal>
+        <div class="hero-base__shell">
+          <div class="hero-base__grid">
+            <div class="hero-base__copy">
+              <div class="hero-base__story">
+                <p class="eyebrow">Digital Shelf</p>
+                <h1 class="hero-base__title">Haz que tus productos destaquen, conviertan y compitan mejor en el <span class="italic">anaquel digital.</span></h1>
+                <p class="hero-base__body">Optimizamos cómo tus productos se ven, se explican y se encuentran; y monitoreamos cómo compiten en retailers, marketplaces y ecommerce.</p>
+                <div class="hero-actions">
+                  <a class="button-primary" href="mailto:catalina@uhuragroup.com?subject=Quiero%20optimizar%20mis%20productos">Optimiza tus productos</a>
+                  <a class="button-secondary" href="#software">Conoce el software</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-base__media">
+              <div class="shelf-product-system" aria-label="Producto desplegado en capas de anaquel digital">
+                <div class="shelf-product-orbit" aria-hidden="true"></div>
+                <figure class="shelf-product" aria-label="Mockup de ecommerce móvil para Digital Shelf">
+                  <img src="../assets/services/digital-shelf/mobile-shop.png" alt="Mockup móvil de ecommerce con carrito de compras digital">
+                </figure>
+                <span class="shelf-layer badge layer-price">Precio</span>
+                <span class="shelf-layer badge layer-benefits">Beneficios</span>
+                <span class="shelf-layer badge layer-ingredients">Ingredientes</span>
+                <span class="shelf-layer badge layer-keywords">Keywords</span>
+                <span class="shelf-layer badge layer-stock">Stock</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="shelf-logo-rail shelf-logo-rail--hero" aria-label="Plataformas y marketplaces">
+        <div class="container-wide">
+          <div class="logo-rail logo-rail--platforms" data-logo-rail>
+            <p class="logo-rail__label">Marketplaces y plataformas que conectamos</p>
+            <div class="logo-rail__viewport">
+              <div class="logo-rail__track">
+                <div class="logo-rail__group">
+                  <article class="logo-rail__platform">
+                    <span class="logo-rail__mark"><img src="../assets/services/digital-shelf/logo-mercado-libre.png" alt=""></span>
+                    <span class="logo-rail__copy"><strong>Mercado Libre</strong><span>Marketplace</span></span>
+                  </article>
+                  <article class="logo-rail__platform">
+                    <span class="logo-rail__mark logo-rail__mark--wide"><img src="../assets/services/digital-shelf/logo-amazon.webp" alt=""></span>
+                    <span class="logo-rail__copy"><strong>Amazon</strong><span>Marketplace</span></span>
+                  </article>
+                  <article class="logo-rail__platform">
+                    <span class="logo-rail__mark"><img src="../assets/services/digital-shelf/logo-shopify.webp" alt=""></span>
+                    <span class="logo-rail__copy"><strong>Shopify</strong><span>Ecommerce</span></span>
+                  </article>
+                  <article class="logo-rail__platform">
+                    <span class="logo-rail__mark logo-rail__mark--wide"><img src="../assets/logos/logo vtex.webp" alt=""></span>
+                    <span class="logo-rail__copy"><strong>VTEX</strong><span>Commerce</span></span>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-roomy">
+        <div class="container-wide">
+          <div class="section-header center">
+            <p class="eyebrow">Compra física vs. digital</p>
+            <h2 class="section-title">En el anaquel físico, el producto está completo. <span class="italic">En el digital, muchas veces llega incompleto.</span></h2>
+            <p class="body-large">Diseñamos y optimizamos los activos visuales y el contenido de cada PDP para que el comprador pueda entender el producto con la misma claridad con la que lo exploraría en una tienda física.</p>
+          </div>
+          <div class="card-rail card-rail--4 shelf-service-grid" data-shelf-reveal>
+            <div class="card-rail__track" role="list" tabindex="0" aria-label="Comparación entre anaquel físico y digital">
+              <article class="card-rail__item comparison-card uhura-card uhura-card--content uhura-card--glass comparison-card--media comparison-card--physical" role="listitem">
+                <figure class="comparison-card__media">
+                  <img src="../assets/services/digital-shelf/woman-physical-shelf.jpg" alt="Compradora revisando un producto en el anaquel físico">
+                </figure>
+                <div class="comparison-card__body">
+                  <span class="comparison-card__kicker uhura-card__meta">Punto de partida</span>
+                  <h3 class="uhura-card__title">Anaquel físico</h3>
+                  <ul>
+                    <li>Frente y respaldo</li>
+                    <li>Ingredientes y contenido</li>
+                    <li>Empaque, tamaño y uso</li>
+                  </ul>
+                </div>
+              </article>
+              <article class="card-rail__item comparison-card uhura-card uhura-card--content uhura-card--glass comparison-card--media comparison-card--digital" role="listitem">
+                <figure class="comparison-card__media">
+                  <img src="../assets/services/digital-shelf/activia-mobile-pdp.webp" alt="Mockup móvil de ecommerce con producto Activia">
+                </figure>
+                <div class="comparison-card__body">
+                  <span class="comparison-card__kicker uhura-card__meta">Punto digital</span>
+                  <h3 class="uhura-card__title">Anaquel digital</h3>
+                  <ul>
+                    <li>Galería e infografías</li>
+                    <li>Descripción y atributos</li>
+                    <li>Beneficios, FAQs y reseñas</li>
+                  </ul>
+                </div>
+              </article>
+              <article class="card-rail__item comparison-card uhura-card uhura-card--content uhura-card--glass comparison-card--service comparison-card--output" role="listitem">
+                <span class="comparison-card__kicker uhura-card__meta">Desde el anaquel digital</span>
+                <h3 class="uhura-card__title">Contenido visual</h3>
+                <ul>
+                  <li>Beneficios principales</li>
+                  <li>Ingredientes o información nutricional</li>
+                  <li>Modo de uso y ocasiones de consumo</li>
+                  <li>Comparativos, recetas o inspiración</li>
+                </ul>
+              </article>
+              <article class="card-rail__item comparison-card uhura-card uhura-card--content uhura-card--glass comparison-card--service comparison-card--output" role="listitem">
+                <span class="comparison-card__kicker uhura-card__meta">Desde el anaquel digital</span>
+                <h3 class="uhura-card__title">Contenido SEO</h3>
+                <ul>
+                  <li>Nombre, título y descripción</li>
+                  <li>Atributos y palabras clave</li>
+                  <li>Metatítulo y metadescripción</li>
+                  <li>Texto alternativo, categorías y FAQs</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-roomy">
+        <div class="container-wide">
+          <div class="section-header center">
+            <p class="eyebrow">Antes y después</p>
+            <h2 class="section-title">De mostrar un producto a construir una razón para <span class="italic">elegirlo.</span></h2>
+            <p class="body-large">Tus productos deben poder comunicar en qué circunstancias se consume mejor el producto. Nosotros lo convertimos en un sistema visual que responde preguntas, comunica beneficios y aumenta su capacidad de competir.</p>
+          </div>
+          <div class="before-after" data-shelf-reveal>
+            <article class="transform-card uhura-card uhura-card--evidence uhura-card--glass">
+              <div class="transform-stage">
+                <figure class="mini-shot mini-before">
+                  <span class="badge">Antes</span>
+                  <img src="../assets/services/digital-shelf/higietex-before.jpg" alt="Render sin optimizar de Algodón puro Higietex">
+                </figure>
+                <figure class="mini-shot mini-after">
+                  <span class="badge">Optimizado</span>
+                  <img src="../assets/services/digital-shelf/higietex-after.jpg" alt="Imagen optimizada para ecommerce de Algodón puro Higietex">
+                </figure>
+                <span class="compare-divider" aria-hidden="true"></span>
+                <input class="compare-range" type="range" min="0" max="100" value="78" aria-label="Comparar antes y optimizado de Higietex">
+              </div>
+              <h3 class="uhura-card__title">De render a optimizada</h3>
+              <p class="uhura-card__body">Jerarquizamos qué debe entenderse primero y lo convertimos en activos claros para la decisión.</p>
+            </article>
+            <article class="transform-card uhura-card uhura-card--evidence uhura-card--glass">
+              <div class="transform-stage">
+                <figure class="mini-shot mini-before">
+                  <span class="badge">Producto</span>
+                  <img src="../assets/services/digital-shelf/silk-almond-product.webp" alt="Producto Silk almendra vainilla optimizado para digital shelf">
+                </figure>
+                <figure class="mini-shot mini-after mini-shot--cover">
+                  <span class="badge">Ocasión</span>
+                  <img src="../assets/services/digital-shelf/silk-almond-moment.webp" alt="Mujer sirviendo leche Silk como ejemplo de momento de consumo">
+                </figure>
+                <span class="compare-divider" aria-hidden="true"></span>
+                <input class="compare-range" type="range" min="0" max="100" value="52" aria-label="Comparar producto Silk y momento de consumo">
+              </div>
+              <h3 class="uhura-card__title">De producto a ocasión</h3>
+              <p class="uhura-card__body">Construimos contexto de consumo para que el comprador imagine cuándo, cómo y por qué usarlo.</p>
+            </article>
+            <article class="transform-card uhura-card uhura-card--evidence uhura-card--glass">
+              <div class="transform-stage">
+                <figure class="mini-shot mini-before">
+                  <span class="badge">Antes</span>
+                  <img src="../assets/services/digital-shelf/ocean-spray-before.webp" alt="Render base de Ocean Spray Cran Cherry">
+                </figure>
+                <figure class="mini-shot mini-after mini-shot--cover">
+                  <span class="badge">Optimizado</span>
+                  <img src="../assets/services/digital-shelf/ocean-spray-after.webp" alt="Imagen optimizada de Ocean Spray en contexto de consumo">
+                </figure>
+                <span class="compare-divider" aria-hidden="true"></span>
+                <input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Comparar render y optimización de Ocean Spray">
+              </div>
+              <h3 class="uhura-card__title">De información a decisión</h3>
+              <p class="uhura-card__body">Ordenamos especificaciones, beneficios y diferenciadores para reducir fricción en la PDP.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-roomy">
+        <div class="container-wide">
+          <div class="section-header split">
+            <div>
+              <p class="eyebrow">Anatomía PDP</p>
+              <h2 class="section-title">Una buena PDP responde antes de que el comprador tenga que <span class="italic">preguntar.</span></h2>
+            </div>
+            <p class="body-large">Optimizamos identificación, información, confianza, conversión y encontrabilidad para que cada SKU tenga más herramientas para competir.</p>
+          </div>
+          <div class="pdp-anatomy" data-shelf-reveal aria-label="Anatomía de una página de producto">
+            <div class="pdp-gallery">
+              <div class="pdp-hero-image"><img src="../assets/services/digital-shelf/mccain-moment.jpg" alt="Momento de consumo McCain Con Onda para PDP"></div>
+              <div class="pdp-thumb-row">
+                <span class="pdp-thumb"><img src="../assets/services/digital-shelf/mccain-product.jpg" alt="Producto McCain para galería PDP"></span>
+                <span class="pdp-thumb"><img src="../assets/services/digital-shelf/mccain-moment.jpg" alt="Momento de consumo McCain"></span>
+                <span class="pdp-thumb"><img src="../assets/services/digital-shelf/mccain-nutrition.jpg" alt="Información nutricional McCain"></span>
+                <span class="pdp-thumb"><img src="../assets/services/digital-shelf/mccain-benefits.jpg" alt="Beneficios McCain"></span>
+              </div>
+            </div>
+            <div class="pdp-info">
+              <h3 class="pdp-title uhura-card__title">McCain Con Onda 1kg</h3>
+              <div class="pdp-meta"><span>Congelados</span><span>Papas</span><span>1kg</span></div>
+              <p class="pdp-price metric-value">$18.990</p>
+              <div class="pdp-rating"><span class="pdp-stars">★★★★★</span><span>4.8 · 236 reseñas</span></div>
+              <span class="pdp-stock badge">Disponible hoy</span>
+              <p class="pdp-copy copy">Papas a la francesa congeladas con corte ondulado. Ideales para dippear, preparar en freidora de aire o acompañar una tarde de antojo.</p>
+              <ul class="pdp-bullets">
+                <li>Preparación en horno, freidora o freidora de aire.</li>
+                <li>0 g grasas trans por porción.</li>
+                <li>Formato familiar para compartir.</li>
+              </ul>
+              <span class="pdp-cta button-primary">Agregar al carrito</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="shelf-light-zone page-light">
+      <section class="section-roomy software-section" id="software">
+        <div class="container-wide software-layout">
+          <div>
+            <p class="eyebrow">Software Digital Shelf</p>
+            <h2 class="section-title">El Software de Digital Shelf te abre paso entre la <span class="italic">competencia.</span></h2>
+            <p class="copy">Monitorea en tiempo real tus SKU y los de tus competidores para descubrir insights de inventario, precio, promoción, visibilidad, reviews y Buy Box.</p>
+            <div class="hero-actions">
+              <a class="button-primary" href="https://calendar.app.google/cd5AktX5DB24BHqa9">Agenda una demo</a>
+            </div>
+          </div>
+          <figure class="software-dashboard" data-shelf-reveal aria-label="Interfaz conceptual de software Digital Shelf">
+            <img src="../assets/services/digital-shelf/software-dashboard.webp" alt="Dashboard de software Digital Shelf con indicadores de ventas, campañas y rendimiento">
+          </figure>
+        </div>
+      </section>
+
+      <section class="section-roomy stats-section">
+        <div class="container-wide">
+          <div class="shelf-stats" data-shelf-reveal>
+            <article class="shelf-stat">
+              <strong class="metric-value" data-count-to="50" data-count-suffix="%">0%</strong>
+              <p class="metric-caption">de todas las compras por internet se realizan a través de marketplaces. Es necesario competir en el Digital Shelf.</p>
+            </article>
+            <article class="shelf-stat">
+              <strong class="metric-value" data-count-to="100" data-count-prefix="+">+0</strong>
+              <p class="metric-caption">canales de venta monitoreados en tiempo real e información de tus competidores para vender más.</p>
+            </article>
+            <article class="shelf-stat">
+              <strong class="metric-value" data-count-to="120" data-count-suffix="%">0%</strong>
+              <p class="metric-caption">puede ser el aumento del retorno de la inversión de tus estrategias en retailers.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="shelf-logo-rail shelf-logo-rail--brands" aria-label="Marcas con experiencia Digital Shelf">
+        <div class="container-wide">
+          <div class="logo-rail logo-rail--brands" data-logo-rail>
+            <p class="logo-rail__label">Marcas con las que hemos trabajado experiencia de anaquel digital</p>
+            <div class="logo-rail__viewport">
+              <div class="logo-rail__track">
+                <div class="logo-rail__group">
+                  <img class="logo-rail__logo" src="../assets/services/digital-shelf/logo-bonafont-client.png" alt="Bonafont">
+                  <img class="logo-rail__logo" src="../assets/services/digital-shelf/logo-danone-client.png" alt="Danone">
+                  <img class="logo-rail__logo logo-rail__logo--compact" src="../assets/services/digital-shelf/logo-mccain-client.png" alt="McCain">
+                  <img class="logo-rail__logo" src="../assets/services/digital-shelf/logo-ocean-client.png" alt="Ocean Spray">
+                  <img class="logo-rail__logo logo-rail__logo--medium" src="../assets/services/digital-shelf/logo-unula-client.png" alt="Unula">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-roomy monitor-section">
+        <div class="container-wide">
+          <div class="section-header center">
+            <p class="eyebrow">Qué monitoreamos</p>
+            <h2 class="section-title">Insights para ganar el primer lugar en <span class="italic">e-retailers.</span></h2>
+          </div>
+          <div class="monitor-grid" data-shelf-reveal>
+            <article class="monitor-card uhura-card uhura-card--content uhura-card--light"><h3 class="uhura-card__title">Inventario</h3><ul class="monitor-list"><li>Disponibilidad de tus SKU</li><li>Competidores en principales e-retailers</li><li>Alertas para actuar a tiempo</li></ul></article>
+            <article class="monitor-card uhura-card uhura-card--content uhura-card--light"><h3 class="uhura-card__title">Precio y promoción</h3><ul class="monitor-list"><li>Precios actuales</li><li>Promociones activas</li><li>Ventaja competitiva por canal</li></ul></article>
+            <article class="monitor-card uhura-card uhura-card--content uhura-card--light"><h3 class="uhura-card__title">Visibilidad</h3><ul class="monitor-list"><li>Keywords clave</li><li>Categorías estratégicas</li><li>Ranking en buscadores internos</li></ul></article>
+            <article class="monitor-card uhura-card uhura-card--content uhura-card--light"><h3 class="uhura-card__title">Ratings y reviews</h3><ul class="monitor-list"><li>Puntaje del producto</li><li>Comentarios frente a competencia</li><li>Oportunidades de reputación</li></ul></article>
+            <article class="monitor-card uhura-card uhura-card--content uhura-card--light"><h3 class="uhura-card__title">Buy Box</h3><ul class="monitor-list"><li>Quién lidera el carrito</li><li>Marketplace y vendedores</li><li>Riesgos de conversión</li></ul></article>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <section class="section-roomy">
+      <div class="container-wide">
+        <div class="panel-dark panel-roomy final-cta" data-shelf-reveal>
+          <div>
+            <p class="eyebrow">El siguiente paso</p>
+            <h2 class="section-title">Tu producto ya está compitiendo. <span class="italic">La pregunta es si tiene todo para ganar.</span></h2>
+            <p class="copy">Te ayudamos a mejorar cómo se ve, cómo se explica, cómo se encuentra y cómo compite en el anaquel digital.</p>
+            <div class="hero-actions">
+              <a class="button-primary" href="mailto:catalina@uhuragroup.com?subject=Agenda%20Digital%20Shelf">Agenda una conversación</a>
+              <a class="button-secondary" href="mailto:catalina@uhuragroup.com?subject=Auditor%C3%ADa%20de%20PDP">Solicita una auditoría de PDP</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="uhura-footer-root" data-uhura-footer></div>
+
+  <script src="../src/components/uhura-components.js" data-root=".."></script>
+  <script>
+    (() => {
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const revealItems = Array.from(document.querySelectorAll("[data-shelf-reveal]"));
+
+      const revealAll = () => {
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+      };
+
+      if (reducedMotion.matches || !("IntersectionObserver" in window)) {
+        revealAll();
+      } else {
+        const revealObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          });
+        }, {
+          rootMargin: "0px 0px -16% 0px",
+          threshold: .16
+        });
+
+        revealItems.forEach((item) => revealObserver.observe(item));
+      }
+
+      document.querySelectorAll(".transform-stage").forEach((stage) => {
+        const range = stage.querySelector(".compare-range");
+        if (!range) return;
+
+        const updateCompare = () => {
+          stage.style.setProperty("--compare-position", `${range.value}%`);
+        };
+
+        range.addEventListener("input", updateCompare);
+        updateCompare();
+      });
+
+      const counters = Array.from(document.querySelectorAll("[data-count-to]"));
+
+      const formatCounter = (counter, value) => {
+        const prefix = counter.dataset.countPrefix || "";
+        const suffix = counter.dataset.countSuffix || "";
+        counter.textContent = `${prefix}${Math.round(value).toLocaleString("es-CO")}${suffix}`;
+      };
+
+      const completeCounter = (counter) => {
+        formatCounter(counter, Number(counter.dataset.countTo || 0));
+      };
+
+      const animateCounter = (counter) => {
+        if (counter.dataset.counted === "true") return;
+        counter.dataset.counted = "true";
+
+        const target = Number(counter.dataset.countTo || 0);
+        const duration = 1100;
+        const start = performance.now();
+
+        const tick = (now) => {
+          const progress = Math.min(1, (now - start) / duration);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          formatCounter(counter, target * eased);
+
+          if (progress < 1) {
+            window.requestAnimationFrame(tick);
+          } else {
+            completeCounter(counter);
+          }
+        };
+
+        window.requestAnimationFrame(tick);
+      };
+
+      const runCounters = (root) => {
+        root.classList.add("is-counted");
+        root.querySelectorAll("[data-count-to]").forEach((counter) => {
+          if (reducedMotion.matches) {
+            completeCounter(counter);
+          } else {
+            animateCounter(counter);
+          }
+        });
+      };
+
+      const statsBlocks = Array.from(document.querySelectorAll(".shelf-stats"));
+
+      if (reducedMotion.matches || !("IntersectionObserver" in window)) {
+        statsBlocks.forEach(runCounters);
+      } else {
+        const counterObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            runCounters(entry.target);
+            counterObserver.unobserve(entry.target);
+          });
+        }, {
+          rootMargin: "0px 0px -18% 0px",
+          threshold: .22
+        });
+
+        statsBlocks.forEach((block) => counterObserver.observe(block));
+      }
+
+      reducedMotion.addEventListener("change", () => {
+        if (reducedMotion.matches) {
+          revealAll();
+          counters.forEach(completeCounter);
+        }
+      });
+    })();
+  </script>
+  <script src="../src/extracted/global-nav-sync.js"></script>
+  <script src="../src/extracted/footer-sync.js"></script>
+</body>
+</html>

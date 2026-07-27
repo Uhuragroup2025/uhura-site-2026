@@ -115,6 +115,8 @@
   --component-icon-size: 22px;
   --component-icon-tile-radius: 14px;
   --component-interactive-shift: 4px;
+  --component-card-rail-gap: var(--space-5);
+  --component-card-rail-mobile-width: min(84vw, 320px);
   --type-metric: clamp(34px, 4vw, 58px);
   --leading-metric: 1;
   --motion-reveal-distance: 22px;
@@ -1886,6 +1888,58 @@ h4,
 .uhura-card-grid--evidence {
   --uhura-card-grid-min: 320px;
 }
+.card-rail {
+  min-width: 0;
+}
+.card-rail__track {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(var(--card-rail-columns, 3), minmax(0, 1fr));
+  gap: var(--component-card-rail-gap);
+  align-items: stretch;
+  list-style: none;
+}
+.card-rail--2 {
+  --card-rail-columns: 2;
+}
+.card-rail--3 {
+  --card-rail-columns: 3;
+}
+.card-rail--4 {
+  --card-rail-columns: 4;
+}
+.card-rail__item {
+  min-width: 0;
+  scroll-snap-align: start;
+}
+.card-rail__track:focus-visible {
+  outline: 2px solid var(--context-accent-primary);
+  outline-offset: var(--space-2);
+}
+@media (max-width: 980px) {
+  .card-rail--3,
+  .card-rail--4 {
+    --card-rail-columns: 2;
+  }
+}
+@media (max-width: 760px) {
+  .card-rail__track {
+    width: auto;
+    margin-inline: calc(var(--layout-gutter) * -1);
+    padding: var(--space-1) var(--layout-gutter) var(--space-4);
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: var(--component-card-rail-mobile-width);
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-padding-inline: var(--layout-gutter);
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: var(--context-accent-primary) transparent;
+    -webkit-overflow-scrolling: touch;
+  }
+}
 .panel-light,
 .panel-dark {
   padding: var(--component-panel-padding);
@@ -2830,6 +2884,9 @@ h4,
 
 @media (prefers-reduced-motion: reduce) {
   *, *:before, *:after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .card-rail__track {
+    scroll-behavior: auto;
+  }
   .uhura-card--interactive:is(:hover, :focus-visible),
   .uhura-card--interactive:is(:hover, :focus-visible) .uhura-icon-tile,
   .uhura-card--interactive:is(:hover, :focus-visible) .uhura-card__arrow::after {

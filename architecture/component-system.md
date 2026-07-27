@@ -592,6 +592,52 @@ Responsabilidad:
 - Estado: implementado globalmente y visible en `workbench/design-system.html`; sin consumidores vivos migrados todavia.
 - Primer consumidor piloto aprobado: Kaiowa. Cristar validara reutilizacion despues de la migracion atomica.
 
+#### Card Rail
+
+Card Rail es el patron responsive para presentar una coleccion finita de Card Base. Gobierna unicamente distribucion, gap, overflow y navegacion nativa de la coleccion; no define superficie, tipografia, contenido, hover ni atmosfera.
+
+API:
+
+```html
+<div class="card-rail card-rail--4">
+  <div class="card-rail__track" role="list" tabindex="0" aria-label="Capacidades">
+    <article class="card-rail__item uhura-card uhura-card--content uhura-card--light" role="listitem">
+      ...
+    </article>
+  </div>
+</div>
+```
+
+Clases:
+
+- `.card-rail`: wrapper y limite de ownership.
+- `.card-rail__track`: coleccion responsive y superficie de scroll accesible.
+- `.card-rail__item`: item de coleccion y punto de snap; se compone con Card Base.
+- `.card-rail--2`, `.card-rail--3`, `.card-rail--4`: numero de columnas en desktop amplio.
+
+Tokens:
+
+- `--component-card-rail-gap`: separacion compartida entre items.
+- `--component-card-rail-mobile-width`: ancho mobile con una porcion visible del item siguiente.
+
+Responsive y accesibilidad:
+
+- Desktop conserva la cantidad declarada de columnas.
+- Hasta `980px`, las variantes de tres y cuatro columnas pasan a dos.
+- Hasta `760px`, la coleccion se convierte en rail horizontal nativo con `scroll-snap`, gesto tactil y una porcion visible de la siguiente card.
+- El track usa `role="list"`, cada card usa `role="listitem"` y `tabindex="0"` permite desplazamiento por teclado. La coleccion requiere un `aria-label` contextual.
+- `prefers-reduced-motion` conserva lectura y scroll nativo sin animacion forzada.
+- Card Rail v1 no usa JavaScript, flechas, indicadores ni duplicacion de items.
+
+Limites:
+
+- No sustituye `.uhura-card-grid` cuando la lectura debe permanecer completamente lineal en mobile.
+- No sustituye Success Cases, que conserva datos, paginacion y runtime propios.
+- No sustituye Logo Rail, que presenta marcas y admite marquee.
+- La interactividad pertenece a cada card mediante `.uhura-card--interactive`; Card Rail no agrega hover a items estaticos.
+- Estado: implementado en sistema y System Lab.
+- Primer consumidor piloto: la coleccion "Compra fisica vs. digital" de Digital Shelf, pagina no viva.
+
 ### Sidebar
 
 Usado en casos de estudio y futuras paginas editoriales.
