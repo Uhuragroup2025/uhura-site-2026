@@ -23,6 +23,80 @@
   margin-bottom: var(--space-6, 24px);
 }
 
+[data-home-hero-refined="true"] .ambient-field__content {
+  align-items: center !important;
+}
+
+[data-home-hero-metrics="true"] {
+  overflow: visible !important;
+}
+
+[data-home-hero-metric="true"] {
+  height: auto !important;
+}
+
+[data-home-hero-metric-content="true"] {
+  overflow: visible !important;
+}
+
+[data-home-hero-metric-label="true"] {
+  white-space: normal !important;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+[data-home-diagnosis-refined="true"] [data-home-diagnosis-label="true"] {
+  color: rgba(80, 31, 146, .72) !important;
+  white-space: normal !important;
+}
+
+[data-home-diagnosis-score="true"] {
+  border-color: rgba(80, 31, 146, .28) !important;
+  background: radial-gradient(circle, rgba(80, 31, 146, .10), rgba(255, 255, 255, .68) 68%) !important;
+  box-shadow: 0 0 34px rgba(80, 31, 146, .10) !important;
+}
+
+[data-home-diagnosis-score-text="true"] {
+  color: var(--uhura-ink) !important;
+}
+
+@media (min-width: 761px) and (max-width: 1100px) {
+  [data-home-hero-metrics="true"] {
+    grid-template-columns: repeat(2, minmax(220px, 1fr)) !important;
+  }
+
+  [data-home-hero-metric="true"] {
+    min-height: 0 !important;
+    padding: var(--space-5) !important;
+    grid-template-columns: 38px minmax(0, 1fr) !important;
+  }
+
+  [data-home-bottleneck-grid="true"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  [data-home-service-cards-grid="true"] {
+    display: grid !important;
+    grid-template-columns: none !important;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(300px, 34vw);
+    gap: var(--component-card-rail-gap) !important;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scroll-padding-inline: var(--layout-gutter);
+    padding-bottom: var(--space-4);
+    scrollbar-width: thin;
+  }
+
+  [data-home-service-card="true"] {
+    scroll-snap-align: start;
+    min-width: 0;
+    height: auto !important;
+  }
+}
+
 [data-presence-pills="true"] {
   display: flex !important;
   justify-content: center;

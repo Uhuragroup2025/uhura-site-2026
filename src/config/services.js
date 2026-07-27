@@ -56,7 +56,7 @@
       return caseStudyTail.includes("/") ? "../.." : "..";
     }
 
-    if (path.includes("/workbench/") || path.includes("/casos/")) return "..";
+    if (path.includes("/contacto/") || path.includes("/workbench/") || path.includes("/casos/")) return "..";
     return ".";
   };
 

@@ -119,7 +119,7 @@
           <div class="uhura-nav-links" id="uhura-global-nav-links">
             ${renderNavLinks()}
           </div>
-          <a class="uhura-nav-cta" href="mailto:catalina@uhuragroup.com">Hablemos <span aria-hidden="true">→</span></a>
+          <a class="uhura-nav-cta" href="${withRoot("/contacto/")}">Hablemos <span aria-hidden="true">→</span></a>
           <button class="uhura-menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="uhura-global-nav-links"><span aria-hidden="true"></span></button>
         </nav>
       </div>`;
@@ -132,6 +132,7 @@
       logo.setAttribute("alt", "Uhura Group");
     });
     document.querySelectorAll(".uhura-nav-cta").forEach((cta) => {
+      cta.setAttribute("href", withRoot("/contacto/"));
       if (!cta.querySelector("span")) cta.innerHTML = "Hablemos <span aria-hidden=\"true\">→</span>";
     });
     setActiveState();

@@ -43,6 +43,12 @@
     return true;
   };
 
+  const resolveContactHref = () => {
+    const catalog = window.__uhuraServices;
+    if (catalog?.resolvePath) return catalog.resolvePath("/contacto/");
+    return window.location.protocol === "file:" ? "contacto/index.html" : "/contacto/";
+  };
+
   const labelCarouselControls = () => {
     document.querySelectorAll("main button").forEach((button) => {
       const label = button.textContent.trim();
@@ -97,6 +103,140 @@
     ["Danone", "assets/logos/logo-danone.webp"],
     ["Cristar", "assets/logos/logo-cristar.webp"]
   ];
+
+  const getText = (element) => (element?.textContent || "").replace(/\s+/g, " ").trim();
+
+  const removeHeroSupportElements = () => {
+    const hero = document.querySelector("section#hero");
+    if (!hero) return false;
+
+    const removed = [];
+    Array.from(hero.querySelectorAll("p")).forEach((paragraph) => {
+      if (getText(paragraph) === "El crecimiento digital no es suerte. Es performance, estrategia y acción.") {
+        removed.push(paragraph);
+      }
+    });
+    Array.from(hero.querySelectorAll("div")).forEach((element) => {
+      if (getText(element) === "Scroll") {
+        removed.push(element);
+      }
+    });
+    removed.forEach((element) => element.remove());
+    hero.dataset.homeHeroRefined = "true";
+    return true;
+  };
+
+  const markHeroMetrics = () => {
+    const hero = document.querySelector("section#hero");
+    if (!hero) return false;
+    const metricGrid = Array.from(hero.querySelectorAll("div")).find((element) => {
+      const text = getText(element);
+      return text.includes("Retorno promedio") && text.includes("Proyectos entregados") && element.children.length === 4;
+    });
+    if (!metricGrid) return false;
+
+    metricGrid.dataset.homeHeroMetrics = "true";
+    Array.from(metricGrid.children).forEach((item) => {
+      item.dataset.homeHeroMetric = "true";
+      const content = Array.from(item.children).find((child) => child.children.length >= 2);
+      if (content) content.dataset.homeHeroMetricContent = "true";
+      const spans = Array.from(item.querySelectorAll("span"));
+      const label = spans.at(-1);
+      if (label) {
+        label.setAttribute("data-home-hero-metric-label", "true");
+        label.classList.add("metric-caption");
+      }
+    });
+    return true;
+  };
+
+  const markBottleneckCards = () => {
+    const section = Array.from(document.querySelectorAll("main section")).find((element) =>
+      getText(element).includes("Antes de crecer, encuentra el cuello de botella.")
+    );
+    if (!section) return false;
+    section.dataset.homeBottleneckSection = "true";
+    const grid = Array.from(section.querySelectorAll("div")).find((element) => {
+      const text = getText(element);
+      return text.includes("Pauta") && text.includes("Sitio") && text.includes("Datos") && text.includes("Operación") && element.children.length === 4;
+    });
+    if (!grid) return false;
+    grid.dataset.homeBottleneckGrid = "true";
+    Array.from(grid.children).forEach((card) => {
+      card.dataset.homeBottleneckCard = "true";
+    });
+    return true;
+  };
+
+  const markServiceCards = () => {
+    const section = document.getElementById("servicios");
+    if (!section) return false;
+    const grid = Array.from(section.querySelectorAll("div")).find((element) => {
+      const text = getText(element);
+      return (
+        text.includes("No diseñamos para impresionar") &&
+        text.includes("Construimos plataformas digitales") &&
+        text.includes("Gestionamos presupuestos") &&
+        element.children.length >= 3
+      );
+    });
+    if (!grid) return false;
+    grid.dataset.homeServiceCardsGrid = "true";
+    Array.from(grid.children).forEach((card) => {
+      const text = getText(card);
+      if (
+        text.includes("Brand & Content") ||
+        text.includes("Websites & Ecommerce") ||
+        text.includes("SEO & Growth")
+      ) {
+        card.dataset.homeServiceCard = "true";
+      }
+    });
+    return true;
+  };
+
+  const refineDiagnosisLabels = () => {
+    const benchmark = document.getElementById("benchmark");
+    if (!benchmark) return false;
+    const labels = new Map([
+      ["Pais", "¿En qué país está tu empresa?"],
+      ["País", "¿En qué país está tu empresa?"],
+      ["Industria", "¿Cuál es tu industria?"],
+      ["Facturacion", "¿Cuál es tu facturación mensual?"],
+      ["Facturación", "¿Cuál es tu facturación mensual?"],
+      ["Madurez", "¿En qué etapa está tu empresa?"]
+    ]);
+
+    let changed = false;
+    Array.from(benchmark.querySelectorAll("label > span")).forEach((span) => {
+      const replacement = labels.get(getText(span));
+      if (!replacement) return;
+      span.textContent = replacement;
+      span.dataset.homeDiagnosisLabel = "true";
+      span.classList.add("metric-label");
+      changed = true;
+    });
+    benchmark.dataset.homeDiagnosisRefined = "true";
+    return changed;
+  };
+
+  const markDiagnosisResult = () => {
+    const benchmark = document.getElementById("benchmark");
+    if (!benchmark) return false;
+    const result = Array.from(benchmark.querySelectorAll("div")).find((element) => {
+      const text = getText(element);
+      return text.includes("ROAS") && text.includes("Saludable") && text.includes("Cómo mejorar");
+    });
+    if (!result) return false;
+    result.dataset.homeDiagnosisResult = "true";
+    const score = Array.from(result.querySelectorAll("div")).find((element) => getText(element) === "3.5ROAS");
+    if (score) score.dataset.homeDiagnosisScore = "true";
+    Array.from(result.querySelectorAll("span")).forEach((span) => {
+      const text = getText(span);
+      if (text === "3.5" || text === "ROAS") span.dataset.homeDiagnosisScoreText = "true";
+    });
+    return true;
+  };
 
   const upgradeClientsLogoRail = () => {
     const section = document.getElementById("clientes");
@@ -196,12 +336,15 @@
 
   const refresh = () => {
     const titleReady = promoteHeroTitle();
-    const meetingReady = activateButton(
-      "Agendar reunión",
-      "mailto:catalina@uhuragroup.com?subject=Agendar%20reuni%C3%B3n%20con%20Uhura"
-    );
+    const meetingReady = activateButton("Agendar reunión", resolveContactHref());
     const casesReady = activateButton("Ver casos de éxito", "#trabajo");
     labelCarouselControls();
+    const heroSupportReady = removeHeroSupportElements();
+    const heroMetricsReady = markHeroMetrics();
+    const bottleneckReady = markBottleneckCards();
+    const serviceCardsReady = markServiceCards();
+    const diagnosisLabelsReady = refineDiagnosisLabels();
+    const diagnosisResultReady = markDiagnosisResult();
     const capabilitiesHeadingReady = refineCapabilitiesHeading();
     const clientsHeadingReady = refineClientsHeading();
     const clientsLogoRailReady = upgradeClientsLogoRail();
@@ -210,6 +353,12 @@
       titleReady &&
       meetingReady &&
       casesReady &&
+      heroSupportReady &&
+      heroMetricsReady &&
+      bottleneckReady &&
+      serviceCardsReady &&
+      diagnosisLabelsReady &&
+      diagnosisResultReady &&
       capabilitiesHeadingReady &&
       clientsHeadingReady &&
       clientsLogoRailReady &&

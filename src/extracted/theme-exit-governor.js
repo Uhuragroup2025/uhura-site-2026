@@ -93,7 +93,7 @@
     const methodologyBox = rect(methodology);
     const benchmarkBox = rect(benchmark);
 
-    const handoffLine = vh * 0.30;
+    const handoffLine = vh * 0.24;
     const aiStillPresent = aiBox && aiBox.bottom > handoffLine && visibleRatio(aiLayer) > 0.06;
     const brandsStillPresent = brandsBox && brandsBox.bottom > vh * 0.12 && visibleRatio(brands) > 0.04;
     const methodologyDominant =

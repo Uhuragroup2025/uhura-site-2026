@@ -25,6 +25,7 @@ rm -rf "$output"
 mkdir -p \
   "$output/casos" \
   "$output/casos-de-exito/cristar" \
+  "$output/contacto" \
   "$output/servicios/websites-ecommerce" \
   "$output/servicios/brand-content" \
   "$output/servicios/seo-growth" \
@@ -36,6 +37,7 @@ cp "$project/index.html" "$output/index.html"
 cp "$project/nosotros.html" "$output/nosotros.html"
 cp "$project/casos/kaiowa.html" "$output/casos/kaiowa.html"
 cp "$project/casos-de-exito/cristar/index.html" "$output/casos-de-exito/cristar/index.html"
+cp "$project/contacto/index.html" "$output/contacto/index.html"
 cp "$project/servicios/websites-ecommerce/index.html" "$output/servicios/websites-ecommerce/index.html"
 cp "$project/servicios/brand-content/index.html" "$output/servicios/brand-content/index.html"
 cp "$project/servicios/seo-growth/index.html" "$output/servicios/seo-growth/index.html"
@@ -62,6 +64,7 @@ cmp -s "$project/index.html" "$output/index.html"
 test -f "$output/nosotros.html"
 test -f "$output/casos/kaiowa.html"
 test -f "$output/casos-de-exito/cristar/index.html"
+test -f "$output/contacto/index.html"
 test -f "$output/servicios/websites-ecommerce/index.html"
 test -f "$output/servicios/brand-content/index.html"
 test -f "$output/servicios/seo-growth/index.html"
