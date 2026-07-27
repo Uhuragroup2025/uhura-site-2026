@@ -50,6 +50,12 @@
       return serviceTail.includes("/") ? "../.." : "..";
     }
 
+    const caseStudiesIndex = path.lastIndexOf("/casos-de-exito/");
+    if (caseStudiesIndex >= 0) {
+      const caseStudyTail = path.slice(caseStudiesIndex + "/casos-de-exito/".length);
+      return caseStudyTail.includes("/") ? "../.." : "..";
+    }
+
     if (path.includes("/workbench/") || path.includes("/casos/")) return "..";
     return ".";
   };

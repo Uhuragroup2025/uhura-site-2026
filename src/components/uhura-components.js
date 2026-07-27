@@ -70,14 +70,14 @@ const successCases = [
     brand: "cristar",
     type: "B2C",
     logo: "logo-cristar.webp",
-    badge: "Performance & Adquisición",
-    href: `${rootPrefix}/casos/kaiowa.html`,
+    badge: "Ecommerce & UX",
+    href: `${rootPrefix}/casos-de-exito/cristar/`,
     metrics: [
-      ["7,13", "ROAS", "Partimos de 2,2 en 8 meses"],
-      ["2×", "ROI", "Dos veces más óptimo mes a mes"],
-      ["+167%", "GAP vs meta", "67% por encima del cumplimiento anual"]
+      ["Shopify", "Migración", "Una base ecommerce preparada para crecer"],
+      ["UX", "Experiencia", "Navegación y checkout más claros"],
+      ["SEO", "Catálogo", "Contenido y estructura de producto ordenados"]
     ],
-    stack: "SHOPIFY · PERFORMANCE · CRO"
+    stack: "SHOPIFY · UX · SEO"
   },
   {
     brand: "yamaha",

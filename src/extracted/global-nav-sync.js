@@ -34,6 +34,12 @@
           key: "kaiowa",
           status: "active",
         },
+        {
+          label: "Cristar",
+          path: "/casos-de-exito/cristar/",
+          key: "cristar",
+          status: "active",
+        },
       ],
     },
     {
@@ -137,6 +143,8 @@
     if (activeService) return new Set(["soluciones", activeService.key]);
     if (path.includes("/servicios/")) return new Set(["soluciones"]);
     if (path.includes("/casos/kaiowa")) return new Set(["casos", "kaiowa"]);
+    if (path.includes("/casos-de-exito/cristar")) return new Set(["casos", "cristar"]);
+    if (path.includes("/casos-de-exito/")) return new Set(["casos"]);
     if (path.includes("/casos/")) return new Set(["casos"]);
     if (path.includes("/nosotros")) return new Set(["nosotros"]);
     return new Set(["home"]);

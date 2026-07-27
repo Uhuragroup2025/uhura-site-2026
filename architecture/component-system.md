@@ -1316,8 +1316,17 @@ Reglas:
 - Usa menu/footer globales.
 - Migrado: hero ahora consume Hero Base v1.
 - Ya conecta cards, sidebar, filtros y metricas con clases globales.
+- Migrado: layout, bloques editoriales, grids y filtro consumen Case Study Base.
 - Se mantiene local: `case-logo-main` y tratamiento editorial especifico del titulo.
 - Pendiente: reducir CSS local cuando se confirme que el visual sigue aprobado.
+
+### Cristar
+
+- Pagina viva: `casos-de-exito/cristar/index.html`.
+- Consume Hero Base v1, Case Study Base, Card Base, Metric/KPI, Evidence Card, Sidebar, menu y footer globales.
+- Success Cases y el dropdown global enlazan `/casos-de-exito/cristar/`.
+- Se mantienen locales el logo, el tratamiento editorial del titulo y la proporcion de la evidencia historica.
+- Los resultados sin fuente, definicion o periodo confirmado no se publican.
 
 ## Case Study Base
 
