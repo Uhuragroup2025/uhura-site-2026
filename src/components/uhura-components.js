@@ -16,6 +16,28 @@ expertise.forEach((mount) => {
   mount.innerHTML = `<div class="expertise-strip"><div class="expertise-track">${items}</div></div>`;
 });
 
+const logoRails = document.querySelectorAll("[data-logo-rail]");
+logoRails.forEach((rail) => {
+  if (rail.dataset.logoRailInitialized === "true") return;
+
+  const track = rail.querySelector(".logo-rail__track");
+  const group = track?.querySelector(".logo-rail__group");
+  if (!track || !group) return;
+
+  track.querySelectorAll("[data-logo-rail-clone]").forEach((clone) => clone.remove());
+
+  const clone = group.cloneNode(true);
+  clone.dataset.logoRailClone = "true";
+  clone.setAttribute("aria-hidden", "true");
+  clone.querySelectorAll("[id]").forEach((element) => element.removeAttribute("id"));
+  clone.querySelectorAll("a, button, input, select, textarea, [tabindex]").forEach((element) => {
+    element.setAttribute("tabindex", "-1");
+  });
+
+  track.append(clone);
+  rail.dataset.logoRailInitialized = "true";
+});
+
 const successCases = [
   {
     brand: "cristar",
@@ -502,6 +524,102 @@ successMounts.forEach((mount) => {
   window.addEventListener("resize", () => requestFrame(true), { passive: true });
   reduceMotionQuery.addEventListener("change", () => requestFrame(true));
   requestFrame(true);
+})();
+
+(() => {
+  const groups = Array.from(document.querySelectorAll("[data-reveal-group]"))
+    .filter((root) => root.dataset.revealInitialized !== "true");
+  const singles = Array.from(document.querySelectorAll("[data-reveal]"))
+    .filter((item) => (
+      item.dataset.revealInitialized !== "true" &&
+      !item.closest("[data-reveal-group]")
+    ));
+
+  if (!groups.length && !singles.length) return;
+
+  const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const supportsObserver = "IntersectionObserver" in window;
+  const existing = window.__uhuraEditorialReveal;
+  const controller = existing || {
+    observer: null,
+    targets: new Set(),
+    listening: false
+  };
+
+  const reveal = (item) => {
+    item.classList.add("is-visible");
+    item.classList.remove("is-reveal-enhanced");
+    controller.targets.delete(item);
+    controller.observer?.unobserve(item);
+  };
+
+  if (!controller.observer && supportsObserver && !reduceMotionQuery.matches) {
+    controller.observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) reveal(entry.target);
+      });
+    }, {
+      rootMargin: "0px 0px -12% 0px",
+      threshold: .16
+    });
+  }
+
+  const targets = [];
+
+  groups.forEach((root) => {
+    const items = Array.from(root.querySelectorAll("[data-reveal-item]"));
+    root.dataset.revealInitialized = "true";
+
+    items.forEach((item, index) => {
+      item.dataset.revealInitialized = "true";
+      item.style.setProperty("--reveal-index", String(Math.min(index, 6)));
+    });
+
+    if (!items.length || reduceMotionQuery.matches || !controller.observer) {
+      root.classList.remove("is-reveal-enhanced");
+      items.forEach(reveal);
+      return;
+    }
+
+    root.classList.add("is-reveal-enhanced");
+    targets.push(...items);
+  });
+
+  singles.forEach((item) => {
+    item.dataset.revealInitialized = "true";
+    item.style.setProperty("--reveal-index", "0");
+
+    if (reduceMotionQuery.matches || !controller.observer) {
+      reveal(item);
+      return;
+    }
+
+    item.classList.add("is-reveal-enhanced");
+    targets.push(item);
+  });
+
+  targets.forEach((item) => controller.targets.add(item));
+  if (targets.length) {
+    window.requestAnimationFrame(() => {
+      targets.forEach((item) => {
+        if (controller.targets.has(item)) controller.observer?.observe(item);
+      });
+    });
+  }
+
+  if (!controller.listening) {
+    controller.listening = true;
+    reduceMotionQuery.addEventListener("change", () => {
+      if (!reduceMotionQuery.matches) return;
+
+      controller.observer?.disconnect();
+      controller.targets.forEach(reveal);
+      document.querySelectorAll("[data-reveal-group].is-reveal-enhanced")
+        .forEach((root) => root.classList.remove("is-reveal-enhanced"));
+    });
+  }
+
+  if (!existing) window.__uhuraEditorialReveal = controller;
 })();
 
 (() => {

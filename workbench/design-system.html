@@ -1,0 +1,1341 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Uhura System Lab</title>
+  <meta name="description" content="Catalogo visual vivo del Design System de Uhura.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="../assets/logos/logo-uhura-blanco.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&amp;family=Playfair+Display:ital,wght@1,400;1,500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../src/styles/uhura-system.css">
+  <style>
+    :root {
+      --lab-aside: 224px;
+      --lab-rule-dark: rgba(255,255,255,.10);
+      --lab-rule-light: rgba(80,31,146,.14);
+    }
+
+    html {
+      scroll-padding-top: 120px;
+    }
+
+    body {
+      background: var(--uhura-dark);
+    }
+
+    .lab-page {
+      min-height: 100vh;
+    }
+
+    .lab-shell {
+      width: min(var(--layout-max), calc(100vw - (var(--layout-gutter) * 2)));
+      margin-inline: auto;
+      padding: 132px 0 112px;
+      display: grid;
+      grid-template-columns: var(--lab-aside) minmax(0, 1fr);
+      gap: clamp(36px, 5vw, 72px);
+      align-items: start;
+    }
+
+    .lab-sidebar {
+      position: sticky;
+      top: 118px;
+      display: grid;
+      gap: 28px;
+    }
+
+    .lab-brand {
+      display: grid;
+      gap: 8px;
+    }
+
+    .lab-brand strong {
+      font-size: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .lab-brand span,
+    .lab-meta,
+    .lab-owner,
+    .lab-token {
+      color: rgba(255,255,255,.48);
+      font-size: var(--type-caption);
+      line-height: 1.55;
+    }
+
+    .lab-nav {
+      display: grid;
+      gap: 4px;
+    }
+
+    .lab-nav a {
+      padding: 10px 0;
+      color: rgba(255,255,255,.62);
+      font-size: var(--type-small);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .lab-nav a:hover,
+    .lab-nav a:focus-visible {
+      color: #fff;
+    }
+
+    .lab-main {
+      min-width: 0;
+    }
+
+    .lab-intro {
+      padding-bottom: clamp(72px, 9vw, 120px);
+    }
+
+    .lab-intro h1 {
+      margin: 0;
+      max-width: 940px;
+      font-size: var(--type-display);
+      line-height: var(--leading-display);
+      letter-spacing: var(--type-heading-tracking);
+    }
+
+    .lab-intro .body-large {
+      max-width: var(--measure-body);
+      margin: var(--stack-title-body) 0 0;
+    }
+
+    .lab-toolbar {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 36px;
+    }
+
+    .lab-filter,
+    .lab-theme-button {
+      min-height: 38px;
+      padding: 0 14px;
+      border: 1px solid rgba(201,183,255,.18);
+      border-radius: 999px;
+      color: rgba(255,255,255,.68);
+      background: rgba(255,255,255,.04);
+      font: inherit;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .lab-filter.is-active,
+    .lab-theme-button.is-active {
+      color: var(--uhura-dark);
+      background: var(--uhura-lime);
+      border-color: var(--uhura-lime);
+    }
+
+    .lab-section {
+      padding: clamp(72px, 9vw, 116px) 0;
+      border-top: 1px solid var(--lab-rule-dark);
+      scroll-margin-top: 110px;
+    }
+
+    .lab-section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, .65fr);
+      gap: 32px;
+      align-items: end;
+      margin-bottom: 48px;
+    }
+
+    .lab-section-head h2 {
+      margin: 0;
+      font-size: var(--type-section);
+      line-height: var(--leading-section);
+      letter-spacing: var(--type-heading-tracking);
+    }
+
+    .lab-section-head p {
+      margin: 0;
+      color: rgba(255,255,255,.56);
+      font-size: var(--type-small);
+      line-height: 1.7;
+    }
+
+    .lab-specimen {
+      padding: 30px 0 42px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .lab-specimen:last-child {
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .lab-specimen-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 26px;
+    }
+
+    .lab-specimen-head h3 {
+      margin: 0 0 7px;
+      font-size: 17px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    .lab-owner,
+    .lab-token {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .lab-status {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .lab-status--implemented {
+      color: var(--uhura-dark);
+      background: var(--uhura-lime);
+    }
+
+    .lab-status--partial {
+      color: #fff;
+      background: var(--uhura-violet);
+    }
+
+    .lab-status--experimental {
+      color: var(--uhura-dark);
+      background: var(--uhura-cyan);
+    }
+
+    [data-lab-status][hidden] {
+      display: none;
+    }
+
+    .lab-grid-2,
+    .lab-grid-3,
+    .lab-grid-4 {
+      display: grid;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .lab-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .lab-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .lab-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .lab-surface {
+      min-width: 0;
+      padding: clamp(26px, 4vw, 42px);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .lab-surface.page-light {
+      border-color: rgba(80,31,146,.12);
+    }
+
+    .lab-surface .copy:first-child,
+    .lab-surface .body-large:first-child {
+      margin-top: 0;
+    }
+
+    .lab-accent-pair {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .lab-accent-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0 12px;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      font-size: var(--type-caption);
+      font-weight: 700;
+    }
+
+    .lab-swatches {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.10);
+    }
+
+    .lab-swatch {
+      min-height: 154px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 5px;
+      color: #fff;
+    }
+
+    .lab-swatch--light {
+      color: var(--uhura-ink);
+    }
+
+    .lab-swatch strong {
+      font-size: 12px;
+    }
+
+    .lab-swatch span {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 10px;
+      opacity: .72;
+    }
+
+    .lab-type-list {
+      display: grid;
+      gap: 0;
+    }
+
+    .lab-type-row {
+      display: grid;
+      grid-template-columns: 160px minmax(0, 1fr);
+      gap: 28px;
+      align-items: baseline;
+      padding: 24px 0;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .lab-type-row:last-child {
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .lab-type-row > span {
+      color: rgba(255,255,255,.42);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 10px;
+    }
+
+    .lab-type-row p {
+      margin: 0;
+    }
+
+    .lab-type-display { font-size: var(--type-display); line-height: var(--leading-display); font-weight: 800; letter-spacing: var(--type-heading-tracking); }
+    .lab-type-page { font-size: var(--type-page); line-height: var(--leading-page); font-weight: 800; letter-spacing: -.035em; }
+    .lab-type-section { font-size: var(--type-section); line-height: var(--leading-section); font-weight: 700; letter-spacing: var(--type-heading-tracking); }
+    .lab-type-subsection { font-size: var(--type-subsection); line-height: var(--leading-subsection); font-weight: 700; }
+    .lab-type-card { font-size: var(--type-card); line-height: var(--leading-card); font-weight: 700; }
+    .lab-type-body-lg { font-size: var(--type-body-lg); line-height: var(--leading-body); }
+    .lab-type-body { font-size: var(--type-body); line-height: var(--leading-body); }
+    .lab-type-small { font-size: var(--type-small); line-height: 1.65; }
+    .lab-type-caption { font-size: var(--type-caption); line-height: 1.5; }
+    .lab-type-eyebrow { font-size: var(--type-eyebrow); font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
+
+    .lab-spacing {
+      display: grid;
+      gap: 14px;
+    }
+
+    .lab-space-row {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr) 54px;
+      gap: 14px;
+      align-items: center;
+      color: rgba(255,255,255,.5);
+      font-size: 10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .lab-space-bar {
+      height: 10px;
+      max-width: var(--lab-space);
+      background: linear-gradient(90deg, var(--uhura-purple), var(--uhura-lavender));
+    }
+
+    .lab-button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .lab-card-copy {
+      margin-top: 16px;
+    }
+
+    .lab-card-contract {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid currentColor;
+      border-color: rgba(80,31,146,.12);
+      color: rgba(23,19,31,.58);
+      font-size: var(--type-caption);
+      line-height: 1.55;
+    }
+
+    .lab-dark-contract {
+      border-color: rgba(255,255,255,.10);
+      color: rgba(255,255,255,.52);
+    }
+
+    .lab-specimen .success-cases-shell {
+      width: 100%;
+    }
+
+    .lab-theme-preview {
+      transition: background-color 240ms ease, color 240ms ease;
+    }
+
+    .lab-theme-preview .lab-preview-card {
+      transition: background-color 240ms ease, border-color 240ms ease, color 240ms ease;
+    }
+
+    .lab-table-wrap {
+      overflow-x: auto;
+    }
+
+    .lab-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .lab-table th,
+    .lab-table td {
+      padding: 15px 14px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .lab-table th {
+      color: rgba(255,255,255,.42);
+      font-size: 9px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .lab-table code {
+      color: var(--uhura-lavender);
+      font-size: 11px;
+    }
+
+    .lab-hero-preview {
+      margin-inline: calc(var(--layout-gutter) * -1);
+    }
+
+    .lab-hero-preview .hero-base {
+      border-block: 1px solid rgba(255,255,255,.10);
+    }
+
+    .lab-ambient-copy {
+      min-height: 480px;
+      display: flex;
+      align-items: center;
+    }
+
+    .lab-ambient-copy .section-title {
+      max-width: 660px;
+    }
+
+    .lab-callout {
+      padding: 24px 0;
+      border-block: 1px solid rgba(255,255,255,.10);
+      color: rgba(255,255,255,.58);
+      font-size: var(--type-small);
+      line-height: 1.7;
+    }
+
+    .lab-callout strong {
+      color: #fff;
+    }
+
+    @media (max-width: 980px) {
+      .lab-shell {
+        grid-template-columns: 1fr;
+        padding-top: 118px;
+      }
+
+      .lab-sidebar {
+        position: static;
+      }
+
+      .lab-nav {
+        display: flex;
+        gap: 18px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+      }
+
+      .lab-nav a {
+        flex: 0 0 auto;
+      }
+
+      .lab-section-head,
+      .lab-grid-3,
+      .lab-grid-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .lab-section-head {
+        align-items: start;
+      }
+
+      .lab-swatches {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .lab-shell {
+        width: min(100vw - 36px, var(--layout-default));
+        padding-bottom: 80px;
+      }
+
+      .lab-section-head,
+      .lab-grid-2,
+      .lab-grid-3,
+      .lab-grid-4 {
+        grid-template-columns: 1fr;
+      }
+
+      .lab-specimen-head {
+        display: grid;
+      }
+
+      .lab-type-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .lab-swatches {
+        grid-template-columns: 1fr;
+      }
+
+      .lab-swatch {
+        min-height: 112px;
+      }
+
+      .lab-hero-preview {
+        margin-inline: -18px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .lab-theme-preview,
+      .lab-theme-preview .lab-preview-card {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div data-uhura-nav></div>
+
+  <div class="lab-page">
+    <div class="lab-shell">
+      <aside class="lab-sidebar" aria-label="Indice del System Lab">
+        <div class="lab-brand">
+          <strong>Uhura System Lab</strong>
+          <span>Visual source of truth · v1</span>
+        </div>
+        <nav class="lab-nav">
+          <a href="#overview">Overview</a>
+          <a href="#foundations">Foundations</a>
+          <a href="#components">Components</a>
+          <a href="#cards">Cards &amp; KPIs</a>
+          <a href="#patterns">Patterns</a>
+          <a href="#behaviors">Behaviors</a>
+          <a href="#governance">Governance</a>
+        </nav>
+        <p class="lab-meta">Este archivo consume producción. No contiene copias de los componentes.</p>
+      </aside>
+
+      <main class="lab-main">
+        <header class="lab-intro" id="overview">
+          <p class="eyebrow">Design System · Implemented</p>
+          <h1>Una vista tangible de lo que Uhura ya puede <span class="italic">reutilizar.</span></h1>
+          <p class="body-large">El Lab separa componentes implementados, piezas parciales y exploraciones. Si un problema aparece aquí, pertenece al sistema; si solo aparece en una página, pertenece a su composición.</p>
+          <div class="lab-toolbar" role="group" aria-label="Filtrar por estado">
+            <button class="lab-filter is-active" type="button" data-lab-filter="all" aria-pressed="true">Todos</button>
+            <button class="lab-filter" type="button" data-lab-filter="implemented" aria-pressed="false">Implemented</button>
+            <button class="lab-filter" type="button" data-lab-filter="partial" aria-pressed="false">Partial</button>
+            <button class="lab-filter" type="button" data-lab-filter="experimental" aria-pressed="false">Experimental</button>
+          </div>
+        </header>
+
+        <section class="lab-section" id="foundations">
+          <div class="lab-section-head">
+            <h2>Foundations</h2>
+            <p>Tokens y reglas base consumidos directamente desde <span class="lab-token">src/styles/uhura-system.css</span>.</p>
+          </div>
+
+          <article class="lab-specimen" data-lab-status="implemented">
+            <div class="lab-specimen-head">
+              <div>
+                <h3>Color</h3>
+                <div class="lab-owner">Owner: --uhura-* tokens</div>
+              </div>
+              <span class="lab-status lab-status--implemented">Implemented</span>
+            </div>
+            <div class="lab-swatches">
+              <div class="lab-swatch" style="background:var(--uhura-dark)"><strong>Dark</strong><span>--uhura-dark</span></div>
+              <div class="lab-swatch" style="background:var(--uhura-panel)"><strong>Panel</strong><span>--uhura-panel</span></div>
+              <div class="lab-swatch" style="background:var(--uhura-purple)"><strong>Purple</strong><span>--uhura-purple</span></div>
+              <div class="lab-swatch" style="background:var(--uhura-violet)"><strong>Violet</strong><span>--uhura-violet</span></div>
+              <div class="lab-swatch lab-swatch--light" style="background:var(--uhura-lavender)"><strong>Lavender</strong><span>--uhura-lavender</span></div>
+              <div class="lab-swatch" style="background:var(--uhura-blue)"><strong>Blue</strong><span>--uhura-blue</span></div>
+              <div class="lab-swatch lab-swatch--light" style="background:var(--uhura-cyan)"><strong>Cyan</strong><span>--uhura-cyan</span></div>
+              <div class="lab-swatch lab-swatch--light" style="background:var(--uhura-lime)"><strong>Lime</strong><span>--uhura-lime</span></div>
+            </div>
+          </article>
+
+          <article class="lab-specimen" data-lab-status="implemented">
+            <div class="lab-specimen-head">
+              <div>
+                <h3>Typography roles</h3>
+                <div class="lab-owner">Owner: --type-* / --leading-*</div>
+              </div>
+              <span class="lab-status lab-status--implemented">Implemented</span>
+            </div>
+            <div class="lab-type-list">
+              <div class="lab-type-row"><span>--type-display · Home H1 only</span><p class="lab-type-display">Display title</p></div>
+              <div class="lab-type-row"><span>--type-page</span><p class="lab-type-page">Page title</p></div>
+              <div class="lab-type-row"><span>--type-section</span><p class="lab-type-section">Section title</p></div>
+              <div class="lab-type-row"><span>--type-subsection</span><p class="lab-type-subsection">Subsection title</p></div>
+              <div class="lab-type-row"><span>--type-card</span><p class="lab-type-card">Card title</p></div>
+              <div class="lab-type-row"><span>--type-body-lg</span><p class="lab-type-body-lg">Body large para introducciones y mensajes destacados.</p></div>
+              <div class="lab-type-row"><span>--type-body</span><p class="lab-type-body">Body para lectura editorial y contenido principal.</p></div>
+              <div class="lab-type-row"><span>--type-small</span><p class="lab-type-small">Small para información auxiliar.</p></div>
+              <div class="lab-type-row"><span>--type-caption</span><p class="lab-type-caption">Caption para metadata y soporte.</p></div>
+              <div class="lab-type-row"><span>--type-eyebrow</span><p class="lab-type-eyebrow">Eyebrow label</p></div>
+            </div>
+          </article>
+
+          <article class="lab-specimen" data-lab-status="implemented">
+            <div class="lab-specimen-head">
+              <div>
+                <h3>Spacing scale</h3>
+                <div class="lab-owner">Owner: --space-1 → --space-14</div>
+              </div>
+              <span class="lab-status lab-status--implemented">Implemented</span>
+            </div>
+            <div class="lab-spacing">
+              <div class="lab-space-row"><span>space-2</span><div class="lab-space-bar" style="--lab-space:var(--space-2)"></div><span>8px</span></div>
+              <div class="lab-space-row"><span>space-4</span><div class="lab-space-bar" style="--lab-space:var(--space-4)"></div><span>16px</span></div>
+              <div class="lab-space-row"><span>space-6</span><div class="lab-space-bar" style="--lab-space:var(--space-6)"></div><span>24px</span></div>
+              <div class="lab-space-row"><span>space-8</span><div class="lab-space-bar" style="--lab-space:var(--space-8)"></div><span>40px</span></div>
+              <div class="lab-space-row"><span>space-10</span><div class="lab-space-bar" style="--lab-space:var(--space-10)"></div><span>64px</span></div>
+              <div class="lab-space-row"><span>space-12</span><div class="lab-space-bar" style="--lab-space:var(--space-12)"></div><span>96px</span></div>
+              <div class="lab-space-row"><span>space-14</span><div class="lab-space-bar" style="--lab-space:var(--space-14)"></div><span>160px</span></div>
+            </div>
+          </article>
+
+          <article class="lab-specimen" data-lab-status="implemented">
+            <div class="lab-specimen-head">
+              <div>
+                <h3>Theme surfaces</h3>
+                <div class="lab-owner">Owner: .page-dark / .page-light</div>
+              </div>
+              <span class="lab-status lab-status--implemented">Implemented</span>
+            </div>
+            <div class="lab-grid-2">
+              <div class="lab-surface page-dark">
+                <p class="eyebrow">Dark</p>
+                <h4 class="card-title">Contenido sobre atmósfera oscura</h4>
+                <p class="copy">La superficie gobierna contraste; el componente gobierna estructura.</p>
+              </div>
+              <div class="lab-surface page-light">
+                <p class="eyebrow">Light</p>
+                <h4 class="card-title">Contenido sobre atmósfera clara</h4>
+                <p class="copy">Texto, labels y componentes heredan el contexto light.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="lab-specimen" data-lab-status="implemented">
+            <div class="lab-specimen-head">
+              <div>
+                <h3>Contextual Accent</h3>
+                <div class="lab-owner">Owner: --context-accent-primary / --context-accent-secondary</div>
+              </div>
+              <span class="lab-status lab-status--implemented">Implemented</span>
+            </div>
+            <div class="lab-grid-2">
+              <div class="lab-surface page-dark">
+                <p class="eyebrow">Dark context</p>
+                <div class="uhura-card uhura-card--metric uhura-card--dark">
+                  <p class="uhura-card__label">Resultado</p>
+                  <p class="uhura-card__value">+42%</p>
+                  <p class="uhura-card__caption">Lime prioriza; cyan acompaña en superficies oscuras.</p>
+                </div>
+                <div class="lab-accent-pair" aria-label="Acentos del contexto oscuro">
+                  <span class="lab-accent-chip context-accent-primary">Primary · Lime</span>
+                  <span class="lab-accent-chip context-accent-secondary">Secondary · Cyan</span>
+                </div>
+              </div>
+              <div class="lab-surface page-light">
+                <p class="eyebrow">Light context</p>
+                <div class="uhura-card uhura-card--metric uhura-card--light">
+                  <p class="uhura-card__label">Resultado</p>
+                  <p class="uhura-card__value">+42%</p>
+                  <p class="uhura-card__caption">Purple prioriza; violet acompaña sobre superficies claras.</p>
+                </div>
+                <div class="lab-accent-pair" aria-label="Acentos del contexto claro">
+                  <span class="lab-accent-chip context-accent-primary">Primary · Purple</span>
+                  <span class="lab-accent-chip context-accent-secondary">Secondary · Violet</span>
+                </div>
+              </div>
+            </div>
+            <p class="lab-note">Lime y cyan no se usan como foreground funcional sobre blanco. Logos de marca y atmósferas suaves conservan su tratamiento original.</p>
+          </article>
+        </section>
+
+        <section class="lab-section" id="components">
+          <div class="lab-section-head">
+            <h2>Components</h2>
+            <p>Piezas disponibles para construir páginas nuevas sin inventar estilos locales.</p>
+          </div>
+
+          <article class="lab-specimen" data-lab-status="implemented">
+            <div class="lab-specimen-head">
+              <div>
+                <h3>Buttons</h3>
+                <div class="lab-owner">Owner: .button-* / .cta-row</div>
+              </div>
+              <span class="lab-status lab-status--implemented">Implemented</span>
+            </div>
+            <div class="lab-grid-2">
+              <div class="lab-surface page-dark">
+                <p class="uhura-card__meta">Dark context</p>
+                <div class="lab-button-row">
+                  <a class="button-primary" href="#components">Primary action</a>
+                  <a class="button-secondary" href="#components">Secondary action</a>
+                </div>
+              </div>
+              <div class="lab-surface page-light">
+                <p class="uhura-card__meta">Light context</p>
+                <div class="lab-button-row">
+                  <a class="button-primary" href="#components">Primary action</a>
+                  <a class="button-ghost" href="#components">Editorial link</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="lab-specimen" data-lab-status="implemented">
+            <div class="lab-specimen-head">
+              <div>
+                <h3>Panels</h3>
+                <div class="lab-owner">Owner: .panel-light / .panel-dark / .panel-roomy</div>
+              </div>
+              <span class="lab-status lab-status--implemented">Implemented</span>
+            </div>
+            <div class="lab-grid-2">
+              <div class="panel-light">
+                <p class="card-kicker">Light panel</p>
+                <h4 class="card-title">Superficie amplia de contenido</h4>
+                <p class="copy lab-card-copy">Adecuada para formularios, diagnósticos y composición editorial.</p>
+              </div>
+              <div class="panel-dark">
+                <p class="card-kicker">Dark panel</p>
+                <h4 class="card-title">Superficie oscura con profundidad</h4>
+                <p class="copy lab-card-copy">Puede vivir dentro de page-dark sin definir el fondo de página.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="lab-specimen" data-lab-status="implemented">
+            <div class="lab-specimen-head">
+              <div>
+                <h3>Process cards</h3>
+                <div class="lab-owner">Owner: Card Base + .process-card / .process-card__index / .uhura-icon-tile</div>
+              </div>
+              <span class="lab-status lab-status--implemented">Implemented</span>
+            </div>
+            <div class="lab-grid-2">
+              <article class="uhura-card uhura-card--content uhura-card--light">
+                <p class="uhura-card__meta">Card Base</p>
+                <h3 class="uhura-card__title">Misma jerarquía de título.</h3>
+                <p class="uhura-card__body">La escala, el peso, el interlineado y el ritmo vienen del contrato global de Card Base.</p>
+              </article>
+              <article class="process-card uhura-card uhura-card--content uhura-card--light">
+                <header class="uhura-card__header">
+                  <span class="uhura-icon-tile" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                  </span>
+                  <span class="process-card__index">01</span>
+                </header>
+                <h3 class="uhura-card__title">Entendemos</h3>
+                <p class="uhura-card__body">Process agrega secuencia e iconografía sin redefinir la jerarquía tipográfica.</p>
+              </article>
+            </div>
+            <div class="process-grid">
+              <article class="process-card uhura-card uhura-card--content uhura-card--light">
+                <header class="uhura-card__header">
+                  <span class="uhura-icon-tile" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                  </span>
+                  <span class="process-card__index">01</span>
+                </header>
+                <h3 class="uhura-card__title">Entendemos</h3>
+                <p class="uhura-card__body">Leemos el negocio, los datos y las restricciones reales.</p>
+              </article>
+              <article class="process-card uhura-card uhura-card--content uhura-card--dark">
+                <header class="uhura-card__header">
+                  <span class="uhura-icon-tile" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                  </span>
+                  <span class="process-card__index">02</span>
+                </header>
+                <h3 class="uhura-card__title">Priorizamos</h3>
+                <p class="uhura-card__body">Ordenamos oportunidades por impacto y viabilidad.</p>
+              </article>
+              <article class="process-card uhura-card uhura-card--content uhura-card--glass">
+                <header class="uhura-card__header">
+                  <span class="uhura-icon-tile" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><rect width="7" height="7" x="14" y="3" rx="1"></rect><path d="M10 21V8a2 2 0 0 1 2-2h2"></path><rect width="7" height="7" x="3" y="14" rx="1"></rect></svg>
+                  </span>
+                  <span class="process-card__index">03</span>
+                </header>
+                <h3 class="uhura-card__title">Construimos</h3>
+                <p class="uhura-card__body">Diseñamos, ejecutamos, medimos y mejoramos.</p>
+              </article>
+            </div>
+            <p class="lab-callout"><strong>Contrato:</strong> Card Base gobierna toda la superficie y jerarquía. Process agrega solamente número, icono y significado secuencial; al ser estáticas, estas cards no tienen hover.</p>
+          </article>
+
+          <article class="lab-specimen" data-lab-status="implemented">
+            <div class="lab-specimen-head">
+              <div>
+                <h3>Sidebar</h3>
+                <div class="lab-owner">Owner: .sidebar-card / .avatar-row / .filter-pills</div>
+              </div>
+              <span class="lab-status lab-status--implemented">Implemented</span>
+            </div>
+            <div class="lab-grid-2 page-light lab-surface">
+              <div class="sidebar-card">
+                <div class="avatar-row">
+                  <img src="../assets/team/Catalina Tejada - Directora Comercial.jpeg" alt="Catalina Tejada">
+                  <div>
+                    <p class="sidebar-card__meta">Contacto</p>
+                    <h3 class="sidebar-card__title">Te ayudamos a crecer</h3>
+                  </div>
+                </div>
+                <p class="sidebar-card__body">Un módulo persistente para soporte comercial o navegación editorial.</p>
+              </div>
+              <div class="sidebar-card">
+                <p class="sidebar-card__meta">Explorar</p>
+                <h3 class="sidebar-card__title">Filtros compactos</h3>
+                <div class="filter-pills sidebar-card__actions">
+                  <button class="is-active" type="button">Todos</button>
+                  <button type="button">B2B</button>
+                  <button type="button">B2C</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="lab-specimen" data-lab-status="implemented">
+            <div class="lab-specimen-head">
+              <div>
+                <h3>Form fields</h3>
+                <div class="lab-owner">Owner: .form-grid / .field / .select-field</div>
+              </div>
+              <span class="lab-status lab-status--implemented">Implemented</span>
+            </div>
+            <div class="panel-light page-light">
+              <div class="form-grid">
+                <div class="field"><label for="lab-name">Nombre</label><input id="lab-name" type="text" placeholder="Tu nombre"></div>
+                <div class="select-field"><label for="lab-interest">Interés</label><select id="lab-interest"><option>Producto Digital</option><option>Growth</option><option>Creatividad</option></select></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="lab-specimen" data-lab-status="implemented">
+            <div class="lab-specimen-head">
+              <div>
+                <h3>Logo Rail</h3>
+                <div class="lab-owner">Owner: .logo-rail / data-logo-rail</div>
+              </div>
+              <span class="lab-status lab-status--implemented">Implemented</span>
+            </div>
+
+            <div class="lab-surface page-dark">
+              <div class="logo-rail logo-rail--platforms" data-logo-rail>
+                <p class="logo-rail__label">Platforms · logo, nombre y categoría</p>
+                <div class="logo-rail__viewport">
+                  <div class="logo-rail__track">
+                    <div class="logo-rail__group">
+                      <article class="logo-rail__platform">
+                        <span class="logo-rail__mark"><img src="../assets/services/digital-shelf/logo-mercado-libre.png" alt=""></span>
+                        <span class="logo-rail__copy"><strong>Mercado Libre</strong><span>Marketplace</span></span>
+                      </article>
+                      <article class="logo-rail__platform">
+                        <span class="logo-rail__mark logo-rail__mark--wide"><img src="../assets/services/digital-shelf/logo-amazon.webp" alt=""></span>
+                        <span class="logo-rail__copy"><strong>Amazon</strong><span>Marketplace</span></span>
+                      </article>
+                      <article class="logo-rail__platform">
+                        <span class="logo-rail__mark"><img src="../assets/services/digital-shelf/logo-shopify.webp" alt=""></span>
+                        <span class="logo-rail__copy"><strong>Shopify</strong><span>Ecommerce</span></span>
+                      </article>
+                      <article class="logo-rail__platform">
+                        <span class="logo-rail__mark logo-rail__mark--wide"><img src="../assets/logos/logo vtex.webp" alt=""></span>
+                        <span class="logo-rail__copy"><strong>VTEX</strong><span>Commerce</span></span>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="lab-surface page-light">
+              <div class="logo-rail logo-rail--brands" data-logo-rail>
+                <p class="logo-rail__label">Brands · logos de clientes, partners o cobertura</p>
+                <div class="logo-rail__viewport">
+                  <div class="logo-rail__track">
+                    <div class="logo-rail__group">
+                      <img class="logo-rail__logo" src="../assets/services/digital-shelf/logo-bonafont-client.png" alt="Bonafont">
+                      <img class="logo-rail__logo" src="../assets/services/digital-shelf/logo-danone-client.png" alt="Danone">
+                      <img class="logo-rail__logo logo-rail__logo--compact" src="../assets/services/digital-shelf/logo-mccain-client.png" alt="McCain">
+                      <img class="logo-rail__logo" src="../assets/services/digital-shelf/logo-ocean-client.png" alt="Ocean Spray">
+                      <img class="logo-rail__logo logo-rail__logo--medium" src="../assets/services/digital-shelf/logo-unula-client.png" alt="Unula">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="lab-callout"><strong>Contrato:</strong> dos variantes visuales, una sola lista semántica y duplicación visual gobernada por el runtime global.</p>
+          </article>
+        </section>
+
+        <section class="lab-section" id="cards">
+          <div class="lab-section-head">
+            <h2>Cards &amp; KPIs</h2>
+            <p>La matriz muestra qué variantes son componentes reales y cuáles son composiciones todavía pendientes de contrato.</p>
+          </div>
+
+          <article class="lab-specimen" data-lab-status="implemented">
+            <div class="lab-specimen-head">
+              <div>
+                <h3>Card Base · Surfaces</h3>
+                <div class="lab-owner">Owner: .uhura-card + light / dark / glass</div>
+              </div>
+              <span class="lab-status lab-status--implemented">Implemented</span>
+            </div>
+            <div class="uhura-card-grid uhura-card-grid--content">
+              <article class="uhura-card uhura-card--content uhura-card--light">
+                <p class="uhura-card__meta">Light</p>
+                <h3 class="uhura-card__title">Contenido sobre superficies claras.</h3>
+                <p class="uhura-card__body">La card controla su jerarquía interna, no el fondo de la sección.</p>
+              </article>
+              <article class="uhura-card uhura-card--content uhura-card--dark">
+                <p class="uhura-card__meta">Dark</p>
+                <h3 class="uhura-card__title">Contenido sobre superficies oscuras.</h3>
+                <p class="uhura-card__body">Mantiene contraste, padding, radio y borde desde el sistema.</p>
+              </article>
+              <article class="uhura-card uhura-card--content uhura-card--glass">
+                <p class="uhura-card__meta">Glass</p>
+                <h3 class="uhura-card__title">Profundidad sobre una atmósfera visual.</h3>
+                <p class="uhura-card__body">El blur es una superficie controlada, no un background de página.</p>
+              </article>
+            </div>
+          </article>
+
+          <article class="lab-specimen" data-lab-status="implemented">
+            <div class="lab-specimen-head">
+              <div>
+                <h3>Content Card</h3>
+                <div class="lab-owner">Owner: .uhura-card--content + anatomy slots</div>
+              </div>
+              <span class="lab-status lab-status--implemented">Implemented</span>
+            </div>
+            <div class="uhura-card-grid uhura-card-grid--content">
+              <article class="uhura-card uhura-card--content uhura-card--light">
+                <p class="uhura-card__meta">Hallazgo</p>
+                <h3 class="uhura-card__title">La estructura no guiaba la decisión.</h3>
+                <p class="uhura-card__body">Título, metadata, body y footer usan roles tipográficos globales.</p>
+                <footer class="uhura-card__footer"><span class="uhura-card__caption">Contenido editorial configurable.</span></footer>
+              </article>
+              <a class="uhura-card uhura-card--content uhura-card--dark uhura-card--interactive" href="#cards">
+                <header class="uhura-card__header">
+                  <span class="uhura-icon-tile" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+                  </span>
+                  <span class="uhura-card__meta">Capacidad</span>
+                </header>
+                <h3 class="uhura-card__title">Arquitectura de información</h3>
+                <p class="uhura-card__body">La variante interactiva conserva semántica de enlace y focus visible.</p>
+                <footer class="uhura-card__footer"><span class="uhura-card__arrow">Ver capacidad</span></footer>
+              </a>
+            </div>
+            <p class="lab-callout"><strong>Prueba:</strong> pasa el cursor o navega con Tab hasta el enlace. Hover y focus comparten respuesta; en reduced motion no existe desplazamiento.</p>
+          </article>
+
+          <article class="lab-specimen" data-lab-status="implemented">
+            <div class="lab-specimen-head">
+              <div>
+                <h3>Metric / KPI v1</h3>
+                <div class="lab-owner">Owner: .metric-label / .metric-value / .metric-caption</div>
+              </div>
+              <span class="lab-status lab-status--implemented">Implemented</span>
+            </div>
+            <dl class="uhura-card-grid uhura-card-grid--metrics">
+              <div class="uhura-card uhura-card--metric uhura-card--light">
+                <dt class="metric-label">Conversión</dt>
+                <dd class="metric-value">+42%</dd>
+                <dd class="metric-caption">Incremento frente al periodo anterior.</dd>
+              </div>
+              <div class="uhura-card uhura-card--metric uhura-card--dark">
+                <dt class="metric-label">Retorno</dt>
+                <dd class="metric-value">3.6×</dd>
+                <dd class="metric-caption">La cifra usa lime; el descriptor conserva lavender.</dd>
+              </div>
+              <div class="uhura-card uhura-card--metric uhura-card--glass">
+                <dt class="metric-label">Tiempo en sitio</dt>
+                <dd class="metric-value">6:03</dd>
+                <dd class="metric-caption">Cifras tabulares y wrapping seguro.</dd>
+              </div>
+            </dl>
+            <p class="lab-callout"><strong>Compatibilidad:</strong> `.metric`, `.metric-row` y `.metric-bar` permanecen disponibles para consumidores legacy. Las nuevas cards KPI deben usar esta API.</p>
+          </article>
+
+          <article class="lab-specimen" data-lab-status="implemented">
+            <div class="lab-specimen-head">
+              <div>
+                <h3>Evidence Card</h3>
+                <div class="lab-owner">Owner: .uhura-card--evidence / __media / __content</div>
+              </div>
+              <span class="lab-status lab-status--implemented">Implemented</span>
+            </div>
+            <div class="uhura-card-grid uhura-card-grid--evidence">
+              <figure class="uhura-card uhura-card--evidence uhura-card--light">
+                <div class="uhura-card__media">
+                  <img src="../assets/cases/kaiowa-pdf-18.webp" alt="Captura de la experiencia anterior de Kaiowa" loading="lazy">
+                </div>
+                <figcaption class="uhura-card__content">
+                  <p class="uhura-card__meta">Antes</p>
+                  <h3 class="uhura-card__title">Evidencia visual con contexto.</h3>
+                  <p class="uhura-card__caption">La imagen conserva su proporción y no se recorta.</p>
+                </figcaption>
+              </figure>
+              <figure class="uhura-card uhura-card--evidence uhura-card--dark">
+                <div class="uhura-card__media">
+                  <img src="../assets/cases/kaiowa-pdf-20.webp" alt="Captura de la experiencia renovada de Kaiowa" loading="lazy">
+                </div>
+                <figcaption class="uhura-card__content">
+                  <p class="uhura-card__meta">Después</p>
+                  <h3 class="uhura-card__title">Media y lectura siguen desacopladas.</h3>
+                  <p class="uhura-card__caption">La página decide el asset; el sistema gobierna framing y ritmo.</p>
+                </figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="lab-specimen" data-lab-status="implemented">
+            <div class="lab-specimen-head">
+              <div>
+                <h3>Success Case Card</h3>
+                <div class="lab-owner">Owner: data-success-cases mount</div>
+              </div>
+              <span class="lab-status lab-status--implemented">Implemented</span>
+            </div>
+            <div class="page-light">
+              <div data-success-cases data-copy="El componente real renderizado desde el runtime compartido."></div>
+            </div>
+          </article>
+        </section>
+
+        <section class="lab-section" id="patterns">
+          <div class="lab-section-head">
+            <h2>Patterns</h2>
+            <p>Estructuras completas que gobiernan layout, ritmo, slots y comportamiento responsive.</p>
+          </div>
+
+          <article class="lab-specimen" data-lab-status="implemented">
+            <div class="lab-specimen-head">
+              <div>
+                <h3>Hero Base v1</h3>
+                <div class="lab-owner">Owner: .hero-base* · specimen a escala real</div>
+              </div>
+              <span class="lab-status lab-status--implemented">Implemented</span>
+            </div>
+            <div class="lab-hero-preview">
+              <section class="hero-base page-dark">
+                <div class="hero-base__shell">
+                  <div class="hero-base__grid">
+                    <div class="hero-base__copy">
+                      <div class="hero-base__story">
+                        <p class="eyebrow">Hero Base</p>
+                        <h2 class="hero-base__title">El bloque narrativo gobierna el punto de <span class="italic">entrada editorial.</span></h2>
+                        <p class="hero-base__body">Copy, acciones y media permanecen desacoplados del ambiente visual.</p>
+                        <p class="hero-base__actions cta-row"><a class="button-primary" href="#patterns">Acción principal</a></p>
+                      </div>
+                    </div>
+                    <div class="hero-base__media">
+                      <div class="panel-dark panel-roomy">
+                        <p class="card-kicker">Media slot</p>
+                        <h3 class="card-title">Visual configurable</h3>
+                        <p class="copy">Video, dashboard, collage, orb o composición propia de la página.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </article>
+
+          <article class="lab-specimen" data-lab-status="implemented">
+            <div class="lab-specimen-head">
+              <div>
+                <h3>Progressive Narrative · Viewport Focus</h3>
+                <div class="lab-owner">Owner: .progressive-narrative* / data-progressive-mode</div>
+              </div>
+              <span class="lab-status lab-status--implemented">Implemented</span>
+            </div>
+            <section class="progressive-narrative progressive-narrative--viewport-focus" data-progressive-narrative data-progressive-mode="viewport-focus">
+              <div class="progressive-narrative__list">
+                <article class="progressive-narrative__item" data-progressive-item>
+                  <div class="progressive-narrative__meta"><p class="progressive-narrative__number">01</p><p class="progressive-narrative__category">Estrategia</p></div>
+                  <div class="progressive-narrative__content"><h3 class="progressive-narrative__title">Entendemos qué debe mover el crecimiento.</h3><p class="progressive-narrative__description">Lectura natural, un activo y vecinos simétricos.</p></div>
+                </article>
+                <article class="progressive-narrative__item" data-progressive-item>
+                  <div class="progressive-narrative__meta"><p class="progressive-narrative__number">02</p><p class="progressive-narrative__category">Sistema</p></div>
+                  <div class="progressive-narrative__content"><h3 class="progressive-narrative__title">Conectamos contenido, producto y adquisición.</h3><p class="progressive-narrative__description">El número de pasos y el copy permanecen configurables.</p></div>
+                </article>
+                <article class="progressive-narrative__item" data-progressive-item>
+                  <div class="progressive-narrative__meta"><p class="progressive-narrative__number">03</p><p class="progressive-narrative__category">Aprendizaje</p></div>
+                  <div class="progressive-narrative__content"><h3 class="progressive-narrative__title">Medimos para decidir el siguiente movimiento.</h3><p class="progressive-narrative__description">Mobile y reduced motion mantienen toda la lectura disponible.</p></div>
+                </article>
+              </div>
+            </section>
+          </article>
+
+          <article class="lab-specimen" data-lab-status="implemented">
+            <div class="lab-specimen-head">
+              <div>
+                <h3>Ambient Field · Subtle</h3>
+                <div class="lab-owner">Owner: .ambient-field* / data-ambient-field</div>
+              </div>
+              <span class="lab-status lab-status--implemented">Implemented</span>
+            </div>
+            <section class="ambient-field ambient-field--dark" data-ambient-field>
+              <div class="ambient-field__mesh" aria-hidden="true"></div>
+              <div class="ambient-field__bloom" aria-hidden="true"></div>
+              <div class="ambient-field__cursor" aria-hidden="true"></div>
+              <div class="ambient-field__noise" aria-hidden="true"></div>
+              <div class="ambient-field__content">
+                <div class="container-default lab-ambient-copy">
+                  <div>
+                    <p class="eyebrow">Visual Language</p>
+                    <h3 class="section-title">La atmósfera acompaña. El contenido mantiene la jerarquía.</h3>
+                    <p class="copy">Expressive permanece como piloto controlado y conserva su workbench independiente.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </article>
+
+          <article class="lab-specimen" data-lab-status="partial">
+            <div class="lab-specimen-head">
+              <div>
+                <h3>Case Study Template</h3>
+                <div class="lab-owner">Consumer actual: Kaiowa</div>
+              </div>
+              <span class="lab-status lab-status--partial">Partial</span>
+            </div>
+            <p class="lab-callout">Hero Base, tipografía, cards y sidebar ya existen. Case Layout, Evidence, Screenshot Stage, Results y filtro aún requieren normalización antes de convertirse en template oficial.</p>
+          </article>
+        </section>
+
+        <section class="lab-section" id="behaviors">
+          <div class="lab-section-head">
+            <h2>Behaviors</h2>
+            <p>Interacciones y sistemas visuales que requieren runtime, estados o coordinación entre componentes.</p>
+          </div>
+
+          <article class="lab-specimen" data-lab-status="implemented">
+            <div class="lab-specimen-head">
+              <div>
+                <h3>Static theme contexts</h3>
+                <div class="lab-owner">Owner: page-dark / page-light + component context</div>
+              </div>
+              <span class="lab-status lab-status--implemented">Implemented</span>
+            </div>
+            <div class="lab-toolbar" role="group" aria-label="Cambiar contexto de prueba">
+              <button class="lab-theme-button is-active" type="button" data-lab-theme="dark" aria-pressed="true">Dark</button>
+              <button class="lab-theme-button" type="button" data-lab-theme="light" aria-pressed="false">Light</button>
+            </div>
+            <div class="lab-theme-preview page-dark lab-surface" data-lab-theme-preview style="margin-top:18px">
+              <article class="uhura-card card-dark card-padded lab-preview-card">
+                <p class="card-kicker">Theme context</p>
+                <h3 class="card-title">El componente conserva estructura y cambia de superficie.</h3>
+                <p class="copy">Esta prueba usa únicamente clases globales existentes.</p>
+              </article>
+            </div>
+          </article>
+
+          <article class="lab-specimen" data-lab-status="implemented">
+            <div class="lab-specimen-head">
+              <div>
+                <h3>Editorial Reveal</h3>
+                <div class="lab-owner">Owner: data-reveal-group / data-reveal-item</div>
+              </div>
+              <span class="lab-status lab-status--implemented">Implemented</span>
+            </div>
+            <div class="editorial-reveal uhura-card-grid uhura-card-grid--content" data-reveal-group>
+              <article class="uhura-card uhura-card--content uhura-card--light" data-reveal-item>
+                <p class="uhura-card__meta">01</p>
+                <h3 class="uhura-card__title">Aparece cuando entra en la zona útil.</h3>
+                <p class="uhura-card__body">El contenido permanece visible si JavaScript no carga.</p>
+              </article>
+              <article class="uhura-card uhura-card--content uhura-card--dark" data-reveal-item>
+                <p class="uhura-card__meta">02</p>
+                <h3 class="uhura-card__title">El grupo aplica un stagger controlado.</h3>
+                <p class="uhura-card__body">No crea listeners ni observers por elemento.</p>
+              </article>
+              <article class="uhura-card uhura-card--content uhura-card--glass" data-reveal-item>
+                <p class="uhura-card__meta">03</p>
+                <h3 class="uhura-card__title">Reduced motion muestra todo de inmediato.</h3>
+                <p class="uhura-card__body">No reemplaza Pinned ni Progressive Narrative.</p>
+              </article>
+            </div>
+          </article>
+
+          <article class="lab-specimen" data-lab-status="experimental">
+            <div class="lab-specimen-head">
+              <div>
+                <h3>Uhura Theme System · Theme Exit Governor</h3>
+                <div class="lab-owner">Owner actual: Home bundle + theme-exit-governor.js</div>
+              </div>
+              <span class="lab-status lab-status--experimental">Experimental</span>
+            </div>
+            <p class="lab-callout"><strong>No consumir todavía:</strong> el cambio continuo dark/light depende de IDs, copy y del canvas fijo dentro del Home heredado. La API objetivo será <code>data-theme-system</code> + <code>data-theme="dark|light"</code>. Ambient Field crea atmósfera dentro de una sección; Theme System coordina el contexto cromático de la página.</p>
+          </article>
+
+          <article class="lab-specimen" data-lab-status="implemented">
+            <div class="lab-specimen-head">
+              <div>
+                <h3>Global interaction systems</h3>
+                <div class="lab-owner">Owners compartidos</div>
+              </div>
+              <span class="lab-status lab-status--implemented">Implemented</span>
+            </div>
+            <div class="lab-table-wrap">
+              <table class="lab-table">
+                <thead><tr><th>Sistema</th><th>Owner</th><th>Contrato</th></tr></thead>
+                <tbody>
+                  <tr><td>Navigation</td><td><code>global-nav-sync.js</code></td><td>Un modelo, desktop/mobile, teclado y active state.</td></tr>
+                  <tr><td>Success Cases</td><td><code>uhura-components.js</code></td><td>Mount declarativo, carrusel y columnas gobernadas por CSS.</td></tr>
+                  <tr><td>Editorial Reveal</td><td><code>uhura-components.js</code></td><td>Observer compartido, stagger y reduced motion.</td></tr>
+                  <tr><td>Progressive Narrative</td><td><code>uhura-components.js</code></td><td>Reveal, viewport focus y reduced motion.</td></tr>
+                  <tr><td>Ambient Field</td><td><code>uhura-components.js</code></td><td>Pointer, rAF, resize, performance y fallback.</td></tr>
+                  <tr><td>Footer</td><td><code>footer-sync.js</code></td><td>Un mount global al final del body.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <section class="lab-section" id="governance">
+          <div class="lab-section-head">
+            <h2>Governance</h2>
+            <p>La decisión de dónde corregir debe ser repetible, visible y verificable.</p>
+          </div>
+
+          <div class="lab-table-wrap">
+            <table class="lab-table">
+              <thead><tr><th>Hallazgo</th><th>Responsabilidad</th><th>Acción</th></tr></thead>
+              <tbody>
+                <tr><td>Falla también en System Lab</td><td>Componente o foundation</td><td>Corregir en el owner global y validar consumidores.</td></tr>
+                <tr><td>Funciona aquí y falla en una página</td><td>Composición de página</td><td>Revisar wrapper, contenido o integración.</td></tr>
+                <tr><td>Se repite en dos páginas</td><td>Variante candidata</td><td>Detener, documentar y aprobar antes de implementar.</td></tr>
+                <tr><td>Solo responde a un visual propio</td><td>Excepción local válida</td><td>Mantener local y documentar sus límites.</td></tr>
+                <tr><td>Existe en Figma pero no en código</td><td>Propuesta</td><td>No consumir hasta llegar a Implemented.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="lab-grid-3" style="margin-top:42px">
+            <div class="panel-dark">
+              <p class="card-kicker">Implemented</p>
+              <h3 class="card-title">Disponible</h3>
+              <p class="copy">Puede consumirse en páginas nuevas.</p>
+            </div>
+            <div class="panel-dark">
+              <p class="card-kicker">Partial</p>
+              <h3 class="card-title">Normalización pendiente</h3>
+              <p class="copy">No debe copiarse localmente.</p>
+            </div>
+            <div class="panel-dark">
+              <p class="card-kicker">Experimental</p>
+              <h3 class="card-title">Prueba controlada</h3>
+              <p class="copy">Requiere arquitectura aprobada antes de consumir.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div id="uhura-footer-root" data-uhura-footer></div>
+
+  <script src="../src/components/uhura-components.js" data-root=".."></script>
+  <script src="../src/extracted/global-nav-sync.js"></script>
+  <script src="../src/extracted/footer-sync.js"></script>
+  <script>
+    (() => {
+      const filterButtons = Array.from(document.querySelectorAll("[data-lab-filter]"));
+      const specimens = Array.from(document.querySelectorAll("[data-lab-status]"));
+
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const filter = button.dataset.labFilter;
+          filterButtons.forEach((item) => {
+            const active = item === button;
+            item.classList.toggle("is-active", active);
+            item.setAttribute("aria-pressed", String(active));
+          });
+          specimens.forEach((specimen) => {
+            specimen.hidden = filter !== "all" && specimen.dataset.labStatus !== filter;
+          });
+        });
+      });
+
+      const themeButtons = Array.from(document.querySelectorAll("[data-lab-theme]"));
+      const themePreview = document.querySelector("[data-lab-theme-preview]");
+      const previewCard = themePreview?.querySelector(".lab-preview-card");
+
+      themeButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const light = button.dataset.labTheme === "light";
+          themeButtons.forEach((item) => {
+            const active = item === button;
+            item.classList.toggle("is-active", active);
+            item.setAttribute("aria-pressed", String(active));
+          });
+          themePreview?.classList.toggle("page-dark", !light);
+          themePreview?.classList.toggle("page-light", light);
+          previewCard?.classList.toggle("card-dark", !light);
+          previewCard?.classList.toggle("card-light", light);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

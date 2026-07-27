@@ -12,6 +12,27 @@ Este documento define los componentes reutilizables del sitio. La regla es simpl
 
 Nota: la home conserva un bundle heredado. No editar ese bloque grande salvo que sea necesario. Los componentes nuevos deben agregarse como sistema compartido o adaptadores externos.
 
+## Living Design System
+
+Referencia visual: `workbench/design-system.html` (Uhura System Lab).
+
+El Lab consume directamente `src/styles/uhura-system.css`,
+`src/components/uhura-components.js`, `src/extracted/global-nav-sync.js` y
+`src/extracted/footer-sync.js`. No mantiene copias de componentes ni sustituye
+esta documentacion.
+
+Estados:
+
+- `Implemented`: API global disponible para nuevas paginas.
+- `Partial`: existe una base compartida, pero la variante aun requiere normalizacion.
+- `Experimental`: prueba controlada; no puede consumirse sin aprobacion arquitectonica.
+
+Regla de diagnostico:
+
+- Si el problema aparece en el Lab, se corrige en el owner global y se validan sus consumidores.
+- Si el componente funciona en el Lab y falla solo en una pagina, se corrige la composicion de la pagina.
+- Figma refleja los componentes `Implemented`; el codigo conserva la fuente de verdad de produccion para tokens, responsive, accesibilidad e interaccion.
+
 ## Foundations
 
 Foundations gobierna las decisiones base del sistema visual. Antes de crear una clase local, revisar si la necesidad corresponde a una fundacion existente.
@@ -29,6 +50,32 @@ Foundations gobierna las decisiones base del sistema visual. Antes de crear una 
 | Motion | Backlog aprobado | Hover, orb, sticky, scroll storytelling | No crear motion nuevo sin mapearlo al sistema. |
 | Layout | Activo | Containers, hero, section y grid tokens | No usar `max-width` suelto si existe variante global. |
 
+### Contextual Accent
+
+Contextual Accent define el color funcional de enfasis segun la superficie. Los componentes no deben elegir lime, cyan, purple o violet directamente cuando su intencion sea label, eyebrow, KPI, foco, linea o marcador reusable.
+
+| Contexto | `--context-accent-primary` | `--context-accent-secondary` |
+| --- | --- | --- |
+| Dark | `--uhura-lime` | `--uhura-cyan` |
+| Light | `--uhura-purple` | `--uhura-violet` |
+
+`--context-accent-secondary-soft` y `--context-accent-secondary-glow` son tokens de soporte para bordes y halos del acento secundario; no sustituyen los dos roles principales. `--context-text-primary`, `--context-text-muted`, `--context-label-color` y `--context-marker-color` gobiernan contraste, labels y marcadores dentro de componentes.
+
+Superficies owner:
+
+- Dark: `.page-dark`, `.ambient-field--dark`, `.card-dark`, `.uhura-card--dark`, `.uhura-card--glass` y `.panel-dark`.
+- Light: `.page-light`, `.ambient-field--light`, `.card-light`, `.uhura-card--light`, `.panel-light` y `.success-cases`.
+- `.context-accent-primary` y `.context-accent-secondary` permiten consumir los tokens sin declarar colores locales.
+
+Reglas:
+
+- Lime y cyan no se usan como foreground funcional sobre fondos blancos o light; en ese contexto se sustituyen por purple y violet.
+- Logos de marca conservan sus colores originales.
+- Gradientes atmosfericos suaves pueden contener cyan o lime porque no funcionan como texto, icono, borde ni dato.
+- Un componente con superficie propia gobierna su contexto aunque este anidado dentro de una pagina del tema opuesto.
+- Eyebrow, Card Base, Metric/KPI, Success Cases, Progressive Narrative y Pinned Narrative consumen estos tokens donde su API es compatible.
+- Nav, footer y CTAs especializados conservan ownership propio hasta una migracion aprobada; no deben copiar esta excepcion a componentes nuevos.
+
 ### Typography System
 
 La escala tipografica oficial vive en `src/styles/uhura-system.css`. El HTML puede usar `h1`, `h2`, `h3` o `h4` por semantica, pero la escala visual debe venir de clases y tokens del sistema.
@@ -39,19 +86,19 @@ La semantica HTML y el rol visual son responsabilidades separadas. Una etiqueta 
 
 | Rol | Token | Valor inicial | Consumidores migrados |
 | --- | --- | --- | --- |
-| Display | `--type-display` | `clamp(34px, 4.1vw, 56px)` | `.display-title` |
+| Display | `--type-display` | `clamp(34px, 4.1vw, 56px)` | H1 principal de Home, exclusivamente |
 | Page | `--type-page` | `clamp(36px, 4vw, 54px)` | `.hero-base__title`, `.progressive-narrative__title` |
 | Section | `--type-section` | `clamp(30px, 3.2vw, 44px)` | `.section-title`, `.editorial-title`, `.narrative-title` |
 | Subsection | `--type-subsection` | `clamp(25px, 2.4vw, 34px)` | `.subsection-title` |
-| Card | `--type-card` | `clamp(20px, 2vw, 28px)` | `.card-title` |
-| Body large | `--type-body-lg` | `clamp(17px, 1.35vw, 20px)` | `.body-large` |
-| Body | `--type-body` | `clamp(16px, 1.25vw, 19px)` | `.copy` |
+| Card | `--type-card` | `clamp(18px, 1.55vw, 24px)` | `.card-title`, `.uhura-card__title` |
+| Body large | `--type-body-lg` | `clamp(17px, 1.3vw, 19px)` | `.body-large` |
+| Body | `--type-body` | `clamp(16px, 1.2vw, 18px)` | `.copy` |
 | Small | `--type-small` | `13px` | `.small` |
 | Caption | `--type-caption` | `12px` | `.caption` |
-| Eyebrow | `--type-eyebrow` | `11px` | `.eyebrow` |
+| Eyebrow | `--type-eyebrow` | `11px`, weight `600` | `.eyebrow` |
 | Label | `--type-label` | `11px` | labels y aliases legacy |
 
-Leading: `--leading-display: 1.06`, `--leading-page: 1.04`, `--leading-section: 1.08`, `--leading-subsection: 1.14`, `--leading-card: 1.16`, `--leading-body: 1.82`.
+Leading: `--leading-display: 1.06`, `--leading-page: 1.04`, `--leading-section: 1.08`, `--leading-subsection: 1.14`, `--leading-card: 1.16`, `--leading-body: 1.68`, `--leading-body-lg: 1.72`, `--leading-small: 1.6`.
 
 Measures: `--measure-display: 900px`, `--measure-section: 760px`, `--measure-body: 680px`, `--measure-body-narrow: 520px`.
 
@@ -71,7 +118,7 @@ Rangos oficiales:
 - Foundations y la migracion prioritaria de Hero Base y Progressive Narrative quedan aprobadas y cerradas antes de staging.
 - Home heredado, `home-title-scale.css`, navegacion, footer, metricas, visuales circulares, H3/H4 legacy, Kaiowa local y excepciones de Growth quedan pendientes para Fase 3 despues de staging.
 
-Asignacion oficial: Display Title usa `--type-display`; Hero Base y Progressive Narrative usan `--type-page`; Section, Editorial y Narrative Title usan `--type-section`; Subsection y Card Title usan sus tokens homonimos. Progressive Narrative no define un clamp responsive propio.
+Asignacion oficial: el H1 principal de Home usa `--type-display`; los H1 de paginas secundarias, Hero Base y Progressive Narrative usan `--type-page`; Section, Editorial y Narrative Title usan `--type-section`; Subsection y Card Title usan sus tokens homonimos. Progressive Narrative no define un clamp responsive propio.
 
 #### Jerarquia visual oficial
 
@@ -124,7 +171,7 @@ Los componentes tipograficos aplican los tokens a contextos concretos. Su frecue
 
 | Clase / token | Uso | Frecuencia | Content width | Regla de uso | Restriccion |
 | --- | --- | --- | --- | --- | --- |
-| `.display-title` / `--type-display` | Hero principal o titulo dominante de pagina. | 1 por pagina. | Hero o composicion dominante; idealmente 10-12 columnas segun layout. | Usar para el mensaje principal de una pagina o experiencia. | No usar dentro de cards, sidebars, modales o bloques compactos. |
+| `.display-title` / `--type-display` | H1 principal de la Homepage. | 1 en Home. | Hero principal de Home. | Uso reservado para el titulo principal de Home. | No usar en paginas secundarias, cards, sidebars, modales o bloques compactos. |
 | `.section-title` / `--type-section` | Titulo principal de seccion. | 1 por seccion; aprox. 1-6 por pagina. | Maximo editorial recomendado: 8 columnas. | Usar para abrir secciones completas dentro del flujo principal. | No usar dentro de cards ni sidebars. |
 | `.editorial-title` / `--type-section` | Titulo editorial con intencion narrativa. | 0-4 por pagina. | 7-9 columnas, segun densidad narrativa. | Usar cuando el titulo necesita una voz mas editorial o reflexiva. | No duplicar como clase local por pagina. |
 | `h3` / `.h3` / `--type-h3-size` | Subtitulos, cards amplias o bloques secundarios. | Flexible. | 5-8 columnas; dentro de card, respetar el ancho del modulo. | Usar para jerarquia secundaria dentro de secciones y modulos de contenido. | No reemplaza a `.section-title` para abrir una seccion completa. |
@@ -140,7 +187,9 @@ Los componentes tipograficos aplican los tokens a contextos concretos. Su frecue
 
 Reglas:
 
-- Display Title se usa maximo una vez por pagina.
+- Display Title se usa una sola vez y exclusivamente en el H1 principal de Home.
+- Los H1 de paginas secundarias consumen `--type-page`.
+- Las cards consumen `--type-card` aunque su heading semantico sea un `h2` o `h3`.
 - Section Title no se usa dentro de cards ni sidebars.
 - Sidebar nunca debe usar `.display-title` ni `.section-title`.
 - Titulos de sidebar deben usar `h4` / `.h4` o una variante compacta registrada.
@@ -224,7 +273,7 @@ Los charts de Uhura deben funcionar como evidencia visual rapida. No reemplazan 
 | Area | Enfasis de crecimiento o volumen. | Linea + relleno degradado muy suave. | El area no debe tapar texto ni parecer bloque pesado. |
 | Mini Chart | Microvisualizacion dentro de metric cards o flows. | Sparklines, barras simples o indicadores minimos. | No usar si el dato puede leerse mejor como numero. |
 
-Colores sugeridos por intencion: purple para crecimiento/estrategia, lime para eficiencia/optimizacion, cyan para conversion/data/velocidad.
+Los colores de datos respetan Contextual Accent: sobre light, marcas funcionales, cifras y labels usan purple/violet; lime/cyan se reservan para superficies dark. La intencion del dato se comunica con jerarquia, forma y copy, no rompiendo el contraste del contexto.
 
 ### Data Visualization
 
@@ -476,26 +525,72 @@ Components son piezas reutilizables con responsabilidad concreta: acciones, cont
 
 ### Buttons
 
-- `.button-primary`: CTA principal lime.
+- `.button-primary`: CTA principal contextual. Sobre dark usa lime con texto oscuro; sobre light usa purple/violet con texto blanco.
 - `.button-secondary`: CTA secundario oscuro/glass.
 - `.button-ghost`: link editorial con underline sutil.
 - `.button-cata`: CTA con avatar circular de Catalina.
 - `.cta-row`: espaciado estandar para filas de CTA despues de copy.
 - `.cta-row.roomy`: espaciado amplio para CTAs que cierran una seccion.
 
-Regla: no crear botones con estilos inline. Si hace falta un nuevo estado, agregarlo aqui.
+Tokens contextuales de `.button-primary`: `--button-primary-background`, `--button-primary-color`, `--button-primary-shadow` y `--button-primary-shadow-hover`. Los asignan `.page-dark` / `.page-light` y las superficies globales equivalentes.
+
+Regla: no crear botones con estilos inline ni variantes locales por pagina. Si hace falta un nuevo estado, agregarlo aqui.
 
 ### Cards y Panels
 
-- `.card`: card light base existente.
-- `.uhura-card`: card reusable neutral.
-- `.card-padded`: padding estandar para cards.
-- `.card-light`: card sobre fondos claros.
-- `.card-dark`: card sobre fondos oscuros.
+- `.uhura-card`: Card Base oficial. Controla estructura, overflow, radio y anatomia interna; no define fondo de pagina.
+- `.uhura-card--content`: contenido, capacidad, hallazgo o modulo editorial compacto.
+- `.uhura-card--metric`: KPI con label, cifra dominante y contexto opcional.
+- `.uhura-card--evidence`: evidencia visual con media y caption desacoplados.
+- `.uhura-card--light`: superficie clara.
+- `.uhura-card--dark`: superficie oscura.
+- `.uhura-card--glass`: superficie glass controlada para atmosferas dark.
+- `.uhura-card--interactive`: estado hover/focus para cards que son links reales o contienen una accion accesible.
+- `.uhura-card__header`: fila anatomica opcional para icono, indice o accion secundaria.
+- `.uhura-icon-tile`: contenedor global de iconografia semantica; usa SVG de una sola familia visual y hereda el Contextual Accent.
+- `.uhura-card__arrow`: cierre textual opcional para cards navegables; anima solo dentro de `.uhura-card--interactive`.
+- `.uhura-card__meta`: metadata de apertura con marcador pixel global; consume Label y nunca usa la linea decorativa de `.eyebrow`.
+- `.uhura-card__label`: alias compatible de label de metrica.
+- `.uhura-card__title` / `.uhura-card__body`: titulo y copy.
+- `.uhura-card__value`: alias compatible de cifra KPI.
+- `.uhura-card__media` / `.uhura-card__content`: slots de Evidence Card.
+- `.uhura-card__caption` / `.uhura-card__footer` / `.uhura-card__actions`: contexto y cierre.
+- `.uhura-card-grid`: grid responsive compartido.
+- `.uhura-card-grid--content` / `.uhura-card-grid--metrics` / `.uhura-card-grid--evidence`: minimos responsive por intencion.
+- `.card`, `.card-padded`, `.card-light` y `.card-dark`: aliases legacy conservados para compatibilidad; no son la API recomendada para paginas nuevas.
 - `.panel-light`: panel amplio sobre light.
 - `.panel-dark`: panel amplio sobre dark.
 - `.panel-roomy`: variante de panel con padding editorial generoso.
 - `.card-kicker` / `.card-index`: indices o small labels dentro de cards.
+- `.uhura-marker`: marcador pixel cuadrado; `.uhura-marker--round` cambia solo su forma.
+
+Composicion minima:
+
+```html
+<article class="uhura-card uhura-card--content uhura-card--light">
+  <p class="uhura-card__meta">Categoria</p>
+  <h3 class="uhura-card__title">Titulo</h3>
+  <p class="uhura-card__body">Descripcion</p>
+</article>
+```
+
+Responsabilidad:
+
+- Card Base gobierna tipografia interna, padding, gaps, borde, radio, sombra, superficies, estados y responsive.
+- Las variantes de superficie de Card Base asignan Contextual Accent: light usa purple/violet; dark y glass usan lime/cyan.
+- En Card Base, `__title` consume `--type-card`; `__body` consume `--type-small`; `__caption` conserva `--type-caption`.
+- Badge/meta, titulo y body mantienen tres niveles visibles: Label, Card y Small. Ninguna card puede consumir Display, Page, Section, Editorial o Narrative Title.
+- Metadata de card usa un pixel compacto; la linea de `.eyebrow` queda reservada para encabezados de seccion.
+- Evidence Card light usa contenido blanco/translucido legible; Evidence dark usa contenido oscuro profundo. La diferencia Antes/Despues se expresa con superficies del sistema, no con gris deshabilitado.
+- `.panel-light` obliga texto oscuro y muted light; `.panel-dark` obliga texto claro y muted dark.
+- Tokens propios: `--component-card-padding`, `--component-card-gap`, `--component-card-grid-gap`, `--component-card-radius`, `--component-card-media-radius`, `--component-card-transition`, `--component-icon-tile-size`, `--component-icon-size`, `--component-icon-tile-radius`, `--component-interactive-shift`, `--type-metric` y `--leading-metric`.
+- La pagina gobierna copy, assets, cantidad, fondo de seccion y orden editorial.
+- Las cards no requieren JavaScript. Una card navegable debe ser un `<a>` real; no convertir un `div` completo en control.
+- Estados oficiales: hover/focus mediante `.uhura-card--interactive`; seleccion mediante `.is-selected` o `aria-current="true"`. `.uhura-card--interactive` solo se agrega cuando existe un enlace o una accion real, comparte respuesta entre mouse y `focus-visible`, no se activa en dispositivos sin hover y elimina desplazamientos con `prefers-reduced-motion`. No simular disabled solo con apariencia.
+- Content, Metric y Evidence son variantes oficiales. Process Card, Sidebar y Success Cases conservan responsabilidad propia.
+- Growth metrics dentro del sistema circular y los orbit modules de Producto Digital son visuales internos, no Card Base.
+- Estado: implementado globalmente y visible en `workbench/design-system.html`; sin consumidores vivos migrados todavia.
+- Primer consumidor piloto aprobado: Kaiowa. Cristar validara reutilizacion despues de la migracion atomica.
 
 ### Sidebar
 
@@ -503,18 +598,65 @@ Usado en casos de estudio y futuras paginas editoriales.
 
 - `.sidebar`: contenedor sticky.
 - `.sidebar-card`: modulo interno.
+- `.sidebar-card__meta`: label compacto con marcador pixel.
+- `.sidebar-card__title`: titulo con `--type-card`.
+- `.sidebar-card__body`: copy compacto con `--type-small`.
+- `.sidebar-card__actions`: cierre o controles del modulo.
 - `.avatar-row`: fila con foto circular + texto.
 - `.filter-pills` / `.tag-filter`: filtros clickeables.
 - `.case-list`: listado de casos.
 
+Reglas: Sidebar no usa Display, Page ni Section Title; no compite con la narrativa principal; es sticky en desktop y lineal en mobile. Su superficie actual es light y gobierna contraste oscuro de forma explicita.
+
 ### Metricas
 
-- `.metric`: metrica tipo card.
+- `.uhura-card--metric`: API oficial para nuevas metric cards.
+- `.metric`: metrica tipo card legacy.
 - `.metric-row`: grilla de metricas.
 - `.metric-bar`: barra horizontal tipo enterprise stats.
 - `.metric-bar-item`: item dentro de la barra.
 - `.metric-bar-value`: valor numerico.
 - `.metric-bar-label`: etiqueta de metrica.
+
+`.metric`, `.metric-row` y `.metric-bar` permanecen disponibles para compatibilidad. No deben usarse para crear nuevas variantes KPI si `uhura-card--metric` resuelve la necesidad.
+
+#### Metric / KPI v1
+
+Metric / KPI v1 es una composicion oficial de Card Base, no un componente paralelo.
+
+Roles oficiales:
+
+- `.metric-value`: cifra; usa `--type-metric` / `--leading-metric`.
+- `.metric-label`: descriptor compacto; usa Label.
+- `.metric-caption`: contexto opcional; usa Caption.
+- `.uhura-card__value`, `.uhura-card__label` y `.uhura-card__caption` permanecen como aliases compatibles.
+
+API recomendada:
+
+```html
+<dl class="uhura-card-grid uhura-card-grid--metrics">
+  <div class="uhura-card uhura-card--metric uhura-card--light">
+    <dt class="metric-label">Conversion</dt>
+    <dd class="metric-value">+42%</dd>
+    <dd class="metric-caption">Frente al periodo anterior.</dd>
+  </div>
+</dl>
+```
+
+Reglas:
+
+- Un KPI principal por card.
+- En dark, `.metric-value` usa lime y `.metric-label` usa lavender; cifra y descriptor nunca comparten el mismo verde.
+- En light, value y label usan purple con jerarquia tipografica diferenciada.
+- Una metrica nunca consume escalas Display, Page, Hero o Section.
+- El contexto es opcional, pero el label y el valor deben existir.
+- Usar `dl` / `dt` / `dd` cuando se presenta un grupo de datos.
+- El grid oficial responde mediante `.uhura-card-grid--metrics`.
+- La card no tiene hover por defecto. Si navega a evidencia adicional, debe ser un enlace real y agregar `.uhura-card--interactive`.
+- Charts y tendencias son slots opcionales posteriores; no agregar visuales decorativos sin dato real.
+- Success Cases conserva su metrica interna especializada. Las metricas del sistema circular de Growth tampoco migran a esta API.
+- Estado: implementado en sistema y System Lab; sin consumidores vivos migrados.
+- Primer consumidor piloto aprobado: resultados de Kaiowa.
 
 ### Formularios
 
@@ -895,23 +1037,60 @@ Uso para cierres intermedios, siguiente paso o accion contextual.
 - Debe diferenciarse del footer global y no duplicar su funcion.
 - Debe mantener una sola accion principal.
 
-### Partner Strip
+### Logo Rail
 
-Mount:
+Patron global para mostrar plataformas, marketplaces, clientes, partners o
+cobertura sin recrear cintillos locales. Tiene exactamente dos variantes
+visuales:
+
+- `.logo-rail--platforms`: items informativos con marca, nombre y categoria.
+- `.logo-rail--brands`: logos dentro de una capsula clara continua.
+
+API compartida:
 
 ```html
-<div data-expertise-strip></div>
+<div class="logo-rail logo-rail--brands" data-logo-rail>
+  <p class="logo-rail__label">Titulo configurable</p>
+  <div class="logo-rail__viewport">
+    <div class="logo-rail__track">
+      <div class="logo-rail__group">
+        <img class="logo-rail__logo" src="..." alt="Marca">
+      </div>
+    </div>
+  </div>
+</div>
 ```
 
-Clases:
+Anatomia:
 
-- `.expertise-strip`
-- `.expertise-track`
-- `.expertise-logo`
+- `.logo-rail__label`: titulo configurable; no define el contenido.
+- `.logo-rail__viewport`: recorte y mascara lateral.
+- `.logo-rail__track`: movimiento continuo global.
+- `.logo-rail__group`: una unica lista semantica de items.
+- `.logo-rail__platform`, `.logo-rail__mark`, `.logo-rail__copy`: anatomia de Platforms.
+- `.logo-rail__logo`: asset de Brands.
+- `.logo-rail__logo--medium` y `.logo-rail__logo--compact`: normalizacion optica documentada, nunca selectores por nombre de archivo.
 
-Los logos viven en `assets/logos/`.
+Comportamiento:
 
-Regla: cuando una pagina necesite prueba de partners/logos, usar este patron antes de crear una grilla local.
+- El HTML autor declara una sola lista. `uhura-components.js` genera una sola
+  copia visual con `aria-hidden="true"` y de forma idempotente.
+- Hover y focus pausan el movimiento.
+- `prefers-reduced-motion` elimina la animacion, oculta la copia visual y
+  mantiene la lista original disponible mediante desplazamiento horizontal.
+- Desktop y mobile consumen la misma API; el sistema ajusta dimensiones y gaps.
+- Los logos acompanados por nombre visible usan `alt=""`; logos sin copy visible
+  conservan un `alt` descriptivo.
+- No configurar velocidades inline ni duplicar items manualmente.
+
+Digital Shelf es el primer consumidor de ambas variantes.
+
+#### Partner Strip Legacy
+
+`[data-expertise-strip]`, `.expertise-strip`, `.expertise-track` y
+`.expertise-logo` permanecen como compatibilidad para Nosotros y Producto
+Digital. Nuevos consumidores deben usar Logo Rail; la migracion del mount
+legacy se hara de forma controlada y no es requisito para consumir la API nueva.
 
 ### Split Panel
 
@@ -927,10 +1106,36 @@ Puede combinarse con `.panel-dark`, `.panel-light` y `.panel-roomy`.
 Uso para metodologia, forma de trabajo o pasos de proceso.
 
 - `.process-grid`: grilla responsive de tres columnas.
-- `.process-card`: card oscura/glass compacta para pasos.
-- `.process-card b`: indice numerico del paso.
+- `.process-card`: modificador semantico que se compone siempre con `.uhura-card`, una variante de contenido y una superficie.
+- `.process-card__index`: indice numerico del paso; consume Label y conserva el orden de la secuencia.
+- `.uhura-icon-tile`: apoyo semantico del paso. La familia aprobada en v1 usa iconos lineales Lucide como Search, Target y Blocks.
+- `.uhura-card__title`: titulo del paso; consume exactamente `--type-card`, `--leading-card` y el peso global de headings.
+- `.uhura-card__body`: descripcion del paso; consume `--type-small` y `--leading-small`.
 
-Esta variante existe porque `method-card` en Nosotros tenia una intencion visual especifica: explicar proceso con tres pasos sin sentirse como una card generica de servicio.
+API recomendada:
+
+```html
+<article class="process-card uhura-card uhura-card--content uhura-card--light">
+  <header class="uhura-card__header">
+    <span class="uhura-icon-tile" aria-hidden="true">...</span>
+    <span class="process-card__index">01</span>
+  </header>
+  <h3 class="uhura-card__title">Entendemos</h3>
+  <p class="uhura-card__body">Leemos el negocio y las restricciones reales.</p>
+</article>
+```
+
+Responsabilidad:
+
+- Card Base gobierna superficie, tipografia, padding, gaps, borde, radio y responsive.
+- Process gobierna solo indice, iconografia y significado secuencial.
+- Numero e icono conviven: el numero comunica orden y el icono acelera el escaneo conceptual.
+- Las Process Cards estaticas no usan `.uhura-card--interactive` ni presentan hover. Solo una card con enlace o accion real puede activar ese estado.
+- No incorporar iconografia a Progressive Narrative, Pinned Narrative, Editorial Reveal, Metric/KPI ni Evidence Card: en esos patrones no mejora la comprension y agrega ruido.
+- Light y dark se resuelven con las superficies existentes; Process no define colores locales.
+- `--type-small` se mantiene como body oficial de cards. Si una validacion futura demuestra perdida de legibilidad en contenido extenso, se evaluara un unico token global `--type-card-body`; no se permiten ajustes locales.
+- El markup legacy `.process-card` sin Card Base se conserva temporalmente para Nosotros. Nuevos consumidores deben usar la composicion oficial y la migracion del consumidor vivo sera atomica.
+- Estado: formalizado en sistema y visible en System Lab; sin paginas vivas migradas en esta fase.
 
 ### Case Sidebar
 
@@ -940,9 +1145,33 @@ Uso para casos de estudio y futuras paginas editoriales con navegacion o datos p
 - Debe usar jerarquia compacta: `h4` / `.h4`, `.copy`, `.small` o `.caption`.
 - No debe competir con la narrativa principal.
 
+## Theme System
+
+Nombre oficial: **Uhura Theme System**. Su comportamiento scroll-driven actual se denomina **Theme Exit Governor**.
+
+Estado actual:
+
+- Experimental y exclusivo de Home.
+- Vive en `src/extracted/theme-exit-governor.js` y en las variables/canvas heredados dentro de `index.html`.
+- Cambia `data-mood` y variables `--mood-*` para coordinar background, canvas, texto, superficies, bordes, navegacion, logo y CTA.
+- Depende de IDs, copy y umbrales propios de Home; no debe consumirse todavia en paginas nuevas.
+
+API declarativa objetivo, no implementada en esta fase:
+
+```html
+<main data-theme-system>
+  <section data-theme="dark">...</section>
+  <section data-theme="light">...</section>
+</main>
+```
+
+El coordinador futuro usara una linea focal estable y boundaries entre secciones para cambiar el tema en el momento editorial correcto. Home conservara un adaptador que traduzca sus IDs heredados a zonas declarativas sin reescribir el bundle.
+
+Theme System y Ambient Field son sistemas distintos: Theme System coordina el contexto cromatico de pagina y componentes; Ambient Field crea atmosfera visual dentro de una seccion delimitada. No usar Ambient Field para simular una transicion global de tema.
+
 ## Motion System
 
-Estado: Backlog aprobado.
+Estado: Parcial. Editorial Reveal esta implementado; el resto de responsabilidades permanece en backlog aprobado.
 
 El sitio ya usa movimiento en piezas como orb, sticky sections, hover states y glows. Esta capa sera responsable de formalizar como se mueve Uhura antes de que cada pagina cree interacciones locales.
 
@@ -961,6 +1190,51 @@ Responsabilidades:
 - Parallax.
 
 Regla: cualquier motion nuevo debe mapearse a una responsabilidad de esta lista. Si no encaja, se documenta primero antes de implementarlo.
+
+### Editorial Reveal
+
+Editorial Reveal es el motion global ligero para entradas de secciones, cards o grupos de contenido. No es scrollytelling fuerte y no reemplaza Progressive Narrative ni Pinned Narrative.
+
+API:
+
+```html
+<div class="editorial-reveal" data-reveal-group>
+  <article data-reveal-item>...</article>
+  <article data-reveal-item>...</article>
+</div>
+```
+
+Para un elemento aislado:
+
+```html
+<section data-reveal>...</section>
+```
+
+Responsabilidad:
+
+- Fade + desplazamiento vertical editorial al entrar en la zona util.
+- Stagger global de `70ms`, limitado internamente a seis posiciones.
+- Un unico `IntersectionObserver` compartido para todas las instancias.
+- Inicializacion idempotente mediante `data-reveal-initialized`.
+- El contenido es visible por defecto si JavaScript no carga.
+- Cada item deja de observarse despues de aparecer.
+- Mobile reduce la distancia de movimiento.
+- Reduced motion muestra todo inmediatamente, sin transicion ni transform.
+- No crea listeners de scroll, rAF continuo ni observers por item.
+
+Tokens:
+
+- `--motion-reveal-distance`
+- `--motion-reveal-duration`
+- `--motion-reveal-stagger`
+- `--motion-ease-editorial`
+
+Reglas:
+
+- Es opt-in. No agregarlo automaticamente a todas las secciones del sitio.
+- Usarlo para entrada y jerarquia, no para retener scroll ni controlar la lectura.
+- Si el scroll gobierna etapas narrativas, usar Progressive Narrative o Pinned Narrative.
+- Estado: implementado globalmente y visible en System Lab; sin consumidores vivos todavia.
 
 ## Criterio de migracion
 
@@ -1036,6 +1310,24 @@ Regla practica:
 - Si es una pieza reutilizable concreta, va en `Components`.
 - Si es una composicion o flujo, va en `Patterns`.
 - Si se mueve, aparece, responde al scroll o cambia por interaccion, va en `Motion System`.
+
+## Guardrails y gobernanza
+
+Flujo obligatorio para paginas nuevas:
+
+```txt
+Narrativa
+-> Seleccionar Patterns
+-> Seleccionar Components
+-> Consumir Foundations
+-> Escribir HTML
+-> Validar guardrails
+-> QA responsive
+```
+
+`AGENTS.md` resume las restricciones operativas. `scripts/check-design-system.sh` revisa archivos nuevos o CSS local seleccionado y reporta tipografia/clamps locales, estilos tipograficos inline, redefiniciones locales de Button/Card Base y combinaciones compactas de jerarquia prohibidas.
+
+El guardrail es deliberadamente simple: no modifica archivos, no purga deuda existente y no sustituye la revision semantica/visual. No se ejecuta de forma global sobre Home heredado ni sobre paginas pendientes de migracion; se aplica a archivos nuevos y a cada consumidor durante su migracion atomica.
 
 ## Regla final
 

@@ -8,6 +8,7 @@ The approved home is the source of truth. If a candidate changes visually, it is
 
 ## Files
 
+- `design-system.html`: Uhura System Lab. Catalogo visual vivo que consume los tokens, componentes, patterns y runtimes reales; clasifica cada specimen como Implemented, Partial o Experimental.
 - `home-working.html`: byte-for-byte copy of `../approved-snapshot/home-approved.html`.
 - `home-candidate-nav.html`: first candidate with the global nav patch externalized to `../src/extracted/global-nav-sync.js`.
 - `home-candidate-nav-type.html`: second candidate with global nav and typography scale externalized.
@@ -21,6 +22,16 @@ The approved home is the source of truth. If a candidate changes visually, it is
 2. Keep `../index.html` as the current public mirror of the approved home.
 3. Test structural cleanup in new candidate files only.
 4. Promote a candidate only after visual review.
+
+## Uhura System Lab
+
+`design-system.html` es la referencia visual del sistema implementado. No reemplaza
+`architecture/component-system.md` ni debe copiar estilos de componentes.
+
+- Si un problema aparece tambien en el Lab, pertenece al componente o foundation.
+- Si funciona en el Lab y falla en una pagina, pertenece a la composicion de esa pagina.
+- Un specimen `Implemented` puede consumirse en paginas nuevas.
+- Un specimen `Partial` o `Experimental` debe volver al Architecture Owner antes de reutilizarse.
 
 ## Candidate Log
 
