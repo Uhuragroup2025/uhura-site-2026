@@ -34,34 +34,11 @@
       -webkit-text-fill-color: transparent;
       text-shadow: 0 0 28px rgba(138,77,255,.20);
     }
-    .case-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 760px) minmax(280px, 320px);
-      gap: clamp(38px, 6vw, 82px);
-      align-items: start;
-      justify-content: center;
-    }
-    .case-content { min-width: 0; }
-    .case-sidebar { position: sticky; top: 128px; display: grid; gap: 18px; }
     .side-card { padding: 24px; border-radius: 24px; border: 1px solid rgba(80,31,146,.14); background: rgba(255,255,255,.70); box-shadow: 0 28px 70px rgba(80,31,146,.12); }
     .side-card h3 { margin: 0; font-size: var(--type-body-large-size); line-height: 1.28; letter-spacing: -.015em; font-weight: 700; }
     .side-card .sidebar-copy { font-size: var(--type-body-size); line-height: 1.82; }
-    .cata-row { display: flex; align-items: center; gap: 12px; }
-    .cata-row img { width: 54px; height: 54px; border-radius: 999px; object-fit: cover; }
-    .tag-filter { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
-    .tag-filter button { border: 1px solid rgba(80,31,146,.16); color: var(--uhura-purple); background: rgba(138,77,255,.07); border-radius: 999px; padding: 8px 12px; font-weight: 400; font-size: var(--type-badge-size); letter-spacing: .12em; text-transform: uppercase; }
-    .tag-filter button.is-active { background: var(--uhura-purple); color: #fff; }
-    .case-list a, .case-list-link { display: flex; justify-content: space-between; padding: 13px 0; border-top: 1px solid rgba(80,31,146,.12); color: var(--uhura-ink); text-decoration: none; font-weight: 600; }
-    .story-block { padding: clamp(44px, 7vw, 84px) 0; border-bottom: 1px solid rgba(80,31,146,.10); }
-    .story-split { display: grid; grid-template-columns: 1fr; gap: 22px; align-items: start; }
-    .diagnosis-list { display: grid; gap: 0; border-top: 1px solid rgba(80,31,146,.08); }
-    .diagnosis-item { display: grid; grid-template-columns: 74px 1fr; gap: 24px; padding: 19px 0 20px; border-bottom: 1px solid rgba(80,31,146,.075); align-items: start; }
     .diagnosis-item b { color: var(--uhura-violet); font-size: var(--type-h4-size); line-height: 1; letter-spacing: -.035em; font-weight: var(--type-heading-weight); }
-    .diagnosis-item .copy { margin-top: 0; }
-    .actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 36px; }
     .action-card {
-      position: relative;
-      overflow: hidden;
       transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease;
     }
     .action-card:hover {
@@ -76,15 +53,11 @@
     .shot { padding: 14px; }
     .shot img { border-radius: 16px; border: 1px solid rgba(80,31,146,.12); }
     .shot h3 { margin: 0 0 12px; }
-    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 36px; }
-    .result-card { min-height: 210px; display: flex; flex-direction: column; justify-content: space-between; }
     .result-card span { display: block; color: rgba(80,31,146,.58); font-size: var(--type-badge-size); font-weight: 800; letter-spacing: .14em; line-height: 1.45; text-transform: uppercase; }
     .result-card strong { display: block; margin-top: 22px; color: var(--uhura-purple); font-size: clamp(34px, 4vw, 54px); line-height: .98; letter-spacing: -.055em; font-weight: var(--type-heading-weight); }
     .results-note { margin-top: 30px; max-width: 720px; }
     @media (max-width: 940px) {
-      .case-layout, .story-split { grid-template-columns: 1fr; }
-      .case-sidebar { position: static; }
-      .actions, .before-after, .results-grid { grid-template-columns: 1fr; }
+      .before-after { grid-template-columns: 1fr; }
     }
     @media (prefers-reduced-motion: reduce) {
       .action-card { transition: border-color .2s ease, box-shadow .2s ease, background .2s ease; }
@@ -170,14 +143,14 @@
 
         <aside class="case-sidebar sidebar">
           <div class="side-card sidebar-card">
-            <div class="cata-row avatar-row">
+            <div class="avatar-row">
               <img src="../assets/team/Catalina Tejada - Directora Comercial.jpeg" alt="Catalina Tejada">
               <h3>Te ayudamos a crecer tu negocio</h3>
             </div>
             <p class="copy sidebar-copy">Identificamos dónde se frena tu sistema digital y priorizamos acciones con impacto medible.</p>
             <p><a class="button-primary" href="mailto:catalina@uhuragroup.com">Habla con Cata →</a></p>
           </div>
-          <div class="side-card sidebar-card">
+          <div class="side-card sidebar-card" data-case-filter>
             <h3>Más casos de estudio</h3>
             <div class="tag-filter filter-pills">
               <button class="is-active" data-sector="all">Todos</button>
@@ -205,17 +178,5 @@
   <script src="../src/config/services.js"></script>
   <script src="../src/extracted/global-nav-sync.js"></script>
   <script src="../src/extracted/footer-sync.js"></script>
-  <script>
-    document.querySelectorAll("[data-sector]").forEach((button) => {
-      button.addEventListener("click", () => {
-        document.querySelectorAll("[data-sector]").forEach((item) => item.classList.remove("is-active"));
-        button.classList.add("is-active");
-        const sector = button.dataset.sector;
-        document.querySelectorAll("[data-case-sector]").forEach((item) => {
-          item.style.display = sector === "all" || item.dataset.caseSector === sector ? "flex" : "none";
-        });
-      });
-    });
-  </script>
 </body>
 </html>

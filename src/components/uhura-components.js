@@ -38,6 +38,33 @@ logoRails.forEach((rail) => {
   rail.dataset.logoRailInitialized = "true";
 });
 
+document.querySelectorAll("[data-case-filter]").forEach((filter) => {
+  if (filter.dataset.caseFilterInitialized === "true") return;
+
+  const controls = Array.from(filter.querySelectorAll("[data-sector]"));
+  const items = Array.from(filter.querySelectorAll("[data-case-sector]"));
+  if (!controls.length || !items.length) return;
+
+  const selectSector = (sector) => {
+    controls.forEach((control) => {
+      const isActive = control.dataset.sector === sector;
+      control.classList.toggle("is-active", isActive);
+      control.setAttribute("aria-pressed", String(isActive));
+    });
+    items.forEach((item) => {
+      item.hidden = sector !== "all" && item.dataset.caseSector !== sector;
+    });
+  };
+
+  controls.forEach((control) => {
+    control.addEventListener("click", () => selectSector(control.dataset.sector));
+  });
+
+  const initial = controls.find((control) => control.classList.contains("is-active")) || controls[0];
+  selectSector(initial.dataset.sector);
+  filter.dataset.caseFilterInitialized = "true";
+});
+
 const successCases = [
   {
     brand: "cristar",

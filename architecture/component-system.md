@@ -1319,6 +1319,42 @@ Reglas:
 - Se mantiene local: `case-logo-main` y tratamiento editorial especifico del titulo.
 - Pendiente: reducir CSS local cuando se confirme que el visual sigue aprobado.
 
+## Case Study Base
+
+Responsabilidad:
+
+- Define la estructura editorial compartida por los casos vivos sin gobernar su narrativa ni sus assets.
+- Mantiene el contenido principal y el sidebar dentro de un layout consistente.
+- Provee ritmo vertical, grids recurrentes y filtrado accesible de enlaces relacionados.
+
+API:
+
+- `.case-layout`: grid principal de contenido y sidebar.
+- `.case-content`: columna narrativa.
+- `.case-sidebar.sidebar`: sidebar sticky en desktop y lineal en tablet/mobile.
+- `.story-block`: unidad editorial con ritmo y separador.
+- `.story-split`: composicion interna de texto.
+- `.diagnosis-list` / `.diagnosis-item`: lista de diagnostico numerada.
+- `.actions` / `.action-card`: grid de acciones o decisiones.
+- `.results-grid` / `.result-card`: grid de resultados.
+- `[data-case-filter]`: raiz idempotente del filtro.
+- `[data-sector]`: control de sector.
+- `[data-case-sector]`: item filtrable.
+
+Ownership:
+
+- Estructura y responsive: `src/styles/uhura-system.css`.
+- Filtro compartido: `src/components/uhura-components.js`.
+- Cada caso conserva localmente solo composiciones de evidencia, assets, identidad de marca y tratamientos editoriales con un unico consumidor.
+
+Responsive y accesibilidad:
+
+- El layout pasa a una columna en `940px`.
+- Actions y resultados pasan a una columna en el mismo rango.
+- El sidebar deja de ser sticky.
+- Los controles del filtro exponen `aria-pressed`; los items no coincidentes usan `hidden`.
+- La inicializacion es idempotente y queda limitada a cada `[data-case-filter]`.
+
 ## Decision Tree
 
 Usar este arbol antes de crear CSS, clases, componentes o patrones nuevos.
