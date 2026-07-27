@@ -24,7 +24,8 @@
   border: 1px solid rgba(193, 161, 255, .18);
   border-radius: 14px;
   background:
-    radial-gradient(ellipse at 50% 50%, rgba(137, 69, 240, .18), transparent 68%),
+    radial-gradient(ellipse at 35% 32%, rgba(37, 200, 217, .10), transparent 58%),
+    radial-gradient(ellipse at 70% 70%, rgba(137, 69, 240, .16), transparent 64%),
     rgba(255, 255, 255, .035);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06);
 }
@@ -34,27 +35,36 @@
   height: auto;
 }
 
-.home-presence-map__land {
-  fill: rgba(193, 161, 255, .11);
-  stroke: rgba(193, 161, 255, .34);
-  stroke-width: 1.4;
+.home-presence-map__axis {
+  fill: none;
+  stroke: rgba(37, 200, 217, .34);
+  stroke-width: 1.2;
+  stroke-dasharray: 2 8;
 }
 
-.home-presence-map__coast {
-  fill: none;
-  stroke: rgba(255, 255, 255, .16);
+.home-presence-map__axis--secondary {
+  stroke: rgba(193, 161, 255, .24);
   stroke-width: 1;
-  stroke-dasharray: 4 7;
+}
+
+.home-presence-map__satellites circle {
+  fill: rgba(193, 161, 255, .42);
+}
+
+.home-presence-map__pulse {
+  fill: rgba(225, 255, 100, .10);
+  stroke: rgba(225, 255, 100, .18);
+  stroke-width: 1;
 }
 
 .home-presence-map__marker circle {
-  fill: rgba(225, 255, 100, .16);
-  stroke: #e1ff64;
+  fill: var(--neon-yellow, #e1ff64);
+  stroke: rgba(255, 255, 255, .54);
   stroke-width: 2;
 }
 
 .home-presence-map__marker path {
-  stroke: #e1ff64;
+  stroke: rgba(225, 255, 100, .62);
   stroke-width: 1.6;
   stroke-linecap: round;
 }

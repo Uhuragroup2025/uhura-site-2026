@@ -98,16 +98,31 @@
     host.innerHTML = `
       <div class="home-presence-map__visual" aria-hidden="true">
         <svg viewBox="0 0 420 250" focusable="false">
-          <path class="home-presence-map__land" d="M74 42c22-18 56-24 88-18 28 5 45 22 59 44 14 21 31 28 56 24 27-4 51 3 65 24 14 22 10 48-7 69-21 26-61 33-93 22-27-10-50-29-80-27-31 2-54 26-84 18-31-8-46-38-38-70 8-33 11-67 34-86Z"/>
-          <path class="home-presence-map__coast" d="M155 76c14 17 22 37 19 61-2 20-12 36-25 51M232 104c-11 24-9 48 4 72M304 116c-22 9-38 24-49 45"/>
-          <g class="home-presence-map__marker home-presence-map__marker--usa" transform="translate(138 70)">
-            <circle r="12"></circle><path d="M-5 0h10M0-5v10"></path>
+          <path class="home-presence-map__axis" d="M92 58C146 38 208 42 265 70S357 141 382 194"/>
+          <path class="home-presence-map__axis home-presence-map__axis--secondary" d="M92 58C130 97 162 126 196 151S260 190 324 204"/>
+          <path class="home-presence-map__axis home-presence-map__axis--secondary" d="M168 96C206 83 246 91 285 118S343 165 382 194"/>
+          <g class="home-presence-map__satellites">
+            <circle cx="56" cy="88" r="3"></circle>
+            <circle cx="118" cy="38" r="4"></circle>
+            <circle cx="150" cy="138" r="3"></circle>
+            <circle cx="235" cy="56" r="3"></circle>
+            <circle cx="300" cy="98" r="4"></circle>
+            <circle cx="340" cy="168" r="3"></circle>
           </g>
-          <g class="home-presence-map__marker home-presence-map__marker--mexico" transform="translate(175 112)">
-            <circle r="12"></circle><path d="M-5 0h10M0-5v10"></path>
+          <g class="home-presence-map__marker home-presence-map__marker--usa" transform="translate(92 58)">
+            <circle class="home-presence-map__pulse" r="18"></circle>
+            <circle r="7"></circle>
+            <path d="M13 0h36"></path>
           </g>
-          <g class="home-presence-map__marker home-presence-map__marker--colombia" transform="translate(232 166)">
-            <circle r="12"></circle><path d="M-5 0h10M0-5v10"></path>
+          <g class="home-presence-map__marker home-presence-map__marker--mexico" transform="translate(168 96)">
+            <circle class="home-presence-map__pulse" r="16"></circle>
+            <circle r="7"></circle>
+            <path d="M12 0h34"></path>
+          </g>
+          <g class="home-presence-map__marker home-presence-map__marker--colombia" transform="translate(196 151)">
+            <circle class="home-presence-map__pulse" r="16"></circle>
+            <circle r="7"></circle>
+            <path d="M12 0h34"></path>
           </g>
         </svg>
       </div>
