@@ -40,6 +40,51 @@
     return;
   }
 
+  const desktopHoverQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+  const touchFallbackQuery = window.matchMedia("(hover: none), (pointer: coarse), (max-width: 980px)");
+
+  const usesDesktopHover = () => desktopHoverQuery.matches && !touchFallbackQuery.matches;
+
+  const installTouchPreviewGuard = () => {
+    if (document.getElementById("uhura-home-touch-preview-guard")) return;
+
+    const style = document.createElement("style");
+    style.id = "uhura-home-touch-preview-guard";
+    style.textContent = `
+      @media (hover: none), (pointer: coarse), (max-width: 980px) {
+        [data-home-capability-row="true"] {
+          cursor: pointer !important;
+        }
+
+        body > div[style*="z-index: 9990"] {
+          display: none !important;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  };
+
+  const suppressPreviewEvent = (event) => {
+    if (usesDesktopHover()) return;
+    const row = event.target.closest?.("[data-home-capability-row='true']");
+    if (!row) return;
+    event.stopImmediatePropagation();
+  };
+
+  const hideFloatingPreview = () => {
+    if (usesDesktopHover()) return;
+    Array.from(document.body.children).forEach((element) => {
+      if (
+        element instanceof HTMLElement &&
+        element.style.position === "fixed" &&
+        element.style.zIndex === "9990" &&
+        element.querySelector("img")
+      ) {
+        element.style.display = "none";
+      }
+    });
+  };
+
   const isOutsideGlobalChrome = (element) => (
     !element.closest(".uhura-nav-wrap") &&
     !element.closest(".uhura-shared-footer")
@@ -104,9 +149,11 @@
       );
 
       row.dataset.homeCapabilityRow = "true";
+      row.dataset.homeCapabilityHover = usesDesktopHover() ? "desktop" : "disabled";
       markNumber(children[0]);
       if (label) label.dataset.homeCapabilityLabel = "true";
     });
+    hideFloatingPreview();
     return rows.length > 0;
   };
 
@@ -149,6 +196,11 @@
   };
 
   const boot = () => {
+    installTouchPreviewGuard();
+    ["mouseenter", "mouseover", "pointerenter", "pointerover"].forEach((type) => {
+      document.addEventListener(type, suppressPreviewEvent, true);
+    });
+
     let tries = 0;
     const tick = () => {
       if (refresh() || tries > 60) return;
@@ -160,6 +212,10 @@
     const observer = new MutationObserver(refresh);
     observer.observe(document.body, { childList: true, subtree: true });
     window.__uhuraHomeServiceLinks.observer = observer;
+
+    [desktopHoverQuery, touchFallbackQuery].forEach((query) => {
+      query.addEventListener?.("change", refresh);
+    });
   };
 
   window.__uhuraHomeServiceLinks = { refresh, observer: null };

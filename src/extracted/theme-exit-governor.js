@@ -94,18 +94,19 @@
     const benchmarkBox = rect(benchmark);
 
     const aiStillPresent = aiBox && aiBox.bottom > vh * 0.24 && visibleRatio(aiLayer) > 0.10;
-    const brandsStillPresent = brandsBox && brandsBox.bottom > vh * 0.24 && visibleRatio(brands) > 0.10;
+    const brandsReady = brandsBox && brandsBox.top < vh * 0.84;
+    const brandsStillPresent = brandsBox && brandsBox.bottom > vh * 0.18 && visibleRatio(brands) > 0.04;
     const methodologyDominant =
       methodologyBox && methodologyBox.top < vh * 0.54 && (!brandsBox || brandsBox.bottom <= vh * 0.30);
     const benchmarkReady =
-      benchmarkBox && benchmarkBox.top < vh * 0.72 && (!aiBox || aiBox.bottom <= vh * 0.30);
+      benchmarkBox && benchmarkBox.top < vh * 0.88 && (!aiBox || aiBox.bottom <= vh * 0.30);
 
-    if (brandsStillPresent) return "light";
+    if (brandsReady || brandsStillPresent) return "dark";
     if (methodologyDominant) return "dark";
-    if (aiStillPresent) return "dark";
     if (benchmarkReady || visibleRatio(benchmark) > 0.04 || visibleRatio(results) > 0.04 || visibleRatio(brands) > 0.04) {
       return "light";
     }
+    if (aiStillPresent) return "dark";
     return "dark";
   }
 
