@@ -1134,8 +1134,9 @@ Responsabilidad:
 - No incorporar iconografia a Progressive Narrative, Pinned Narrative, Editorial Reveal, Metric/KPI ni Evidence Card: en esos patrones no mejora la comprension y agrega ruido.
 - Light y dark se resuelven con las superficies existentes; Process no define colores locales.
 - `--type-small` se mantiene como body oficial de cards. Si una validacion futura demuestra perdida de legibilidad en contenido extenso, se evaluara un unico token global `--type-card-body`; no se permiten ajustes locales.
-- El markup legacy `.process-card` sin Card Base se conserva temporalmente para Nosotros. Nuevos consumidores deben usar la composicion oficial y la migracion del consumidor vivo sera atomica.
-- Estado: formalizado en sistema y visible en System Lab; sin paginas vivas migradas en esta fase.
+- El markup legacy `.process-card` sin Card Base queda retirado despues de la migracion atomica de Nosotros. Nuevos consumidores deben usar la composicion oficial.
+- Estado: formalizado en sistema y visible en System Lab.
+- Primer consumidor vivo: Nosotros.
 
 ### Case Sidebar
 
@@ -1255,7 +1256,7 @@ Reglas:
 ### Nosotros
 
 - Usa menu/footer globales.
-- Migrado: `method-card` ahora consume `.process-grid` / `.process-card`.
+- Migrado: el bloque de proceso consume Card Base mediante `.process-grid`, `.process-card`, `.uhura-card`, `.uhura-card__header`, `.uhura-icon-tile`, `.process-card__index`, `.uhura-card__title` y `.uhura-card__body`.
 - Migrado: `about-culture-card` usa `.panel-dark` / `.panel-roomy` / `.split-panel`.
 - Migrado: `about-story-*` ahora consume `.narrative-section` / `.narrative-grid` / `.narrative-*`.
 - Migrado: CTAs narrativos usan `.cta-row`.

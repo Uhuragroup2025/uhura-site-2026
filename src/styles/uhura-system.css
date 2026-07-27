@@ -1940,17 +1940,6 @@ h4,
   gap: 20px;
   margin-top: 42px;
 }
-.process-card:not(.uhura-card) {
-  padding: 28px;
-  border-radius: var(--component-card-radius);
-  border: 1px solid rgba(201,183,255,.14);
-  background: rgba(255,255,255,.05);
-}
-.process-card:not(.uhura-card) b {
-  color: var(--context-accent-primary);
-  font-size: var(--type-label-size);
-  letter-spacing: .14em;
-}
 .process-card.uhura-card {
   min-height: 100%;
 }
