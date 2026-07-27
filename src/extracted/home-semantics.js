@@ -81,10 +81,98 @@
     return true;
   };
 
-  const mountPresenceMap = () => {
+  const escapeAttribute = (value) =>
+    String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/"/g, "&quot;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+
+  const defaultClientLogos = [
+    ["Bonafont", "assets/logos/logo-bonafont.webp"],
+    ["Kaiowa", "assets/logos/logo-kaiowa-.webp"],
+    ["Únula", "assets/logos/logo-unula.webp"],
+    ["Uhura Group", "assets/logos/logo-uhura-negro.webp"],
+    ["Yamaha", "assets/logos/logo-yamaha.webp"],
+    ["Danone", "assets/logos/logo-danone.webp"],
+    ["Cristar", "assets/logos/logo-cristar.webp"]
+  ];
+
+  const upgradeClientsLogoRail = () => {
     const section = document.getElementById("clientes");
     if (!section) return false;
-    if (section.querySelector("[data-presence-map='true']")) return true;
+    if (section.querySelector("[data-home-clients-logo-rail='true']")) return true;
+
+    const legacyMarquee = section.querySelector(".uhura-logo-marquee");
+    const legacyImages = Array.from(legacyMarquee?.querySelectorAll("img") || []);
+    const logos = legacyImages.length
+      ? Array.from(
+          legacyImages
+            .reduce((items, image) => {
+              const src = image.getAttribute("src");
+              if (src && !items.has(src)) {
+                items.set(src, [image.getAttribute("alt") || "", src]);
+              }
+              return items;
+            }, new Map())
+            .values()
+        )
+      : defaultClientLogos;
+
+    let host = legacyMarquee?.parentElement || null;
+    if (!host) {
+      const headingContainer = section.querySelector("[data-home-clients-heading='true']")?.parentElement;
+      if (!headingContainer) return false;
+      host = document.createElement("div");
+      headingContainer.after(host);
+    }
+    if (!host || !logos.length) return false;
+
+    host.removeAttribute("style");
+    host.className = "logo-rail logo-rail--brands";
+    host.dataset.logoRail = "";
+    host.dataset.homeClientsLogoRail = "true";
+    host.setAttribute("aria-label", "Marcas que crecieron");
+    host.innerHTML = `
+      <p class="logo-rail__label">Marcas que crecieron con Uhura</p>
+      <div class="logo-rail__viewport">
+        <div class="logo-rail__track">
+          <div class="logo-rail__group">
+            ${logos
+              .map(
+                ([label, src]) =>
+                  `<img class="logo-rail__logo" src="${escapeAttribute(src)}" alt="${escapeAttribute(label)}" loading="lazy">`
+              )
+              .join("")}
+          </div>
+        </div>
+      </div>
+    `;
+    return true;
+  };
+
+  const refineClientsHeading = () => {
+    const section = document.getElementById("clientes");
+    if (!section) return false;
+
+    const heading = Array.from(section.querySelectorAll("h2")).find((candidate) =>
+      candidate.textContent.includes("Marcas que")
+    );
+    if (!heading) return false;
+
+    const wrapper = heading.closest("div");
+    if (wrapper) wrapper.dataset.homeClientsHeading = "true";
+    heading.classList.add("section-title");
+    heading.style.fontSize = "";
+    heading.style.lineHeight = "";
+    heading.style.letterSpacing = "";
+    return true;
+  };
+
+  const mountPresencePills = () => {
+    const section = document.getElementById("clientes");
+    if (!section) return false;
+    if (section.querySelector("[data-presence-pills='true']")) return true;
 
     const label = Array.from(section.querySelectorAll("span")).find(
       (candidate) => candidate.textContent.trim() === "Presencia:"
@@ -94,46 +182,14 @@
     const host = label.parentElement;
     if (!host) return false;
 
-    host.dataset.presenceMap = "true";
+    host.dataset.presencePills = "true";
     host.innerHTML = `
-      <div class="home-presence-map__visual" aria-hidden="true">
-        <svg viewBox="0 0 420 250" focusable="false">
-          <path class="home-presence-map__axis" d="M92 58C146 38 208 42 265 70S357 141 382 194"/>
-          <path class="home-presence-map__axis home-presence-map__axis--secondary" d="M92 58C130 97 162 126 196 151S260 190 324 204"/>
-          <path class="home-presence-map__axis home-presence-map__axis--secondary" d="M168 96C206 83 246 91 285 118S343 165 382 194"/>
-          <g class="home-presence-map__satellites">
-            <circle cx="56" cy="88" r="3"></circle>
-            <circle cx="118" cy="38" r="4"></circle>
-            <circle cx="150" cy="138" r="3"></circle>
-            <circle cx="235" cy="56" r="3"></circle>
-            <circle cx="300" cy="98" r="4"></circle>
-            <circle cx="340" cy="168" r="3"></circle>
-          </g>
-          <g class="home-presence-map__marker home-presence-map__marker--usa" transform="translate(92 58)">
-            <circle class="home-presence-map__pulse" r="18"></circle>
-            <circle r="7"></circle>
-            <path d="M13 0h36"></path>
-          </g>
-          <g class="home-presence-map__marker home-presence-map__marker--mexico" transform="translate(168 96)">
-            <circle class="home-presence-map__pulse" r="16"></circle>
-            <circle r="7"></circle>
-            <path d="M12 0h34"></path>
-          </g>
-          <g class="home-presence-map__marker home-presence-map__marker--colombia" transform="translate(196 151)">
-            <circle class="home-presence-map__pulse" r="16"></circle>
-            <circle r="7"></circle>
-            <path d="M12 0h34"></path>
-          </g>
-        </svg>
-      </div>
-      <div class="home-presence-map__content">
-        <span class="home-presence-map__label">Presencia</span>
-        <ul class="home-presence-map__list">
-          <li><span aria-hidden="true">🇨🇴</span> Colombia</li>
-          <li><span aria-hidden="true">🇲🇽</span> México</li>
-          <li><span aria-hidden="true">🇺🇸</span> Estados Unidos</li>
-        </ul>
-      </div>
+      <span class="home-presence-pills__label">Presencia</span>
+      <ul class="home-presence-pills__list" aria-label="Países con presencia">
+        <li><span aria-hidden="true">🇨🇴</span> Colombia</li>
+        <li><span aria-hidden="true">🇲🇽</span> México</li>
+        <li><span aria-hidden="true">🇺🇸</span> Estados Unidos</li>
+      </ul>
     `;
     return true;
   };
@@ -147,8 +203,18 @@
     const casesReady = activateButton("Ver casos de éxito", "#trabajo");
     labelCarouselControls();
     const capabilitiesHeadingReady = refineCapabilitiesHeading();
-    const presenceReady = mountPresenceMap();
-    return titleReady && meetingReady && casesReady && capabilitiesHeadingReady && presenceReady;
+    const clientsHeadingReady = refineClientsHeading();
+    const clientsLogoRailReady = upgradeClientsLogoRail();
+    const presenceReady = mountPresencePills();
+    return (
+      titleReady &&
+      meetingReady &&
+      casesReady &&
+      capabilitiesHeadingReady &&
+      clientsHeadingReady &&
+      clientsLogoRailReady &&
+      presenceReady
+    );
   };
 
   const boot = () => {

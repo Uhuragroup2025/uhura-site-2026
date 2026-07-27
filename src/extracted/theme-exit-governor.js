@@ -93,19 +93,22 @@
     const methodologyBox = rect(methodology);
     const benchmarkBox = rect(benchmark);
 
-    const aiStillPresent = aiBox && aiBox.bottom > vh * 0.76 && visibleRatio(aiLayer) > 0.10;
-    const brandsReady = brandsBox && brandsBox.top < vh * 0.68;
-    const brandsStillPresent =
-      brandsBox && brandsBox.top < vh * 0.72 && brandsBox.bottom > vh * 0.18 && visibleRatio(brands) > 0.16;
+    const handoffLine = vh * 0.30;
+    const aiStillPresent = aiBox && aiBox.bottom > handoffLine && visibleRatio(aiLayer) > 0.06;
+    const brandsStillPresent = brandsBox && brandsBox.bottom > vh * 0.12 && visibleRatio(brands) > 0.04;
     const methodologyDominant =
       methodologyBox && methodologyBox.top < vh * 0.54 && (!brandsBox || brandsBox.bottom <= vh * 0.30);
     const benchmarkReady =
-      benchmarkBox && benchmarkBox.top < vh * 0.76 && (!aiBox || aiBox.bottom <= vh * 0.76);
+      benchmarkBox && benchmarkBox.top < handoffLine && (!aiBox || aiBox.bottom <= handoffLine);
 
-    if (brandsReady || brandsStillPresent) return "dark";
     if (methodologyDominant) return "dark";
     if (aiStillPresent) return "dark";
-    if (benchmarkReady || visibleRatio(benchmark) > 0.04 || visibleRatio(results) > 0.04 || visibleRatio(brands) > 0.04) {
+    if (
+      benchmarkReady ||
+      visibleRatio(benchmark) > 0.04 ||
+      visibleRatio(results) > 0.04 ||
+      brandsStillPresent
+    ) {
       return "light";
     }
     return "dark";
