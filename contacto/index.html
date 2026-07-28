@@ -80,13 +80,29 @@
       margin: 0;
     }
 
-    .hubspot-form-shell .hs-form-field > label {
+    .hubspot-form-shell label,
+    .hubspot-form-shell legend,
+    .hubspot-form-shell .hs-form-field > label,
+    .hubspot-form-shell .hs-form-field > label span,
+    .hubspot-form-shell .hs-form-field label span {
       display: block;
       margin-block-end: var(--space-2);
-      color: rgba(255,255,255,.72);
+      color: rgba(255,255,255,.92) !important;
       font-family: var(--font-primary);
       font-weight: 700;
       text-transform: uppercase;
+    }
+
+    .hubspot-form-shell .hs-field-desc,
+    .hubspot-form-shell .hs-richtext,
+    .hubspot-form-shell .hs-richtext p,
+    .hubspot-form-shell .inputs-list label,
+    .hubspot-form-shell .inputs-list span {
+      color: rgba(255,255,255,.74) !important;
+    }
+
+    .hubspot-form-shell .hs-form-required {
+      color: var(--uhura-lime) !important;
     }
 
     .hubspot-form-shell input,
@@ -102,6 +118,11 @@
       font: inherit;
       outline: none;
       transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+
+    .hubspot-form-shell input::placeholder,
+    .hubspot-form-shell textarea::placeholder {
+      color: rgba(255,255,255,.42);
     }
 
     .hubspot-form-shell textarea {
