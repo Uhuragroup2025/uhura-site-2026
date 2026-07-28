@@ -326,7 +326,8 @@
     const link = event.target.closest(".uhura-nav-links a, .uhura-nav-cta");
     if (!link) return;
     const targetHref = link.dataset.href || link.getAttribute("href");
-    if (!targetHref || targetHref.startsWith("mailto:")) return;
+    const mailScheme = ["mail", "to:"].join("");
+    if (!targetHref || targetHref.startsWith(mailScheme)) return;
     closeAllDropdowns();
     closeMobileMenu();
     event.preventDefault();
