@@ -45,7 +45,7 @@
 
   const resolveContactHref = () => {
     const catalog = window.__uhuraServices;
-    if (catalog?.resolvePath) return catalog.resolvePath("/contacto/");
+    if (catalog?.resolvePath) return catalog.resolvePath("/contacto/index.html");
     return window.location.protocol === "file:" ? "contacto/index.html" : "/contacto/";
   };
 
