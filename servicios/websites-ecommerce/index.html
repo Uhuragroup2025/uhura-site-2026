@@ -556,9 +556,14 @@
     }
 
     .service-hero-visual {
-      min-height: clamp(430px, 42vw, 620px);
+      width: min(100%, 620px);
+      aspect-ratio: 1;
+      min-height: 0;
+      display: grid;
+      place-items: center;
+      margin-inline: auto;
       padding: 0;
-      overflow: visible;
+      overflow: hidden;
       background: transparent !important;
       border: 0 !important;
       box-shadow: none !important;
@@ -579,7 +584,9 @@
     .command-console {
       --orb-tilt-x: 0deg;
       --orb-tilt-y: 0deg;
-      min-height: clamp(430px, 42vw, 620px);
+      width: 100%;
+      aspect-ratio: 1;
+      min-height: 0;
       border: 0;
       border-radius: 999px;
       background: transparent;
@@ -958,7 +965,7 @@
       }
 
       .service-hero-visual {
-        min-height: 430px;
+        width: min(100%, 560px);
       }
 
       .principles-grid,
@@ -972,12 +979,12 @@
 
     @media (max-width: 640px) {
       .service-hero-visual {
-        min-height: 380px;
-        padding: 18px;
+        width: min(100%, 370px);
+        padding: 0;
       }
 
       .command-console {
-        min-height: 430px;
+        min-height: 0;
       }
 
       .orbit-node {
@@ -1255,7 +1262,7 @@
             <h2 class="section-title">No necesitas más tráfico. <span class="italic">Necesitas un sistema que convierta.</span></h2>
             <p class="copy">Construimos estrategia, pauta, producto digital y automatización para que cada visita tenga una razón clara para convertirse en crecimiento.</p>
           </div>
-          <a class="button-cata" href="mailto:catalina@uhuragroup.com">
+          <a class="button-cata" href="../../contacto/">
             <img src="../../assets/team/Catalina Tejada - Directora Comercial.jpeg" alt="Catalina Tejada">
             Habla con Cata →
           </a>

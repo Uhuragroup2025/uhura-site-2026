@@ -45,21 +45,108 @@
       pointer-events: none;
     }
 
-    .contact-form-placeholder {
+    .contact-form-panel {
+      position: relative;
       min-height: 420px;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      border-style: dashed;
+      overflow: hidden;
+      border-color: rgba(201,183,255,.18);
+      background:
+        radial-gradient(ellipse at 16% 0%, rgba(138,77,255,.20), transparent 38%),
+        radial-gradient(ellipse at 88% 12%, rgba(75,229,255,.12), transparent 34%),
+        rgba(12,8,24,.72);
     }
 
-    .contact-form-placeholder .small {
-      max-width: var(--measure-body-narrow);
+    .contact-form-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(201,183,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,183,255,.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: .42;
+      pointer-events: none;
+    }
+
+    .hubspot-form-shell {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hubspot-form-shell form {
+      display: grid;
+      gap: var(--space-4);
       margin: 0;
     }
 
+    .hubspot-form-shell .hs-form-field > label {
+      display: block;
+      margin-block-end: var(--space-2);
+      color: rgba(255,255,255,.72);
+      font-family: var(--font-primary);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .hubspot-form-shell input,
+    .hubspot-form-shell textarea,
+    .hubspot-form-shell select {
+      width: 100% !important;
+      min-height: 52px;
+      padding: 14px 16px;
+      border: 1px solid rgba(201,183,255,.18);
+      border-radius: var(--component-icon-tile-radius);
+      background: rgba(255,255,255,.055);
+      color: var(--uhura-white);
+      font: inherit;
+      outline: none;
+      transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+
+    .hubspot-form-shell textarea {
+      min-height: 132px;
+      resize: vertical;
+    }
+
+    .hubspot-form-shell input:focus,
+    .hubspot-form-shell textarea:focus,
+    .hubspot-form-shell select:focus {
+      border-color: rgba(212,255,74,.66);
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 0 0 3px rgba(212,255,74,.10);
+    }
+
+    .hubspot-form-shell .hs-error-msgs,
+    .hubspot-form-shell .hs-error-msg {
+      margin: var(--space-2) 0 0;
+      color: var(--uhura-lime);
+      font: inherit;
+    }
+
+    .hubspot-form-shell .hs-button,
+    .hubspot-form-shell input[type="submit"] {
+      width: auto !important;
+      min-height: auto;
+      justify-self: start;
+      padding: 14px 28px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--uhura-lime);
+      color: var(--uhura-ink);
+      font-family: var(--font-primary);
+      font-weight: 800;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 14px 34px rgba(212,255,74,.18);
+    }
+
+    .hubspot-form-shell .submitted-message {
+      color: rgba(255,255,255,.78);
+    }
+
     @media (max-width: 980px) {
-      .contact-form-placeholder { min-height: 340px; }
+      .contact-form-panel { min-height: 340px; }
     }
   </style>
 </head>
@@ -77,9 +164,8 @@
             </div>
           </div>
           <div class="hero-base__media">
-            <div class="panel-dark panel-roomy contact-form-placeholder" aria-label="Formulario de contacto">
-              <!-- HubSpot form embed -->
-              <p class="small">Aquí irá el formulario de HubSpot. Mientras tanto, este espacio conserva la proporción, el contexto y la intención de contacto de la página.</p>
+            <div class="panel-dark panel-roomy contact-form-panel" aria-label="Formulario de contacto">
+              <div id="hubspot-contact-form" class="hubspot-form-shell"></div>
             </div>
           </div>
         </div>
@@ -90,5 +176,25 @@
   <script src="../src/config/services.js"></script>
   <script src="../src/extracted/global-nav-sync.js"></script>
   <script src="../src/extracted/footer-sync.js"></script>
+  <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/embed/v2.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      if (!window.hbspt || !window.hbspt.forms) return;
+
+      window.hbspt.forms.create({
+        portalId: "20846814",
+        formId: "c6519223-3766-4dc6-9def-d623624fad7c",
+        region: "na1",
+        target: "#hubspot-contact-form",
+        onFormSubmitted: function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: "hubspot_form_success",
+            form_id: "c6519223-3766-4dc6-9def-d623624fad7c"
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
