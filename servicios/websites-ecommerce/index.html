@@ -20,6 +20,7 @@
   <style>
     body.service-digital-products {
       background: #080511;
+      overflow-x: clip;
     }
 
     .uhura-product-bg {
@@ -95,6 +96,15 @@
       min-height: 520px;
       padding: clamp(18px, 3vw, 30px);
       overflow: hidden;
+    }
+
+    .service-platforms [data-expertise-strip] {
+      overflow: hidden;
+      max-width: 100%;
+    }
+
+    .service-platforms .expertise-track {
+      max-width: max-content;
     }
 
     .service-hero-visual::before {
@@ -443,7 +453,7 @@
     .orbit-1 { left: 48%; top: 10%; --node-color: #F7F4FF; --node-glow: rgba(255,255,255,.48); }
     .orbit-2 { left: 73%; top: 18%; --node-color: #F7F4FF; --node-glow: rgba(255,255,255,.46); }
     .orbit-3 { left: 86%; top: 42%; --node-color: #F7F4FF; --node-glow: rgba(255,255,255,.44); --node-border: rgba(255,255,255,.24); --node-shadow: rgba(255,255,255,.10); }
-    .orbit-4 { left: 77%; top: 68%; --node-color: #F7F4FF; --node-glow: rgba(255,255,255,.42); }
+    .orbit-4 { left: 82%; top: 68%; --node-color: #F7F4FF; --node-glow: rgba(255,255,255,.42); }
     .orbit-5 { left: 59%; top: 84%; --node-color: #F7F4FF; --node-glow: rgba(255,255,255,.40); }
     .orbit-6 { left: 35%; top: 82%; --node-color: #F7F4FF; --node-glow: rgba(255,255,255,.42); }
     .orbit-7 { left: 16%; top: 61%; --node-color: #F7F4FF; --node-glow: rgba(255,255,255,.40); --node-border: rgba(255,255,255,.20); --node-shadow: rgba(255,255,255,.08); }
@@ -556,7 +566,8 @@
     }
 
     .service-hero-visual {
-      width: min(100%, 620px);
+      --orbital-visual-size: min(100%, 620px);
+      width: var(--orbital-visual-size);
       aspect-ratio: 1;
       min-height: 0;
       display: grid;
@@ -747,7 +758,7 @@
     .orbit-1 { left: 48%; top: 10%; }
     .orbit-2 { left: 73%; top: 18%; }
     .orbit-3 { left: 86%; top: 42%; }
-    .orbit-4 { left: 77%; top: 68%; }
+    .orbit-4 { left: 82%; top: 68%; }
     .orbit-5 { left: 59%; top: 84%; }
     .orbit-6 { left: 35%; top: 82%; }
     .orbit-7 { left: 16%; top: 61%; }
@@ -965,7 +976,8 @@
       }
 
       .service-hero-visual {
-        width: min(100%, 560px);
+        --orbital-visual-size: min(100%, 560px);
+        overflow: visible;
       }
 
       .principles-grid,
@@ -979,8 +991,10 @@
 
     @media (max-width: 640px) {
       .service-hero-visual {
-        width: min(100%, 370px);
+        --orbital-visual-size: min(100%, 390px);
+        max-width: calc(100vw - 32px);
         padding: 0;
+        margin-block: 12px 4px;
       }
 
       .command-console {
@@ -988,33 +1002,34 @@
       }
 
       .orbit-node {
-        min-width: 92px;
-        padding: 9px 10px;
+        min-width: 74px;
+        max-width: 96px;
+        padding: 8px 10px;
         font-size: 9px;
-        letter-spacing: .09em;
+        letter-spacing: .075em;
+        white-space: nowrap;
       }
 
       .module-card,
       .module-pill,
       .module-signal {
-        min-width: 88px;
+        min-width: 74px;
+        max-width: 96px;
       }
 
       .module-card {
-        padding: 10px 11px;
-        border-radius: 14px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        text-align: center;
       }
 
       .module-dot {
-        width: 12px;
-        height: 12px;
-        min-width: auto;
-        padding: 0;
-      }
-
-      .module-dot::after {
-        top: 18px;
-        font-size: 8px;
+        width: auto;
+        height: auto;
+        min-width: 54px;
+        padding: 8px 10px;
+        font-size: 9px;
+        background: rgba(13,10,25,.58);
       }
 
       .orbit-node::before {
@@ -1022,9 +1037,29 @@
       }
 
       .console-core {
-        width: min(190px, 54%);
+        width: min(148px, 36%);
         border-radius: 28px;
-        padding: 22px;
+        padding: 18px 14px;
+      }
+
+      .console-core span {
+        font-size: 8px;
+        letter-spacing: .12em;
+        margin-bottom: 6px;
+      }
+
+      .console-core strong {
+        font-size: clamp(16px, 4.8vw, 20px);
+        line-height: 1.04;
+      }
+
+      .command-console::before {
+        width: 72%;
+      }
+
+      .command-console::after,
+      .particle-orb-canvas {
+        width: 92%;
       }
 
       .console-caption {
@@ -1034,13 +1069,13 @@
       }
 
       .orbit-1 { left: 50%; top: 10%; }
-      .orbit-2 { left: 78%; top: 21%; }
-      .orbit-3 { left: 88%; top: 42%; }
-      .orbit-4 { left: 83%; top: 64%; }
-      .orbit-5 { left: 66%; top: 82%; }
-      .orbit-6 { left: 50%; top: 89%; }
-      .orbit-7 { left: 32%; top: 82%; }
-      .orbit-8 { left: 17%; top: 64%; }
+      .orbit-2 { left: 72%; top: 20%; }
+      .orbit-3 { left: 84%; top: 42%; }
+      .orbit-4 { left: 82%; top: 64%; }
+      .orbit-5 { left: 58%; top: 82%; }
+      .orbit-6 { left: 38%; top: 82%; }
+      .orbit-7 { left: 18%; top: 64%; }
+      .orbit-8 { left: 28%; top: 20%; }
 
       .console-axis {
         width: 76%;
@@ -1059,7 +1094,7 @@
       }
 
       .signal-line {
-        width: calc(var(--line-width, 170px) * .78);
+        width: min(calc(var(--line-width, 170px) * .62), 31%);
       }
 
       .console-caption {
@@ -1072,6 +1107,38 @@
       .framework-grid {
         grid-template-columns: 1fr;
       }
+    }
+
+    @media (max-width: 420px) {
+      .service-hero-visual {
+        --orbital-visual-size: min(100%, 356px);
+      }
+
+      .orbit-node {
+        min-width: 62px;
+        max-width: 84px;
+        padding-inline: 8px;
+        font-size: 8px;
+        letter-spacing: .06em;
+      }
+
+      .module-card,
+      .module-pill,
+      .module-signal {
+        min-width: 66px;
+        max-width: 88px;
+      }
+
+      .module-dot {
+        min-width: 48px;
+        font-size: 8px;
+      }
+
+      .orbit-2 { left: 73%; top: 21%; }
+      .orbit-3 { left: 84%; top: 43%; }
+      .orbit-4 { left: 82%; top: 65%; }
+      .orbit-7 { left: 18%; top: 65%; }
+      .orbit-8 { left: 27%; top: 21%; }
     }
 
     @media (prefers-reduced-motion: reduce) {

@@ -84,10 +84,15 @@
     .hubspot-form-shell legend,
     .hubspot-form-shell .hs-form-field > label,
     .hubspot-form-shell .hs-form-field > label span,
-    .hubspot-form-shell .hs-form-field label span {
+    .hubspot-form-shell .hs-form-field label span,
+    .hubspot-form-shell .hs-form-field .hs-form-label,
+    .hubspot-form-shell .hs-form-field .hs-form-label span,
+    .hubspot-form-shell .hs-form-field .input label,
+    .hubspot-form-shell .legal-consent-container label,
+    .hubspot-form-shell .legal-consent-container label span {
       display: block;
       margin-block-end: var(--space-2);
-      color: rgba(255,255,255,.92) !important;
+      color: rgba(255,255,255,.94) !important;
       font-family: var(--font-primary);
       font-weight: 700;
       text-transform: uppercase;
@@ -97,7 +102,9 @@
     .hubspot-form-shell .hs-richtext,
     .hubspot-form-shell .hs-richtext p,
     .hubspot-form-shell .inputs-list label,
-    .hubspot-form-shell .inputs-list span {
+    .hubspot-form-shell .inputs-list span,
+    .hubspot-form-shell .hs-dependent-field label,
+    .hubspot-form-shell .hs-dependent-field span {
       color: rgba(255,255,255,.74) !important;
     }
 
@@ -199,6 +206,37 @@
   <script src="../src/extracted/footer-sync.js"></script>
   <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/embed/v2.js"></script>
   <script>
+    function applyHubspotContrastStyles() {
+      const css = `
+        label, legend, .hs-form-field > label, .hs-form-field > label span,
+        .hs-form-field .hs-form-label, .hs-form-field .hs-form-label span {
+          color: rgba(255,255,255,.94) !important;
+          font-family: Montserrat, sans-serif !important;
+          font-weight: 700 !important;
+          text-transform: uppercase !important;
+        }
+        .hs-richtext, .hs-richtext p, .hs-field-desc, .inputs-list label, .inputs-list span {
+          color: rgba(255,255,255,.74) !important;
+        }
+        .hs-form-required { color: #d4ff4a !important; }
+      `;
+      const mountStyle = (root) => {
+        if (!root || root.querySelector("[data-uhura-hubspot-contrast]")) return;
+        const style = document.createElement("style");
+        style.dataset.uhuraHubspotContrast = "true";
+        style.textContent = css;
+        root.appendChild(style);
+      };
+      mountStyle(document.getElementById("hubspot-contact-form"));
+      document.querySelectorAll("#hubspot-contact-form iframe").forEach((frame) => {
+        try {
+          mountStyle(frame.contentDocument?.head);
+        } catch (error) {
+          frame.classList.add("hubspot-form-iframe");
+        }
+      });
+    }
+
     window.addEventListener("load", function () {
       if (!window.hbspt || !window.hbspt.forms) return;
 
@@ -207,6 +245,10 @@
         formId: "c6519223-3766-4dc6-9def-d623624fad7c",
         region: "na1",
         target: "#hubspot-contact-form",
+        onFormReady: function () {
+          applyHubspotContrastStyles();
+          window.setTimeout(applyHubspotContrastStyles, 300);
+        },
         onFormSubmitted: function () {
           window.dataLayer = window.dataLayer || [];
           window.dataLayer.push({

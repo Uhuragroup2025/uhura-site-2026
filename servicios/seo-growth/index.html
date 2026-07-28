@@ -405,46 +405,141 @@
       }
 
       .growth-map {
-        width: min(100%, 680px);
+        width: min(100%, 560px);
+        max-width: calc(100vw - 48px);
       }
 
     }
 
     @media (max-width: 640px) {
       .growth-map {
-        width: min(100%, 520px);
+        width: min(100%, 390px);
+        max-width: calc(100vw - 32px);
+        margin-block: 18px 34px;
       }
 
       .growth-node b {
-        min-width: 112px;
-        min-height: 40px;
-        padding-inline: 14px;
-        font-size: 9px;
-        letter-spacing: .12em;
+        min-width: 82px;
+        min-height: 34px;
+        padding-inline: 10px;
+        font-size: 8px;
+        letter-spacing: .075em;
       }
 
       .growth-node small {
         display: none;
       }
 
-      .node-strategy { top: 8%; }
-      .node-creative { left: 18%; top: 30%; }
-      .node-media { left: 82%; top: 30%; }
-      .node-product { left: 19%; top: 68%; }
-      .node-data { left: 81%; top: 68%; }
-      .node-learning { top: 92%; }
+      .growth-map-core {
+        width: min(136px, 36%);
+        padding: 16px;
+      }
+
+      .growth-map-core strong {
+        font-size: clamp(18px, 5vw, 22px);
+      }
+
+      .growth-map-core span {
+        margin-top: 7px;
+        font-size: 10px;
+        line-height: 1.35;
+      }
+
+      .growth-link {
+        --line-width: min(116px, 30vw);
+      }
+
+      .link-strategy-creative,
+      .link-strategy-media {
+        --line-width: min(124px, 32vw);
+        top: 22%;
+      }
+
+      .link-creative-core,
+      .link-media-core {
+        --line-width: min(102px, 26vw);
+        top: 38%;
+      }
+
+      .link-product-learning,
+      .link-data-learning {
+        --line-width: min(106px, 27vw);
+        top: 67%;
+      }
+
+      .node-strategy { top: 18%; }
+      .node-creative { left: 22%; top: 34%; }
+      .node-media { left: 78%; top: 34%; }
+      .node-product { left: 23%; top: 66%; }
+      .node-data { left: 77%; top: 66%; }
+      .node-learning { top: 82%; }
 
       .metric-cpa,
       .metric-traffic {
-        top: 18%;
+        top: 2%;
       }
 
-      .metric-cpa { left: 0; }
-      .metric-traffic { right: 0; }
+      .metric-cpa { left: 4%; }
+      .metric-traffic { right: 4%; }
+
+      .metric-conversion {
+        bottom: 1%;
+      }
+
       .growth-metric {
-        min-width: 92px;
+        min-width: 76px;
       }
 
+      .growth-metric b {
+        font-size: 22px;
+      }
+
+      .growth-metric span {
+        margin-top: 4px;
+        font-size: 8px;
+        letter-spacing: .09em;
+      }
+
+    }
+
+    @media (max-width: 420px) {
+      .growth-map {
+        width: min(100%, 354px);
+      }
+
+      .growth-node b {
+        min-width: 72px;
+        min-height: 32px;
+        padding-inline: 8px;
+        font-size: 7.5px;
+        letter-spacing: .06em;
+      }
+
+      .growth-map-core {
+        width: min(124px, 35%);
+        padding: 13px;
+      }
+
+      .growth-map-core strong {
+        font-size: clamp(16px, 4.6vw, 20px);
+      }
+
+      .growth-map-core span {
+        font-size: 9px;
+      }
+
+      .growth-metric b {
+        font-size: 20px;
+      }
+
+      .growth-metric span {
+        font-size: 7.5px;
+      }
+
+      .node-creative { left: 23%; }
+      .node-media { left: 77%; }
+      .node-product { left: 24%; }
+      .node-data { left: 76%; }
     }
 
     @media (prefers-reduced-motion: reduce) {

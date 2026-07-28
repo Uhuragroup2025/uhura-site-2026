@@ -337,6 +337,8 @@
   const refresh = () => {
     const titleReady = promoteHeroTitle();
     const meetingReady = activateButton("Agendar reunión", resolveContactHref());
+    const reviewReady = activateButton("Revisémoslo juntos", resolveContactHref());
+    const improveReady = activateButton("¿Cómo mejorar este resultado? →", resolveContactHref());
     const casesReady = activateButton("Ver casos de éxito", "#trabajo");
     labelCarouselControls();
     const heroSupportReady = removeHeroSupportElements();
@@ -352,6 +354,8 @@
     return (
       titleReady &&
       meetingReady &&
+      reviewReady &&
+      improveReady &&
       casesReady &&
       heroSupportReady &&
       heroMetricsReady &&
