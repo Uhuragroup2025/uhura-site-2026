@@ -35,11 +35,20 @@
     const button = Array.from(document.querySelectorAll("main button")).find(
       (candidate) => candidate.textContent.trim() === label
     );
-    if (!button || button.dataset.uhuraActionReady === "true") return Boolean(button);
+    if (!button) return false;
     button.dataset.uhuraActionReady = "true";
-    button.addEventListener("click", () => {
+    button.onclick = () => {
       window.location.href = destination;
-    });
+    };
+    return true;
+  };
+
+  const activateLink = (label, destination) => {
+    const link = Array.from(document.querySelectorAll("main a")).find(
+      (candidate) => candidate.textContent.trim() === label
+    );
+    if (!link) return false;
+    link.setAttribute("href", destination);
     return true;
   };
 
@@ -338,7 +347,9 @@
     const titleReady = promoteHeroTitle();
     const meetingReady = activateButton("Agendar reunión", resolveContactHref());
     const reviewReady = activateButton("Revisémoslo juntos", resolveContactHref());
-    const improveReady = activateButton("¿Cómo mejorar este resultado? →", resolveContactHref());
+    const improveReady =
+      activateButton("¿Cómo mejorar este resultado? →", resolveContactHref()) ||
+      activateLink("¿Cómo mejorar este resultado? →", resolveContactHref());
     const casesReady = activateButton("Ver casos de éxito", "#trabajo");
     labelCarouselControls();
     const heroSupportReady = removeHeroSupportElements();
