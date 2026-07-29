@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../src/extracted/analytics-sync.js"></script>
   <title>Contacto | Uhura Group</title>
   <meta name="description" content="Hablemos de lo que quieres hacer crecer. Cuéntanos qué quieres construir, optimizar o escalar con Uhura Group.">
   <link rel="canonical" href="https://www.uhuragroup.com/contacto/">
@@ -72,6 +73,18 @@
     .hubspot-form-shell {
       position: relative;
       z-index: 1;
+    }
+
+    .hubspot-form-shell .hs-form-frame {
+      width: 100%;
+      min-height: 540px;
+    }
+
+    .hubspot-form-shell iframe {
+      width: 100% !important;
+      min-height: 540px !important;
+      border: 0;
+      background: transparent;
     }
 
     .hubspot-form-shell form {
@@ -175,10 +188,16 @@
 
     @media (max-width: 980px) {
       .contact-form-panel { min-height: 340px; }
+      .hubspot-form-shell .hs-form-frame,
+      .hubspot-form-shell iframe {
+        min-height: 620px !important;
+      }
     }
   </style>
 </head>
 <body class="page-dark contact-page">
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PZ35GMR9"
+  height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
   <div id="uhura-nav-root" data-uhura-nav></div>
   <main class="contact-main">
     <section class="hero-base" aria-labelledby="contact-title">
@@ -193,7 +212,9 @@
           </div>
           <div class="hero-base__media">
             <div class="panel-dark panel-roomy contact-form-panel" aria-label="Formulario de contacto">
-              <div id="hubspot-contact-form" class="hubspot-form-shell"></div>
+              <div id="hubspot-contact-form" class="hubspot-form-shell">
+                <div class="hs-form-frame" data-region="na1" data-form-id="dccaa1b8-d1c9-40aa-9b40-0fbb0770d630" data-portal-id="20846814"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -204,7 +225,7 @@
   <script src="../src/config/services.js"></script>
   <script src="../src/extracted/global-nav-sync.js"></script>
   <script src="../src/extracted/footer-sync.js"></script>
-  <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/embed/v2.js"></script>
+  <script src="https://js.hsforms.net/forms/embed/20846814.js" defer></script>
   <script>
     function applyHubspotContrastStyles() {
       const css = `
@@ -237,25 +258,26 @@
       });
     }
 
-    window.addEventListener("load", function () {
-      if (!window.hbspt || !window.hbspt.forms) return;
+    window.addEventListener("message", function (event) {
+      if (!event.data || event.data.type !== "hsFormCallback") return;
+      if (event.data.eventName === "onFormReady") {
+        applyHubspotContrastStyles();
+      }
+      if (event.data.eventName === "onFormSubmitted") {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "hubspot_form_success",
+          form_id: "dccaa1b8-d1c9-40aa-9b40-0fbb0770d630"
+        });
+      }
+    });
 
-      window.hbspt.forms.create({
-        portalId: "20846814",
-        formId: "c6519223-3766-4dc6-9def-d623624fad7c",
-        region: "na1",
-        target: "#hubspot-contact-form",
-        onFormReady: function () {
+    window.addEventListener("load", function () {
+      applyHubspotContrastStyles();
+      [300, 900, 1800].forEach(function (delay) {
+        window.setTimeout(function () {
           applyHubspotContrastStyles();
-          window.setTimeout(applyHubspotContrastStyles, 300);
-        },
-        onFormSubmitted: function () {
-          window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({
-            event: "hubspot_form_success",
-            form_id: "c6519223-3766-4dc6-9def-d623624fad7c"
-          });
-        }
+        }, delay);
       });
     });
   </script>
