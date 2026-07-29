@@ -71,7 +71,7 @@ const successCases = [
     type: "B2C",
     logo: "logo-cristar.webp",
     badge: "Ecommerce & UX",
-    href: `${rootPrefix}/casos-de-exito/cristar/`,
+    href: `${rootPrefix}/resultados/tienda-cristar/`,
     metrics: [
       ["Shopify", "Migración", "Una base ecommerce preparada para crecer"],
       ["UX", "Experiencia", "Navegación y checkout más claros"],
@@ -84,7 +84,7 @@ const successCases = [
     type: "B2C",
     logo: "logo-yamaha.webp",
     badge: "Performance & Adquisición",
-    href: `${rootPrefix}/casos/kaiowa.html`,
+    href: `${rootPrefix}/resultados/kaiowa/`,
     metrics: [
       ["4,47", "ROAS", "Partimos de 0,9 en 6 meses (+396%)"],
       ["$59K", "CPA", "Reducimos de $177K a $59.807"],
@@ -98,7 +98,7 @@ const successCases = [
     logo: "",
     client: "Lili Pink",
     badge: "Performance & Adquisición",
-    href: `${rootPrefix}/casos/kaiowa.html`,
+    href: `${rootPrefix}/resultados/kaiowa/`,
     metrics: [
       ["16M", "Impresiones", "Visibilidad masiva en 6 meses"],
       ["+10K", "Seguidores", "Adquiridos desde pauta en Tiktok e Instagram"],
@@ -111,7 +111,7 @@ const successCases = [
     type: "B2C",
     logo: "Logo-bosi.png",
     badge: "Performance & Adquisición",
-    href: `${rootPrefix}/casos/kaiowa.html`,
+    href: `${rootPrefix}/resultados/kaiowa/`,
     metrics: [
       ["+350K", "Reconocimiento", "Alcance en campaña de brand awareness"],
       ["+2M", "Interacciones", "Reconectamos con la audiencia existente"]
@@ -123,7 +123,7 @@ const successCases = [
     type: "B2B",
     logo: "logo-kaiowa-.webp",
     badge: "Rediseño Web",
-    href: `${rootPrefix}/casos/kaiowa.html`,
+    href: `${rootPrefix}/resultados/kaiowa/`,
     metrics: [
       ["6:03", "Min. en sitio", "Tiempo promedio de permanencia"],
       ["10.1K", "Visitas/mes", "Crecimiento de tráfico orgánico"],
@@ -136,7 +136,7 @@ const successCases = [
     type: "B2C",
     logo: "logo-constructora melendez.webp",
     badge: "REDISEÑO WEB + CRO",
-    href: `${rootPrefix}/casos/kaiowa.html`,
+    href: `${rootPrefix}/resultados/kaiowa/`,
     metrics: [
       ["+488%", "USUARIOS NUEVOS", "Crecimiento después del rediseño"],
       ["+502%", "VISTAS", "Mayor descubrimiento de proyectos"],

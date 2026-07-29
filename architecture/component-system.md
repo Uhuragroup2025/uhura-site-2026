@@ -9,7 +9,7 @@ Este documento define los componentes reutilizables del sitio. La regla es simpl
 - Menu global: `src/extracted/global-nav-sync.js`
 - Footer global: `src/extracted/footer-sync.js`
 - Cintillo de partners y mounts simples: `src/components/uhura-components.js`
-- Paginas vivas: `index.html`, `nosotros.html`, `casos/kaiowa.html`, `servicios/websites-ecommerce/index.html`, `servicios/brand-content/index.html`, `servicios/seo-growth/index.html`, `servicios/digital-shelf/index.html`
+- Paginas vivas: `index.html`, `nosotros/index.html`, `resultados/kaiowa/index.html`, `resultados/tienda-cristar/index.html`, `servicios/websites-ecommerce/index.html`, `servicios/brand-content/index.html`, `servicios/seo-growth/index.html`, `servicios/digital-shelf/index.html`
 
 Nota: la home conserva un bundle heredado. No editar ese bloque grande salvo que sea necesario. Los componentes nuevos deben agregarse como sistema compartido o adaptadores externos.
 
@@ -1008,7 +1008,7 @@ Reglas:
 - Si una nueva familia del menu necesita dropdown, debe agregarse al modelo central y reutilizar el mismo render de dropdowns.
 - En rutas bajo `/servicios/`, el item principal `Soluciones` debe quedar activo. La logica usa la key interna `soluciones` y las rutas reales; no depende del label visible.
 - En HTTP el catalogo entrega URLs publicas con `/` final; bajo `file://` agrega `index.html` solo para conservar la previsualizacion local.
-- En rutas bajo `/casos/`, el item principal `Casos de exito` debe quedar activo.
+- En rutas bajo `/resultados/`, el item principal `Casos de exito` debe quedar activo.
 
 ### Footer global
 
@@ -1322,9 +1322,9 @@ Reglas:
 
 ### Cristar
 
-- Pagina viva: `casos-de-exito/cristar/index.html`.
+- Pagina viva: `resultados/tienda-cristar/index.html`.
 - Consume Hero Base v1, Case Study Base, Card Base, Metric/KPI, Evidence Card, Sidebar, menu y footer globales.
-- Success Cases y el dropdown global enlazan `/casos-de-exito/cristar/`.
+- Success Cases y el dropdown global enlazan `/resultados/tienda-cristar/`.
 - Se mantienen locales el logo, el tratamiento editorial del titulo y la proporcion de la evidencia historica.
 - Los resultados sin fuente, definicion o periodo confirmado no se publican.
 
@@ -1363,6 +1363,32 @@ Responsive y accesibilidad:
 - El sidebar deja de ser sticky.
 - Los controles del filtro exponen `aria-pressed`; los items no coincidentes usan `hidden`.
 - La inicializacion es idempotente y queda limitada a cada `[data-case-filter]`.
+
+## Analytics Integration
+
+Responsabilidad:
+
+- `src/extracted/analytics-sync.js` es el owner global de la carga de Google Tag Manager y de los eventos declarativos compartidos.
+- El sitio carga un solo contenedor: `GTM-PZ35GMR9`.
+- Las paginas no deben instalar `gtag.js`, contenedores GTM adicionales ni listeners locales para conversiones globales.
+
+Eventos disponibles:
+
+- `contact_cta_click`: se emite cuando un enlace real navega a `/contacto/`.
+- `hubspot_form_success`: se emite desde el callback exitoso del formulario de contacto; no depende del click en el boton ni de un submit con errores.
+
+Parametros de `contact_cta_click`:
+
+- `contact_location`: `navigation`, `footer`, `hero` o `content`.
+- `link_url`: destino resuelto del enlace.
+- `page_path`: ruta donde ocurre la accion.
+
+Ownership:
+
+- El adaptador del sitio solo emite senales estables a `dataLayer`.
+- Google Tag Manager traduce esas senales a eventos GA4 y controla sus activadores.
+- Las reglas de trafico interno pertenecen a GA4 Admin; nunca se escriben IPs en HTML, JavaScript o GTM.
+- Consent Mode y la solucion de consentimiento deben gobernar el almacenamiento antes de publicar medicion en produccion.
 
 ## Decision Tree
 

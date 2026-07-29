@@ -1,7 +1,7 @@
 /* Global navigation: declarative content, shared rendering and interaction. */
 
 (() => {
-  const NAV_VERSION = "editorial-v1";
+  const NAV_VERSION = "editorial-v2";
   const MOBILE_QUERY = "(max-width: 860px)";
   const CLOSE_DELAY = 180;
 
@@ -30,13 +30,13 @@
       items: [
         {
           label: "Kaiowa",
-          path: "/casos/kaiowa.html",
+          path: "/resultados/kaiowa/",
           key: "kaiowa",
           status: "active",
         },
         {
           label: "Cristar",
-          path: "/casos-de-exito/cristar/",
+          path: "/resultados/tienda-cristar/",
           key: "cristar",
           status: "active",
         },
@@ -44,7 +44,7 @@
     },
     {
       label: "Nosotros",
-      path: "/nosotros.html",
+      path: "/nosotros/",
       key: "nosotros",
       type: "link",
       status: "active",
@@ -113,7 +113,7 @@
     return `
       <div class="uhura-nav-wrap" data-uhura-global-nav="true" data-uhura-global-nav-version="${NAV_VERSION}">
         <nav class="uhura-nav" aria-label="Navegación principal">
-          <a href="${root}/index.html" aria-label="Uhura home">
+          <a href="${root}/" aria-label="Uhura home">
             <img class="uhura-logo" src="${root}/assets/logos/logo-uhura-blanco.webp" alt="Uhura Group">
           </a>
           <div class="uhura-nav-links" id="uhura-global-nav-links">
@@ -143,10 +143,9 @@
     const activeService = serviceCatalog.matchPath(path);
     if (activeService) return new Set(["soluciones", activeService.key]);
     if (path.includes("/servicios/")) return new Set(["soluciones"]);
-    if (path.includes("/casos/kaiowa")) return new Set(["casos", "kaiowa"]);
-    if (path.includes("/casos-de-exito/cristar")) return new Set(["casos", "cristar"]);
-    if (path.includes("/casos-de-exito/")) return new Set(["casos"]);
-    if (path.includes("/casos/")) return new Set(["casos"]);
+    if (path.includes("/resultados/kaiowa")) return new Set(["casos", "kaiowa"]);
+    if (path.includes("/resultados/tienda-cristar")) return new Set(["casos", "cristar"]);
+    if (path.includes("/resultados/")) return new Set(["casos"]);
     if (path.includes("/nosotros")) return new Set(["nosotros"]);
     return new Set(["home"]);
   };

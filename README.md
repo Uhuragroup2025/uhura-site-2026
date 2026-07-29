@@ -39,15 +39,16 @@ La reconstrucción limpia inicial que no debía reemplazar visualmente la home q
 ## Páginas vivas / en progreso
 
 - `index.html`
-- `nosotros.html`
-- `casos/kaiowa.html`
+- `nosotros/index.html`
+- `resultados/kaiowa/index.html`
+- `resultados/tienda-cristar/index.html`
 - `servicios/websites-ecommerce/index.html`
 - `servicios/brand-content/index.html`
 - `servicios/seo-growth/index.html`
 - `servicios/digital-shelf/index.html`
 
-`servicios/ai-agents.html` permanece como página planificada, fuera de la
-navegación y del sitemap, con `noindex, nofollow` temporal.
+`servicios/ai-agents.html` permanece como fuente planificada y no se incluye en
+el artefacto público, la navegación ni el sitemap.
 
 ## Staging y rastreo
 
@@ -58,7 +59,11 @@ navegación y del sitemap, con `noindex, nofollow` temporal.
 - `_headers` aplica `X-Robots-Tag: noindex, nofollow` a todo el staging.
 - `.assetsignore` excluye `archive/`, `approved-snapshot/`, `visual-mirror/` y
   `workbench/` del paquete público.
-- `sitemap.xml` contiene únicamente las seis páginas vivas.
+- `sitemap.xml` contiene únicamente las páginas vivas del sitio nuevo. Los
+  sitemaps legacy siguen disponibles durante la migración progresiva.
+- Producción usa `UHURA_DEPLOY_ENV=production`: elimina el `noindex` global,
+  incluye el Worker de convivencia legacy y requiere
+  `legacy-origin.uhuragroup.com` apuntando al origen anterior.
 - El Home sigue dependiendo de JavaScript para su contenido principal. Para
   staging interno se acepta; antes de producción se debe implementar prerender
   o HTML inicial semántico.

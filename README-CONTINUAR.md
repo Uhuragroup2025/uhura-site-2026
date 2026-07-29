@@ -13,17 +13,18 @@ La prioridad es trabajar sobre las paginas vivas, conservar el lenguaje visual d
 Estas son las paginas que deben editarse cuando el cambio ya esta aprobado para entrar al sitio:
 
 - Home: `index.html`
-- Nosotros: `nosotros.html`
-- Caso Kaiowa: `casos/kaiowa.html`
+- Nosotros: `nosotros/index.html`
+- Caso Kaiowa: `resultados/kaiowa/index.html`
+- Caso Cristar: `resultados/tienda-cristar/index.html`
 - Servicio Websites & Ecommerce: `servicios/websites-ecommerce/index.html`
 - Servicio SEO & Growth: `servicios/seo-growth/index.html` (ruta operativa y navegable; continua en evolucion visual y de contenido, no es una pagina final ni congelada)
 - Servicio Brand & Content: `servicios/brand-content/index.html`
 - Servicio Digital Shelf: `servicios/digital-shelf/index.html`
 
 Estas siete paginas son la fuente operativa del sitio. `servicios/ai-agents.html`
-permanece en estado `planned`, fuera de navegacion y sitemap, con
-`noindex, nofollow` temporal. Si una nueva pagina entra en produccion, debe
-agregarse a esta lista antes de seguir iterando.
+permanece en estado `planned` y no se incluye en el artefacto publico, la
+navegacion ni el sitemap. Si una nueva pagina entra en produccion, debe agregarse
+a esta lista antes de seguir iterando.
 
 ## Staging y SEO tecnico
 
@@ -154,7 +155,7 @@ Regla importante:
 - El catalogo neutral de servicios se modifica en `src/config/services.js`.
 - El menu consume ese catalogo desde `src/extracted/global-nav-sync.js`.
 - El footer se modifica en `src/extracted/footer-sync.js`.
-- `index.html`, `nosotros.html` y `casos/kaiowa.html` deben cargar esos mismos archivos.
+- `index.html`, `nosotros/index.html` y los casos bajo `resultados/` deben cargar esos mismos archivos.
 - No ajustar menu o footer manualmente dentro de una pagina individual salvo que sea una prueba temporal en `workbench/`.
 - Cada pagina debe tener un unico mount global `<div id="uhura-footer-root" data-uhura-footer></div>`.
 - Ese mount debe vivir fuera de wrappers locales: en Home es hermano de `#root`; en Nosotros, Kaiowa y futuras paginas debe ser hermano final de `main`.
@@ -188,7 +189,8 @@ Componentes ya formalizados:
 - Metricas: `.metric`, `.metric-row`, `.metric-bar`, `.metric-bar-item`, `.metric-bar-value`, `.metric-bar-label`.
 - Formularios: `.form-grid`, `.field`, `.select-field`.
 - Media: `.media-card`, `.shot`.
-- Marquee de partners: `[data-expertise-strip]`, `.expertise-strip`, `.expertise-track`, `.expertise-logo`.
+- Logo Rail: `[data-logo-rail]`, `.logo-rail--platforms`, `.logo-rail--brands` y anatomia `.logo-rail__*`.
+- Partner Strip legacy: `[data-expertise-strip]`, `.expertise-strip`, `.expertise-track`, `.expertise-logo`; se conserva para consumidores existentes, no para paginas nuevas.
 
 Regla:
 
@@ -283,7 +285,7 @@ Regla:
 
 ### Nosotros
 
-Archivo vivo: `nosotros.html`
+Archivo vivo: `nosotros/index.html`
 
 Estado:
 
@@ -294,11 +296,11 @@ Estado:
 
 Regla:
 
-- No crear una nueva pagina de nosotros; seguir trabajando sobre `nosotros.html`.
+- No crear una nueva pagina de nosotros; seguir trabajando sobre `nosotros/index.html`.
 
 ### Caso Kaiowa
 
-Archivo vivo recomendado: `casos/kaiowa.html`
+Archivo vivo recomendado: `resultados/kaiowa/index.html`
 
 Estado:
 
@@ -321,8 +323,8 @@ node - <<'NODE'
 const fs=require('fs');
 for (const path of [
   'uhura-site-2026/index.html',
-  'uhura-site-2026/nosotros.html',
-  'uhura-site-2026/casos/kaiowa.html',
+  'uhura-site-2026/nosotros/index.html',
+  'uhura-site-2026/resultados/kaiowa/index.html',
   'uhura-site-2026/servicios/websites-ecommerce/index.html',
   'uhura-site-2026/servicios/brand-content/index.html',
   'uhura-site-2026/servicios/seo-growth/index.html',
@@ -344,8 +346,8 @@ Si una pagina queda en blanco, normalmente hay un error de sintaxis en el JS emb
 Abrir directo:
 
 - `index.html`
-- `nosotros.html`
-- `casos/kaiowa.html`
+- `nosotros/index.html`
+- `resultados/kaiowa/index.html`
 - `servicios/websites-ecommerce/index.html`
 - `servicios/brand-content/index.html`
 - `servicios/seo-growth/index.html`

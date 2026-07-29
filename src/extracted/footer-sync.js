@@ -23,7 +23,7 @@
     {
       title: "Empresa",
       links: [
-        { label: "Nosotros", href: "nosotros.html" },
+        { label: "Nosotros", href: "/nosotros/" },
         { label: "Nuestro trabajo", href: "#trabajo" },
         { label: "Clientes", href: "#clientes" },
         { label: "Metodología", href: "#metodologia" },
@@ -44,8 +44,6 @@
     const root = getRootPrefix();
     if (href.startsWith("/")) return serviceCatalog.resolvePath(href);
     if (href.startsWith("#")) return root + "/index.html" + href;
-    if (href === "nosotros.html") return root + "/nosotros.html";
-    if (href === "casos/kaiowa.html") return root + "/casos/kaiowa.html";
     return href;
   };
 

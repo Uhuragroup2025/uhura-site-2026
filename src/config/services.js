@@ -50,13 +50,17 @@
       return serviceTail.includes("/") ? "../.." : "..";
     }
 
-    const caseStudiesIndex = path.lastIndexOf("/casos-de-exito/");
-    if (caseStudiesIndex >= 0) {
-      const caseStudyTail = path.slice(caseStudiesIndex + "/casos-de-exito/".length);
-      return caseStudyTail.includes("/") ? "../.." : "..";
+    const resultsIndex = path.lastIndexOf("/resultados/");
+    if (resultsIndex >= 0) {
+      const resultsTail = path.slice(resultsIndex + "/resultados/".length);
+      return resultsTail.includes("/") ? "../.." : "..";
     }
 
-    if (path.includes("/contacto/") || path.includes("/workbench/") || path.includes("/casos/")) return "..";
+    if (
+      path.includes("/contacto/") ||
+      path.includes("/nosotros/") ||
+      path.includes("/workbench/")
+    ) return "..";
     return ".";
   };
 
