@@ -1,5 +1,10 @@
 const LEGACY_ORIGIN_HOST = "legacy-origin.uhuragroup.com";
 
+const TEMPORARY_REDIRECTS = new Map([
+  ["/blog", "https://darksalmon-dunlin-652246.hostingersite.com/testsite01/"],
+  ["/blog/", "https://darksalmon-dunlin-652246.hostingersite.com/testsite01/"],
+]);
+
 const PERMANENT_REDIRECTS = new Map([
   ["/index.html", "/"],
   ["/nosotros.html", "/nosotros/"],
@@ -81,7 +86,14 @@ const proxyLegacy = async (request, incomingUrl) => {
 export default {
   async fetch(request, env) {
     const incomingUrl = new URL(request.url);
+    const temporaryRedirectTarget = TEMPORARY_REDIRECTS.get(incomingUrl.pathname);
     const redirectTarget = PERMANENT_REDIRECTS.get(incomingUrl.pathname);
+
+    if (temporaryRedirectTarget) {
+      const destination = new URL(temporaryRedirectTarget);
+      destination.search = incomingUrl.search;
+      return Response.redirect(destination, 302);
+    }
 
     if (redirectTarget) {
       const destination = new URL(redirectTarget, incomingUrl);
