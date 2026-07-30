@@ -34,8 +34,8 @@
       links: [
         { label: "Hablemos", href: "/contacto/" },
         { label: "www.uhuragroup.com", href: "https://www.uhuragroup.com" },
-        { label: "LinkedIn", href: "https://mx.linkedin.com/company/uhura-group" },
-        { label: "Instagram", href: "https://www.instagram.com/uhuragroup/" },
+        { label: "LinkedIn", href: "https://mx.linkedin.com/company/uhura-group", external: true },
+        { label: "Instagram", href: "https://www.instagram.com/uhuragroup/", external: true },
       ],
     },
   ];
@@ -49,7 +49,7 @@
 
   const renderLink = (item) => item.href ? `
     <div style="margin-bottom:11px">
-      <a href="${localizeHref(item.href)}" class="uhura-shared-footer__link">
+      <a href="${localizeHref(item.href)}" class="uhura-shared-footer__link"${item.external ? ' target="_blank" rel="noopener noreferrer"' : ""}>
         <span class="uhura-shared-footer__link-dot"></span>
         ${item.label}
       </a>

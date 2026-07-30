@@ -6,6 +6,8 @@ output="$project/dist"
 deploy_env="${UHURA_DEPLOY_ENV:-staging}"
 
 required_assets=(
+  "assets/brand/favicon-uhura.png"
+  "assets/brand/imagen-destacada-uhura-group.jpg"
   "assets/services/previews/creatividad-uhura.png"
   "assets/services/previews/growth-uhura.jpg"
   "assets/services/previews/producto-digital-uhura.png"
