@@ -93,6 +93,8 @@
     wrapper.dataset.homeCapabilitiesHeading = "true";
     heading.dataset.homeCapabilitiesHeadingText = "true";
     suffix.dataset.homeCapabilitiesHeadingScript = "true";
+    const section = heading.closest("section");
+    if (section) section.dataset.homeCapabilitiesSection = "true";
     return true;
   };
 

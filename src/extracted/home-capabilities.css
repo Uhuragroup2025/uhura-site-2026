@@ -135,6 +135,10 @@
 }
 
 @media (max-width: 760px) {
+  [data-home-capabilities-section="true"] {
+    display: none !important;
+  }
+
   [data-home-capability-row="true"] {
     gap: 12px !important;
   }
