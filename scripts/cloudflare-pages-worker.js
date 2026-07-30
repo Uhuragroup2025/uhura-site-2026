@@ -3,8 +3,12 @@ const LEGACY_ORIGIN_HOST = "legacy-origin.uhuragroup.com";
 const PERMANENT_REDIRECTS = new Map([
   ["/index.html", "/"],
   ["/nosotros.html", "/nosotros/"],
+  ["/casos/kaiowa", "/resultados/kaiowa/"],
+  ["/casos/kaiowa/", "/resultados/kaiowa/"],
   ["/casos/kaiowa.html", "/resultados/kaiowa/"],
+  ["/casos-de-exito/cristar", "/resultados/tienda-cristar/"],
   ["/casos-de-exito/cristar/", "/resultados/tienda-cristar/"],
+  ["/casos-de-exito/cristar/index.html", "/resultados/tienda-cristar/"],
   ["/ecommerce-y-plataformas/", "/servicios/websites-ecommerce/"],
   ["/performance-digital/", "/servicios/seo-growth/"],
   ["/software-digital-shelf/", "/servicios/digital-shelf/"],
