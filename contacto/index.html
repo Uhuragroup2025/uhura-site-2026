@@ -281,17 +281,32 @@
       });
     }
 
+    const hubspotContactFormId = "dccaa1b8-d1c9-40aa-9b40-0fbb0770d630";
+    let hubspotContactSuccessTracked = false;
+
+    function trackHubspotContactSuccess(formId) {
+      if (formId && formId !== hubspotContactFormId) return;
+      if (hubspotContactSuccessTracked) return;
+
+      hubspotContactSuccessTracked = true;
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "hubspot_form_success",
+        form_id: hubspotContactFormId
+      });
+    }
+
+    window.addEventListener("hs-form-event:on-submission:success", function (event) {
+      trackHubspotContactSuccess(event.detail?.formId);
+    });
+
     window.addEventListener("message", function (event) {
       if (!event.data || event.data.type !== "hsFormCallback") return;
       if (event.data.eventName === "onFormReady") {
         applyHubspotContrastStyles();
       }
       if (event.data.eventName === "onFormSubmitted") {
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: "hubspot_form_success",
-          form_id: "dccaa1b8-d1c9-40aa-9b40-0fbb0770d630"
-        });
+        trackHubspotContactSuccess(event.data.id || event.data.formId);
       }
     });
 
