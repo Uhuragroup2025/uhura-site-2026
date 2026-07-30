@@ -1,7 +1,7 @@
 /* Global navigation: declarative content, shared rendering and interaction. */
 
 (() => {
-  const NAV_VERSION = "editorial-v2";
+  const NAV_VERSION = "editorial-v3";
   const MOBILE_QUERY = "(max-width: 860px)";
   const CLOSE_DELAY = 180;
 
@@ -41,6 +41,13 @@
           status: "active",
         },
       ],
+    },
+    {
+      label: "Blog",
+      path: "/blog/",
+      key: "blog",
+      type: "link",
+      status: "active",
     },
     {
       label: "Nosotros",
@@ -146,6 +153,7 @@
     if (path.includes("/resultados/kaiowa")) return new Set(["casos", "kaiowa"]);
     if (path.includes("/resultados/tienda-cristar")) return new Set(["casos", "cristar"]);
     if (path.includes("/resultados/")) return new Set(["casos"]);
+    if (path.includes("/blog/") || path === "/blog") return new Set(["blog"]);
     if (path.includes("/nosotros")) return new Set(["nosotros"]);
     return new Set(["home"]);
   };

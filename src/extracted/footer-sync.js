@@ -24,9 +24,9 @@
       title: "Empresa",
       links: [
         { label: "Nosotros", href: "/nosotros/" },
+        { label: "Blog", href: "/blog/" },
         { label: "Nuestro trabajo", href: "#trabajo" },
         { label: "Clientes", href: "#clientes" },
-        { label: "Metodología", href: "#metodologia" },
       ],
     },
     {
@@ -34,8 +34,8 @@
       links: [
         { label: "Hablemos", href: "/contacto/" },
         { label: "www.uhuragroup.com", href: "https://www.uhuragroup.com" },
-        { label: "LinkedIn", href: null },
-        { label: "Instagram", href: null },
+        { label: "LinkedIn", href: "https://mx.linkedin.com/company/uhura-group" },
+        { label: "Instagram", href: "https://www.instagram.com/uhuragroup/" },
       ],
     },
   ];
