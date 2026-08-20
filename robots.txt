@@ -7,5 +7,4 @@ Disallow: /workbench/
 Disallow: /servicios/ai-agents.html
 
 Sitemap: https://www.uhuragroup.com/sitemap.xml
-Sitemap: https://www.uhuragroup.com/post-sitemap.xml
-Sitemap: https://www.uhuragroup.com/resultados-sitemap.xml
+Sitemap: https://www.uhuragroup.com/blog/sitemap_index.xml
