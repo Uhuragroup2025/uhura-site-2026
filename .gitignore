@@ -2,3 +2,7 @@
 dist/
 .wrangler/
 *.tgz
+
+# Local QA output and unapproved visual experiments.
+tmp/
+workbench/assets/experimental/
