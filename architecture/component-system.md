@@ -1150,6 +1150,19 @@ Uso para paneles amplios con texto a dos columnas.
 
 Puede combinarse con `.panel-dark`, `.panel-light` y `.panel-roomy`.
 
+### Recognition Band
+
+Franja institucional breve para acreditaciones o distinciones verificables.
+
+- `.recognition-band`: superficie oscura de ancho completo.
+- `.recognition-band__inner`: stack centrado de copy y credencial.
+- `.recognition-band__copy`: eyebrow, titulo breve y una sola descripcion centrados.
+- `.recognition-band__credential`: enlace externo que contiene la imagen verificable.
+
+No debe crecer hasta convertirse en una pagina de criterios ni repetir metadata
+que ya vive en la credencial externa. Home y Nosotros son sus consumidores
+iniciales.
+
 ### Process
 
 Uso para metodologia, forma de trabajo o pasos de proceso.
