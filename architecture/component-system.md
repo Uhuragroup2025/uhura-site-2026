@@ -1382,7 +1382,7 @@ Responsive y accesibilidad:
 Responsabilidad:
 
 - `src/extracted/analytics-sync.js` es el owner global de la carga de Google Tag Manager y de los eventos declarativos compartidos.
-- El sitio carga un solo contenedor: `GTM-PZ35GMR9`.
+- El sitio carga un solo contenedor: `GTM-WJTMNMW` (cuenta UHURA en Tag Manager), el mismo del blog en `/blog/`.
 - Las paginas no deben instalar `gtag.js`, contenedores GTM adicionales ni listeners locales para conversiones globales.
 
 Eventos disponibles:

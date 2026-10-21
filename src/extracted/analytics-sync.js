@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  const GTM_ID = "GTM-PZ35GMR9";
+  const GTM_ID = "GTM-WJTMNMW";
   const CONTACT_PATH = "/contacto/";
   const ROOT = document.documentElement;
 
