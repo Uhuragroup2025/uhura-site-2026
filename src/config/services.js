@@ -43,6 +43,12 @@
 
   const getRootPrefix = () => {
     const path = window.location.pathname.replace(/\\/g, "/");
+
+    // El blog (WordPress servido en /blog/ por el Worker uhura-blog-proxy)
+    // carga este catálogo para pintar el mismo menú; sus URLs tienen una
+    // profundidad variable, así que allí los enlaces van desde la raíz.
+    if (path === "/blog" || path.startsWith("/blog/")) return "";
+
     const servicesIndex = path.lastIndexOf("/servicios/");
 
     if (servicesIndex >= 0) {

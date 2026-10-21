@@ -1,0 +1,465 @@
+/*
+ * Menú global de www.uhuragroup.com para el blog (WordPress en /blog/).
+ *
+ * El blog carga este archivo junto con src/config/services.js y
+ * src/extracted/global-nav-sync.js, así que el menú (enlaces, orden,
+ * desplegables) sale del mismo código que el sitio principal.
+ *
+ * Las reglas de "Componente" son copia literal de las reglas de navegación
+ * de src/styles/uhura-system.css (bloque .uhura-nav-wrap ... .uhura-dropdown-arrow
+ * y su versión móvil en @media (max-width: 860px)). Si cambias el diseño del
+ * menú allí, copia el cambio aquí. No se puede cargar uhura-system.css en el
+ * blog porque sus estilos globales (body, a, img, títulos) romperían Elementor.
+ */
+
+/* Tokens que usa el menú, acotados al menú para no tocar el tema del blog. */
+.uhura-nav-wrap {
+  --uhura-lavender: #c9b7ff;
+  --uhura-lime: #d4ff4a;
+  --context-accent-primary: var(--uhura-lime);
+  color: #fff;
+  font-family: "Montserrat", Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: normal;
+  text-align: left;
+}
+.uhura-nav-wrap *,
+.uhura-nav-wrap *:before,
+.uhura-nav-wrap *:after { box-sizing: border-box; }
+.uhura-nav-wrap a { color: inherit; }
+.uhura-nav-wrap img { max-width: 100%; }
+.uhura-nav-wrap :where(a, button):focus-visible {
+  outline: 3px solid var(--context-accent-primary);
+  outline-offset: 3px;
+}
+
+/* Componente (copia de uhura-system.css). */
+.uhura-nav-wrap {
+  position: fixed !important;
+  top: 26px !important;
+  left: 50% !important;
+  z-index: 100 !important;
+  width: min(920px, calc(100vw - 48px)) !important;
+  transform: translateX(-50%) !important;
+}
+.uhura-nav {
+  --nav-open-time: 180ms;
+  --nav-close-time: 140ms;
+  --nav-ease-out: cubic-bezier(.16, 1, .3, 1);
+  --nav-ease-in: cubic-bezier(.4, 0, 1, 1);
+  position: relative !important;
+  isolation: isolate;
+  display: grid !important;
+  grid-template-columns: auto 1fr auto !important;
+  align-items: center !important;
+  gap: clamp(14px, 2vw, 28px) !important;
+  width: min(100%, 920px) !important;
+  min-height: 68px !important;
+  height: 68px !important;
+  padding: 0 clamp(18px, 2.8vw, 28px) !important;
+  overflow: visible !important;
+  border: 1px solid transparent !important;
+  border-radius: 999px !important;
+  background:
+    linear-gradient(180deg, rgba(25,20,38,.84), rgba(10,8,17,.78)) padding-box,
+    linear-gradient(112deg, rgba(255,255,255,.26), rgba(193,161,255,.16) 42%, rgba(211,224,129,.12) 72%, rgba(255,255,255,.08)) border-box !important;
+  box-shadow: 0 18px 46px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.09), inset 0 -1px 0 rgba(99,25,162,.08) !important;
+  backdrop-filter: blur(15px) saturate(1.16) !important;
+  -webkit-backdrop-filter: blur(15px) saturate(1.16) !important;
+}
+.uhura-nav:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 1px;
+  border-radius: inherit;
+  opacity: .58;
+  background: linear-gradient(100deg, rgba(185,164,253,.045), transparent 42%, rgba(211,224,129,.025));
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+.uhura-nav:hover:before { opacity: .78; }
+.uhura-nav > * { position: relative; z-index: 1; }
+.uhura-nav > a:first-child {
+  display: flex !important;
+  align-items: center !important;
+  min-width: 118px !important;
+  text-decoration: none !important;
+}
+.uhura-logo {
+  display: block !important;
+  width: 118px !important;
+  height: auto !important;
+  filter: drop-shadow(0 0 10px rgba(99,25,162,.26)) !important;
+}
+.uhura-nav-links {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: clamp(20px, 3vw, 38px) !important;
+}
+.uhura-nav-link {
+  position: relative !important;
+  padding: 12px 0 !important;
+  border: 0 !important;
+  color: rgba(255,255,255,.82) !important;
+  background: transparent !important;
+  font-family: Montserrat, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+  transition: color 180ms ease !important;
+}
+.uhura-nav-link:after {
+  content: "";
+  position: absolute !important;
+  right: 0 !important;
+  bottom: 4px !important;
+  left: 0 !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  background: linear-gradient(90deg, var(--uhura-lavender), var(--uhura-lime)) !important;
+  transform: scaleX(.58) !important;
+  transform-origin: center !important;
+  transition: opacity 180ms ease, transform 180ms ease !important;
+}
+.uhura-nav-link:hover,
+.uhura-nav-link[aria-expanded="true"],
+.uhura-nav-link.is-active,
+.uhura-nav-link[aria-current="page"] {
+  color: #fff !important;
+}
+.uhura-nav-link:hover:after,
+.uhura-nav-link[aria-expanded="true"]:after,
+.uhura-nav-link.is-active:after,
+.uhura-nav-link[aria-current="page"]:after {
+  opacity: .72 !important;
+  transform: scaleX(1) !important;
+}
+.uhura-nav-cta {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  height: 42px !important;
+  min-height: 42px !important;
+  padding: 0 18px !important;
+  border: 1px solid rgba(211,224,129,.22) !important;
+  border-radius: 999px !important;
+  color: rgba(255,255,255,.9) !important;
+  background: rgba(255,255,255,.045) !important;
+  font-family: Montserrat, sans-serif !important;
+  font-size: 10.5px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+.uhura-nav-cta span { color: var(--uhura-lime) !important; font-size: 16px !important; }
+.uhura-menu-toggle { display: none !important; }
+.uhura-nav-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.uhura-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: -22px;
+  width: min(610px, calc(100vw - 88px));
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: 22px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, rgba(30,22,47,.9), rgba(12,9,20,.94) 68%) padding-box,
+    linear-gradient(128deg, rgba(255,255,255,.24), rgba(185,164,253,.14) 38%, rgba(211,224,129,.12) 70%, rgba(255,255,255,.07)) border-box;
+  box-shadow: 0 24px 54px rgba(0,0,0,.26), inset 0 1px 0 rgba(255,255,255,.07), inset 0 -1px 0 rgba(99,25,162,.07);
+  transform: translateY(-6px);
+  transform-origin: 72px 0;
+  transition: opacity var(--nav-close-time) var(--nav-ease-in), transform var(--nav-close-time) var(--nav-ease-in), visibility 0s linear var(--nav-close-time);
+  backdrop-filter: blur(15px) saturate(1.18);
+  -webkit-backdrop-filter: blur(15px) saturate(1.18);
+  isolation: isolate;
+}
+.uhura-dropdown--compact { width: min(310px, calc(100vw - 88px)); }
+.uhura-dropdown:before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 100%;
+  left: 0;
+  height: 12px;
+}
+.uhura-dropdown:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 1px;
+  border-radius: 21px;
+  opacity: .75;
+  background: linear-gradient(180deg, rgba(255,255,255,.035), transparent 36%), radial-gradient(circle at 12% 115%, rgba(99,25,162,.11), transparent 42%);
+  pointer-events: none;
+}
+.uhura-nav-item.is-open .uhura-dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition: opacity var(--nav-open-time) var(--nav-ease-out), transform var(--nav-open-time) var(--nav-ease-out), visibility 0s linear 0s;
+}
+.uhura-dropdown-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  min-height: 44px;
+  padding: 2px 11px 10px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.uhura-dropdown-intro span:first-child {
+  color: rgba(255,255,255,.36);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.uhura-dropdown-intro span:last-child {
+  color: rgba(185,164,253,.72);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 13px;
+  font-style: italic;
+}
+.uhura-dropdown-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2px;
+  padding-top: 8px;
+}
+.uhura-dropdown--compact .uhura-dropdown-grid { grid-template-columns: 1fr; padding-top: 0; }
+.uhura-dropdown-link {
+  position: relative;
+  display: block;
+  min-height: 88px;
+  padding: 15px 38px 14px 15px;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  color: #fff;
+  text-decoration: none;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+.uhura-dropdown-link:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 14px;
+  left: 14px;
+  height: 1px;
+  opacity: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+  transform: scaleX(.68);
+  transition: opacity 160ms ease, transform 180ms var(--nav-ease-out);
+}
+.uhura-dropdown-link:hover,
+.uhura-dropdown-link:focus-visible,
+.uhura-dropdown-link.is-active,
+.uhura-dropdown-link[aria-current="page"] {
+  border-color: rgba(185,164,253,.13);
+  color: #fff;
+  background: radial-gradient(ellipse at 22% 0%, rgba(185,164,253,.09), transparent 70%), rgba(255,255,255,.045);
+}
+.uhura-dropdown-link:hover:before,
+.uhura-dropdown-link:focus-visible:before,
+.uhura-dropdown-link.is-active:before { opacity: 1; transform: scaleX(1); }
+.uhura-dropdown-index {
+  display: block;
+  margin-bottom: 7px;
+  color: rgba(211,224,129,.55);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+.uhura-dropdown-name {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.uhura-dropdown-description {
+  display: block;
+  color: rgba(255,255,255,.48);
+  font-size: 9.5px;
+  line-height: 1.45;
+  transition: color 160ms ease;
+}
+.uhura-dropdown-link:hover .uhura-dropdown-description,
+.uhura-dropdown-link:focus-visible .uhura-dropdown-description { color: rgba(255,255,255,.68); }
+.uhura-dropdown-arrow {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  color: rgba(185,164,253,.48);
+  font-size: 15px;
+  transform: translate(-3px, -50%);
+  transition: color 160ms ease, transform 160ms var(--nav-ease-out);
+}
+.uhura-dropdown-link:hover .uhura-dropdown-arrow,
+.uhura-dropdown-link:focus-visible .uhura-dropdown-arrow {
+  color: var(--uhura-lime);
+  transform: translate(0, -50%);
+}
+
+@media (max-width: 860px) {
+  .uhura-nav-wrap { top: 18px !important; width: min(100vw - 32px, 620px) !important; }
+  .uhura-nav {
+    grid-template-columns: 1fr auto auto !important;
+    min-height: 68px !important;
+    height: 68px !important;
+    padding: 0 10px 0 18px !important;
+  }
+  .uhura-premium-nav {
+    grid-template-columns: auto minmax(0, 1fr) 42px !important;
+  }
+  .uhura-premium-nav > .uhura-nav-cta {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+  }
+  .uhura-premium-nav > .uhura-menu-toggle {
+    display: inline-flex !important;
+    grid-column: 3;
+    grid-row: 1;
+    position: relative;
+    z-index: 3;
+  }
+  .uhura-nav > a:first-child { min-width: 98px !important; }
+  .uhura-logo { width: 98px !important; }
+  .uhura-menu-toggle {
+    display: inline-flex !important;
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 42px !important;
+    height: 42px !important;
+    padding: 0 !important;
+    border: 1px solid rgba(255,255,255,.14) !important;
+    border-radius: 50% !important;
+    color: #fff !important;
+    background: rgba(255,255,255,.045) !important;
+    cursor: pointer;
+  }
+  .uhura-menu-toggle span,
+  .uhura-menu-toggle:before,
+  .uhura-menu-toggle:after {
+    content: "";
+    display: block;
+    width: 16px;
+    height: 1px;
+    margin: 2px auto;
+    background: currentColor;
+    transition: transform 180ms var(--nav-ease-out), opacity 120ms ease;
+  }
+  .uhura-menu-toggle[aria-expanded="true"] span { opacity: 0; }
+  .uhura-menu-toggle[aria-expanded="true"]:before { transform: translateY(5px) rotate(45deg); }
+  .uhura-menu-toggle[aria-expanded="true"]:after { transform: translateY(-5px) rotate(-45deg); }
+  .uhura-nav-links {
+    position: absolute !important;
+    top: calc(100% + 9px) !important;
+    right: 0 !important;
+    left: 0 !important;
+    display: grid !important;
+    gap: 2px !important;
+    padding: 9px !important;
+    border: 1px solid rgba(255,255,255,.12) !important;
+    border-radius: 21px !important;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    background: rgba(14,10,22,.98) !important;
+    box-shadow: 0 24px 56px rgba(0,0,0,.32) !important;
+    transform: translateY(-5px);
+    transition: opacity var(--nav-open-time) var(--nav-ease-out), transform var(--nav-open-time) var(--nav-ease-out), visibility 0s linear var(--nav-open-time);
+  }
+  .uhura-nav.is-open .uhura-nav-links,
+  .uhura-premium-nav.is-open .uhura-nav-links {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition-delay: 0s;
+  }
+  .uhura-nav-link,
+  .uhura-nav-links > a {
+    width: 100% !important;
+    padding: 13px 12px !important;
+    text-align: left !important;
+    font-size: 12px !important;
+  }
+  .uhura-nav-link:after { display: none !important; }
+  .uhura-nav-item { display: block; }
+  .uhura-dropdown,
+  .uhura-dropdown--compact {
+    position: static;
+    width: 100%;
+    max-height: 0;
+    margin: 0;
+    padding: 0 5px;
+    overflow: hidden;
+    border: 0;
+    border-radius: 15px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    background: rgba(255,255,255,.035);
+    box-shadow: none;
+    transform: none;
+    transition: max-height 220ms var(--nav-ease-out), opacity 140ms ease, padding 220ms var(--nav-ease-out), visibility 0s linear 220ms;
+    backdrop-filter: blur(10px) saturate(1.1);
+    -webkit-backdrop-filter: blur(10px) saturate(1.1);
+  }
+  .uhura-dropdown:before,
+  .uhura-dropdown:after,
+  .uhura-dropdown-intro { display: none; }
+  .uhura-nav-item.is-open .uhura-dropdown {
+    max-height: 460px;
+    padding: 5px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    transition-delay: 0s;
+  }
+  .uhura-dropdown-grid,
+  .uhura-dropdown--compact .uhura-dropdown-grid { grid-template-columns: 1fr; padding: 0; }
+  .uhura-dropdown-link { min-height: 69px; padding: 11px 34px 10px 12px !important; }
+  .uhura-dropdown-index { display: none; }
+  .uhura-dropdown-name { margin-bottom: 4px; font-size: 12px; }
+  .uhura-dropdown-description { font-size: 9px; }
+  .uhura-nav-cta { min-height: 40px !important; height: 40px !important; padding: 0 12px !important; font-size: 8px !important; }
+}
+
+/*
+ * Blindaje frente a los estilos de WordPress, Astra y Elementor, que pintan
+ * enlaces y botones con selectores más específicos que los del componente.
+ */
+.uhura-nav-wrap .uhura-dropdown-link,
+.uhura-nav-wrap .uhura-dropdown-link:hover,
+.uhura-nav-wrap .uhura-dropdown-link:focus,
+.uhura-nav-wrap .uhura-dropdown-link:visited { color: #fff !important; text-decoration: none !important; }
+.uhura-nav-wrap .uhura-nav-link:focus,
+.uhura-nav-wrap .uhura-nav-link:visited { color: rgba(255,255,255,.82) !important; }
+.uhura-nav-wrap .uhura-nav-link:hover,
+.uhura-nav-wrap .uhura-nav-link.is-active { color: #fff !important; }
+.uhura-nav-wrap .uhura-nav-cta:hover,
+.uhura-nav-wrap .uhura-nav-cta:focus,
+.uhura-nav-wrap .uhura-nav-cta:visited { color: rgba(255,255,255,.9) !important; }
+.uhura-nav-wrap button { box-shadow: none; min-height: 0; margin: 0; }
