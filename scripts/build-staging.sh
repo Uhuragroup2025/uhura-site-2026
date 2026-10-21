@@ -38,6 +38,7 @@ mkdir -p \
 # Cloudflare Pages publishes this directory directly, so documents retain
 # their public names and paths at the root of the artifact.
 cp "$project/index.html" "$output/index.html"
+cp "$project/404.html" "$output/404.html"
 cp "$project/nosotros/index.html" "$output/nosotros/index.html"
 cp "$project/resultados/kaiowa/index.html" "$output/resultados/kaiowa/index.html"
 cp "$project/resultados/tienda-cristar/index.html" "$output/resultados/tienda-cristar/index.html"
@@ -69,6 +70,7 @@ while IFS= read -r ignored; do
 done < "$project/.assetsignore"
 
 test -f "$output/index.html"
+test -f "$output/404.html"
 cmp -s "$project/index.html" "$output/index.html"
 test -f "$output/nosotros/index.html"
 test -f "$output/resultados/kaiowa/index.html"

@@ -42,6 +42,11 @@
   ].map((item) => Object.freeze(item));
 
   const getRootPrefix = () => {
+    // Páginas que se sirven en cualquier ruta (404.html) fijan la raíz con
+    // <html data-uhura-root="">, porque su profundidad no se conoce de antemano.
+    const forcedRoot = document.documentElement.dataset.uhuraRoot;
+    if (typeof forcedRoot === "string") return forcedRoot;
+
     const path = window.location.pathname.replace(/\\/g, "/");
     const servicesIndex = path.lastIndexOf("/servicios/");
 
