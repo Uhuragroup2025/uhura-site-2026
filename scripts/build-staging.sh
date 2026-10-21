@@ -24,6 +24,10 @@ for asset in "${required_assets[@]}"; do
   fi
 done
 
+if command -v node >/dev/null 2>&1; then
+  node "$project/scripts/check-redirects.cjs"
+fi
+
 rm -rf "$output"
 mkdir -p \
   "$output/nosotros" \

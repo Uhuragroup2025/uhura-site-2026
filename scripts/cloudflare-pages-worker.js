@@ -44,6 +44,7 @@ const PERMANENT_REDIRECTS = new Map([
   ["/landing-ai-growth-assistant/", "/blog/landing-ai-growth-assistant/"],
   ["/casos-de-exito/", "/blog/casos-de-exito/"],
   ["/resultados", "/blog/resultados/"],
+  ["/resultados/", "/blog/resultados/"],
   ["/dermaswiss/", "/blog/dermaswiss/"],
   ["/lusamine/", "/blog/lusamine/"],
   ["/grupo-alfara/", "/blog/grupo-alfara/"],
