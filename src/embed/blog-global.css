@@ -1,16 +1,17 @@
 /*
- * Menú global de www.uhuragroup.com para el blog (WordPress en /blog/).
+ * Menú y footer globales de www.uhuragroup.com para el blog (WordPress en /blog/).
  *
- * El blog carga este archivo junto con src/config/services.js y
- * src/extracted/global-nav-sync.js, así que el menú (enlaces, orden,
- * desplegables) sale del mismo código que el sitio principal.
+ * El blog carga este archivo junto con src/config/services.js,
+ * src/extracted/global-nav-sync.js y src/extracted/footer-sync.js, así que el
+ * contenido del menú y del footer sale del mismo código que el sitio principal.
  *
- * Las reglas de "Componente" son copia literal de las reglas de navegación
- * de src/styles/uhura-system.css (bloque .uhura-nav-wrap ... .uhura-dropdown-arrow
- * y su versión móvil en @media (max-width: 860px)). Si cambias el diseño del
- * menú allí, copia el cambio aquí. No se puede cargar uhura-system.css en el
- * blog porque sus estilos globales (body, a, img, títulos) romperían Elementor.
+ * Las secciones marcadas "copia de uhura-system.css" son copia literal de esas
+ * reglas. Si cambias el diseño del menú o del footer allí, copia el cambio aquí.
+ * No se puede cargar uhura-system.css en el blog porque sus estilos globales
+ * (body, a, img, títulos) romperían Elementor.
  */
+
+/* ===== Menú ===== */
 
 /* Tokens que usa el menú, acotados al menú para no tocar el tema del blog. */
 .uhura-nav-wrap {
@@ -32,7 +33,7 @@
   outline-offset: 3px;
 }
 
-/* Componente (copia de uhura-system.css). */
+/* Componente del menú (copia de uhura-system.css). */
 .uhura-nav-wrap {
   position: fixed !important;
   top: 26px !important;
@@ -447,10 +448,7 @@
   .uhura-nav-cta { min-height: 40px !important; height: 40px !important; padding: 0 12px !important; font-size: 8px !important; }
 }
 
-/*
- * Blindaje frente a los estilos de WordPress, Astra y Elementor, que pintan
- * enlaces y botones con selectores más específicos que los del componente.
- */
+/* Blindaje del menú frente a los estilos de WordPress, Astra y Elementor. */
 .uhura-nav-wrap .uhura-dropdown-link,
 .uhura-nav-wrap .uhura-dropdown-link:hover,
 .uhura-nav-wrap .uhura-dropdown-link:focus,
@@ -463,3 +461,281 @@
 .uhura-nav-wrap .uhura-nav-cta:focus,
 .uhura-nav-wrap .uhura-nav-cta:visited { color: rgba(255,255,255,.9) !important; }
 .uhura-nav-wrap button { box-shadow: none; min-height: 0; margin: 0; }
+
+/* ===== Footer ===== */
+
+/* Tokens y fondo oscuro: en el sitio principal el footer se apoya en el fondo de la página. */
+.uhura-shared-footer {
+  --uhura-lime: #d4ff4a;
+  --uhura-ink: #17131f;
+  --layout-wide: 1280px;
+  --layout-gutter: clamp(24px, 4vw, 64px);
+  --type-heading-weight: 700;
+  --type-button-size: 13px;
+  --type-button-weight: 600;
+  --button-primary-background: linear-gradient(135deg, var(--uhura-lime), #edff9b);
+  --button-primary-color: var(--uhura-ink);
+  --button-primary-shadow: 0 18px 42px rgba(212,255,74,.22);
+  --button-primary-shadow-hover: 0 22px 48px rgba(212,255,74,.28);
+  margin: 0;
+  color: #fff;
+  font-family: "Montserrat", Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: normal;
+  text-align: left;
+  background:
+    radial-gradient(ellipse at 82% 0%, rgba(138,77,255,.16), transparent 46%),
+    radial-gradient(ellipse at 12% 100%, rgba(75,229,255,.06), transparent 40%),
+    #090513 !important;
+}
+.uhura-shared-footer *,
+.uhura-shared-footer *:before,
+.uhura-shared-footer *:after { box-sizing: border-box; }
+.uhura-shared-footer p { padding: 0; }
+
+/* Botón principal (copia de uhura-system.css). */
+.button-primary,
+.button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 54px;
+  padding: 0 28px;
+  border-radius: 999px;
+  font-size: var(--type-button-size);
+  font-weight: var(--type-button-weight);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+.button-primary {
+  color: var(--button-primary-color);
+  background: var(--button-primary-background);
+  box-shadow: var(--button-primary-shadow);
+}
+.button-primary:hover,
+.button-secondary:hover { transform: translateY(-2px); }
+.button-primary:hover {
+  box-shadow: var(--button-primary-shadow-hover);
+}
+
+/* Componente del footer (copia de uhura-system.css). */
+.uhura-shared-footer {
+  position: relative;
+  z-index: 2;
+  background: transparent;
+  padding-top: 48px;
+}
+.uhura-shared-footer__container {
+  width: min(var(--layout-wide), calc(100vw - (var(--layout-gutter) * 2)));
+  margin-inline: auto;
+}
+.uhura-shared-footer__line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(137,69,240,.35) 50%, transparent 100%);
+}
+.uhura-shared-footer__top {
+  padding-top: 64px;
+  display: grid;
+  grid-template-columns: minmax(260px, 1.18fr) repeat(3, minmax(150px, .72fr));
+  gap: clamp(30px, 4vw, 58px);
+  align-items: start;
+}
+.uhura-shared-footer__brand-copy {
+  font-family: Montserrat, sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  color: rgba(255,255,255,.50);
+  line-height: 1.75;
+  margin: 0 0 24px;
+  max-width: 320px;
+}
+.uhura-shared-footer__brandmark {
+  margin-bottom: 18px;
+  display: flex;
+  align-items: baseline;
+  font-family: Montserrat, sans-serif;
+  font-weight: 800;
+  font-size: 26px;
+  letter-spacing: -.02em;
+}
+.uhura-shared-footer__brandmark-name {
+  background: linear-gradient(135deg, #fff 0%, #c1a1ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.uhura-shared-footer__brandmark-dot {
+  color: var(--uhura-lime);
+}
+.uhura-shared-footer__brandmark-group {
+  margin-left: 6px;
+  color: rgba(255,255,255,.3);
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: .1em;
+}
+.uhura-shared-footer__badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.uhura-shared-footer__badges span {
+  padding: 5px 12px;
+  border: 1px solid rgba(137,69,240,.25);
+  border-radius: 999px;
+  background: rgba(137,69,240,.08);
+  color: rgba(193,161,255,.85);
+  font-size: 10px;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.uhura-shared-footer__column-title {
+  margin-bottom: 22px;
+  color: rgba(225,255,100,.65);
+  font-size: 10.5px;
+  line-height: 1.35;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.uhura-shared-footer__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255,255,255,.72);
+  font-size: 12.5px;
+  line-height: 1.45;
+  font-weight: 400;
+  letter-spacing: .01em;
+  text-decoration: none;
+  transition: color 220ms ease;
+}
+.uhura-shared-footer__link-dot {
+  width: 3px;
+  height: 3px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: transparent;
+}
+.uhura-shared-footer__cta-wrap {
+  padding-top: 64px;
+}
+.uhura-shared-footer__cta {
+  position: relative;
+  border-radius: 16px;
+  padding: 40px 44px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(137,69,240,.16) 0%, rgba(80,31,146,.22) 50%, rgba(37,200,217,.10) 100%);
+  border: 1px solid rgba(137,69,240,.22);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.uhura-shared-footer__cta::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  right: -10%;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(193,161,255,.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.uhura-shared-footer__cta-copy,
+.uhura-shared-footer__cta-link {
+  position: relative;
+  z-index: 1;
+}
+.uhura-shared-footer__cta-title {
+  font-family: Montserrat, sans-serif;
+  font-weight: var(--type-heading-weight);
+  font-size: clamp(22px, 2.4vw, 30px);
+  letter-spacing: -.02em;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+.uhura-shared-footer__cta-title span {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 400;
+  color: #c1a1ff;
+}
+.uhura-shared-footer__cta-subcopy {
+  font-family: Montserrat, sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  color: rgba(255,255,255,.56);
+}
+.uhura-shared-footer__bottom {
+  margin-top: 56px;
+  padding-top: 40px;
+  padding-bottom: 48px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-top: 1px solid rgba(255,255,255,.05);
+}
+.uhura-shared-footer__bottom span {
+  font-family: Montserrat, sans-serif;
+  font-size: 11px;
+  color: rgba(255,255,255,.22);
+}
+.uhura-shared-footer__bottom span:last-child {
+  color: rgba(255,255,255,.14);
+}
+
+
+@media (max-width: 860px) {
+  .uhura-shared-footer { --layout-gutter: 18px; --layout-wide: 680px; }
+  .uhura-shared-footer__top {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .uhura-shared-footer__brand {
+    grid-column: 1 / -1;
+  }
+  .uhura-shared-footer__cta,
+  .uhura-shared-footer__bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .uhura-shared-footer__container {
+    width: min(var(--layout-wide), calc(100vw - 48px));
+  }
+  .uhura-shared-footer__top {
+    grid-template-columns: 1fr;
+    padding-top: 46px;
+    gap: 34px;
+  }
+  .uhura-shared-footer__cta-wrap {
+    padding-top: 46px;
+  }
+  .uhura-shared-footer__cta {
+    padding: 30px 24px;
+  }
+}
+
+
+/* Blindaje del footer frente a los estilos de WordPress, Astra y Elementor. */
+.uhura-shared-footer a.uhura-shared-footer__link,
+.uhura-shared-footer a.uhura-shared-footer__link:visited,
+.uhura-shared-footer a.uhura-shared-footer__link:focus { color: rgba(255,255,255,.72); text-decoration: none !important; }
+.uhura-shared-footer a.uhura-shared-footer__link:hover { color: #fff; }
+.uhura-shared-footer a.uhura-shared-footer__cta-link,
+.uhura-shared-footer a.uhura-shared-footer__cta-link:hover,
+.uhura-shared-footer a.uhura-shared-footer__cta-link:visited,
+.uhura-shared-footer a.uhura-shared-footer__cta-link:focus { color: var(--button-primary-color) !important; text-decoration: none !important; }

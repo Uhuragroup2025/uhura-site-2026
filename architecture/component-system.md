@@ -7,7 +7,7 @@ Este documento define los componentes reutilizables del sitio. La regla es simpl
 - Tokens, layout, tipografia y componentes CSS: `src/styles/uhura-system.css`
 - Catalogo neutral de servicios y resolucion de rutas: `src/config/services.js`
 - Menu global: `src/extracted/global-nav-sync.js`
-- Menu global en el blog (WordPress en `/blog/`): el mu-plugin `uhura-global-nav.php` de Hostinger carga `src/config/services.js`, `src/extracted/global-nav-sync.js` y `src/embed/blog-nav.css` desde www.uhuragroup.com. `blog-nav.css` es copia de las reglas de navegacion de `uhura-system.css`: si cambia el diseno del menu, actualizar ambos.
+- Menu y footer globales en el blog (WordPress en `/blog/`): el mu-plugin `uhura-global-nav.php` de Hostinger carga `src/config/services.js`, `src/extracted/global-nav-sync.js`, `src/extracted/footer-sync.js` y `src/embed/blog-global.css` desde www.uhuragroup.com. `blog-global.css` es copia de las reglas de menu, footer y `.button-primary` de `uhura-system.css`: si cambia su diseno, actualizar ambos.
 - Footer global: `src/extracted/footer-sync.js`
 - Cintillo de partners y mounts simples: `src/components/uhura-components.js`
 - Paginas vivas: `index.html`, `nosotros/index.html`, `resultados/kaiowa/index.html`, `resultados/tienda-cristar/index.html`, `servicios/websites-ecommerce/index.html`, `servicios/brand-content/index.html`, `servicios/seo-growth/index.html`, `servicios/digital-shelf/index.html`
