@@ -138,9 +138,9 @@ const successCases = [
     badge: "REDISEÑO WEB + CRO",
     href: `${rootPrefix}/resultados/constructora-melendez/`,
     metrics: [
-      ["+488%", "USUARIOS NUEVOS", "Crecimiento después del rediseño"],
-      ["+502%", "VISTAS", "Mayor descubrimiento de proyectos"],
-      ["+105%", "PÁGINAS / USUARIO", "Mayor profundidad de navegación"]
+      ["+23%", "SESIONES", "+48.000 usuarios únicos al mes"],
+      ["+10%", "LEADS", "Más generación de leads"],
+      ["3m 09s", "PERMANENCIA", "Promedio por sesión"]
     ],
     stack: "WORDPRESS · UX · CRO"
   }
