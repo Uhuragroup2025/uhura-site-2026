@@ -40,6 +40,12 @@
           key: "cristar",
           status: "active",
         },
+        {
+          label: "Constructora Meléndez",
+          path: "/resultados/constructora-melendez/",
+          key: "melendez",
+          status: "active",
+        },
       ],
     },
     {
@@ -152,6 +158,7 @@
     if (path.includes("/servicios/")) return new Set(["soluciones"]);
     if (path.includes("/resultados/kaiowa")) return new Set(["casos", "kaiowa"]);
     if (path.includes("/resultados/tienda-cristar")) return new Set(["casos", "cristar"]);
+    if (path.includes("/resultados/constructora-melendez")) return new Set(["casos", "melendez"]);
     if (path.includes("/resultados/")) return new Set(["casos"]);
     if (path.includes("/blog/") || path === "/blog") return new Set(["blog"]);
     if (path.includes("/nosotros")) return new Set(["nosotros"]);

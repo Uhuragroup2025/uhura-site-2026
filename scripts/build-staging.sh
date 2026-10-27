@@ -15,6 +15,8 @@ required_assets=(
   "assets/media/creatividad-uhura-campanas.mp4"
   "assets/media/manifiesto-uhura-web.mp4"
   "assets/cases/cristar/orders-chart.png"
+  "assets/cases/melendez/home-antes.webp"
+  "assets/cases/melendez/home-despues.webp"
 )
 
 for asset in "${required_assets[@]}"; do
@@ -33,6 +35,7 @@ mkdir -p \
   "$output/nosotros" \
   "$output/resultados/kaiowa" \
   "$output/resultados/tienda-cristar" \
+  "$output/resultados/constructora-melendez" \
   "$output/contacto" \
   "$output/servicios/websites-ecommerce" \
   "$output/servicios/brand-content" \
@@ -46,6 +49,7 @@ cp "$project/404.html" "$output/404.html"
 cp "$project/nosotros/index.html" "$output/nosotros/index.html"
 cp "$project/resultados/kaiowa/index.html" "$output/resultados/kaiowa/index.html"
 cp "$project/resultados/tienda-cristar/index.html" "$output/resultados/tienda-cristar/index.html"
+cp "$project/resultados/constructora-melendez/index.html" "$output/resultados/constructora-melendez/index.html"
 cp "$project/contacto/index.html" "$output/contacto/index.html"
 cp "$project/servicios/websites-ecommerce/index.html" "$output/servicios/websites-ecommerce/index.html"
 cp "$project/servicios/brand-content/index.html" "$output/servicios/brand-content/index.html"
@@ -79,6 +83,7 @@ cmp -s "$project/index.html" "$output/index.html"
 test -f "$output/nosotros/index.html"
 test -f "$output/resultados/kaiowa/index.html"
 test -f "$output/resultados/tienda-cristar/index.html"
+test -f "$output/resultados/constructora-melendez/index.html"
 test -f "$output/contacto/index.html"
 test -f "$output/servicios/websites-ecommerce/index.html"
 test -f "$output/servicios/brand-content/index.html"
