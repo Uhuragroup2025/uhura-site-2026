@@ -15,8 +15,8 @@ required_assets=(
   "assets/media/creatividad-uhura-campanas.mp4"
   "assets/media/manifiesto-uhura-web.mp4"
   "assets/cases/cristar/orders-chart.png"
-  "assets/cases/melendez/home-antes.webp"
-  "assets/cases/melendez/home-despues.webp"
+  "assets/cases/melendez/home-antes-2024.webp"
+  "assets/cases/melendez/home-despues-verdant.webp"
 )
 
 for asset in "${required_assets[@]}"; do
