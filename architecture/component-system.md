@@ -9,7 +9,7 @@ Este documento define los componentes reutilizables del sitio. La regla es simpl
 - Menu global: `src/extracted/global-nav-sync.js`
 - Footer global: `src/extracted/footer-sync.js`
 - Cintillo de partners y mounts simples: `src/components/uhura-components.js`
-- Paginas vivas: `index.html`, `nosotros/index.html`, `resultados/kaiowa/index.html`, `resultados/tienda-cristar/index.html`, `servicios/websites-ecommerce/index.html`, `servicios/brand-content/index.html`, `servicios/seo-growth/index.html`, `servicios/digital-shelf/index.html`
+- Paginas vivas: `index.html`, `nosotros/index.html`, `resultados/kaiowa/index.html`, `resultados/tienda-cristar/index.html`, `resultados/constructora-melendez/index.html`, `servicios/websites-ecommerce/index.html`, `servicios/brand-content/index.html`, `servicios/seo-growth/index.html`, `servicios/digital-shelf/index.html`
 
 Nota: la home conserva un bundle heredado. No editar ese bloque grande salvo que sea necesario. Los componentes nuevos deben agregarse como sistema compartido o adaptadores externos.
 
@@ -1340,6 +1340,14 @@ Reglas:
 - Success Cases y el dropdown global enlazan `/resultados/tienda-cristar/`.
 - Se mantienen locales el logo, el tratamiento editorial del titulo y la proporcion de la evidencia historica.
 - Los resultados sin fuente, definicion o periodo confirmado no se publican.
+
+### Constructora Meléndez
+
+- Pagina viva: `resultados/constructora-melendez/index.html`.
+- Contenido tomado del documento aprobado de casos de exito (reto, diagnostico, oportunidad, decisiones, evidencia y aprendizaje).
+- Consume Hero Base v1, Case Study Base, Card Base, Metric/KPI, Evidence Card, Sidebar, menu y footer globales.
+- Success Cases y el dropdown global enlazan `/resultados/constructora-melendez/`.
+- Se mantienen locales el logo, el tratamiento editorial del titulo y la pila Antes/Despues (`.before-after`) con capturas reales del Home en `assets/cases/melendez/`.
 
 ## Case Study Base
 

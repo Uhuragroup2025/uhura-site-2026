@@ -6,6 +6,7 @@ const DOCUMENT_ROUTES = new Map([
   ["/nosotros/", ["/__content/nosotros/index.page", "text/html; charset=utf-8"]],
   ["/resultados/kaiowa/", ["/__content/resultados/kaiowa/index.page", "text/html; charset=utf-8"]],
   ["/resultados/tienda-cristar/", ["/__content/resultados/tienda-cristar/index.page", "text/html; charset=utf-8"]],
+  ["/resultados/constructora-melendez/", ["/__content/resultados/constructora-melendez/index.page", "text/html; charset=utf-8"]],
   ["/contacto/", ["/__content/contacto/index.page", "text/html; charset=utf-8"]],
   ["/servicios/websites-ecommerce/", ["/__content/servicios/websites-ecommerce/index.page", "text/html; charset=utf-8"]],
   ["/servicios/brand-content/", ["/__content/servicios/brand-content/index.page", "text/html; charset=utf-8"]],

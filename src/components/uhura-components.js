@@ -136,7 +136,7 @@ const successCases = [
     type: "B2C",
     logo: "logo-constructora melendez.webp",
     badge: "REDISEÑO WEB + CRO",
-    href: `${rootPrefix}/resultados/kaiowa/`,
+    href: `${rootPrefix}/resultados/constructora-melendez/`,
     metrics: [
       ["+488%", "USUARIOS NUEVOS", "Crecimiento después del rediseño"],
       ["+502%", "VISTAS", "Mayor descubrimiento de proyectos"],
